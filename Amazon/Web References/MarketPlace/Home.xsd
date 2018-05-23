@@ -1,0 +1,230 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xsd:schema elementFormDefault="qualified" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <xsd:include schemaLocation="amzn-base.xsd" />
+  <xsd:element name="Home">
+    <xsd:complexType>
+      <xsd:sequence>
+        <xsd:element name="ProductType">
+          <xsd:complexType>
+            <xsd:choice>
+              <xsd:element ref="BedAndBath" />
+              <xsd:element ref="FurnitureAndDecor" />
+              <xsd:element ref="Kitchen" />
+              <xsd:element ref="OutdoorLiving" />
+              <xsd:element ref="SeedsAndPlants" />
+            </xsd:choice>
+          </xsd:complexType>
+        </xsd:element>
+        <xsd:element name="Parentage">
+          <xsd:simpleType>
+            <xsd:restriction base="xsd:string">
+              <xsd:enumeration value="collection-parent" />
+              <xsd:enumeration value="variation-parent" />
+              <xsd:enumeration value="base-product" />
+            </xsd:restriction>
+          </xsd:simpleType>
+        </xsd:element>
+        <xsd:element minOccurs="0" name="CountryProducedIn" type="StringNotNull" />
+        <xsd:element minOccurs="0" name="DisplayLength" type="LengthDimension" />
+        <xsd:element minOccurs="0" name="DisplayWidth" type="LengthDimension" />
+        <xsd:element minOccurs="0" name="DisplayHeight" type="LengthDimension" />
+        <xsd:element minOccurs="0" name="DisplayDepth" type="LengthDimension" />
+        <xsd:element minOccurs="0" name="DisplayDiameter" type="LengthDimension" />
+        <xsd:element minOccurs="0" name="DisplayWeight" type="WeightDimension" />
+        <xsd:element minOccurs="0" default="1" name="ItemPackageQuantity" type="xsd:positiveInteger" />
+        <xsd:element minOccurs="0" name="ManufacturerWarrantyDescription">
+          <xsd:simpleType>
+            <xsd:restriction base="xsd:normalizedString">
+              <xsd:maxLength value="1500" />
+            </xsd:restriction>
+          </xsd:simpleType>
+        </xsd:element>
+        <xsd:element minOccurs="0" name="VolumeCapacity" type="VolumeIntegerDimension" />
+        <xsd:element minOccurs="0" name="NumberOfPieces" type="xsd:positiveInteger" />
+      </xsd:sequence>
+    </xsd:complexType>
+  </xsd:element>
+  <xsd:element name="BedAndBath">
+    <xsd:complexType>
+      <xsd:sequence>
+        <xsd:element minOccurs="0" ref="ColorMap" />
+        <xsd:element minOccurs="0" name="IsStainResistant" type="xsd:boolean" />
+        <xsd:element minOccurs="0" name="Material" type="StringNotNull" />
+        <xsd:element minOccurs="0" name="NumberOfSets" type="xsd:positiveInteger" />
+        <xsd:element minOccurs="0" name="ThreadCount" type="xsd:positiveInteger" />
+        <xsd:element minOccurs="0" name="VariationData">
+          <xsd:complexType>
+            <xsd:sequence>
+              <xsd:element minOccurs="0" name="VariationTheme">
+                <xsd:simpleType>
+                  <xsd:restriction base="xsd:string">
+                    <xsd:enumeration value="Size" />
+                    <xsd:enumeration value="Color" />
+                    <xsd:enumeration value="Scent" />
+                    <xsd:enumeration value="Size-Color" />
+                    <xsd:enumeration value="Size-Scent" />
+                  </xsd:restriction>
+                </xsd:simpleType>
+              </xsd:element>
+              <xsd:element minOccurs="0" name="Size" type="StringNotNull" />
+              <xsd:element minOccurs="0" name="Color" type="StringNotNull" />
+              <xsd:element minOccurs="0" name="Scent" type="StringNotNull" />
+            </xsd:sequence>
+          </xsd:complexType>
+        </xsd:element>
+        <xsd:element minOccurs="0" name="Wattage" type="xsd:positiveInteger" />
+      </xsd:sequence>
+    </xsd:complexType>
+  </xsd:element>
+  <xsd:element name="FurnitureAndDecor">
+    <xsd:complexType>
+      <xsd:sequence>
+        <xsd:element minOccurs="0" ref="Battery" />
+        <xsd:element minOccurs="0" ref="ColorMap" />
+        <xsd:element minOccurs="0" name="IsStainResistant" type="xsd:boolean" />
+        <xsd:element minOccurs="0" name="Material" type="StringNotNull" />
+        <xsd:element minOccurs="0" name="NumberOfSets" type="xsd:positiveInteger" />
+        <xsd:element minOccurs="0" name="ThreadCount" type="xsd:positiveInteger" />
+        <xsd:element minOccurs="0" name="VariationData">
+          <xsd:complexType>
+            <xsd:sequence>
+              <xsd:element minOccurs="0" name="VariationTheme">
+                <xsd:simpleType>
+                  <xsd:restriction base="xsd:string">
+                    <xsd:enumeration value="Size" />
+                    <xsd:enumeration value="Color" />
+                    <xsd:enumeration value="Scent" />
+                    <xsd:enumeration value="Size-Color" />
+                    <xsd:enumeration value="Size-Scent" />
+                  </xsd:restriction>
+                </xsd:simpleType>
+              </xsd:element>
+              <xsd:element minOccurs="0" name="Size" type="StringNotNull" />
+              <xsd:element minOccurs="0" name="Color" type="StringNotNull" />
+              <xsd:element minOccurs="0" name="Scent" type="StringNotNull" />
+            </xsd:sequence>
+          </xsd:complexType>
+        </xsd:element>
+        <xsd:element minOccurs="0" name="Wattage" type="xsd:positiveInteger" />
+      </xsd:sequence>
+    </xsd:complexType>
+  </xsd:element>
+  <xsd:element name="Kitchen">
+    <xsd:complexType>
+      <xsd:sequence>
+        <xsd:element minOccurs="0" ref="Battery" />
+        <xsd:element minOccurs="0" ref="ColorMap" />
+        <xsd:element minOccurs="0" name="Material" type="StringNotNull" />
+        <xsd:element minOccurs="0" name="NumberOfSets" type="xsd:positiveInteger" />
+        <xsd:element minOccurs="0" name="ThreadCount" type="xsd:positiveInteger" />
+        <xsd:element minOccurs="0" name="VariationData">
+          <xsd:complexType>
+            <xsd:sequence>
+              <xsd:element minOccurs="0" name="VariationTheme">
+                <xsd:simpleType>
+                  <xsd:restriction base="xsd:string">
+                    <xsd:enumeration value="Size" />
+                    <xsd:enumeration value="Color" />
+                    <xsd:enumeration value="Size-Color" />
+                  </xsd:restriction>
+                </xsd:simpleType>
+              </xsd:element>
+              <xsd:element minOccurs="0" name="Size" type="StringNotNull" />
+              <xsd:element minOccurs="0" name="Color" type="StringNotNull" />
+            </xsd:sequence>
+          </xsd:complexType>
+        </xsd:element>
+        <xsd:element minOccurs="0" name="Wattage" type="xsd:positiveInteger" />
+      </xsd:sequence>
+    </xsd:complexType>
+  </xsd:element>
+  <xsd:element name="OutdoorLiving">
+    <xsd:complexType>
+      <xsd:sequence>
+        <xsd:element minOccurs="0" ref="Battery" />
+        <xsd:element minOccurs="0" ref="ColorMap" />
+        <xsd:element minOccurs="0" name="IsStainResistant" type="xsd:boolean" />
+        <xsd:element minOccurs="0" name="Material" type="StringNotNull" />
+        <xsd:element minOccurs="0" name="VariationData">
+          <xsd:complexType>
+            <xsd:sequence>
+              <xsd:element minOccurs="0" name="VariationTheme">
+                <xsd:simpleType>
+                  <xsd:restriction base="xsd:string">
+                    <xsd:enumeration value="Size" />
+                    <xsd:enumeration value="Color" />
+                    <xsd:enumeration value="Size-Color" />
+                  </xsd:restriction>
+                </xsd:simpleType>
+              </xsd:element>
+              <xsd:element minOccurs="0" name="Size" type="StringNotNull" />
+              <xsd:element minOccurs="0" name="Color" type="StringNotNull" />
+            </xsd:sequence>
+          </xsd:complexType>
+        </xsd:element>
+        <xsd:element minOccurs="0" name="Wattage" type="xsd:positiveInteger" />
+      </xsd:sequence>
+    </xsd:complexType>
+  </xsd:element>
+  <xsd:element name="SeedsAndPlants">
+    <xsd:complexType>
+      <xsd:sequence>
+        <xsd:element minOccurs="0" ref="ColorMap" />
+        <xsd:element minOccurs="0" name="MoistureNeeds">
+          <xsd:simpleType>
+            <xsd:restriction base="xsd:string">
+              <xsd:enumeration value="little-to-no-watering" />
+              <xsd:enumeration value="moderate-watering" />
+              <xsd:enumeration value="regular-watering" />
+              <xsd:enumeration value="constant-watering" />
+            </xsd:restriction>
+          </xsd:simpleType>
+        </xsd:element>
+        <xsd:element minOccurs="0" name="Spread" type="LengthDimension" />
+        <xsd:element minOccurs="0" name="SunlightExposure">
+          <xsd:simpleType>
+            <xsd:restriction base="xsd:string">
+              <xsd:enumeration value="shade" />
+              <xsd:enumeration value="partial-shade" />
+              <xsd:enumeration value="partial-sun" />
+              <xsd:enumeration value="full-sun" />
+            </xsd:restriction>
+          </xsd:simpleType>
+        </xsd:element>
+        <xsd:element minOccurs="0" maxOccurs="24" name="SunsetClimateZone">
+          <xsd:simpleType>
+            <xsd:restriction base="xsd:positiveInteger">
+              <xsd:minInclusive value="1" />
+              <xsd:maxInclusive value="24" />
+            </xsd:restriction>
+          </xsd:simpleType>
+        </xsd:element>
+        <xsd:element minOccurs="0" maxOccurs="11" name="USDAHardinessZone">
+          <xsd:simpleType>
+            <xsd:restriction base="xsd:positiveInteger">
+              <xsd:minInclusive value="1" />
+              <xsd:maxInclusive value="11" />
+            </xsd:restriction>
+          </xsd:simpleType>
+        </xsd:element>
+        <xsd:element minOccurs="0" name="VariationData">
+          <xsd:complexType>
+            <xsd:sequence>
+              <xsd:element minOccurs="0" name="VariationTheme">
+                <xsd:simpleType>
+                  <xsd:restriction base="xsd:string">
+                    <xsd:enumeration value="Size" />
+                    <xsd:enumeration value="Color" />
+                    <xsd:enumeration value="Size-Color" />
+                  </xsd:restriction>
+                </xsd:simpleType>
+              </xsd:element>
+              <xsd:element minOccurs="0" name="Size" type="StringNotNull" />
+              <xsd:element minOccurs="0" name="Color" type="StringNotNull" />
+            </xsd:sequence>
+          </xsd:complexType>
+        </xsd:element>
+      </xsd:sequence>
+    </xsd:complexType>
+  </xsd:element>
+</xsd:schema>

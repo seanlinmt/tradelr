@@ -1,0 +1,99 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{5A7D70F2-A584-422A-8910-FA79B00F9E1E}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>TradeMe</RootNamespace>
+    <AssemblyName>TradeMe</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="extensions\PhotoUploadRequest.cs" />
+    <Compile Include="models\EditListingRequest.cs" />
+    <Compile Include="models\ErrorResult.cs" />
+    <Compile Include="schema\api.trademe.co.nz.v1.cs">
+      <DependentUpon>api.trademe.co.nz.v1.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="services\CatalogueService.cs" />
+    <Compile Include="services\MyTrademeService.cs" />
+    <Compile Include="services\MembershipService.cs" />
+    <Compile Include="services\PhotoService.cs" />
+    <Compile Include="services\SellingService.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RestBase.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
+    <None Include="packages.config" />
+    <None Include="schema\api.trademe.co.nz.v1.wsdl" />
+    <None Include="schema\api.trademe.co.nz.v1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="schema\api.trademe.co.nz.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="schema\output.config" />
+    <None Include="schema\schemas.microsoft.com.2003.10.Serialization.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="xml\Categories.json" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\clearpixels.git\clearpixels.Logging\clearpixels.Logging.csproj">
+      <Project>{14e4934e-a77b-4a05-ab59-2aaefdf10c22}</Project>
+      <Name>clearpixels.Logging</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ClearPixels.OAuth\clearPixels.OAuth.csproj">
+      <Project>{07280BEF-5A8D-4579-86E6-ECDCC5C1E65E}</Project>
+      <Name>clearPixels.OAuth</Name>
+    </ProjectReference>
+    <ProjectReference Include="X:\gdata-new\clients\cs\src\core\Core Client.csproj">
+      <Project>{b6f6d938-0d45-42ba-8a67-55d92ef03995}</Project>
+      <Name>Core Client</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="xml\Categories.xml" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

@@ -1,0 +1,79 @@
+<!-- START TITLE -->
+<div id="title" class="clear">
+	<h1>Your Cart</h1>
+	<h2><span>{{ cart.item_count }} {{ cart.item_count | pluralize: "Item", "Items" }}</span></h2>
+</div>
+<!-- END TITLE -->{% if cart.item_count == 0 %}
+<p id="empty">Your shopping cart is empty. <a href="/collections/all">Continue shopping...</a></p>{% else %}
+<form action="/cart" method="post" name="cartform">
+	<!-- START TABLE -->
+	<table cellpadding="0" cellspacing="0">
+		<!-- START HEADERS -->
+		<tr>
+			<th colspan="2" class="start">Description</th>
+			<th>Price</th>
+			<th>Quantity</th>
+			<th>Delete</th>
+			<th>Total</th>
+		</tr>
+		<!-- END HEADERS -->{% for item in cart.items %}
+		<!-- START PRODUCT {{ forloop.index }} -->
+		<tr class="{% cycle "odd", "even" %}">
+			<td class="pic">
+				<div><a href="{{ item.product.url | within: collections.all }}"><img src="{{ item.product.images[0] | product_img_url: "thumb" }}" alt="{{ item.title | escape }}" /></a></div>
+			</td>
+			<td>
+				<h3><a href="{{ item.product.url | within: collections.all }}">{{ item.title | escape }}</a></h3>
+				<p>{{ item.product.description | strip_html | strip_newlines | truncate: 180 }}</p>
+			</td>
+			<td>{{ item.price | money }}</td>
+			<td><input type="text" class="field" name="updates" id="updates_{{ item.id }}" value="{{ item.quantity }}" /></td>
+			<td class="remove"><a href="/cart/change/{{ item.id }}?quantity=0">Remove</a></td>
+			<td><strong>{{ item.total_price | money }}</strong></td>
+		</tr>
+		<!-- END PRODUCT {{ forloop.index }} -->{% endfor %}
+	</table>
+	<!-- END TABLE -->
+    <div id="discount">
+        <label for="coupon_code">Enter coupon code if available:</label>
+        <input type="text" id="coupon_code" name="coupon_code" value="{{ cart.coupon_code }}"></input>
+    </div>
+    
+	<!-- START TOTAL -->
+	<div id="total" class="clear">
+		<!-- START CONTINUE -->
+		<div id="continue">
+			<p>Not ready to checkout? <a href="/collections/all">Continue shopping...</a></p>
+		</div>
+		<!-- END CONTINUE -->
+		<!-- START PRICE -->
+		<div id="price">
+			<h3>Total: <span>{{ cart.total_price | money }}</span></h3>
+		</div>
+		<!-- END PRICE -->
+	</div>
+	<!-- END TOTAL -->
+	<!-- START COMPLETE -->
+	<div id="complete" class="clear">{% if settings.notes == "enabled" %}
+		<!-- START NOTES -->
+		<div id="notes">
+			<label for="note">Tell us about any special instructions:</label>
+			<textarea name="note" id="note" rows="" cols="">{{ cart.note }}</textarea>
+		</div>
+		<!-- END NOTES -->{% endif %}
+		<!-- START CHECKOUT -->
+		<div id="checkout">
+			<input type="submit" value="Update" name="update" class="update" /> or 
+			<input type="submit" value="Checkout" name="checkout" class="checkout" />
+		</div>
+
+		{% if additional_checkout_buttons %}
+      <div class="additional-checkout-buttons">
+        <p>- or -</p>
+        {{ content_for_additional_checkout_buttons }}
+      </div>
+    {% endif %}
+		<!-- END CHECKOUT -->
+	</div>
+	<!-- END COMPLETE -->
+</form>{% endif %}

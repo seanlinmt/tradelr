@@ -1,0 +1,6 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<files>
+    <link href="jquery-ui-1.7.2.custom.css"></link>
+    <link href="common.css"></link>
+    <link href="mediapicker/mediapicker.css"></link>
+</files>

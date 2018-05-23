@@ -1,0 +1,211 @@
+﻿body {
+    background-color: #eee;
+    font-size: 14px;
+}
+
+a, a:visited,a:hover {	
+    color: #19558D;	
+    text-decoration:underline;
+}
+
+a:hover { text-decoration:none;}
+
+button {
+     width: 100%;
+    font-size: 16px !important;
+    border-radius: 16px !important;
+}
+
+h1 {
+    font-size:20px;
+    color: #fff;
+    font-weight:normal;
+    font-family: Helvetica, Arial, sans-serif;
+    line-height: 45px;
+    letter-spacing: 0.2px;
+    text-align: center;
+    text-shadow: -1px -1px 0.5px rgba(0, 0, 0, 0.4);
+}
+
+h2 {
+    font-size:18px;
+    font-weight:normal;
+    padding:5px 0;
+}
+
+h3 {
+    font-size:14px;
+    text-shadow:0 1px 0 #FFFFFF;
+    margin-bottom:10px;
+    font-weight:normal;
+}
+
+h4 {
+    font-size: larger;
+    border-bottom: 1px solid #888888;
+}
+
+img {
+    vertical-align: top;
+}
+
+input[type="text"], input[type="password"], select, textarea {
+    width: 98%;
+    -moz-border-colors: none;
+    -moz-border-image: none;
+    border-color: #CCCCCC #E7E7E7 #E7E7E7 #CCCCCC;
+    border-style: solid;
+    border-width: 1px;
+    border-radius: 5px;
+    padding: 5px;
+    font-size: 14px;
+}
+
+
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+    margin-bottom:18px;
+    width: 100%;
+}
+
+table td 
+{ 
+    padding: 5px 10px; 
+}
+
+
+table.table_grid td {
+    border: 1px solid #eee;
+    padding:4px;
+}
+
+#addresses, #credentials, #shippingmethods, #checkout_completed {
+    padding: 0;
+    border: 1px solid #ddd;
+    margin: 0;
+    background-color: #f7f7f7;
+}
+
+#address_billing, #address_shipping {
+    position: relative;
+    width: 92%;
+    padding: 0 5px 0 10px;
+    margin-right: 0;
+}
+
+#billing_address, #shipping_address {
+    width: 98% !important;
+}
+
+.cart_header {
+    font-size: 16px;
+    color: #fff;
+    background-color: #666;
+    padding: 10px 20px;
+    text-shadow: 1px 1px 0 rgba(0, 0, 0, 0.3);
+    border-top: 1px solid #888888;
+}
+
+.cart_subheader {
+    background: none repeat scroll 0 0 #E6E6E6;
+    border-bottom: 1px solid #D0D0D0;
+    border-top: 1px solid #D0D0D0;
+    box-shadow: 0 1px 0 #FFFFFF;
+    color: #555555;
+    font-size: 14px !important;
+    font-weight: bold;
+    height: 22px;
+    line-height: 22px;
+    margin: 0;
+    padding: 10px;
+    text-shadow: 1px 1px 0 #FFFFFF;
+}
+
+#cart_products {
+    padding: 0;
+}
+
+#container {
+    margin: 0 auto;
+    width: 320px;
+    padding: 0;
+}
+
+#credentials .content {
+    width: 95%;
+    padding: 0 5px;
+}
+
+#footer {
+    background: none repeat scroll 0 0 #DDDDDD !important;
+    border-top: 1px solid #CCCCCC;
+    color: #444444;
+    font-size: 12px;
+    margin: 0;
+    padding-bottom: 10px;
+    position: relative;
+    text-align: center;
+    text-shadow: 1px 1px 0 #FFFFFF;
+    width: 100% !important;
+}
+
+#header {
+    position: relative;
+    background-color: #333;
+    padding: 2px;
+}
+
+#loggedin_link {
+    display: none;
+}
+
+.large {
+    font-size: large;
+}
+
+#main {
+    background-color: #fff;
+    padding: 0;
+    box-shadow: none;
+}
+
+#notify {
+    display: none;
+}
+
+#payment_instructions {
+    padding: 10px;
+}
+
+#payment_methods_list li {
+    padding-bottom: 5px;
+}
+
+#payment_methods_list label {
+    font-weight: bold;
+}
+
+.same_shipping_checkbox {
+    background: rgb(238,238,238); /* Old browsers */
+    background: -moz-linear-gradient(top,  rgba(238,238,238,1) 0%, rgba(204,204,204,1) 100%); /* FF3.6+ */
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(238,238,238,1)), color-stop(100%,rgba(204,204,204,1))); /* Chrome,Safari4+ */
+    background: -webkit-linear-gradient(top,  rgba(238,238,238,1) 0%,rgba(204,204,204,1) 100%); /* Chrome10+,Safari5.1+ */
+    background: -o-linear-gradient(top,  rgba(238,238,238,1) 0%,rgba(204,204,204,1) 100%); /* Opera 11.10+ */
+    background: -ms-linear-gradient(top,  rgba(238,238,238,1) 0%,rgba(204,204,204,1) 100%); /* IE10+ */
+    background: linear-gradient(to bottom,  rgba(238,238,238,1) 0%,rgba(204,204,204,1) 100%); /* W3C */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#eeeeee', endColorstr='#cccccc',GradientType=0 ); /* IE6-9 */
+    border: 1px solid #CCCCCC;
+    border-radius: 18px 18px 18px 18px;
+    padding: 5px 10px;
+    margin: 10px;
+}
+
+#shippingmethods .content, #checkout_completed .content {
+    padding: 5px;
+}
+
+#shop-copyright {
+    padding-top: 10px;
+    color: #666;
+}

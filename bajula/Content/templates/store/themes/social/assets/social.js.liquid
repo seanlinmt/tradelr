@@ -1,0 +1,241 @@
+// update facebook counts with type
+function updateSummary(url, elem, type){
+    var callback = function(count) {
+        if (count != undefined && count > 0){
+            if (count == 1) { 
+                type = type.replace(/s$/, ''); 
+            }
+            var string = count + " " + type;
+            $("#" + elem).html(string);
+        }
+    }
+    fbgetCount(url, elem, type, callback);
+};
+
+// update facebook counts
+function updateCount(url, elem, type) {
+    var callback = function(count) {
+      $('#'+elem).html(count);   
+    }
+    fbgetCount(url, elem, type, callback);
+}
+
+// get the count from facebook
+function fbgetCount(url, elem, type, callback) {
+  var api_url = type == 'comments' ? "comments/?ids=" + url : url;
+  if (type == 'comments') {
+      var query = "comments/?ids=" + url;
+  } else {
+      var query = { method: 'fql.query', query: 'SELECT  share_count, total_count from link_stat  where  url="' + url + '"' }
+  }
+  
+  FB.api(query, function(response) {
+      var count = type == 'comments' ? commentCount(response, url) : likeCount(response);
+      callback(count);
+  });
+}
+
+function commentCount(response, url) {
+    if (response[url] != undefined && response[url].data != undefined) {
+      return response[url].data.length;
+    }
+};
+
+function likeCount(response) {
+    return parseInt(response[0]['total_count'], 10);
+};
+
+
+// split $ from ¢
+function splitPrice(elem){
+  var priceArray = $(elem).text().split(".");
+  if (priceArray[1] != null){
+    $(elem).html(priceArray[0] + "<span>" + priceArray[1] + "</span>");
+  }
+}
+
+
+// jquery cycle controls
+function cycleButtons(){  
+  $('#pauseButton').click(function() {
+    if ($('#pauseButton').hasClass('paused')){
+      $('#pauseButton').removeClass('paused');
+      $('#cycle').cycle('resume', true);
+    } else {
+      $('#pauseButton').addClass('paused');
+      $('#cycle').cycle('pause');
+    }
+  });
+
+  $('#nextButton').click(function() { $('#cycle').cycle('next'); });
+  $('#prevButton').click(function() { $('#cycle').cycle('prev'); });
+
+  $('#cycle').hover( function(){ $('#cycle-buttons').show(); }, function(){ $('#cycle-buttons').hide(); });
+}
+
+
+// init fancybox
+function getFancy(){
+  $("a.product-images").fancybox({
+    titleShow: false,
+    padding: 0,
+    changeSpeed: 0,
+    overlayColor: '{{ settings.bg_color }}',
+    overlayOpacity: '{{ settings.overlay_opacity }}'
+  });
+}
+
+
+function indexPage(twitterID){
+  cycleButtons();
+    
+  $(".datetime span").prettyDate();
+  setInterval(function(){ $(".datetime span").prettyDate(); }, 5000);
+  
+  // cycle slideshow
+  var $container = $('#cycle').cycle({
+    fx: 'fade',
+    speed: 500,
+    timeout: 3000,
+    before: function(currSlide, nextSlide, options, flag) {
+      var curr_id = $(currSlide).attr('id').split("image_")[1];
+      $('#button_'+curr_id).removeClass('active');
+    
+      var next_id = $(nextSlide).attr('id').split("image_")[1];
+      $('#button_'+next_id).addClass('active');
+    }
+  });
+  
+  // select product on right to view on left (and pause)
+  $('#featured-product-list').children().each(function(i) {
+    $(this).click(function() {
+        if ($(this).hasClass('active')){
+          window.location = $(this).find('.product-title').attr('href');
+        }
+        $container.cycle(i);
+        $('#cycle').cycle('pause');
+        $('#pauseButton').addClass('paused');
+     });
+  });
+  
+  // twitter feed
+  getTwitters('tweets', { 
+    id: twitterID, 
+    count: 3, 
+    enableLinks: false, 
+    ignoreReplies: true, 
+    clearContents: true,
+    template: '<p class="feed-para"/><strong><a href="http://twitter.com/%user_screen_name%/statuses/%id_str%/" target="_blank">@%user_screen_name%</a></strong><br/> "%text%"</p><p class="datetime"><a class="twitter-date-link" href="http://twitter.com/%user_screen_name%/statuses/%id_str%/" target="_blank">%time%</a> &#183; <a href="http://twitter.com/?status=RT+@%user_screen_name%: %text%" target="_blank">Retweet</a></p>'
+  });
+}
+
+
+function productPage(){
+  cycleButtons();
+  getFancy();
+  
+  // cycle slideshow
+  var $container = $('#cycle').cycle({
+    fx: 'fade',
+    speed: 500,
+    timeout: 3000,
+    before: function(currSlide, nextSlide, options, flag) {
+      var caption = (options.currSlide + 1) + ' of ' + options.slideCount;
+      $('#cycle-buttons p').html(caption);
+    }
+  });
+
+  // split $ from cents
+  splitPrice("#price");
+  $('select').change(function(){ splitPrice("#price"); });
+}
+
+
+function cartPage(){
+  getFancy();
+  
+  $('td.quantity .minus-item').click(function(){
+    var variant_id = this.id.split(/\_/)[1];
+    var inputfield = $('#updates_'+variant_id);
+    inputfield.val(inputfield.val() == 0 ? 0 : parseInt(inputfield.val(), 10) - 1);
+  });
+  
+  $('td.quantity .add-item').click(function(){
+    var variant_id = this.id.split(/\_/)[1];
+    var inputfield = $('#updates_'+variant_id);
+    inputfield.val(parseInt(inputfield.val(), 10) + 1);
+  });
+}
+
+function collectionPage(){
+  // Set all passed elements to the same height as the highest element.
+  // Copyright (c) 2010 Ewen Elder -- Dual licensed under the MIT and GPL licenses
+  (function($){$.fn.equalHeightColumns=function(e){var J,a;e=$.extend({},$.equalHeightColumns.defaults,e);a=$(this);J=e.height;$(this).each(function(){if(e.children)a=$(this).children(e.children);if(!e.height){if(e.children){a.each(function(){if($(this).height()>J)J=$(this).height()})}else{if($(this).height()>J)J=$(this).height()}}});if(e.minHeight&&J<e.minHeight)J=e.minHeight;if(e.maxHeight&&J>e.maxHeight)J=e.maxHeight;a.animate({height:J},e.speed);return $(this)};$.equalHeightColumns={version:1.0,defaults:{children:false,height:0,minHeight:0,maxHeight:0,speed:0}}})(jQuery);
+
+  // (c) Copyright 2010 Caroline Hill. All Rights Reserved. @contact <mllegeorgesand@gmail.com>
+  $(function(){h3=jQuery(".gallery-title a");var b=h3.length/3;for(var a=0;a<b;a++){h3.slice(a*3,a*3+3).equalHeightColumns()}});
+}
+
+
+function productSelectors(productJSON){
+  // callback for multi variants dropdown selector
+  var selectCallback = function(variant, selector) {
+    if (variant && variant.available == true) {
+      // valid variant
+      $('#purchase').removeClass('disabled').removeAttr('disabled');
+      $('#price').html(Tradelr.formatMoney(variant.price, "{{ shop.currency_symbol}}", {{ shop.currency_decimal_places}}));
+    } else {
+      // variant doesn't exist or sold-out
+      $('.sale-req').hide();
+      $('#purchase').addClass('disabled').attr('disabled', 'disabled');
+      var message = variant ? "{{ settings.txt_sold_out }}" : "{{ settings.txt_unavail }}";
+      $('#price').text(message).addClass('bold-red');
+    }
+
+   // Hide any fields with only one option
+   $('.selector-wrapper').hide();
+   $('.selector-wrapper select option:nth-child(2)').parents('.selector-wrapper').show()
+  };
+
+  // initialize multi selector for product
+  $(function() {
+    new Tradelr.OptionSelectors("product-select", { product: productJSON, onVariantSelected: selectCallback });
+    var found_available_variant = false;
+    for (var i=0; i<productJSON.variants.length; i++) {
+      if (productJSON.variants[i].available && found_available_variant === false) {
+        found_available_variant = true;
+        for (var j=0; j<productJSON.options.length; j++) {
+          $('.single-option-selector:eq(' + j + ')').val(productJSON.variants[i].options[j]).trigger('change');
+        }
+      }
+    }
+  });
+}
+
+
+$(document).ready(function() {
+  $('input[type="text"]').addClass("idleField");
+  
+  $('input[type="text"]').focus(function() {
+    $(this).removeClass("idleField").addClass("focusField");
+    if (this.value == this.defaultValue){ 
+      this.value = '';
+    }
+    if(this.value != this.defaultValue){
+      this.select();
+    }
+  });
+  
+  $('input[type="text"]').blur(function() {
+    if ($.trim(this.value) == ''){
+      this.value = (this.defaultValue ? this.defaultValue : '');
+      $(this).removeClass("focusField").addClass("idleField");
+    }
+  });
+});
+
+
+function remove_item(id) {
+    document.getElementById('updates_'+id).value = 0;
+    document.getElementById('cartform').submit();
+}

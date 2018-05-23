@@ -1,0 +1,102 @@
+﻿h1 {
+        color: #3B5998;
+        font-size: 18px;
+        margin-bottom: 20px;
+        padding: 10px 0;
+    }
+    h2 {
+        color: #3B5998;
+        font-size: 18px;
+        margin-top: 10px;
+    }
+    img {
+        border: none;
+    }
+    label {
+        color: #222;
+        vertical-align: middle;
+        margin-right: 5px;
+        padding-bottom: 5px;
+    }
+    ol {
+        color: #666666;
+        font-size: 24px;
+        font-weight: bold;
+    }
+    ol li {
+        padding-bottom: 10px;
+    }
+    ol li p {
+        font-weight: normal;
+        font-size: 13px;
+    }
+    .ad_content {
+        margin-left: 760px;
+    }
+    .clear {
+        clear: both;
+    }
+    .clickable {
+        cursor: pointer;
+    }
+    .error {
+        color: #DF001E;
+        font-style: italic;
+        display: inline-block; /* safari does not like 'block' */
+        padding-left: 4px;
+        font-size: 12px;
+        line-height: 16px;
+        padding-top: 4px;
+    }
+    .header {
+        padding-bottom: 10px;
+        border-bottom: 1px solid #ccc;
+        margin-top: 10px;
+        position: relative;
+        height: 50px;
+    }
+    .header-content {
+        margin-left: 80px;
+    }
+    .header-logo {
+        position: absolute;
+    }
+    .header-title {
+        color: #3B5998;
+        font-size: 18px;
+        padding-top: 5px;
+    }
+    .header-desc {
+        color: #666666;
+    }
+    .header-storename {
+        float: left;
+        color: #3B5998;
+        font-size: 18px;
+        font-weight: bold;
+        font-family: Arial;
+        margin-top: 10px;
+    }
+    .header-ad {
+        background-color: #E0F0F3;
+        padding: 10px;
+        float: right;
+    }
+    .hidden {
+        display: none;
+    }
+    .mt5 {
+        margin-top: 5px;
+    }
+    .mt10 {
+        margin-top: 10px;
+    }
+    .mt20 {
+        margin-top: 20px;
+    }
+    .tip {
+        font-weight: normal;
+        font-size: smaller;
+        color: #777;
+        display: block;
+    }

@@ -1,0 +1,514 @@
+<fieldset>
+  <legend>Colors</legend>
+  <p>Global Colors</p>
+  <table>
+    <tr>
+      <th><label for="text_color">Regular text</label></th>
+      <td><input id="text_color" name="text_color" class="color" value="#333333" /></td>
+    </tr>
+    <tr>
+      <th><label for="secondary_color">Secondary Text / Footers</label></th>
+      <td><input id="secondary_color" name="secondary_color" class="color" value="#949494" /></td>
+    </tr>
+    <tr>
+      <th><label for="accent_color">Accent Color</label></th>
+      <td><input id="accent_color" name="accent_color" class="color" value="#3B5998" /></td>
+    </tr>
+    <tr>
+      <th><label for="accent_color_light">Accent Color (Lighter)</label></th>
+      <td><input id="accent_color_light" name="accent_color_light" class="color" value="#6D84B4" /></td>
+    </tr>
+    <tr>
+      <th><label for="accent_color_dark">Accent Color (Darker)</label></th>
+      <td><input id="accent_color_dark" name="accent_color_dark" class="color" value="#071125" /></td>
+    </tr>
+    <tr>
+      <th><label for="border_color">Borders</label></th>
+      <td><input id="border_color" name="border_color" class="color" value="#E0E0E0" /></td>
+    </tr>
+    <tr>
+      <th><label for="bg_color">Background Color</label></th>
+      <td><input id="bg_color" name="bg_color" class="color" value="#FFFFFF" /></td>
+    </tr>
+    <tr>
+      <th><label for="search_bg_color">Search Background Color</label></th>
+      <td><input id="search_bg_color" name="search_bg_color" class="color" value="#FFFFFF" /></td>
+    </tr>
+  </table>
+  <h2></h2>
+  <p>Index Page Colors</p>
+  <table>
+    <tr>
+      <th><label for="product_image_bg_color">Slideshow: Photo Background</label></th>
+      <td><input id="product_image_bg_color" name="product_image_bg_color" class="color" value="#000000" /></td>
+    </tr>
+    <tr>
+      <th><label for="active_bg_color">Active Product Background</label></th>
+      <td><input id="active_bg_color" name="active_bg_color" class="color" value="#FAFAFA" /></td>
+    </tr>
+    <tr>
+      <th><label for="active_border_color">Active Product Border</label></th>
+      <td><input id="active_border_color" name="active_border_color" class="color" value="#E5E5E5" /></td>
+    </tr>
+    <tr>
+      <th><label for="icon_color">Icon Color</label></th>
+      <td>
+        <select name="icon_color" id="icon_color">
+            <option value="blue" selected="selected">Blue</option>
+            <option value="white">White</option>
+            <option value="black">Black</option>
+            <option value="grey">Grey</option>
+            <option value="none">Don't use Icons</option>
+        </select>
+      </td>
+    </tr>
+  </table>
+  <h2></h2>
+  <p>Product Page Colors</p>
+  <table>
+    <tr>
+      <th><label for="sale_color">Sale Price</label></th>
+      <td><input id="sale_color" name="sale_color" class="color" value="#FF0000" /></td>
+    </tr>
+    <tr>
+      <th><label for="sale_price_underline">Sale Price Underline</label></th>
+      <td><input id="sale_price_underline" name="sale_price_underline" class="color" value="#EBB5B5" /></td>
+    </tr>
+    <tr>
+      <th><label for="price_underline">Regular Price Underline</label></th>
+      <td><input id="price_underline" name="price_underline" class="color" value="#CAD4E7" /></td>
+    </tr>
+    <th><label for="overlay_opacity">Overlay Opacity (Image Zoom)</label></th>
+    <td>
+      <select name="overlay_opacity" id="overlay_opacity">
+          <option value="0">0%</option>
+          <option value="0.1">10%</option>
+          <option value="0.2">20%</option>
+          <option value="0.3" selected="selected">30%</option>
+          <option value="0.4">40%</option>
+          <option value="0.5">50%</option>
+          <option value="0.6">60%</option>
+          <option value="0.7">70%</option>
+          <option value="0.8">80%</option>
+          <option value="0.9">90%</option>
+          <option value="1.0">100%</option>
+      </select>
+    </td>
+  </table>
+</fieldset>
+
+
+<fieldset>
+  <legend>Background Image</legend>
+  <table>
+  <tr>
+    <td><label for="use_bg_image">Use a background image?</label></td>
+    <td><input type="checkbox" id="use_bg_image" name="use_bg_image" value="0" checked="checked"/></td>
+  </tr>
+  <tr>
+    <td><label for="bg_image">Background image</label></td>
+    <td>
+      <select name="bg_image" id="bg_image">
+        <option value="default" selected="selected">Social Background (light)</option>
+        <option value="trig" selected="selected">Trig Background (dark)</option>
+        <option value="custom">Uploaded Background</option>
+      </select>
+    </td>
+  </tr>
+  <tr>
+    <td><label for="bg_repeat">Background Image Repeat</label></td>
+    <td>
+      <select name="bg_repeat" id="bg_repeat">
+          <option value="repeat">Tile</option>
+          <option value="repeat-x" selected="selected">Tile Horizontally</option>
+          <option value="repeat-y">Tile Vertically</option>
+          <option value="no-repeat">Don't Tile</option>
+      </select>
+    </td>
+  </tr>
+  <tr>
+    <td><label for="bg_image_upload">Upload new custom background image</label></td>
+    <td>
+      <input type="file" id="bg_image_upload" name="background-custom.png" />
+    </td>
+  </tr>
+  </table>
+</fieldset>
+
+
+<fieldset>
+  <legend>Logo</legend>
+  <p class="section-info box2">Best results will be with a transparent png image 80px tall and ~400px wide.</p>
+  <br/>
+  
+  <table>
+    <tr>
+      <td><label for="use_logo_image">Use a custom logo?</label></td>
+      <td><input type="checkbox" id="use_logo_image" name="use_logo_image" checked="checked" /></td>
+    </tr>
+    <tr>
+      <td><label for="logo_image_upload">Upload a new site logo</label></td>
+      <td>
+        <input type="file" id="logo_image_upload" name="logo.png" data-max-width="710" data-max-height="400" />
+      </td>
+    </tr>
+  </table>
+</fieldset>
+
+
+<fieldset>
+  <legend>Fonts</legend>
+  <table>
+    <tr>
+      <th><label for="header_font">Headers</label></th>
+      <td>
+        <select name="header_font" id="header_font">
+          <option value="Droid+Sans" selected="selected">Droid Sans (default)</option>
+        </select>
+      </td>
+    </tr>
+    <tr>
+      <th><label for="regular_font">Regular text</label></th>
+      <td>
+        <select name="regular_font" id="regular_font">
+          <optgroup label="Sans-Serif">
+            <option value="Arial">Arial</option>
+            <option value="Droid Sans">Droid Sans</option>
+            <option value="Helvetica">Helvetica</option>
+            <option value="Lato">Lato</option>
+            <option value="Lucida Grande" selected="selected">Lucida Grande (default)</option>
+            <option value="Mako">Mako</option>
+            <option value="Shanti">Shanti</option>
+            <option value="Varela">Varela</option>
+          </optgroup>
+          
+          <optgroup label="Serif">
+            <option value="Arvo">Arvo</option>
+            <option value="Copse">Copse</option>
+            <option value="Droid Serif">Droid Serif</option>
+            <option value="Georgia">Georgia</option>
+            <option value="Kreon">Kreon</option>
+            <option value="Podkova">Podkova</option>
+            <option value="Times New Roman">Times New Roman</option>
+          </optgroup>
+        </select>
+      </td>
+    </tr>
+    <tr>
+      <th><label for="regular_font_size">Regular Font Size</label></th>
+      <td>
+        <select name="regular_font_size" id="regular_font_size">
+            <option value="11px" selected="selected">11px (default)</option>
+            <option value="12px">12px</option>
+            <option value="13px">13px</option>
+            <option value="14px">14px</option>
+        </select>
+      </td>
+    </tr>
+  </table>
+</fieldset>
+
+
+<fieldset>
+  <legend>Facebook Settings</legend>    
+  <p class="section-info box2">
+    For all of the Facebook plugins to function properly, you will need to <a href="/dashboard/networks#facebook">link your account with facebook</a>
+  </p>
+  <br/>
+  
+  <table>
+    <tr>
+      <th><label for="blog_comments_enabled">Enable comments for blog articles?</label></th>
+      <td><input type="checkbox" id="blog_comments_enabled" name="blog_comments_enabled" checked="checked"/></td>
+    </tr>
+    <tr>
+      <th><label for="recommendations_enabled">Enable recommendations on product pages?</label></th>
+      <td><input type="checkbox" id="recommendations_enabled" name="recommendations_enabled" checked="checked"/></td>
+    </tr>
+    <tr>
+      <th><label for="product_comments_enabled">Enable comments on product pages?</label></th>
+      <td><input type="checkbox" id="product_comments_enabled" name="product_comments_enabled" checked="checked"/></td>
+    </tr>
+    <tr>
+      <th><label for="activity_enabled">Enable Friend Activity?</label></th>
+      <td><input type="checkbox" id="activity_enabled" name="activity_enabled" checked="checked"/></td>
+    </tr>
+    <tr>
+      <th><label for="fb_indexchoice">What would you like to show on the frontpage?</label></th>
+      <td>
+        <select name="fb_indexchoice" id="fb_indexchoice">
+          <option value="recommendations" selected="selected">Most Popular</option>
+          <option value="likebox">Like Box</option>
+        </select>
+      </td>
+    </tr>
+    <tr>        
+      <th><label for="fb_pageurl">Page URL<br/><small class="grey">Ex: facebook.com/tradelr<br/>Only required if using the 'like box' on the frontpage</small></label></th>
+      <td><input id="fb_pageurl" name="fb_pageurl" /></td>
+    </tr>
+    <tr>
+      <th><label for="fb_colorscheme">Color Scheme for all Facebook Plugins</label></th>
+      <td>
+        <select name="fb_colorscheme" id="fb_colorscheme">
+          <option value="light" selected="selected">Light</option>
+          <option value="dark">Dark</option>
+        </select>
+      </td>
+    </tr>
+  </table>
+</fieldset>
+
+
+<fieldset>
+  <legend>Twitter Settings</legend>
+  <table>
+    <tr>
+      <th><label for="twitterID">Twitter ID</label></th>
+      <td><input id="twitterID" name="twitterID" /></td>
+    </tr>
+  </table>
+</fieldset>
+
+
+<fieldset>
+  <legend>Translations / Custom Text <small>*optional</small></legend>
+  <p>Global Phrases</p>
+  <table>
+    <tr>
+      <th><label for="txt_cart">Cart</label></th>
+      <td>
+         <input type="text" size="60" id="txt_cart" name="txt_cart" value="Cart" />
+      </td>
+    </tr>
+    <tr>
+      <th><label for="txt_edit_cart">Edit Cart</label></th>
+      <td>
+         <input type="text" size="60" id="txt_edit_cart" name="txt_edit_cart" value="Edit Cart" />
+      </td>
+    </tr>
+    <tr>
+      <th><label for="txt_search">Search</label></th>
+      <td>
+         <input type="text" size="60" id="txt_search" name="txt_search" value="Search" />
+      </td>
+    </tr>
+    <tr>
+      <th><label for="txt_friend">Friend Activity</label></th>
+      <td>
+         <input type="text" size="60" id="txt_friend" name="txt_friend" value="Friend Activity" />
+      </td>
+    </tr>
+    <tr>
+      <th><label for="txt_most_popular">Most Popular</label></th>
+      <td>
+         <input type="text" size="60" id="txt_most_popular" name="txt_most_popular" value="Most Popular" />
+      </td>
+    </tr>
+  </table>
+  <h2></h2>
+  <p>Product Page</p>
+  <table>
+    <tr>
+      <th><label for="txt_sold_out">Sold Out</label></th>
+      <td>
+         <input type="text" size="60" id="txt_sold_out" name="txt_sold_out" value="Sold Out" />
+      </td>
+    </tr>
+    <tr>
+      <th><label for="txt_unavail">Unavailable</label></th>
+      <td>
+         <input type="text" size="60" id="txt_unavail" name="txt_unavail" value="Unavailable" />
+      </td>
+    </tr>
+    <tr>
+      <th><label for="txt_unavail_long">This product is temporarily unavailable</label></th>
+      <td>
+         <input type="text" size="60" id="txt_unavail_long" name="txt_unavail_long" value="This product is temporarily unavailable." />
+      </td>
+    </tr>
+    <tr>
+      <th><label for="txt_sale">Sale</label></th>
+      <td>
+         <input type="text" size="60" id="txt_sale" name="txt_sale" value="Sale" />
+      </td>
+    </tr>
+    <tr>
+      <th><label for="txt_add_to_cart">Add to Cart</label></th>
+      <td>
+         <input type="text" size="60" id="txt_add_to_cart" name="txt_add_to_cart" value="Add to Cart" />
+      </td>
+    </tr>
+    <tr>
+      <th><label for="txt_no_photos">No product photos added yet</label></th>
+      <td>
+         <input type="text" size="60" id="txt_no_photos" name="txt_no_photos" value="No product photos added yet." />
+      </td>
+    </tr>
+    <tr>
+      <th><label for="txt_img_zoom">Click for full quality image</label></th>
+      <td>
+         <input type="text" size="60" id="txt_img_zoom" name="txt_img_zoom" value="Click for full quality image" />
+      </td>
+    </tr>
+  </table>
+  <h2></h2>
+  <p>Search Page</p>
+  <table>
+    <tr>
+      <th><label for="txt_no_results">We Couldn't Find Anything for</label></th>
+      <td>
+         <input type="text" size="60" id="txt_no_results" name="txt_no_results" value="We Couldn't Find Anything for" />
+      </td>
+    </tr>
+    <tr>
+      <th><label for="txt_search_again">You can try another search term up top or</label></th>
+      <td>
+         <input type="text" size="60" id="txt_search_again" name="txt_search_again" value="You can try another search term up top or" />
+      </td>
+    </tr>
+    <tr>
+      <th><label for="txt_continue_shopping">Continue Shopping</label></th>
+      <td>
+         <input type="text" size="60" id="txt_continue_shopping" name="txt_continue_shopping" value="Continue Shopping" />
+      </td>
+    </tr>
+    <tr>
+      <th><label for="txt_results_for">Search Results for</label></th>
+      <td>
+         <input type="text" size="60" id="txt_results_for" name="txt_results_for" value="Search Results for" />
+      </td>
+    </tr>
+  </table>
+  <h2></h2>
+  <p>Cart Page</p>
+  <table>
+    <tr>
+      <th><label for="txt_update">Update</label></th>
+      <td>
+         <input type="text" size="60" id="txt_update" name="txt_update" value="Update" />
+      </td>
+    </tr>
+    <tr>
+      <th><label for="txt_checkout">Checkout</label></th>
+      <td>
+         <input type="text" size="60" id="txt_checkout" name="txt_checkout" value="Checkout" />
+      </td>
+    </tr>
+    <tr>
+      <th><label for="txt_empty_cart">Your cart is empty</label></th>
+      <td>
+         <input type="text" size="60" id="txt_empty_cart" name="txt_empty_cart" value="Your cart is empty." />
+      </td>
+    </tr>
+    <tr>
+      <th><label for="txt_featured">Check out some of our featured products</label></th>
+      <td>
+         <input type="text" size="60" id="txt_featured" name="txt_featured" value="Check out some of our featured products" />
+      </td>
+    </tr>
+    <tr>
+      <th><label for="txt_instructions">Instructions for the order</label></th>
+      <td>
+         <input type="text" size="60" id="txt_instructions" name="txt_instructions" value="Instructions for the order" />
+      </td>
+    </tr>
+    <tr>
+      <th><label for="txt_checkout_support">We also support these checkout options</label></th>
+      <td>
+         <input type="text" size="60" id="txt_checkout_support" name="txt_checkout_support" value="We also support these checkout options" />
+      </td>
+    </tr>
+    <tr>
+      <th><label for="txt_remove">Remove item from cart</label></th>
+      <td>
+         <input type="text" size="60" id="txt_remove" name="txt_remove" value="Remove item from cart" />
+      </td>
+    </tr>
+    <tr>
+      <th><label for="txt_discount">Enter your discount coupon here</label></th>
+      <td>
+         <input type="text" size="60" id="txt_discount" name="txt_discount" value="Enter your discount coupon here" />
+      </td>
+    </tr>
+    <tr>
+      <th><label for="txt_subtotal">Subtotal</label></th>
+      <td>
+         <input type="text" size="60" id="txt_subtotal" name="txt_subtotal" value="Subtotal" />
+      </td>
+    </tr>
+  </table>
+  <h2></h2>
+  <p>404: Page Not Found</p>
+  <table>
+    <tr>
+      <th><label for="txt_404_title">404 Title</label></th>
+      <td>
+         <input type="text" size="60" id="txt_404_title" name="txt_404_title" value="Oops, we couldn't find this page!" />
+      </td>
+    </tr>
+    <tr>
+      <th><label for="txt_404_desc">Page you were looking for...</label></th>
+      <td>
+         <input type="text" size="60" id="txt_404_desc" name="txt_404_desc" value="The page you were looking for does not exist." />
+      </td>
+    </tr>
+    <tr>
+      <th><label for="txt_404_desc2">You can try searching...</label></th>
+      <td>
+         <input type="text" size="60" id="txt_404_desc2" name="txt_404_desc2" value="You can try searching for the page you were looking for with the search bar in the top right." />
+      </td>
+    </tr>
+  </table>
+  <h2></h2>
+  <p>Misc. Others</p>
+  <table>
+    <tr>
+      <th><label for="txt_posted_in">Posted In</label></th>
+      <td>
+         <input type="text" size="60" id="txt_posted_in" name="txt_posted_in" value="Posted In" />
+      </td>
+    </tr>
+    <tr>
+      <th><label for="txt_loading_tweets">Hold on, loading tweets...</label></th>
+      <td>
+         <input type="text" size="60" id="txt_loading_tweets" name="txt_loading_tweets" value="Hold on, loading tweets..." />
+      </td>
+    </tr>
+    <tr>
+      <th><label for="txt_comment_this">Comment on this</label></th>
+      <td>
+         <input type="text" size="60" id="txt_comment_this" name="txt_comment_this" value="Comment on this" />
+      </td>
+    </tr>
+    <tr>
+      <th><label for="txt_empty_collection">Nothing in this collection yet</label></th>
+      <td>
+         <input type="text" size="60" id="txt_empty_collection" name="txt_empty_collection" value="Nothing in this collection yet." />
+      </td>
+    </tr>
+  </table>
+</fieldset>
+
+
+<fieldset>
+  <legend>Misc.</legend>
+  <table>
+    <tr>
+      <th><label for="note_enabled">Enable 'Additional Notes' field on Cart Page?</label></th>
+      <td><input type="checkbox" id="note_enabled" name="note_enabled" /></td>
+    </tr>
+    <tr>
+      <th><label for="plusone_enabled">Enable Google +1 Button?</label></th>
+      <td><input type="checkbox" id="plusone_enabled" name="plusone_enabled" /></td>
+    </tr>
+    <tr>
+      <th><label for="product_description_position">Description Position</label></th>
+      <td>
+        <select name="product_description_position" id="product_description_position">
+          <option value="top" selected="selected">Above Buy Now</option>
+          <option value="bottom">Below Buy Now</option>
+        </select>
+      </td>
+    </tr>
+  </table>
+</fieldset>

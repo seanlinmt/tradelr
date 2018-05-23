@@ -1,0 +1,15 @@
+<div class="product{% if forloop.first %} first{% endif %}{% if forloop.last %} last{% endif %}{% cycle 'alternate': ' even', ' odd' %} clearfix">
+  <a href="{{ product.url | within: collection }}" class="full clearfix">
+    <div class="image dtable">
+      <div class="dcell">
+        <img src="{{ product.default_image | product_img_url: 'small' }}" alt="{{ product.title | escape }}" />
+      </div>
+    </div>
+    <div class="details dtable">
+      <div class="dcell">
+        <h2 class="title">{{ product.title }}</h2>
+        <h3 class="price">{{ settings.tr_starting_from }} {{ product.price | money }}</h3>
+      </div>
+    </div>
+  </a>
+</div>

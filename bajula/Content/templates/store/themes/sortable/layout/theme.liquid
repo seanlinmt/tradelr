@@ -1,0 +1,260 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+
+<head>
+	<title>{{ shop.name | escape }} &mdash; {% if template == "404" %}Page Not Found{% else %}{{ page_title | escape }}{% endif %}</title>
+	<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+	<meta name="copyright" content="{{ shop.name | escape }}" />
+	{{ content_for_header }}
+	{{ "screen.css" | asset_url | stylesheet_tag }}
+	{{ "theme.css" | asset_url | stylesheet_tag }}
+	{{ "jquery-1.4.2.min.js" | asset_url | script_tag }}
+	{% if template == "product" %}
+		{% if product.available %}
+			{% if product.variants.size > 1 %}
+				{{ "option_selection.js" | tradelr_asset_url | script_tag }}
+			{% endif %}
+		{% endif %}
+	{% endif %}
+	{{ 'api.jquery.js' | tradelr_asset_url | script_tag }}
+	{% if template == "product" %}
+	{{ "jquery-slimbox-2-02.js" | asset_url | script_tag }}
+	{% endif %}
+	{{ "gallery.min.js" | asset_url | script_tag }}
+	{{ "jquery-theme-1-0.js" | asset_url | script_tag }}
+</head>
+
+<body>
+{{ login_for_store }}
+	<!-- START HEADER -->
+	<div id="header">
+		<div class="container">
+			<!-- START TITLE -->
+			<div id="title" class="clear">
+				<!-- START LOGO -->{% if settings.logo == "enabled" %}
+				<div id="logo">
+					<a href="/"><img src="{{ "logo.png" | asset_url }}" alt="{{ shop.name | escape }}" /></a>
+				</div>{% else %}
+				<h2><a href="/">{{ shop.name | escape }}</a></h2>{% endif %}
+				<!-- END LOGO -->
+				<!-- START GOCART -->
+				<div id="gocart">
+					<p>Your Cart: <a href="/cart">{{ cart.item_count }} {{ cart.item_count | pluralize: "Item", "Items" }} for {{ cart.total_price | money }}</a></p>
+					<p id="button"><a href="/cart">Checkout</a></p><br/>
+				</div>             
+				<!-- END GOCART -->
+			</div>
+			<!-- END TITLE -->
+			<!-- START NAV -->
+			<div id="nav">
+				<ul class="clear">{% for link in linklists.main-menu.links %}
+					<li><a href="{{ link.url }}"{% if link.active %} class="active"{% endif %}>{{ link.title | escape }}</a></li>{% endfor %}
+				</ul>
+			</div>
+			<!-- END NAV -->
+			<!-- START FINDER -->
+			<div id="finder" class="clear">{% if settings.promo == "enabled" %}
+				<!-- START PROMO -->
+				<div id="promo">
+					<p>{% if settings.promo_text.size > 0 %}{{ settings.promo_text | strip_html | strip_newlines }}{% else %}<a href="/dashboard/themes">You can hide or edit this text from the theme editor...</a>{% endif %}</p>
+				</div>
+				<!-- END PROMO -->{% endif %}
+				<!-- START GO -->
+				<div id="go">
+					<form method="get" action="/search">
+						<input type="text" name="q" value="{% if search.performed %}{{ search.terms | escape | downcase }}{% else %}Search...{% endif %}" class="field" /> 
+						<input type="image" src="{{ settings.finder_go_image | asset_url }}" alt="Go" />
+					</form>
+				</div>
+				<!-- END GO -->
+			</div>
+			<!-- END FINDER -->
+		</div>
+	</div>
+	<!-- END HEADER -->
+	<!-- START CONTENT -->
+	<div id="{% if template == "404" %}missing{% else %}{{ template | replace: '.', ' ' | truncatewords: 1, '' }}{% endif %}" class="content">
+		<div class="container">
+			<div id="bg" class="clear">{% if template == "cart" or template == "404" %}
+				{{ content_for_layout }}{% else %}
+				<!-- START SORTABLE -->
+				<div id="sortable">
+					<!-- START FILTER -->
+					<div class="filter">
+						<h3>Shop by Category</h3>{% if linklists.category-filter.links.size > 0 %}
+						<ul>{% for link in linklists.category-filter.links %}
+							<li><a href="{{ link.url }}"{% if collection.url == link.url %} class="active"{% endif %}>{{ link.title | escape }}</a></li>{% endfor %}
+						</ul>{% else %}
+						<div>
+							<p><a href="/dashboard/store/settings#links">Create a linklist</a> with title <strong>Category Filter</strong> for links to show here.</p>
+						</div>{% endif %}
+					</div>
+					<!-- END FILTER -->
+					<!-- START FILTER -->
+					<div class="filter">
+						<h3>Shop by Price</h3>{% if linklists.price-filter.links.size > 0 %}
+						<ul>{% for link in linklists.price-filter.links %}
+							<li><a href="{{ link.url }}"{% if collection.url == link.url %} class="active"{% endif %}>{{ link.title | escape }}</a></li>{% endfor %}
+						</ul>{% else %}
+						<div>
+							<p><a href="/dashboard/store/settings#links">Create a linklist</a> with title <strong>Price Filter</strong> for links to show here.</p>
+						</div>{% endif %}
+					</div>
+					<!-- END FILTER -->
+					<!-- START FILTER -->
+					<div class="filter end">
+						<h3>Shop by Brand</h3>{% if linklists.brand-filter.links.size > 0 %}
+						<ul>{% for link in linklists.brand-filter.links %}
+							<li><a href="{{ link.url }}"{% if collection.url == link.url %} class="active"{% endif %}>{{ link.title | escape }}</a></li>{% endfor %}
+						</ul>{% else %}
+						<div>
+							<p><a href="/dashboard/store/settings#links">Create a linklist</a> with title <strong>Brand Filter</strong> for links to show here.</p>
+						</div>{% endif %}
+					</div>
+					<!-- END FILTER -->
+				</div>
+				<!-- END SORTABLE -->
+				<!-- START COLS -->
+				<div id="cols">
+					<!-- START MAIN -->
+					<div id="main">        
+						{{ content_for_layout }}
+					</div>
+					<!-- END MAIN -->
+					<!-- START SIDEBAR -->
+					<div id="sidebar">{% if template contains "blog" or template contains "article" %}
+						<!-- START POSTS -->
+						<div id="posts">
+							<div class="bg">
+								<h3>Latest Posts</h3>{% if blogs.news.articles.size > 0 %}{% for article in blogs.news.articles limit: 2 %}
+								<!-- START POST -->
+								<div class="post">
+									<h5><a href="{{ article.url }}">{{ article.title | escape }}</a></h5>
+									<p>{{ article.content | strip_html | strip_newlines | truncate: 95 }}</p>
+								</div>
+								<!-- END POST -->{% endfor %}{% else %}
+								<p><a href="/dashboard/store/settings#pages">Create a blog</a> with handle <strong>news</strong> for articles to show here.</p>{% endif %}
+								<p id="feed"><a href="{{ shop.url }}/blogs/news.atom">RSS Feed</a></p>
+							</div>
+						</div>
+						<!-- END POSTS -->{% else %}{% if settings.excerpt == "enabled" %}
+						<!-- START EXCERPT -->
+						<div id="excerpt">
+							<div class="bg">
+								<h3>{% if settings.excerpt_title.size > 0 %}{{ settings.excerpt_title | strip_html | strip_newlines }}{% else %}No Title{% endif %}</h3>
+								<!-- START TEXT -->
+								<div class="text">{% if pages[settings.excerpt_body].content != empty %}
+									<p>{{ pages[settings.excerpt_body].content | strip_html | strip_newlines | truncate: 170 }}</p>
+									
+									<p><a href="/pages/{{ settings.excerpt_body }}">Read More</a></p>{% else %}
+									<p><a href="/dashboard/themes" style="text-decoration:underline">Update sidebar settings</a> field <strong>Excerpt Body</strong> for content to show here.</p>{% endif %}
+								</div>
+								<!-- END TEXT -->
+							</div>
+						</div>
+						<!-- END EXCERPT -->{% endif %}{% endif %}
+						<!-- START FEATURED -->
+						<div id="featured">
+							<div class="bg">
+								<h3>Featured</h3>{% if collections.featured.products.size > 0 %}{% for product in collections.featured.products limit: 3 %}
+								<!-- START PRODUCT -->
+								<div class="product{% if forloop.last %} end{% endif %} clear">
+									<!-- START IMAGE -->
+									<div class="image">
+										<a href="{{ product.url | within: collections.all }}"><img src="{{ product.images[0] | product_img_url: "thumb" }}" alt="{{ product.title | escape }}" /></a>
+									</div>
+									<!-- END IMAGE -->
+									<!-- START TITLE -->
+									<div class="title">
+										<h5><a href="{{ product.url | within: collections.all }}">{{ product.title }}</a></h5>
+										<h6>{{ product.price | money }}</h6>
+									</div>
+									<!-- END TITLE -->
+								</div>
+								<!-- END PRODUCT -->{% endfor %}{% else %}
+								<p><a href="/dashboard/inventory" style="text-decoration:underline">Create a collection</a> with handle <strong>featured</strong> for products to show here.</p>{% endif %}
+							</div>
+						</div>
+						<!-- END FEATURED -->
+					</div>
+					<!-- END SIDEBAR -->
+				</div>
+				<!-- END COLS -->{% endif %}
+			</div>
+		</div>
+	</div>
+	<!-- END CONTENT -->
+	<!-- START OVERVIEW -->
+	<div id="overview">
+		<div class="container">
+			<!-- START SECTIONS -->
+			<ul id="sections" class="clear">
+				<li>{% if pages.overview.content.size > 0 %}
+					<h3>{{ pages.overview.title | escape }}</h3>
+					<p>{{ pages.overview.content | strip_html | strip_newlines | truncate: 225 }}</p>
+					<p><a href="/pages/overview">Read More</a></p>{% else %}
+					<h3>No Title</h3>
+					<p>Create a page with handle <strong>overview</strong> for content to show here.</p>
+					<p><a href="/dashboard/store/settings#pages">Add Page</a></p>{% endif %}
+				</li>
+				<li>
+					<h3>From Our Blog</h3>{% if blogs.news.articles.size > 0 %}{% for article in blogs.news.articles limit: 1 %}
+					<h5><a href="{{ article.url }}">{{ article.title | escape }}</a></h5>
+					<h6>Posted by {{ article.author }} on {{ article.created_at | date: "%d %B" }}</h6>
+					<p>{{ article.content | strip_html | strip_newlines | truncate: 150 }}</p>
+					<p><a href="{{ article.url }}">Read More</a></p>{% endfor %}{% else %}
+					<p>Create a blog with handle <strong>news</strong> for content to show here.</p>
+					<p><a href="/dashboard/store/settings#pages">Add Blog</a></p>{% endif %}
+				</li>
+				<li>
+					<h3>{{ pages.about-us.title | escape }}</h3>{% if pages.about-us.content.size > 0 %}
+					<p>{{ pages.about-us.content | strip_html | strip_newlines | truncate: 225 }}</p>
+					<p><a href="/pages/about-us">Read More</a></p>{% else %}
+					<p>Create a page with handle <strong>about-us</strong> for content to show here.</p>
+					<p><a href="/dashboard/store/settings#pages">Add Page</a></p>{% endif %}
+				</li>
+			</ul>
+			<!-- END SECTIONS -->
+			<!-- START FOOTER -->
+			<div id="footer" class="clear">
+				<p>&copy; {{ "now" | date: "%Y" }} {{ shop.name | escape }}. {{ powered_by_link }}.</p>{% if linklists.footer.links.size > 0 %}
+				<p class="links">{% for link in linklists.footer.links %}<a href="{{ link.url }}">{{ link.title | escape }}</a>{% unless forloop.last %} <span>&#124;</span> {% endunless %}{% endfor %}</p>{% endif %}
+			</div>
+			<!-- END FOOTER -->
+		</div>
+	</div>
+	<!-- END OVERVIEW -->{% if template == "product" %}{% if product.available %}{% if product.variants.size > 1 %}
+	<script type="text/javascript">
+		// <![CDATA[
+		var selectCallback = function(variant, selector) {
+			if (variant && variant.available == true) {
+				$("input#add").removeClass("disabled").removeAttr("disabled");
+				$("h2#price span").html(Tradelr.formatMoney(variant.price, "{{ shop.currency_symbol}}", {{ shop.currency_decimal_places}}));
+				if ($("h2#price del").length > 0) {
+					$("h2#price del").html(Tradelr.formatMoney(variant.compare_at_price, "{{ shop.currency_symbol}}", {{ shop.currency_decimal_places}}));
+				};
+			} else {
+				$("input#add").addClass("disabled").attr("disabled", "disabled");
+				var message = variant ? "Sold Out" : "Unavailable";
+				$("h2#price span").text(message);
+				if ($("h2#price del").length > 0) { $("h2#price del").text(""); };
+			}
+		};
+		$(function() {
+			new Tradelr.OptionSelectors("id", { product: {{ product | json }}, onVariantSelected: selectCallback });
+			{% if product.available %}
+			{% assign found_one_in_stock = false %}
+			{% for variant in product.variants %}
+			  {% if variant.available and found_one_in_stock == false %}
+			    {% assign found_one_in_stock = true %}
+			    {% for option in product.options %}
+			      $('#id-option-' + {{ forloop.index0 }}).val({{ variant.options[forloop.index0] | json }}).trigger('change');
+			    {% endfor %}
+			  {% endif %}
+			{% endfor %}
+			{% endif %}
+		});
+		// ]]>
+	</script>{% endif %}{% endif %}{% endif %}
+</body>
+</html>

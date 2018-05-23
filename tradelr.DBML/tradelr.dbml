@@ -1,0 +1,1244 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="tradelr" Class="tradelrDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="AppSettings" ConnectionString="Data Source=(local);Initial Catalog=tradelr;Integrated Security=False;User ID=" SettingsObjectName="tradelr.DBML.Properties.Settings" SettingsPropertyName="tradelrConnectionString" Provider="System.Data.SqlClient" />
+  <Table Name="dbo.activities" Member="activities">
+    <Type Name="activity">
+      <Column Name="id" Type="System.Int64" DbType="BigInt NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="owner" Type="System.Int64" DbType="Bi gInt NOT NULL" CanBeNull="false" />
+      <Column Name="appid" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
+      <Column Name="type" Type="System.String" DbType="VarChar(16) NOT NULL" CanBeNull="false" />
+      <Column Name="title" Type="System.String" DbType="NVarChar(200) NOT NULL" CanBeNull="false" />
+      <Column Name="body" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="created" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="targetUserid" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+      <Association Name="user_activity" Member="user" ThisKey="owner" OtherKey="id" Type="user" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.adminSupportMessages" Member="adminSupportMessages">
+    <Type Name="adminSupportMessage">
+      <Column Name="id" Type="System.Int64" DbType="BigInt NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="firstName" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="lastName" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="email" Type="System.String" DbType="NVarChar(128) NOT NULL" CanBeNull="false" />
+      <Column Name="message" Type="System.String" DbType="NVarChar(1024) NOT NULL" CanBeNull="false" />
+      <Column Name="created" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+    </Type>
+  </Table>
+  <Table Name="dbo.changeHistories" Member="changeHistories">
+    <Type Name="changeHistory">
+      <Column Name="id" Type="System.Int64" DbType="BigInt NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="historyType" Type="System.String" DbType="VarChar(16) NOT NULL" CanBeNull="false" />
+      <Column Name="contextID" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
+      <Association Name="changeHistory_changeHistoryItem" Member="changeHistoryItems" ThisKey="id" OtherKey="changeID" Type="changeHistoryItem" />
+    </Type>
+  </Table>
+  <Table Name="dbo.changeHistoryItems" Member="changeHistoryItems">
+    <Type Name="changeHistoryItem">
+      <Column Name="id" Type="System.Int64" DbType="BigInt NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="changeID" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
+      <Column Name="changedField" Type="System.String" DbType="VarChar(128) NOT NULL" CanBeNull="false" />
+      <Column Name="oldValue" Type="System.String" DbType="VarChar(1000)" CanBeNull="true" />
+      <Column Name="newValue" Type="System.String" DbType="VarChar(1000)" CanBeNull="true" />
+      <Column Name="changeDate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="changer" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
+      <Association Name="changeHistory_changeHistoryItem" Member="changeHistory" ThisKey="changeID" OtherKey="id" Type="changeHistory" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
+      <Association Name="user_changeHistoryItem" Member="user" ThisKey="changer" OtherKey="id" Type="user" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.ELMAH_Error" Member="ELMAH_Errors">
+    <Type Name="ELMAH_Error">
+      <Column Name="ErrorId" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Application" Type="System.String" DbType="NVarChar(60) NOT NULL" CanBeNull="false" />
+      <Column Name="Host" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Type" Type="System.String" DbType="NVarChar(100) NOT NULL" CanBeNull="false" />
+      <Column Name="Source" Type="System.String" DbType="NVarChar(60) NOT NULL" CanBeNull="false" />
+      <Column Name="Message" Type="System.String" DbType="NVarChar(500) NOT NULL" CanBeNull="false" />
+      <Column Name="[User]" Member="User" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="StatusCode" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="TimeUtc" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="Sequence" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="AllXml" Type="System.String" DbType="NVarChar(MAX) NOT NULL" CanBeNull="false" />
+    </Type>
+  </Table>
+  <Table Name="dbo.favourites" Member="favourites">
+    <Type Name="favourite">
+      <Column Name="id" Type="System.Int64" DbType="BigInt NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="owner" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
+      <Column Name="productid" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
+      <Association Name="user_favourite" Member="user" ThisKey="owner" OtherKey="id" Type="user" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
+      <Association Name="product_favourite" Member="product" ThisKey="productid" OtherKey="id" Type="product" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.friends" Member="friends">
+    <Type Name="friend">
+      <Column Name="id" Type="System.Int64" DbType="BigInt NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="subdomainid" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
+      <Column Name="friendsubdomainid" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
+      <Association Name="MASTERsubdomain_friend" Member="MASTERsubdomain" ThisKey="subdomainid" OtherKey="id" Type="MASTERsubdomain" IsForeignKey="true" />
+      <Association Name="MASTERsubdomain_friend1" Member="MASTERsubdomain1" ThisKey="friendsubdomainid" OtherKey="id" Type="MASTERsubdomain" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.MASTERcity" Member="MASTERcities">
+    <Type Name="MASTERcity">
+      <Column Name="id" Type="System.Int64" DbType="BigInt NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="name" Type="System.String" DbType="NVarChar(128) NOT NULL" CanBeNull="false" />
+      <Association Name="MASTERcity_organisation" Member="organisations" ThisKey="id" OtherKey="city" Type="organisation" />
+    </Type>
+  </Table>
+  <Table Name="dbo.MASTERproductCategory" Member="MASTERproductCategories">
+    <Type Name="MASTERproductCategory">
+      <Column Name="id" Type="System.Int64" DbType="BigInt NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="name" Type="System.String" DbType="NVarChar(128) NOT NULL" CanBeNull="false" />
+      <Association Name="MASTERproductCategory_productCategory" Member="productCategories" ThisKey="id" OtherKey="masterID" Type="productCategory" />
+    </Type>
+  </Table>
+  <Table Name="dbo.MASTERstockUnit" Member="MASTERstockUnits">
+    <Type Name="MASTERstockUnit">
+      <Column Name="id" Type="System.Int64" DbType="BigInt NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="name" Type="System.String" DbType="NVarChar(128)" CanBeNull="true" />
+      <Association Name="MASTERstockUnit_stockUnit" Member="stockUnits" ThisKey="id" OtherKey="unitID" Type="stockUnit" />
+    </Type>
+  </Table>
+  <Table Name="dbo.facebookPages" Member="facebookPages">
+    <Type Name="facebookPage">
+      <Column Name="id" Type="System.Int64" DbType="BigInt NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="pageid" Type="System.String" DbType="VarChar(128) NOT NULL" CanBeNull="false" />
+      <Column Name="subdomainid" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
+      <Association Name="MASTERsubdomain_facebookPage" Member="MASTERsubdomain" ThisKey="subdomainid" OtherKey="id" Type="MASTERsubdomain" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.opensocialPages" Member="opensocialPages">
+    <Type Name="opensocialPage">
+      <Column Name="id" Type="System.Int64" DbType="BigInt NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="osid" Type="System.String" DbType="VarChar(128) NOT NULL" CanBeNull="false" />
+      <Column Name="subdomainid" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
+      <Association Name="MASTERsubdomain_opensocialPage" Member="MASTERsubdomain" ThisKey="subdomainid" OtherKey="id" Type="MASTERsubdomain" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.googleBlogsProductPosts" Member="googleBlogsProductPosts">
+    <Type Name="googleBlogsProductPost">
+      <Column Name="id" Type="System.Int64" DbType="BigInt NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="productid" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
+      <Column Name="postUrl" Type="System.String" DbType="NVarChar(500) NOT NULL" CanBeNull="false" />
+      <Association Name="product_googleBlogsProductPost" Member="product" ThisKey="productid" OtherKey="id" Type="product" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.twitterSearches" Member="twitterSearches">
+    <Type Name="twitterSearch">
+      <Column Name="id" Type="System.Int64" DbType="BigInt NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="keyword" Type="System.String" DbType="VarChar(20) NOT NULL" CanBeNull="false" />
+      <Column Name="subdomainid" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
+      <Column Name="parameters" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
+      <Association Name="MASTERsubdomain_twitterSearch" Member="MASTERsubdomain" ThisKey="subdomainid" OtherKey="id" Type="MASTERsubdomain" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.images" Member="images">
+    <Type Name="image">
+      <Column Name="id" Type="System.Int64" DbType="BigInt NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="subdomain" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
+      <Column Name="contextID" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
+      <Column Name="url" Type="System.String" DbType="VarChar(1000) NOT NULL" CanBeNull="false" />
+      <Column Name="imageType" Type="System.String" DbType="VarChar(16) NOT NULL" CanBeNull="false" />
+      <Association Name="image_video" Member="videos" ThisKey="id" OtherKey="thumbnailid" Type="video" Cardinality="One" />
+      <Association Name="image_organisation" Member="organisations" ThisKey="id" OtherKey="logo" Type="organisation" />
+      <Association Name="image_user" Member="users" ThisKey="id" OtherKey="profilePhoto" Type="user" />
+      <Association Name="MASTERsubdomain_image" Member="MASTERsubdomain" ThisKey="subdomain" OtherKey="id" Type="MASTERsubdomain" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.inventoryLocations" Member="inventoryLocations">
+    <Type Name="inventoryLocation">
+      <Column Name="id" Type="System.Int64" DbType="BigInt NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="subdomain" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
+      <Column Name="name" Type="System.String" DbType="NVarChar(128) NOT NULL" CanBeNull="false" />
+      <Column Name="lastUpdate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Association Name="inventoryLocation_inventoryLocationItem" Member="inventoryLocationItems" ThisKey="id" OtherKey="locationid" Type="inventoryLocationItem" />
+      <Association Name="inventoryLocation_order" Member="orders" ThisKey="id" OtherKey="inventoryLocation" Type="order" />
+      <Association Name="MASTERsubdomain_inventoryLocation" Member="MASTERsubdomain" ThisKey="subdomain" OtherKey="id" Type="MASTERsubdomain" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.productCategories" Member="productCategories">
+    <Type Name="productCategory">
+      <Column Name="id" Type="System.Int64" DbType="BigInt NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="masterID" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
+      <Column Name="details" Type="System.String" DbType="NVarChar(1000)" CanBeNull="true" />
+      <Column Name="subdomain" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
+      <Column Name="parentID" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+      <Column Name="lastUpdate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Association Name="productCategory_productCategory" Member="productCategories" ThisKey="id" OtherKey="parentID" Type="productCategory" />
+      <Association Name="productCategory_product" Member="products" ThisKey="id" OtherKey="category" Type="product" />
+      <Association Name="MASTERproductCategory_productCategory" Member="MASTERproductCategory" ThisKey="masterID" OtherKey="id" Type="MASTERproductCategory" IsForeignKey="true" />
+      <Association Name="productCategory_productCategory" Member="productCategory1" ThisKey="parentID" OtherKey="id" Type="productCategory" IsForeignKey="true" />
+      <Association Name="MASTERsubdomain_productCategory" Member="MASTERsubdomain" ThisKey="subdomain" OtherKey="id" Type="MASTERsubdomain" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.messages" Member="messages">
+    <Type Name="message">
+      <Column Name="id" Type="System.Int64" DbType="BigInt NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="sender" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
+      <Column Name="recipient" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
+      <Column Name="title" Type="System.String" DbType="NVarChar(255) NOT NULL" CanBeNull="false" />
+      <Column Name="body" Type="System.String" DbType="NVarChar(MAX) NOT NULL" CanBeNull="false" />
+      <Column Name="readStatus" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="senderDeleted" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="recipientDeleted" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="created" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="type" Type="System.String" DbType="VarChar(16) NOT NULL" CanBeNull="false" />
+      <Association Name="user_message" Member="user" ThisKey="recipient" OtherKey="id" Type="user" IsForeignKey="true" />
+      <Association Name="user_message1" Member="user1" ThisKey="sender" OtherKey="id" Type="user" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.linkRequests" Member="linkRequests">
+    <Type Name="linkRequest">
+      <Column Name="id" Type="System.Int64" DbType="BigInt NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="friendid" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
+      <Column Name="userid" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
+      <Association Name="user_linkRequest" Member="user" ThisKey="friendid" OtherKey="id" Type="user" IsForeignKey="true" />
+      <Association Name="user_linkRequest1" Member="user1" ThisKey="userid" OtherKey="id" Type="user" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.shipwireTransactions" Member="shipwireTransactions">
+    <Type Name="shipwireTransaction">
+      <Column Name="transactionid" Type="System.String" DbType="VarChar(30) NOT NULL" CanBeNull="false" />
+      <Column Name="orderid" Type="System.Int64" DbType="BigInt NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="message" Type="System.Xml.Linq.XElement" DbType="Xml" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="state" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Association Name="order_shipwireTransaction" Member="order" ThisKey="orderid" OtherKey="id" Type="order" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.googleBlogs" Member="googleBlogs">
+    <Type Name="googleBlog">
+      <Column Name="id" Type="System.Int64" DbType="BigInt NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="subdomainid" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
+      <Column Name="title" Type="System.String" DbType="NVarChar(1000) NOT NULL" CanBeNull="false" />
+      <Column Name="blogUri" Type="System.String" DbType="NVarChar(500) NOT NULL" CanBeNull="false" />
+      <Column Name="blogHref" Type="System.String" DbType="VarChar(128)" CanBeNull="true" />
+      <Association Name="MASTERsubdomain_googleBlog" Member="MASTERsubdomain" ThisKey="subdomainid" OtherKey="id" Type="MASTERsubdomain" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.product_comments" Member="product_comments">
+    <Type Name="product_comment">
+      <Column Name="id" Type="System.Int64" DbType="BigInt NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="productid" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
+      <Column Name="commenter" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
+      <Column Name="created" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="replyto" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+      <Column Name="comment" Type="System.String" DbType="NVarChar(500) NOT NULL" CanBeNull="false" />
+      <Column Name="subdomainid" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
+      <Association Name="product_comment_product_comment" Member="product_comments" ThisKey="id" OtherKey="replyto" Type="product_comment" />
+      <Association Name="product_comment_product_comment" Member="product_comment1" ThisKey="replyto" OtherKey="id" Type="product_comment" IsForeignKey="true" />
+      <Association Name="user_product_comment" Member="user" ThisKey="commenter" OtherKey="id" Type="user" IsForeignKey="true" />
+      <Association Name="product_product_comment" Member="product" ThisKey="productid" OtherKey="id" Type="product" IsForeignKey="true" />
+      <Association Name="MASTERsubdomain_product_comment" Member="MASTERsubdomain" ThisKey="subdomainid" OtherKey="id" Type="MASTERsubdomain" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.videos" Member="videos">
+    <Type Name="video">
+      <Column Name="id" Type="System.Int64" DbType="BigInt NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="youtubeid" Type="System.String" DbType="VarChar(15) NOT NULL" CanBeNull="false" />
+      <Column Name="thumbnailid" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
+      <Column Name="subdomainid" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
+      <Association Name="image_video" Member="image" ThisKey="thumbnailid" OtherKey="id" Type="image" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
+      <Association Name="MASTERsubdomain_video" Member="MASTERsubdomain" ThisKey="subdomainid" OtherKey="id" Type="MASTERsubdomain" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.transactions" Member="transactions">
+    <Type Name="transaction">
+      <Column Name="id" Type="System.Int64" DbType="BigInt NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="primaryOrderID" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
+      <Column Name="secondaryOrderID" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+      <Column Name="reviewid" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+      <Association Name="transaction_comment" Member="comments" ThisKey="id" OtherKey="transactionID" Type="comment" />
+      <Association Name="review_transaction" Member="review" ThisKey="reviewid" OtherKey="id" Type="review" IsForeignKey="true" />
+      <Association Name="order_transaction" Member="order" ThisKey="primaryOrderID" OtherKey="id" Type="order" IsForeignKey="true" />
+      <Association Name="order_transaction1" Member="order1" ThisKey="secondaryOrderID" OtherKey="id" Type="order" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.reviews" Member="reviews">
+    <Type Name="review">
+      <Column Name="id" Type="System.Int64" DbType="BigInt NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="comment" Type="System.String" DbType="NVarChar(500)" CanBeNull="true" />
+      <Column Name="created" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="rating_overall" Type="System.Byte" DbType="TinyInt NOT NULL" CanBeNull="false" />
+      <Column Name="rating_willshopagain" Type="System.Byte" DbType="TinyInt NOT NULL" CanBeNull="false" />
+      <Column Name="rating_delivery" Type="System.Byte" DbType="TinyInt NOT NULL" CanBeNull="false" />
+      <Column Name="rating_support" Type="System.Byte" DbType="TinyInt NOT NULL" CanBeNull="false" />
+      <Column Name="response" Type="System.String" DbType="NVarChar(500)" CanBeNull="true" />
+      <Column Name="pending" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="subdomainid" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
+      <Association Name="review_transaction" Member="transactions" ThisKey="id" OtherKey="reviewid" Type="transaction" />
+      <Association Name="MASTERsubdomain_review" Member="MASTERsubdomain" ThisKey="subdomainid" OtherKey="id" Type="MASTERsubdomain" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.oauth_tokens" Member="oauth_tokens">
+    <Type Name="oauth_token">
+      <Column Name="id" Type="System.Int64" DbType="BigInt NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="token_key" Type="System.String" DbType="VarChar(1000) NOT NULL" CanBeNull="false" />
+      <Column Name="token_secret" Type="System.String" DbType="VarChar(64) NOT NULL" CanBeNull="false" />
+      <Column Name="type" Type="System.String" DbType="VarChar(16) NOT NULL" CanBeNull="false" />
+      <Column Name="subdomainid" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
+      <Column Name="appid" Type="System.String" DbType="NVarChar(64)" CanBeNull="true" />
+      <Column Name="guid" Type="System.String" DbType="VarChar(64)" CanBeNull="true" />
+      <Column Name="authorised" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="expires" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Association Name="MASTERsubdomain_oauth_token" Member="MASTERsubdomain" ThisKey="subdomainid" OtherKey="id" Type="MASTERsubdomain" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.shippingRules" Member="shippingRules">
+    <Type Name="shippingRule">
+      <Column Name="id" Type="System.Int64" DbType="BigInt NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="name" Type="System.String" DbType="NVarChar(200) NOT NULL" CanBeNull="false" />
+      <Column Name="ruletype" Type="System.Byte" DbType="TinyInt NOT NULL" CanBeNull="false" />
+      <Column Name="matchvalue" Type="System.Decimal" DbType="Decimal(10,2) NOT NULL" CanBeNull="false" />
+      <Column Name="cost" Type="System.Decimal" DbType="Money NOT NULL" CanBeNull="false" />
+      <Column Name="secondaryCost" Type="System.Decimal" DbType="Money NOT NULL" CanBeNull="false" />
+      <Column Name="country" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="state" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="profileid" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
+      <Column Name="etsy_templateentryid" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+      <Association Name="shippingProfile_shippingRule" Member="shippingProfile" ThisKey="profileid" OtherKey="id" Type="shippingProfile" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.stockUnit" Member="stockUnits">
+    <Type Name="stockUnit">
+      <Column Name="id" Type="System.Int64" DbType="BigInt NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="unitID" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
+      <Column Name="details" Type="System.String" DbType="NVarChar(512)" CanBeNull="true" />
+      <Column Name="lastUpdate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="subdomainid" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
+      <Association Name="stockUnit_product" Member="products" ThisKey="id" OtherKey="stockUnitId" Type="product" />
+      <Association Name="MASTERstockUnit_stockUnit" Member="MASTERstockUnit" ThisKey="unitID" OtherKey="id" Type="MASTERstockUnit" IsForeignKey="true" />
+      <Association Name="MASTERsubdomain_stockUnit" Member="MASTERsubdomain" ThisKey="subdomainid" OtherKey="id" Type="MASTERsubdomain" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.facebook_tokens" Member="facebook_tokens">
+    <Type Name="facebook_token">
+      <Column Name="id" Type="System.Int64" DbType="BigInt NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="pageid" Type="System.String" DbType="VarChar(255) NOT NULL" CanBeNull="false" />
+      <Column Name="subdomainid" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
+      <Column Name="accesstoken" Type="System.String" DbType="VarChar(255) NOT NULL" CanBeNull="false" />
+      <Column Name="name" Type="System.String" DbType="NVarChar(255) NOT NULL" CanBeNull="false" />
+      <Column Name="flags" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="category" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Association Name="MASTERsubdomain_facebook_token" Member="MASTERsubdomain" ThisKey="subdomainid" OtherKey="id" Type="MASTERsubdomain" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.facebook_imports" Member="facebook_imports">
+    <Type Name="facebook_import">
+      <Column Name="id" Type="System.Int64" DbType="BigInt NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="productid" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
+      <Column Name="facebookID" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
+      <Association Name="product_facebook_import" Member="product" ThisKey="productid" OtherKey="id" Type="product" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.wordpressSites" Member="wordpressSites">
+    <Type Name="wordpressSite">
+      <Column Name="id" Type="System.Int64" DbType="BigInt NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="subdomainid" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
+      <Column Name="email" Type="System.String" DbType="VarChar(320) NOT NULL" CanBeNull="false" />
+      <Column Name="password" Type="System.String" DbType="NVarChar(100) NOT NULL" CanBeNull="false" />
+      <Column Name="url" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Association Name="MASTERsubdomain_wordpressSite" Member="MASTERsubdomain" ThisKey="subdomainid" OtherKey="id" Type="MASTERsubdomain" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.wordpressPosts" Member="wordpressPosts">
+    <Type Name="wordpressPost">
+      <Column Name="id" Type="System.Int64" DbType="BigInt NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="productid" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
+      <Column Name="postid" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Association Name="product_wordpressPost" Member="product" ThisKey="productid" OtherKey="id" Type="product" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.tumblrSites" Member="tumblrSites">
+    <Type Name="tumblrSite">
+      <Column Name="id" Type="System.Int64" DbType="BigInt NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="subdomainid" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
+      <Column Name="email" Type="System.String" DbType="VarChar(100) NOT NULL" CanBeNull="false" />
+      <Column Name="password" Type="System.String" DbType="VarChar(100) NOT NULL" CanBeNull="false" />
+      <Column Name="accountname" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Association Name="MASTERsubdomain_tumblrSite" Member="MASTERsubdomain" ThisKey="subdomainid" OtherKey="id" Type="MASTERsubdomain" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.tumblrPosts" Member="tumblrPosts">
+    <Type Name="tumblrPost">
+      <Column Name="id" Type="System.Int64" DbType="BigInt NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="productid" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
+      <Column Name="postid" Type="System.String" DbType="VarChar(20) NOT NULL" CanBeNull="false" />
+      <Association Name="product_tumblrPost" Member="product" ThisKey="productid" OtherKey="id" Type="product" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.inventoryLocationItems" Member="inventoryLocationItems">
+    <Type Name="inventoryLocationItem">
+      <Column Name="id" Type="System.Int64" DbType="BigInt NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="locationid" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
+      <Column Name="variantid" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
+      <Column Name="available" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="alarmLevel" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="onOrder" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="lastUpdate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="reserved" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="sold" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="inventoryLocationItem_inventoryHistory" Member="inventoryHistories" ThisKey="id" OtherKey="itemLocationID" Type="inventoryHistory" />
+      <Association Name="inventoryLocation_inventoryLocationItem" Member="inventoryLocation" ThisKey="locationid" OtherKey="id" Type="inventoryLocation" IsForeignKey="true" />
+      <Association Name="product_variant_inventoryLocationItem" Member="product_variant" ThisKey="variantid" OtherKey="id" Type="product_variant" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.orderItems" Member="orderItems">
+    <Type Name="orderItem">
+      <Column Name="id" Type="System.Int64" DbType="BigInt NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="orderid" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
+      <Column Name="variantid" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
+      <Column Name="description" Type="System.String" DbType="NVarChar(1024)" CanBeNull="true" />
+      <Column Name="quantity" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="unitPrice" Type="System.Decimal" DbType="Money" CanBeNull="true" />
+      <Column Name="lastUpdate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="tax" Type="System.Decimal" DbType="Decimal(4,2)" CanBeNull="true" />
+      <Association Name="orderItem_orderItems_digital" Member="orderItems_digitals" ThisKey="id" OtherKey="orderitemid" Type="orderItems_digital" Cardinality="One" />
+      <Association Name="product_variant_orderItem" Member="product_variant" ThisKey="variantid" OtherKey="id" Type="product_variant" IsForeignKey="true" />
+      <Association Name="order_orderItem" Member="order" ThisKey="orderid" OtherKey="id" Type="order" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.contactGroupMembers" Member="contactGroupMembers">
+    <Type Name="contactGroupMember">
+      <Column Name="id" Type="System.Int64" DbType="BigInt NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="userid" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
+      <Column Name="groupid" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
+      <Association Name="contactGroup_contactGroupMember" Member="contactGroup" ThisKey="groupid" OtherKey="id" Type="contactGroup" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
+      <Association Name="user_contactGroupMember" Member="user" ThisKey="userid" OtherKey="id" Type="user" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.contactGroupPricings" Member="contactGroupPricings">
+    <Type Name="contactGroupPricing">
+      <Column Name="id" Type="System.Int64" DbType="BigInt NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="productid" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
+      <Column Name="groupid" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
+      <Column Name="price" Type="System.Decimal" DbType="Money NOT NULL" CanBeNull="false" />
+      <Association Name="contactGroup_contactGroupPricing" Member="contactGroup" ThisKey="groupid" OtherKey="id" Type="contactGroup" IsForeignKey="true" />
+      <Association Name="product_contactGroupPricing" Member="product" ThisKey="productid" OtherKey="id" Type="product" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.contactGroups" Member="contactGroups">
+    <Type Name="contactGroup">
+      <Column Name="id" Type="System.Int64" DbType="BigInt NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="subdomainid" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
+      <Column Name="title" Type="System.String" DbType="NVarChar(128) NOT NULL" CanBeNull="false" />
+      <Column Name="permissions" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="flags" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="contactGroup_contactGroupMember" Member="contactGroupMembers" ThisKey="id" OtherKey="groupid" Type="contactGroupMember" />
+      <Association Name="contactGroup_contactGroupPricing" Member="contactGroupPricings" ThisKey="id" OtherKey="groupid" Type="contactGroupPricing" />
+      <Association Name="MASTERsubdomain_contactGroup" Member="MASTERsubdomain" ThisKey="subdomainid" OtherKey="id" Type="MASTERsubdomain" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.productCollectionMembers" Member="productCollectionMembers">
+    <Type Name="productCollectionMember">
+      <Column Name="id" Type="System.Int64" DbType="BigInt NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="productid" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
+      <Column Name="collectionid" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
+      <Association Name="product_productCollectionMember" Member="product" ThisKey="productid" OtherKey="id" Type="product" IsForeignKey="true" />
+      <Association Name="product_collection_productCollectionMember" Member="product_collection" ThisKey="collectionid" OtherKey="id" Type="product_collection" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.links" Member="links">
+    <Type Name="link">
+      <Column Name="id" Type="System.Int64" DbType="BigInt NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="url" Type="System.String" DbType="NVarChar(200) NOT NULL" CanBeNull="false" />
+      <Column Name="title" Type="System.String" DbType="NVarChar(100) NOT NULL" CanBeNull="false" />
+      <Column Name="linklistid" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
+      <Column Name="type" Type="System.Int16" DbType="SmallInt NOT NULL" CanBeNull="false" />
+      <Association Name="linklist_link" Member="linklist" ThisKey="linklistid" OtherKey="id" Type="linklist" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.cartitems" Member="cartitems">
+    <Type Name="cartitem">
+      <Column Name="id" Type="System.Int64" DbType="BigInt NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="quantity" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="cartid" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
+      <Column Name="variantid" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
+      <Association Name="cart_cartitem" Member="cart" ThisKey="cartid" OtherKey="id" Type="cart" IsForeignKey="true" />
+      <Association Name="product_variant_cartitem" Member="product_variant" ThisKey="variantid" OtherKey="id" Type="product_variant" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.addresses" Member="addresses">
+    <Type Name="address">
+      <Column Name="id" Type="System.Int64" DbType="BigInt NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="first_name" Type="System.String" DbType="NVarChar(128) NOT NULL" CanBeNull="false" />
+      <Column Name="last_name" Type="System.String" DbType="NVarChar(128) NOT NULL" CanBeNull="false" />
+      <Column Name="organisation_name" Type="System.String" DbType="NVarChar(128) NOT NULL" CanBeNull="false" />
+      <Column Name="country" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="state" Type="System.String" DbType="NVarChar(100) NOT NULL" CanBeNull="false" />
+      <Column Name="city" Type="System.String" DbType="NVarChar(100) NOT NULL" CanBeNull="false" />
+      <Column Name="street_address" Type="System.String" DbType="NVarChar(500) NOT NULL" CanBeNull="false" />
+      <Column Name="postcode" Type="System.String" DbType="NVarChar(64) NOT NULL" CanBeNull="false" />
+      <Column Name="phone" Type="System.String" DbType="VarChar(128) NOT NULL" CanBeNull="false" />
+      <Association Name="address_organisation" Member="organisations" ThisKey="id" OtherKey="shippingAddressID" Type="organisation" />
+      <Association Name="address_organisation1" Member="organisations1" ThisKey="id" OtherKey="billingAddressID" Type="organisation" />
+      <Association Name="address_order" Member="orders" ThisKey="id" OtherKey="shippingAddressID" Type="order" />
+      <Association Name="address_order1" Member="orders1" ThisKey="id" OtherKey="billingAddressID" Type="order" />
+    </Type>
+  </Table>
+  <Table Name="dbo.carts" Member="carts">
+    <Type Name="cart">
+      <Column Name="id" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="subdomainid" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
+      <Column Name="note" Type="System.String" DbType="NVarChar(1000)" CanBeNull="true" />
+      <Column Name="coupon" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="userid" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+      <Column Name="orderid" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+      <Column Name="paymentMethod" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="paymentCustomId" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+      <Association Name="cart_cartitem" Member="cartitems" ThisKey="id" OtherKey="cartid" Type="cartitem" />
+      <Association Name="paymentMethod_cart" Member="paymentMethod1" ThisKey="paymentCustomId" OtherKey="id" Type="paymentMethod" IsForeignKey="true" DeleteRule="SET NULL" />
+      <Association Name="user_cart" Member="user" ThisKey="userid" OtherKey="id" Type="user" IsForeignKey="true" />
+      <Association Name="order_cart" Member="order" ThisKey="orderid" OtherKey="id" Type="order" IsForeignKey="true" />
+      <Association Name="MASTERsubdomain_cart" Member="MASTERsubdomain" ThisKey="subdomainid" OtherKey="id" Type="MASTERsubdomain" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.payments" Member="payments">
+    <Type Name="payment">
+      <Column Name="id" Type="System.Int64" DbType="BigInt NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="paidAmount" Type="System.Decimal" DbType="Money NOT NULL" CanBeNull="false" />
+      <Column Name="created" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="notes" Type="System.String" DbType="NVarChar(500)" CanBeNull="true" />
+      <Column Name="method" Type="System.String" DbType="NVarChar(100) NOT NULL" CanBeNull="false" />
+      <Column Name="orderid" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
+      <Column Name="status" Type="System.String" DbType="VarChar(20) NOT NULL" CanBeNull="false" />
+      <Column Name="reference" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="redirectUrl" Type="System.String" DbType="VarChar(500)" CanBeNull="true" />
+      <Association Name="order_payment" Member="order" ThisKey="orderid" OtherKey="id" Type="order" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.article_comments" Member="article_comments">
+    <Type Name="article_comment">
+      <Column Name="id" Type="System.Int64" DbType="BigInt NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="articleid" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
+      <Column Name="comment" Type="System.String" DbType="NVarChar(512) NOT NULL" CanBeNull="false" />
+      <Column Name="name" Type="System.String" DbType="NVarChar(300) NOT NULL" CanBeNull="false" />
+      <Column Name="email" Type="System.String" DbType="VarChar(320) NOT NULL" CanBeNull="false" />
+      <Column Name="isApproved" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="isSpam" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="created" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Association Name="article_article_comment" Member="article" ThisKey="articleid" OtherKey="id" Type="article" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.articles" Member="articles">
+    <Type Name="article">
+      <Column Name="id" Type="System.Int64" DbType="BigInt NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="creator" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
+      <Column Name="blogid" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="title" Type="System.String" DbType="NVarChar(100) NOT NULL" CanBeNull="false" />
+      <Column Name="content" Type="System.String" DbType="NVarChar(4000) NOT NULL" CanBeNull="false" />
+      <Column Name="created" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="published" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Association Name="article_article_comment" Member="article_comments" ThisKey="id" OtherKey="articleid" Type="article_comment" />
+      <Association Name="article_article_tag" Member="article_tags" ThisKey="id" OtherKey="articleid" Type="article_tag" />
+      <Association Name="blog_article" Member="blog" ThisKey="blogid" OtherKey="id" Type="blog" IsForeignKey="true" />
+      <Association Name="user_article" Member="user" ThisKey="creator" OtherKey="id" Type="user" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.blogs" Member="blogs">
+    <Type Name="blog">
+      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="permalink" Type="System.String" DbType="NVarChar(100) NOT NULL" CanBeNull="false" />
+      <Column Name="title" Type="System.String" DbType="NVarChar(100) NOT NULL" CanBeNull="false" />
+      <Column Name="comments" Type="System.Int16" DbType="SmallInt NOT NULL" CanBeNull="false" />
+      <Column Name="updated" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="subdomainid" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
+      <Association Name="blog_article" Member="articles" ThisKey="id" OtherKey="blogid" Type="article" />
+      <Association Name="MASTERsubdomain_blog" Member="MASTERsubdomain" ThisKey="subdomainid" OtherKey="id" Type="MASTERsubdomain" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.linklists" Member="linklists">
+    <Type Name="linklist">
+      <Column Name="id" Type="System.Int64" DbType="BigInt NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="title" Type="System.String" DbType="NVarChar(100) NOT NULL" CanBeNull="false" />
+      <Column Name="permalink" Type="System.String" DbType="NVarChar(100) NOT NULL" CanBeNull="false" />
+      <Column Name="subdomainid" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
+      <Column Name="[permanent]" Member="permanent" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Association Name="linklist_link" Member="links" ThisKey="id" OtherKey="linklistid" Type="link" />
+      <Association Name="MASTERsubdomain_linklist" Member="MASTERsubdomain" ThisKey="subdomainid" OtherKey="id" Type="MASTERsubdomain" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.coupons" Member="coupons">
+    <Type Name="coupon">
+      <Column Name="id" Type="System.Int64" DbType="BigInt NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="subdomainid" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
+      <Column Name="code" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="description" Type="System.String" DbType="NVarChar(100) NOT NULL" CanBeNull="false" />
+      <Column Name="startDate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="expiryDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="impressions" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="minimumPurchase" Type="System.Decimal" DbType="Money" CanBeNull="true" />
+      <Column Name="maxImpressions" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="couponValue" Type="System.Decimal" DbType="Money" CanBeNull="true" />
+      <Column Name="couponPercentage" Type="System.Decimal" DbType="Decimal(4,2)" CanBeNull="true" />
+      <Column Name="expired" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Association Name="coupon_MASTERsubdomain" Member="MASTERsubdomains" ThisKey="id" OtherKey="facebookCoupon" Type="MASTERsubdomain" />
+      <Association Name="MASTERsubdomain_coupon" Member="MASTERsubdomain" ThisKey="subdomainid" OtherKey="id" Type="MASTERsubdomain" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.shippingProfiles" Member="shippingProfiles">
+    <Type Name="shippingProfile">
+      <Column Name="id" Type="System.Int64" DbType="BigInt NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="title" Type="System.String" DbType="NVarChar(100) NOT NULL" CanBeNull="false" />
+      <Column Name="subdomainid" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
+      <Column Name="type" Type="System.String" DbType="VarChar(10) NOT NULL" CanBeNull="false" />
+      <Column Name="etsy_templateid" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+      <Column Name="[permanent]" Member="permanent" Type="System.Boolean" DbType="Bit" CanBeNull="false" />
+      <Association Name="shippingProfile_shippingRule" Member="shippingRules" ThisKey="id" OtherKey="profileid" Type="shippingRule" />
+      <Association Name="shippingProfile_product" Member="products" ThisKey="id" OtherKey="shippingProfileID" Type="product" />
+      <Association Name="MASTERsubdomain_shippingProfile" Member="MASTERsubdomain" ThisKey="subdomainid" OtherKey="id" Type="MASTERsubdomain" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.product_variants" Member="product_variants">
+    <Type Name="product_variant">
+      <Column Name="id" Type="System.Int64" DbType="BigInt NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="sku" Type="System.String" DbType="VarChar(32) NOT NULL" CanBeNull="false" />
+      <Column Name="productid" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
+      <Column Name="color" Type="System.String" DbType="NVarChar(20)" CanBeNull="true" />
+      <Column Name="size" Type="System.String" DbType="NVarChar(20)" CanBeNull="true" />
+      <Association Name="product_variant_inventoryLocationItem" Member="inventoryLocationItems" ThisKey="id" OtherKey="variantid" Type="inventoryLocationItem" />
+      <Association Name="product_variant_orderItem" Member="orderItems" ThisKey="id" OtherKey="variantid" Type="orderItem" />
+      <Association Name="product_variant_cartitem" Member="cartitems" ThisKey="id" OtherKey="variantid" Type="cartitem" />
+      <Association Name="product_product_variant" Member="product" ThisKey="productid" OtherKey="id" Type="product" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.inventoryHistory" Member="inventoryHistories">
+    <Type Name="inventoryHistory">
+      <Column Name="id" Type="System.Int64" DbType="BigInt NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="created" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="description" Type="System.String" DbType="NVarChar(1000) NOT NULL" CanBeNull="false" />
+      <Column Name="itemLocationID" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
+      <Column Name="available" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="onOrder" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="reserved" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="sold" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="inventoryLocationItem_inventoryHistory" Member="inventoryLocationItem" ThisKey="itemLocationID" OtherKey="id" Type="inventoryLocationItem" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.organisations" Member="organisations">
+    <Type Name="organisation">
+      <Column Name="id" Type="System.Int64" DbType="BigInt NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="name" Type="System.String" DbType="NVarChar(128)" CanBeNull="true" />
+      <Column Name="subdomain" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
+      <Column Name="address" Type="System.String" DbType="NVarChar(500)" CanBeNull="true" />
+      <Column Name="state" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="country" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="city" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+      <Column Name="postcode" Type="System.String" DbType="NVarChar(64)" CanBeNull="true" />
+      <Column Name="phone" Type="System.String" DbType="VarChar(128)" CanBeNull="true" />
+      <Column Name="fax" Type="System.String" DbType="VarChar(128)" CanBeNull="true" />
+      <Column Name="logo" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+      <Column Name="motd" Type="System.String" DbType="NVarChar(500)" CanBeNull="true" />
+      <Column Name="latitude" Type="System.Decimal" DbType="Decimal(9,6)" CanBeNull="true" />
+      <Column Name="longtitude" Type="System.Decimal" DbType="Decimal(9,6)" CanBeNull="true" />
+      <Column Name="zoom" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="lastUpdate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="shippingAddressID" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+      <Column Name="billingAddressID" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+      <Association Name="organisation_user" Member="users" ThisKey="id" OtherKey="organisation" Type="user" />
+      <Association Name="organisation_MASTERsubdomain" Member="MASTERsubdomains" ThisKey="id" OtherKey="creator" Type="MASTERsubdomain" />
+      <Association Name="address_organisation" Member="address1" ThisKey="shippingAddressID" OtherKey="id" Type="address" IsForeignKey="true" />
+      <Association Name="address_organisation1" Member="address2" ThisKey="billingAddressID" OtherKey="id" Type="address" IsForeignKey="true" />
+      <Association Name="image_organisation" Member="image" ThisKey="logo" OtherKey="id" Type="image" IsForeignKey="true" DeleteRule="SET NULL" />
+      <Association Name="MASTERcity_organisation" Member="MASTERcity" ThisKey="city" OtherKey="id" Type="MASTERcity" IsForeignKey="true" />
+      <Association Name="MASTERsubdomain_organisation" Member="MASTERsubdomain" ThisKey="subdomain" OtherKey="id" Type="MASTERsubdomain" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.gbase_products" Member="gbase_products">
+    <Type Name="gbase_product">
+      <Column Name="id" Type="System.Int64" DbType="BigInt NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="externalid" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="externallink" Type="System.String" DbType="VarChar(320)" CanBeNull="true" />
+      <Column Name="expirydate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="flags" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Association Name="gbase_product_product" Member="products" ThisKey="id" OtherKey="gbase" Type="product" />
+    </Type>
+  </Table>
+  <Table Name="dbo.googleBase" Member="googleBases">
+    <Type Name="googleBase">
+      <Column Name="id" Type="System.Int64" DbType="BigInt NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="country" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="accountid" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
+      <Column Name="sessiontoken" Type="System.String" DbType="VarChar(64)" CanBeNull="true" />
+      <Association Name="googleBase_MASTERsubdomain" Member="MASTERsubdomains" ThisKey="id" OtherKey="gbaseid" Type="MASTERsubdomain" />
+    </Type>
+  </Table>
+  <Table Name="dbo.products_digitals" Member="products_digitals">
+    <Type Name="products_digital">
+      <Column Name="id" Type="System.Int64" DbType="BigInt NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="limit" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="expiryDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="filepath" Type="System.String" DbType="VarChar(1000) NOT NULL" CanBeNull="false" />
+      <Column Name="filename" Type="System.String" DbType="VarChar(500) NOT NULL" CanBeNull="false" />
+      <Column Name="productid" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+      <Column Name="linkid" Type="System.String" DbType="VarChar(6) NOT NULL" CanBeNull="false" />
+      <Association Name="product_products_digital" Member="product" ThisKey="productid" OtherKey="id" Type="product" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.orderItems_digitals" Member="orderItems_digitals">
+    <Type Name="orderItems_digital">
+      <Column Name="id" Type="System.Int64" DbType="BigInt NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="downloadid" Type="System.String" DbType="VarChar(6) NOT NULL" CanBeNull="false" />
+      <Column Name="downloadCount" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="orderitemid" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+      <Association Name="orderItem_orderItems_digital" Member="orderItem" ThisKey="orderitemid" OtherKey="id" Type="orderItem" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.comments" Member="comments">
+    <Type Name="comment">
+      <Column Name="id" Type="System.Int64" DbType="BigInt NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="transactionID" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
+      <Column Name="comments" Type="System.String" DbType="NVarChar(600) NOT NULL" CanBeNull="false" />
+      <Column Name="creator" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+      <Column Name="created" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Association Name="transaction_comment" Member="transaction" ThisKey="transactionID" OtherKey="id" Type="transaction" IsForeignKey="true" />
+      <Association Name="user_comment" Member="user" ThisKey="creator" OtherKey="id" Type="user" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.themes" Member="themes">
+    <Type Name="theme">
+      <Column Name="id" Type="System.Int64" DbType="BigInt NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="url" Type="System.String" DbType="VarChar(500) NOT NULL" CanBeNull="false" />
+      <Column Name="title" Type="System.String" DbType="NVarChar(100) NOT NULL" CanBeNull="false" />
+      <Column Name="created" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="preset" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="theme_version" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="theme_mobile_version" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Association Name="theme_MASTERsubdomain" Member="MASTERsubdomains" ThisKey="id" OtherKey="currentThemeID" Type="MASTERsubdomain" />
+    </Type>
+  </Table>
+  <Table Name="dbo.ebay_conditions" Member="ebay_conditions">
+    <Type Name="ebay_condition">
+      <Column Name="id" Type="System.Int64" DbType="BigInt NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="ebayrowid" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
+      <Column Name="name" Type="System.String" DbType="NVarChar(100) NOT NULL" CanBeNull="false" />
+      <Column Name="value" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Association Name="ebay_category_ebay_condition" Member="ebay_category" ThisKey="ebayrowid" OtherKey="id" Type="ebay_category" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.paymentMethods" Member="paymentMethods">
+    <Type Name="paymentMethod">
+      <Column Name="id" Type="System.Int64" DbType="BigInt NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="method" Type="System.String" DbType="VarChar(20) NOT NULL" CanBeNull="false" />
+      <Column Name="name" Type="System.String" DbType="NVarChar(100) NOT NULL" CanBeNull="false" />
+      <Column Name="instructions" Type="System.String" DbType="NVarChar(1000) NOT NULL" CanBeNull="false" />
+      <Column Name="subdomainid" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
+      <Column Name="identifier" Type="System.String" DbType="NVarChar(320)" CanBeNull="true" />
+      <Association Name="paymentMethod_cart" Member="carts" ThisKey="id" OtherKey="paymentCustomId" Type="cart" />
+      <Association Name="MASTERsubdomain_paymentMethod" Member="MASTERsubdomain" ThisKey="subdomainid" OtherKey="id" Type="MASTERsubdomain" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.ebay_listingdurations" Member="ebay_listingdurations">
+    <Type Name="ebay_listingduration">
+      <Column Name="id" Type="System.Int64" DbType="BigInt NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="ebayrowid" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
+      <Column Name="listingtypeid" Type="System.String" DbType="VarChar(20) NOT NULL" CanBeNull="false" />
+      <Column Name="duration" Type="System.String" DbType="VarChar(10) NOT NULL" CanBeNull="false" />
+      <Association Name="ebay_category_ebay_listingduration" Member="ebay_category" ThisKey="ebayrowid" OtherKey="id" Type="ebay_category" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.ebay_categories" Member="ebay_categories">
+    <Type Name="ebay_category">
+      <Column Name="id" Type="System.Int64" DbType="BigInt NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="siteid" Type="System.String" DbType="VarChar(20) NOT NULL" CanBeNull="false" />
+      <Column Name="categoryid" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="[level]" Member="level" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="name" Type="System.String" DbType="NVarChar(100) NOT NULL" CanBeNull="false" />
+      <Column Name="parentid" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="leaf" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="requiresReturnPolicy" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="done" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="supportsVariants" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Association Name="ebay_category_ebay_condition" Member="ebay_conditions" ThisKey="id" OtherKey="ebayrowid" Type="ebay_condition" />
+      <Association Name="ebay_category_ebay_listingduration" Member="ebay_listingdurations" ThisKey="id" OtherKey="ebayrowid" Type="ebay_listingduration" />
+    </Type>
+  </Table>
+  <Table Name="dbo.ebay_shippingservices" Member="ebay_shippingservices">
+    <Type Name="ebay_shippingservice">
+      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="siteid" Type="System.String" DbType="VarChar(20) NOT NULL" CanBeNull="false" />
+      <Column Name="description" Type="System.String" DbType="NVarChar(100) NOT NULL" CanBeNull="false" />
+      <Column Name="servicetype" Type="System.String" DbType="VarChar(100) NOT NULL" CanBeNull="false" />
+      <Column Name="isInternational" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="requiresWeight" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="requiresDimension" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Association Name="ebay_shippingservice_ebay_shippingrule" Member="ebay_shippingrules" ThisKey="id" OtherKey="serviceid" Type="ebay_shippingrule" />
+    </Type>
+  </Table>
+  <Table Name="dbo.ebay_shippingprofiles" Member="ebay_shippingprofiles">
+    <Type Name="ebay_shippingprofile">
+      <Column Name="id" Type="System.Int64" DbType="BigInt NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="title" Type="System.String" DbType="NVarChar(100) NOT NULL" CanBeNull="false" />
+      <Column Name="subdomainid" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
+      <Column Name="siteid" Type="System.String" DbType="VarChar(20) NOT NULL" CanBeNull="false" />
+      <Association Name="ebay_shippingprofile_ebay_shippingrule" Member="ebay_shippingrules" ThisKey="id" OtherKey="profileid" Type="ebay_shippingrule" />
+      <Association Name="MASTERsubdomain_ebay_shippingprofile" Member="MASTERsubdomain" ThisKey="subdomainid" OtherKey="id" Type="MASTERsubdomain" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.ebay_shippingrules" Member="ebay_shippingrules">
+    <Type Name="ebay_shippingrule">
+      <Column Name="id" Type="System.Int64" DbType="BigInt NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="profileid" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
+      <Column Name="serviceid" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="cost" Type="System.Decimal" DbType="Money NOT NULL" CanBeNull="false" />
+      <Association Name="ebay_shippingrule_ebay_shippingrule_location" Member="ebay_shippingrule_locations" ThisKey="id" OtherKey="ruleid" Type="ebay_shippingrule_location" />
+      <Association Name="ebay_shippingprofile_ebay_shippingrule" Member="ebay_shippingprofile" ThisKey="profileid" OtherKey="id" Type="ebay_shippingprofile" IsForeignKey="true" />
+      <Association Name="ebay_shippingservice_ebay_shippingrule" Member="ebay_shippingservice" ThisKey="serviceid" OtherKey="id" Type="ebay_shippingservice" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.ebay_shippinglocations" Member="ebay_shippinglocations">
+    <Type Name="ebay_shippinglocation">
+      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="siteid" Type="System.String" DbType="VarChar(20) NOT NULL" CanBeNull="false" />
+      <Column Name="description" Type="System.String" DbType="NVarChar(100) NOT NULL" CanBeNull="false" />
+      <Column Name="location" Type="System.String" DbType="VarChar(20) NOT NULL" CanBeNull="false" />
+    </Type>
+  </Table>
+  <Table Name="dbo.ebay_shippingrule_locations" Member="ebay_shippingrule_locations">
+    <Type Name="ebay_shippingrule_location">
+      <Column Name="id" Type="System.Int64" DbType="BigInt NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="ruleid" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
+      <Column Name="description" Type="System.String" DbType="NVarChar(100) NOT NULL" CanBeNull="false" />
+      <Column Name="location" Type="System.String" DbType="VarChar(20) NOT NULL" CanBeNull="false" />
+      <Association Name="ebay_shippingrule_ebay_shippingrule_location" Member="ebay_shippingrule" ThisKey="ruleid" OtherKey="id" Type="ebay_shippingrule" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.ebay_dispatchtimes" Member="ebay_dispatchtimes">
+    <Type Name="ebay_dispatchtime">
+      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="siteid" Type="System.String" DbType="VarChar(20) NOT NULL" CanBeNull="false" />
+      <Column Name="dispatchTime" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="name" Type="System.String" DbType="VarChar(20) NOT NULL" CanBeNull="false" />
+    </Type>
+  </Table>
+  <Table Name="dbo.users" Member="users">
+    <Type Name="user">
+      <Column Name="id" Type="System.Int64" DbType="BigInt NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="role" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="fullName" Type="System.String" DbType="NVarChar(300)" CanBeNull="true" />
+      <Column Name="email" Type="System.String" DbType="VarChar(320)" CanBeNull="true" />
+      <Column Name="proxiedEmail" Type="System.String" DbType="VarChar(320)" CanBeNull="true" />
+      <Column Name="birthday" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="gender" Type="System.String" DbType="VarChar(8)" CanBeNull="true" />
+      <Column Name="firstName" Type="System.String" DbType="NVarChar(128)" CanBeNull="true" />
+      <Column Name="lastName" Type="System.String" DbType="NVarChar(128)" CanBeNull="true" />
+      <Column Name="passwordHash" Type="System.String" DbType="VarChar(128)" CanBeNull="true" />
+      <Column Name="organisation" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+      <Column Name="timezone" Type="System.String" DbType="VarChar(64)" CanBeNull="true" />
+      <Column Name="phoneNumber" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="openID" Type="System.String" DbType="VarChar(128)" CanBeNull="true" />
+      <Column Name="FBID" Type="System.String" DbType="VarChar(128)" CanBeNull="true" />
+      <Column Name="GFCID" Type="System.String" DbType="VarChar(128)" CanBeNull="true" />
+      <Column Name="created" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="lastLogin" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="title" Type="System.String" DbType="NVarChar(128)" CanBeNull="true" />
+      <Column Name="notes" Type="System.String" DbType="NVarChar(1000)" CanBeNull="true" />
+      <Column Name="confirmationCode" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="settings" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="profilePhoto" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+      <Column Name="permissions" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="viewid" Type="System.String" DbType="VarChar(32)" CanBeNull="true" />
+      <Column Name="externalProfilePhoto" Type="System.String" DbType="VarChar(128)" CanBeNull="true" />
+      <Column Name="twitterID" Type="System.String" DbType="VarChar(128)" CanBeNull="true" />
+      <Column Name="lastOfflineCheck" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="lastUpdate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="externalProfileUrl" Type="System.String" DbType="VarChar(128)" CanBeNull="true" />
+      <Column Name="ebayID" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+      <Association Name="user_activity" Member="activities" ThisKey="id" OtherKey="owner" Type="activity" />
+      <Association Name="user_changeHistoryItem" Member="changeHistoryItems" ThisKey="id" OtherKey="changer" Type="changeHistoryItem" />
+      <Association Name="user_favourite" Member="favourites" ThisKey="id" OtherKey="owner" Type="favourite" />
+      <Association Name="user_message" Member="messages" ThisKey="id" OtherKey="recipient" Type="message" />
+      <Association Name="user_message1" Member="messages1" ThisKey="id" OtherKey="sender" Type="message" />
+      <Association Name="user_linkRequest" Member="linkRequests" ThisKey="id" OtherKey="friendid" Type="linkRequest" />
+      <Association Name="user_linkRequest1" Member="linkRequests1" ThisKey="id" OtherKey="userid" Type="linkRequest" />
+      <Association Name="user_product_comment" Member="product_comments" ThisKey="id" OtherKey="commenter" Type="product_comment" />
+      <Association Name="user_contactGroupMember" Member="contactGroupMembers" ThisKey="id" OtherKey="userid" Type="contactGroupMember" />
+      <Association Name="user_cart" Member="carts" ThisKey="id" OtherKey="userid" Type="cart" />
+      <Association Name="user_article" Member="articles" ThisKey="id" OtherKey="creator" Type="article" />
+      <Association Name="user_comment" Member="comments" ThisKey="id" OtherKey="creator" Type="comment" />
+      <Association Name="user_order" Member="orders" ThisKey="id" OtherKey="receiverUserid" Type="order" />
+      <Association Name="user_order1" Member="orders1" ThisKey="id" OtherKey="owner" Type="order" />
+      <Association Name="user_page" Member="pages" ThisKey="id" OtherKey="creator" Type="page" />
+      <Association Name="image_user" Member="image" ThisKey="profilePhoto" OtherKey="id" Type="image" IsForeignKey="true" DeleteRule="SET NULL" />
+      <Association Name="organisation_user" Member="organisation1" ThisKey="organisation" OtherKey="id" Type="organisation" IsForeignKey="true" />
+      <Association Name="ebay_user_user" Member="ebay_user" ThisKey="ebayID" OtherKey="id" Type="ebay_user" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.ebay_users" Member="ebay_users">
+    <Type Name="ebay_user">
+      <Column Name="id" Type="System.Int64" DbType="BigInt NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="ebayuserid" Type="System.String" DbType="VarChar(64) NOT NULL" CanBeNull="false" />
+      <Column Name="feedback" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Association Name="ebay_user_user" Member="users" ThisKey="id" OtherKey="ebayID" Type="user" />
+    </Type>
+  </Table>
+  <Table Name="dbo.ebay_orders" Member="ebay_orders">
+    <Type Name="ebay_order">
+      <Column Name="id" Type="System.Int64" DbType="BigInt NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="orderid" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="created" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="status" Type="System.String" DbType="VarChar(10) NOT NULL" CanBeNull="false" />
+      <Column Name="subdomainid" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
+      <Association Name="ebay_order_ebay_orderitem" Member="ebay_orderitems" ThisKey="id" OtherKey="orderid" Type="ebay_orderitem" />
+      <Association Name="ebay_order_order" Member="orders" ThisKey="id" OtherKey="ebayID" Type="order" />
+      <Association Name="MASTERsubdomain_ebay_order" Member="MASTERsubdomain" ThisKey="subdomainid" OtherKey="id" Type="MASTERsubdomain" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.ebay_orderitems" Member="ebay_orderitems">
+    <Type Name="ebay_orderitem">
+      <Column Name="id" Type="System.Int64" DbType="BigInt NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="orderid" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
+      <Column Name="lineid" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Association Name="ebay_order_ebay_orderitem" Member="ebay_order" ThisKey="orderid" OtherKey="id" Type="ebay_order" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.orders" Member="orders">
+    <Type Name="order">
+      <Column Name="id" Type="System.Int64" DbType="BigInt NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="owner" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
+      <Column Name="type" Type="System.String" DbType="VarChar(16) NOT NULL" CanBeNull="false" />
+      <Column Name="status" Type="System.String" DbType="VarChar(16) NOT NULL" CanBeNull="false" />
+      <Column Name="orderNumber" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
+      <Column Name="orderDate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="actualReceivedDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="inventoryLocation" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+      <Column Name="inventoryLocation_del" Type="System.String" DbType="NVarChar(128)" CanBeNull="true" />
+      <Column Name="receiverUserid" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+      <Column Name="receiverFullName" Type="System.String" DbType="NVarChar(300)" CanBeNull="true" />
+      <Column Name="receiverAddress" Type="System.String" DbType="NVarChar(1000)" CanBeNull="true" />
+      <Column Name="currency" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="terms" Type="System.String" DbType="NVarChar(1000)" CanBeNull="true" />
+      <Column Name="created" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="total" Type="System.Decimal" DbType="Money NOT NULL" CanBeNull="false" />
+      <Column Name="totalPaid" Type="System.Decimal" DbType="Money NOT NULL" CanBeNull="false" />
+      <Column Name="taxAmount" Type="System.Decimal" DbType="Money" CanBeNull="true" />
+      <Column Name="shippingCost" Type="System.Decimal" DbType="Money" CanBeNull="true" />
+      <Column Name="shippingMethod" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
+      <Column Name="shipwireShippingid" Type="System.String" DbType="VarChar(5)" CanBeNull="true" />
+      <Column Name="discountPercentage" Type="System.Decimal" DbType="Decimal(4,2)" CanBeNull="true" />
+      <Column Name="discountValue" Type="System.Decimal" DbType="Money" CanBeNull="true" />
+      <Column Name="discountCouponCode" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="shippingEmail" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="billingEmail" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="shippingAddressID" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+      <Column Name="billingAddressID" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+      <Column Name="ebayID" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+      <Column Name="viewid" Type="System.String" DbType="VarChar(32)" CanBeNull="true" />
+      <Column Name="flags" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="lastUpdate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Association Name="order_shipwireTransaction" Member="shipwireTransaction" ThisKey="id" OtherKey="orderid" Type="shipwireTransaction" Cardinality="One" />
+      <Association Name="order_transaction" Member="transactions" ThisKey="id" OtherKey="primaryOrderID" Type="transaction" Cardinality="One" />
+      <Association Name="order_transaction1" Member="transactions1" ThisKey="id" OtherKey="secondaryOrderID" Type="transaction" />
+      <Association Name="order_orderItem" Member="orderItems" ThisKey="id" OtherKey="orderid" Type="orderItem" />
+      <Association Name="order_cart" Member="carts" ThisKey="id" OtherKey="orderid" Type="cart" />
+      <Association Name="order_payment" Member="payments" ThisKey="id" OtherKey="orderid" Type="payment" />
+      <Association Name="address_order" Member="address" ThisKey="shippingAddressID" OtherKey="id" Type="address" IsForeignKey="true" />
+      <Association Name="address_order1" Member="address1" ThisKey="billingAddressID" OtherKey="id" Type="address" IsForeignKey="true" />
+      <Association Name="ebay_order_order" Member="ebay_order" ThisKey="ebayID" OtherKey="id" Type="ebay_order" IsForeignKey="true" />
+      <Association Name="inventoryLocation_order" Member="inventoryLocation1" ThisKey="inventoryLocation" OtherKey="id" Type="inventoryLocation" IsForeignKey="true" />
+      <Association Name="user_order" Member="user" ThisKey="receiverUserid" OtherKey="id" Type="user" IsForeignKey="true" />
+      <Association Name="user_order1" Member="user1" ThisKey="owner" OtherKey="id" Type="user" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.ebay_products" Member="ebay_products">
+    <Type Name="ebay_product">
+      <Column Name="id" Type="System.Int64" DbType="BigInt NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="listingType" Type="System.String" DbType="VarChar(20) NOT NULL" CanBeNull="false" />
+      <Column Name="ebayid" Type="System.String" DbType="VarChar(20) NOT NULL" CanBeNull="false" />
+      <Column Name="isActive" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="siteid" Type="System.String" DbType="VarChar(20) NOT NULL" CanBeNull="false" />
+      <Column Name="categoryid" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="categoryid_secondary" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="condition" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="returnPolicy" Type="System.String" DbType="VarChar(20) NOT NULL" CanBeNull="false" />
+      <Column Name="returnWithin" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="refundPolicy" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="duration" Type="System.String" DbType="VarChar(10) NOT NULL" CanBeNull="false" />
+      <Column Name="startTime" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="endTime" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="includeAddress" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="listingFees" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="profileid" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+      <Column Name="quantity" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="dispatchTime" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="autorelist" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="startPrice" Type="System.Decimal" DbType="Money" CanBeNull="true" />
+      <Column Name="buynowPrice" Type="System.Decimal" DbType="Money" CanBeNull="true" />
+      <Column Name="reservePrice" Type="System.Decimal" DbType="Money" CanBeNull="true" />
+      <Association Name="ebay_product_product" Member="products" ThisKey="id" OtherKey="ebayID" Type="product" />
+    </Type>
+  </Table>
+  <Table Name="dbo.article_tags" Member="article_tags">
+    <Type Name="article_tag">
+      <Column Name="id" Type="System.Int64" DbType="BigInt NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="name" Type="System.String" DbType="NVarChar(255) NOT NULL" CanBeNull="false" />
+      <Column Name="handle" Type="System.String" DbType="VarChar(255) NOT NULL" CanBeNull="false" />
+      <Column Name="subdomainid" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
+      <Column Name="articleid" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
+      <Association Name="article_article_tag" Member="article" ThisKey="articleid" OtherKey="id" Type="article" IsForeignKey="true" />
+      <Association Name="MASTERsubdomain_article_tag" Member="MASTERsubdomain" ThisKey="subdomainid" OtherKey="id" Type="MASTERsubdomain" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.tags" Member="tags">
+    <Type Name="tag">
+      <Column Name="id" Type="System.Int64" DbType="BigInt NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="name" Type="System.String" DbType="NVarChar(255) NOT NULL" CanBeNull="false" />
+      <Column Name="handle" Type="System.String" DbType="VarChar(255) NOT NULL" CanBeNull="false" />
+      <Column Name="productid" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
+      <Column Name="subdomainid" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
+      <Association Name="product_tag" Member="product" ThisKey="productid" OtherKey="id" Type="product" IsForeignKey="true" />
+      <Association Name="MASTERsubdomain_tag" Member="MASTERsubdomain" ThisKey="subdomainid" OtherKey="id" Type="MASTERsubdomain" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.trademe_listingduration" Member="trademe_listingdurations">
+    <Type Name="trademe_listingduration">
+      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="categoryid" Type="System.String" DbType="VarChar(4) NOT NULL" CanBeNull="false" />
+      <Column Name="duration" Type="System.Byte" DbType="TinyInt NOT NULL" CanBeNull="false" />
+      <Association Name="trademe_category_trademe_listingduration" Member="trademe_category" ThisKey="categoryid" OtherKey="id" Type="trademe_category" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.product_images" Member="product_images">
+    <Type Name="product_image">
+      <Column Name="id" Type="System.Int64" DbType="BigInt NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="productid" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+      <Column Name="url" Type="System.String" DbType="VarChar(1000) NOT NULL" CanBeNull="false" />
+      <Column Name="subdomainid" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
+      <Column Name="trademephotoid" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="product_image_product" Member="products" ThisKey="id" OtherKey="thumb" Type="product" />
+      <Association Name="product_product_image" Member="product" ThisKey="productid" OtherKey="id" Type="product" IsForeignKey="true" />
+      <Association Name="MASTERsubdomain_product_image" Member="MASTERsubdomain" ThisKey="subdomainid" OtherKey="id" Type="MASTERsubdomain" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.products" Member="products">
+    <Type Name="product">
+      <Column Name="id" Type="System.Int64" DbType="BigInt NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="category" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+      <Column Name="subdomainid" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
+      <Column Name="title" Type="System.String" DbType="NVarChar(100) NOT NULL" CanBeNull="false" />
+      <Column Name="details" Type="System.String" DbType="NVarChar(MAX) NOT NULL" CanBeNull="false" />
+      <Column Name="thumb" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+      <Column Name="sellingPrice" Type="System.Decimal" DbType="Money" CanBeNull="true" />
+      <Column Name="stockUnitId" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+      <Column Name="otherNotes" Type="System.String" DbType="NVarChar(1000)" CanBeNull="true" />
+      <Column Name="costPrice" Type="System.Decimal" DbType="Money" CanBeNull="true" />
+      <Column Name="created" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="updated" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="flags" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="hits" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="gbaseID" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="dimensions" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="shipwireDetails" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="tax" Type="System.Decimal" DbType="Decimal(4,2)" CanBeNull="true" />
+      <Column Name="specialPrice" Type="System.Decimal" DbType="Money" CanBeNull="true" />
+      <Column Name="shippingProfileID" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+      <Column Name="gbase" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+      <Column Name="tags" Type="System.String" DbType="NVarChar(1000)" CanBeNull="true" />
+      <Column Name="trackInventory" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="ebayID" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+      <Column Name="trademeID" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+      <Association Name="product_favourite" Member="favourites" ThisKey="id" OtherKey="productid" Type="favourite" />
+      <Association Name="product_googleBlogsProductPost" Member="googleBlogsProductPosts" ThisKey="id" OtherKey="productid" Type="googleBlogsProductPost" />
+      <Association Name="product_product_comment" Member="product_comments" ThisKey="id" OtherKey="productid" Type="product_comment" />
+      <Association Name="product_facebook_import" Member="facebook_imports" ThisKey="id" OtherKey="productid" Type="facebook_import" />
+      <Association Name="product_wordpressPost" Member="wordpressPosts" ThisKey="id" OtherKey="productid" Type="wordpressPost" Cardinality="One" />
+      <Association Name="product_tumblrPost" Member="tumblrPosts" ThisKey="id" OtherKey="productid" Type="tumblrPost" Cardinality="One" />
+      <Association Name="product_contactGroupPricing" Member="contactGroupPricings" ThisKey="id" OtherKey="productid" Type="contactGroupPricing" />
+      <Association Name="product_productCollectionMember" Member="productCollectionMembers" ThisKey="id" OtherKey="productid" Type="productCollectionMember" />
+      <Association Name="product_product_variant" Member="product_variants" ThisKey="id" OtherKey="productid" Type="product_variant" />
+      <Association Name="product_products_digital" Member="products_digitals" ThisKey="id" OtherKey="productid" Type="products_digital" Cardinality="One" />
+      <Association Name="product_tag" Member="tags1" ThisKey="id" OtherKey="productid" Type="tag" />
+      <Association Name="product_product_image" Member="product_images" ThisKey="id" OtherKey="productid" Type="product_image" />
+      <Association Name="ebay_product_product" Member="ebay_product" ThisKey="ebayID" OtherKey="id" Type="ebay_product" IsForeignKey="true" />
+      <Association Name="gbase_product_product" Member="gbase_product" ThisKey="gbase" OtherKey="id" Type="gbase_product" IsForeignKey="true" />
+      <Association Name="product_image_product" Member="product_image" ThisKey="thumb" OtherKey="id" Type="product_image" IsForeignKey="true" />
+      <Association Name="productCategory_product" Member="productCategory" ThisKey="category" OtherKey="id" Type="productCategory" IsForeignKey="true" />
+      <Association Name="shippingProfile_product" Member="shippingProfile" ThisKey="shippingProfileID" OtherKey="id" Type="shippingProfile" IsForeignKey="true" />
+      <Association Name="stockUnit_product" Member="stockUnit" ThisKey="stockUnitId" OtherKey="id" Type="stockUnit" IsForeignKey="true" />
+      <Association Name="trademe_product_product" Member="trademe_product" ThisKey="trademeID" OtherKey="id" Type="trademe_product" IsForeignKey="true" />
+      <Association Name="MASTERsubdomain_product" Member="MASTERsubdomain" ThisKey="subdomainid" OtherKey="id" Type="MASTERsubdomain" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.trademe_categories" Member="trademe_categories">
+    <Type Name="trademe_category">
+      <Column Name="id" Type="System.String" DbType="VarChar(4) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="name" Type="System.String" DbType="NVarChar(100) NOT NULL" CanBeNull="false" />
+      <Column Name="parentid" Type="System.String" DbType="VarChar(4) NOT NULL" CanBeNull="false" />
+      <Column Name="isLeaf" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="default_listingduration" Type="System.Byte" DbType="TinyInt" CanBeNull="true" />
+      <Column Name="active" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Association Name="trademe_category_trademe_listingduration" Member="trademe_listingdurations" ThisKey="id" OtherKey="categoryid" Type="trademe_listingduration" />
+      <Association Name="trademe_category_trademe_category" Member="trademe_categories" ThisKey="id" OtherKey="parentid" Type="trademe_category" />
+      <Association Name="trademe_category_trademe_category" Member="trademe_category1" ThisKey="parentid" OtherKey="id" Type="trademe_category" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.trademe_shippingcosts" Member="trademe_shippingcosts">
+    <Type Name="trademe_shippingcost">
+      <Column Name="id" Type="System.Int64" DbType="BigInt NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="cost" Type="System.Decimal" DbType="Money NOT NULL" CanBeNull="false" />
+      <Column Name="description" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="trademeproductid" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
+      <Association Name="trademe_product_trademe_shippingcost" Member="trademe_product" ThisKey="trademeproductid" OtherKey="id" Type="trademe_product" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.trademe_products" Member="trademe_products">
+    <Type Name="trademe_product">
+      <Column Name="id" Type="System.Int64" DbType="BigInt NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="listingid" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="listingfees" Type="System.Decimal" DbType="Money" CanBeNull="true" />
+      <Column Name="categoryid" Type="System.String" DbType="VarChar(4) NOT NULL" CanBeNull="false" />
+      <Column Name="startPrice" Type="System.Decimal" DbType="Money NOT NULL" CanBeNull="false" />
+      <Column Name="reservePrice" Type="System.Decimal" DbType="Money NOT NULL" CanBeNull="false" />
+      <Column Name="buynowPrice" Type="System.Decimal" DbType="Money" CanBeNull="true" />
+      <Column Name="duration" Type="System.Byte" DbType="TinyInt NOT NULL" CanBeNull="false" />
+      <Column Name="pickup" Type="System.Byte" DbType="TinyInt NOT NULL" CanBeNull="false" />
+      <Column Name="isnew" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="authenticatedOnly" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="isclassified" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="quantity" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="isBold" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="isFeatured" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="isHomepageFeatured" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="hasGallery" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="flatShipping" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="isActive" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="endTime" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="startTime" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="autorelist" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="safetrader" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Association Name="trademe_product_product" Member="products" ThisKey="id" OtherKey="trademeID" Type="product" />
+      <Association Name="trademe_product_trademe_shippingcost" Member="trademe_shippingcosts" ThisKey="id" OtherKey="trademeproductid" Type="trademe_shippingcost" />
+    </Type>
+  </Table>
+  <Table Name="dbo.MASTERsubdomains" Member="MASTERsubdomains">
+    <Type Name="MASTERsubdomain">
+      <Column Name="id" Type="System.Int64" DbType="BigInt NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="name" Type="System.String" DbType="VarChar(64) NOT NULL" CanBeNull="false" />
+      <Column Name="creator" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+      <Column Name="total_products_mine" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
+      <Column Name="total_orders_sent" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
+      <Column Name="total_orders_received" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
+      <Column Name="total_invoices_sent" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
+      <Column Name="total_invoices_received" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
+      <Column Name="total_contacts_public" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
+      <Column Name="total_contacts_private" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
+      <Column Name="total_contacts_staff" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
+      <Column Name="total_outofstock" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
+      <Column Name="storeCustomCss" Type="System.String" DbType="VarChar(1000)" CanBeNull="true" />
+      <Column Name="storeAboutPage" Type="System.String" DbType="NVarChar(1000)" CanBeNull="true" />
+      <Column Name="accountType" Type="System.String" DbType="VarChar(16)" CanBeNull="true" />
+      <Column Name="accountTypeNew" Type="System.String" DbType="VarChar(16)" CanBeNull="true" />
+      <Column Name="accountTypeStatus" Type="System.Byte" DbType="TinyInt" CanBeNull="true" />
+      <Column Name="accountTransactionID" Type="System.String" DbType="VarChar(30)" CanBeNull="true" />
+      <Column Name="bloggerSessionKey" Type="System.String" DbType="VarChar(64)" CanBeNull="true" />
+      <Column Name="metaTagVerification" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="flags" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="customDomain" Type="System.String" DbType="VarChar(256)" CanBeNull="true" />
+      <Column Name="shipwireEmail" Type="System.String" DbType="VarChar(320)" CanBeNull="true" />
+      <Column Name="shipwirePassword" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="currency" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="default_taxrate" Type="System.Decimal" DbType="Decimal(4,2)" CanBeNull="true" />
+      <Column Name="gbaseid" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+      <Column Name="returnPolicy" Type="System.String" DbType="NVarChar(1000)" CanBeNull="true" />
+      <Column Name="paymentTerms" Type="System.String" DbType="NVarChar(1000)" CanBeNull="true" />
+      <Column Name="facebookCoupon" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+      <Column Name="currentThemeID" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+      <Column Name="storeName" Type="System.String" DbType="NVarChar(200)" CanBeNull="true" />
+      <Column Name="uniqueid" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="ebay_lastsync" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="affiliateID" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="affiliateReferrer" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+      <Column Name="trialExpiry" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Association Name="MASTERsubdomain_friend" Member="friends" ThisKey="id" OtherKey="subdomainid" Type="friend" />
+      <Association Name="MASTERsubdomain_friend1" Member="friends1" ThisKey="id" OtherKey="friendsubdomainid" Type="friend" />
+      <Association Name="MASTERsubdomain_facebookPage" Member="facebookPages" ThisKey="id" OtherKey="subdomainid" Type="facebookPage" />
+      <Association Name="MASTERsubdomain_opensocialPage" Member="opensocialPages" ThisKey="id" OtherKey="subdomainid" Type="opensocialPage" />
+      <Association Name="MASTERsubdomain_twitterSearch" Member="twitterSearches" ThisKey="id" OtherKey="subdomainid" Type="twitterSearch" />
+      <Association Name="MASTERsubdomain_image" Member="images" ThisKey="id" OtherKey="subdomain" Type="image" />
+      <Association Name="MASTERsubdomain_inventoryLocation" Member="inventoryLocations" ThisKey="id" OtherKey="subdomain" Type="inventoryLocation" />
+      <Association Name="MASTERsubdomain_productCategory" Member="productCategories" ThisKey="id" OtherKey="subdomain" Type="productCategory" />
+      <Association Name="MASTERsubdomain_googleBlog" Member="googleBlogs" ThisKey="id" OtherKey="subdomainid" Type="googleBlog" />
+      <Association Name="MASTERsubdomain_product_comment" Member="product_comments" ThisKey="id" OtherKey="subdomainid" Type="product_comment" />
+      <Association Name="MASTERsubdomain_video" Member="videos" ThisKey="id" OtherKey="subdomainid" Type="video" />
+      <Association Name="MASTERsubdomain_review" Member="reviews" ThisKey="id" OtherKey="subdomainid" Type="review" />
+      <Association Name="MASTERsubdomain_oauth_token" Member="oauth_tokens" ThisKey="id" OtherKey="subdomainid" Type="oauth_token" />
+      <Association Name="MASTERsubdomain_stockUnit" Member="stockUnits" ThisKey="id" OtherKey="subdomainid" Type="stockUnit" />
+      <Association Name="MASTERsubdomain_facebook_token" Member="facebook_tokens" ThisKey="id" OtherKey="subdomainid" Type="facebook_token" />
+      <Association Name="MASTERsubdomain_wordpressSite" Member="wordpressSites" ThisKey="id" OtherKey="subdomainid" Type="wordpressSite" Cardinality="One" />
+      <Association Name="MASTERsubdomain_tumblrSite" Member="tumblrSites" ThisKey="id" OtherKey="subdomainid" Type="tumblrSite" Cardinality="One" />
+      <Association Name="MASTERsubdomain_contactGroup" Member="contactGroups" ThisKey="id" OtherKey="subdomainid" Type="contactGroup" />
+      <Association Name="MASTERsubdomain_cart" Member="carts" ThisKey="id" OtherKey="subdomainid" Type="cart" />
+      <Association Name="MASTERsubdomain_blog" Member="blogs" ThisKey="id" OtherKey="subdomainid" Type="blog" />
+      <Association Name="MASTERsubdomain_linklist" Member="linklists" ThisKey="id" OtherKey="subdomainid" Type="linklist" />
+      <Association Name="MASTERsubdomain_coupon" Member="coupons" ThisKey="id" OtherKey="subdomainid" Type="coupon" />
+      <Association Name="MASTERsubdomain_shippingProfile" Member="shippingProfiles" ThisKey="id" OtherKey="subdomainid" Type="shippingProfile" />
+      <Association Name="MASTERsubdomain_organisation" Member="organisations" ThisKey="id" OtherKey="subdomain" Type="organisation" />
+      <Association Name="MASTERsubdomain_paymentMethod" Member="paymentMethods" ThisKey="id" OtherKey="subdomainid" Type="paymentMethod" />
+      <Association Name="MASTERsubdomain_ebay_shippingprofile" Member="ebay_shippingprofiles" ThisKey="id" OtherKey="subdomainid" Type="ebay_shippingprofile" />
+      <Association Name="MASTERsubdomain_ebay_order" Member="ebay_orders" ThisKey="id" OtherKey="subdomainid" Type="ebay_order" />
+      <Association Name="MASTERsubdomain_article_tag" Member="article_tags" ThisKey="id" OtherKey="subdomainid" Type="article_tag" />
+      <Association Name="MASTERsubdomain_tag" Member="tags" ThisKey="id" OtherKey="subdomainid" Type="tag" />
+      <Association Name="MASTERsubdomain_product_image" Member="product_images" ThisKey="id" OtherKey="subdomainid" Type="product_image" />
+      <Association Name="MASTERsubdomain_product" Member="products" ThisKey="id" OtherKey="subdomainid" Type="product" />
+      <Association Name="MASTERsubdomain_MASTERsubdomain" Member="MASTERsubdomains" ThisKey="id" OtherKey="affiliateReferrer" Type="MASTERsubdomain" />
+      <Association Name="MASTERsubdomain_page" Member="pages" ThisKey="id" OtherKey="subdomainid" Type="page" />
+      <Association Name="MASTERsubdomain_product_collection" Member="product_collections" ThisKey="id" OtherKey="subdomainid" Type="product_collection" />
+      <Association Name="MASTERsubdomain_indexingQueue" Member="indexingQueues" ThisKey="id" OtherKey="subdomainid" Type="indexingQueue" />
+      <Association Name="coupon_MASTERsubdomain" Member="coupon" ThisKey="facebookCoupon" OtherKey="id" Type="coupon" IsForeignKey="true" />
+      <Association Name="googleBase_MASTERsubdomain" Member="googleBase" ThisKey="gbaseid" OtherKey="id" Type="googleBase" IsForeignKey="true" />
+      <Association Name="MASTERsubdomain_MASTERsubdomain" Member="MASTERsubdomain1" ThisKey="affiliateReferrer" OtherKey="id" Type="MASTERsubdomain" IsForeignKey="true" />
+      <Association Name="organisation_MASTERsubdomain" Member="organisation" ThisKey="creator" OtherKey="id" Type="organisation" IsForeignKey="true" />
+      <Association Name="theme_MASTERsubdomain" Member="theme" ThisKey="currentThemeID" OtherKey="id" Type="theme" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.pages" Member="pages">
+    <Type Name="page">
+      <Column Name="id" Type="System.Int64" DbType="BigInt NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="name" Type="System.String" DbType="NVarChar(100) NOT NULL" CanBeNull="false" />
+      <Column Name="content" Type="System.String" DbType="NVarChar(MAX) NOT NULL" CanBeNull="false" />
+      <Column Name="subdomainid" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
+      <Column Name="permalink" Type="System.String" DbType="NVarChar(100) NOT NULL" CanBeNull="false" />
+      <Column Name="creator" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
+      <Column Name="updated" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="settings" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="templatename" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Association Name="MASTERsubdomain_page" Member="MASTERsubdomain" ThisKey="subdomainid" OtherKey="id" Type="MASTERsubdomain" IsForeignKey="true" />
+      <Association Name="user_page" Member="user" ThisKey="creator" OtherKey="id" Type="user" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.product_collections" Member="product_collections">
+    <Type Name="product_collection">
+      <Column Name="id" Type="System.Int64" DbType="BigInt NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="name" Type="System.String" DbType="NVarChar(108) NOT NULL" CanBeNull="false" />
+      <Column Name="details" Type="System.String" DbType="NVarChar(1000)" CanBeNull="true" />
+      <Column Name="subdomainid" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
+      <Column Name="etsy_sectionid" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+      <Column Name="etsy_shopid" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+      <Column Name="permalink" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="settings" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Association Name="product_collection_productCollectionMember" Member="productCollectionMembers" ThisKey="id" OtherKey="collectionid" Type="productCollectionMember" />
+      <Association Name="MASTERsubdomain_product_collection" Member="MASTERsubdomain" ThisKey="subdomainid" OtherKey="id" Type="MASTERsubdomain" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.mails" Member="mails">
+    <Type Name="mail">
+      <Column Name="id" Type="System.Int64" DbType="BigInt NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="toName" Type="System.String" DbType="NVarChar(200) NOT NULL" CanBeNull="false" />
+      <Column Name="toEmail" Type="System.String" DbType="NVarChar(320) NOT NULL" CanBeNull="false" />
+      <Column Name="subject" Type="System.String" DbType="NVarChar(1000) NOT NULL" CanBeNull="false" />
+      <Column Name="body" Type="System.String" DbType="NVarChar(MAX) NOT NULL" CanBeNull="false" />
+      <Column Name="reference" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="fromEmail" Type="System.String" DbType="NVarChar(320)" CanBeNull="true" />
+      <Column Name="fromName" Type="System.String" DbType="NVarChar(200)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.indexingQueue" Member="indexingQueues">
+    <Type Name="indexingQueue">
+      <Column Name="id" Type="System.Int64" DbType="BigInt NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="subdomainid" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
+      <Column Name="type" Type="System.Byte" DbType="TinyInt NOT NULL" CanBeNull="false" />
+      <Column Name="serializedItem" Type="System.Xml.Linq.XElement" DbType="Xml NOT NULL" CanBeNull="false" UpdateCheck="Never" />
+      <Column Name="itemKey" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
+      <Column Name="deleteOnly" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Association Name="MASTERsubdomain_indexingQueue" Member="MASTERsubdomain" ThisKey="subdomainid" OtherKey="id" Type="MASTERsubdomain" IsForeignKey="true" />
+    </Type>
+  </Table>
+</Database>

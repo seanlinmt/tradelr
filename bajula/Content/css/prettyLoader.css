@@ -1,0 +1,9 @@
+.prettyLoader{
+background: transparent url(/Content/img/loader/prettyLoader.png) top left no-repeat;
+height:30px;
+position:absolute;
+width:30px;
+z-index:30000;
+}
+.prettyLoader img{display:block;margin:6px 0 0 6px;}
+.pl_ie6{background-image: url(/Content/img/loader/prettyLoader.gif);}

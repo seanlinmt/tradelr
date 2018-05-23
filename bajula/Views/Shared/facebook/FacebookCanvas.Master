@@ -1,0 +1,28 @@
+﻿<%@ Master Language="C#" Inherits="System.Web.Mvc.ViewMasterPage" %>
+<%@ Import Namespace="tradelr.Library.Constants" %>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+	<link rel="stylesheet" type="text/css" href="/Content/css/facebook/facebook.css?v=<%= GeneralConstants.TIMESTAMP %>" />
+</head>
+<body>
+<div id="container">
+    <div class="header">
+    <div class="header-logo">
+        <img src="/Content/img/facebook/logo2.png" alt="" />
+    </div>
+    <div class="header-content">
+    <div class="header-title">
+            tradelr for Facebook</div>
+        <div class="header-desc">
+            Add a store to your Facebook Page.
+        </div>
+        <div class="clear"></div>
+    </div>
+    </div>
+    <asp:contentplaceholder id="MainContent" runat="server">
+    </asp:contentplaceholder>
+</div>
+</body>
+</html>

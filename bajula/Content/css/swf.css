@@ -1,0 +1,207 @@
+
+.thumbnail
+{
+    position:relative;
+    margin-bottom: 5px;
+    text-align:center;
+    display: inline-block;
+    cursor:pointer;
+}
+
+.thumbnail .del, .thumbnail .del:hover { 
+    z-index:1;
+    display:none;
+    right:12px;
+    top:0;
+    position:absolute;
+    cursor: pointer;
+    padding:2px 8px;
+    background-color:#fff;
+    margin-right:0px;
+    opacity:.90;
+    -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=90)"; 
+	filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=90); 
+	-moz-opacity: 0.9;
+    line-height:16px;
+}
+
+.thumbnail .view, .thumbnail .view:hover {
+    z-index:1;
+    display:none;
+    right:12px;
+    bottom:0;
+    position:absolute;
+    cursor: pointer;
+    padding:2px 8px;
+    background-color:#fff;
+    margin-right:0px;
+    opacity:.90;
+    -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=90)"; 
+	filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=90); 
+	-moz-opacity: 0.9;
+}
+
+.thumbnail .view a, .thumbnail .view a:hover {
+    color:#666;
+}
+
+.thumbnail:hover .del, .thumbnail:hover .view
+{
+    display:block;
+}
+
+.thumbnail .del span{
+    background: #fff url(/Content/img/hover_delete.png) no-repeat 0 0;
+    color:#999;
+    padding-left:20px;
+    height:16px;
+    display:block;
+}
+
+.thumbnail .del span:hover{ 
+    background-position:0 -16px;
+    color:#000;
+}
+
+.thm
+{
+    margin: 0;
+    cursor: pointer;
+    text-align:center;
+    vertical-align:middle;
+}
+.thm_overlay
+{
+    z-index:1;
+    display:block; 
+    position:absolute; 
+    top:7px; 
+    left:7px; 
+    height:32px; 
+    width:32px;
+    background: transparent url(/Content/img/orb_tick_grey.png) no-repeat;
+    opacity:.90;
+    -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=90)"; 
+	filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=90); 
+	-moz-opacity: 0.9;
+}
+
+.thm_select
+{
+    opacity:.50;
+    -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=50)"; 
+	filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=50); 
+	filter: alpha(opacity=50); 
+	-moz-opacity: 0.5;
+}
+
+.thm_select img
+{ 
+    z-index:2; 
+    position:relative;
+}
+
+.divStatus
+{
+    height:15px;
+    font-size:smaller;
+}
+
+blockquote:before, blockquote:after,
+q:before, q:after { 
+	content: "";
+}
+blockquote, q {
+	quotes: "" "";
+}
+
+strong { font-weight: 700; }
+
+div.flash {
+	width: 375px;
+	margin: 10px 5px;
+	border-color: #D9E4FF;
+	display:none;
+}
+
+.progressWrapper {
+	width: 285px;
+	overflow: hidden;
+}
+
+.progressContainer {
+	padding-left: 10px;
+	border-top: solid 1px #ffffff;
+	background-color: #F7F7F7;
+	overflow: hidden;
+}
+
+.red {
+/*	border: solid 1px #B50000; */
+	background-color: #FFEBEB;
+}
+
+.green {
+/*	border: solid 1px #DDF0DD; */
+	background-color: #EBFFEB;
+}
+
+.blue {
+	background-color: #F0F5FF;
+}
+
+.progressName {
+	font-size: 8pt;
+	font-weight: 700;
+	color: #555;
+	width: 323px;
+	text-align: left;
+	white-space: nowrap;
+	overflow: hidden;
+}
+
+.progressBarInProgress,
+.progressBarComplete,
+.progressBarError {
+	font-size: 0;
+	width: 0%;
+	height: 2px;
+	background-color: blue;
+	margin-top: 2px;
+}
+
+.progressBarComplete {
+	width: 100%;
+	background-color: green;
+	visibility: hidden;
+}
+
+.progressBarError {
+	width: 100%;
+	background-color: red;
+	visibility: hidden;
+}
+
+.progressBarStatus {
+	margin-top: 2px;
+	width: 337px;
+	font-size: 7pt;
+	font-family: Arial;
+	text-align: left;
+	white-space: nowrap;
+}
+
+a.progressCancel {
+	font-size: 0;
+	display: block;
+	height: 14px;
+	width: 14px;
+	background-image: url('/Content/img/swf/cancelbutton.gif');
+	background-repeat: no-repeat;
+	background-position: -14px 0px;
+	float: right;
+}
+
+a.progressCancel:hover {
+	background-position: 0px 0px;
+}

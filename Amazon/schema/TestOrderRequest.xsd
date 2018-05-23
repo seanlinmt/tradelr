@@ -1,0 +1,107 @@
+<?xml version="1.0"?>
+<!-- Revision="$Revision: 1.1 $" -->
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified">
+
+    <!--
+    $Date: 2005/11/03 18:45:16 $
+
+    AMAZON.COM CONFIDENTIAL.  This document and the information contained in it are
+    confidential and proprietary information of Amazon.com and may not be reproduced, 
+    distributed or used, in whole or in part, for any purpose other than as necessary 
+    to list products for sale on the www.amazon.com web site pursuant to an agreement 
+    with Amazon.com.
+    -->
+
+    <xsd:include schemaLocation="amzn-base.xsd"/>
+
+    <!--
+    ##################################################
+    # The test order feed 
+    #
+    # billing account email
+    # billing credit card type
+    # ship-to zip code
+    # store id
+    # ship option (Standard/Expedited)
+    # 
+    # sku
+    # quantity
+    ##################################################
+    -->
+
+    <xsd:element name="TestOrderRequest">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element name="BillingData">
+                    <xsd:complexType>
+                        <xsd:sequence>
+
+                            <xsd:element name="BuyerEmailAddress">
+                                <xsd:simpleType>
+                                    <xsd:restriction base="xsd:normalizedString">
+                                        <xsd:pattern value="[\w\._\-]+@([\w_\-]+\.)+\w+"/>
+                                    </xsd:restriction>
+                                </xsd:simpleType>
+                            </xsd:element>
+
+                            <xsd:element name="CreditCard">
+                                <xsd:complexType>
+                                    <xsd:sequence>
+                                        <xsd:element name="Issuer">
+                                            <xsd:simpleType>
+                                                <xsd:restriction base="xsd:string">
+                                                    <xsd:enumeration value="Visa"/>
+                                                    <xsd:enumeration value="MasterCard"/>
+                                                    <xsd:enumeration value="AmericanExpress"/>
+                                                    <xsd:enumeration value="Discover"/>
+                                                    <xsd:enumeration value="DinersClub"/>
+                                                    <xsd:enumeration value="JCB"/>
+                                                </xsd:restriction>
+                                            </xsd:simpleType>
+                                        </xsd:element>
+                                    </xsd:sequence>
+                                </xsd:complexType>
+                            </xsd:element>
+
+                        </xsd:sequence>
+                    </xsd:complexType>
+                </xsd:element>
+
+                <xsd:element name="FulfillmentData">
+                    <xsd:complexType>
+                        <xsd:sequence>
+                            <xsd:element ref="FulfillmentMethod"/>
+                            <xsd:element ref="FulfillmentServiceLevel"/>
+                            <xsd:element ref="FulfillmentCenterID" minOccurs="0"/>
+                            <xsd:element name="PostalCode" type="String" minOccurs="0"/>
+                        </xsd:sequence>
+                    </xsd:complexType>
+                </xsd:element>
+
+                <xsd:element ref="PromotionClaimCode" minOccurs="0" maxOccurs="unbounded"/>
+                <xsd:element name="Item" maxOccurs="unbounded">
+                    <xsd:complexType>
+                        <xsd:sequence>
+                            <xsd:element ref="SKU"/>
+                            <xsd:element name="Quantity" type="xsd:positiveInteger"/>
+                            <xsd:element name="GiftWrapLevel" type="StringNotNull" minOccurs="0"/>
+                            <xsd:element name="GiftMessageText" minOccurs="0">
+                                <xsd:simpleType>
+                                    <xsd:restriction base="xsd:string">
+                                        <xsd:maxLength value="500"/>
+                                    </xsd:restriction>
+                                </xsd:simpleType>
+                            </xsd:element>
+                        </xsd:sequence>
+                    </xsd:complexType>
+                </xsd:element>
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+
+</xsd:schema>
+
+
+
+
+

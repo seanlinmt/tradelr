@@ -1,0 +1,211 @@
+body {
+	color: {{ settings.text_color }};
+	font-family: {{ settings.typography }};{% if settings.bg_image == "enabled" %}
+	background: {{ settings.bg_color }} url({{ 'bg.png' | asset_url }}) {{ settings.bg_repeat }} {{ settings.bg_attachment }} {{ settings.bg_position }};{% else %}
+	background-color: {{ settings.bg_color }};{% endif %}
+}
+
+div#showcase h1, div#collections-listing h2, div#collection div#excerpt h1.title, div#product h1, div#cart h1, div#missing h1, div#page h1.title, div#blog h1.title, div#article h1.title, div#search h1, div#comments h3, div#overview h3 {
+	color: {{ settings.title_text_color }};
+}
+
+div#slider li p del, ul#products li p del, ul#results li p del, div#buy h2 del, div#comments h3 span, div#comments form label span {
+	color: {{ settings.accent_text_color }};
+}
+
+a {
+	color: {{ settings.link_color }};
+}
+
+a:hover {
+	color: {{ settings.link_hover }};
+}
+
+div#header h2 a {
+	color: {{ settings.title_color }};
+}
+
+div#header h2 a:hover {
+	color: {{ settings.title_hover }};
+}
+
+div#hello p {
+	color: {{ settings.header_text_color }};
+}
+
+div#hello p a {
+	color: {{ settings.header_link_color }};
+}
+
+div#hello p a:hover {
+	color: {{ settings.header_link_hover }};
+}
+
+ul#links li a, div#gocart a {
+	color: {{ settings.nav_link_color }};
+}
+
+ul#links li a:hover, div#gocart a:hover {
+	color: {{ settings.nav_link_hover }};
+}
+
+div#overview ul {
+	background-color: {{ settings.overview_bg_color }};
+	border: 1px solid {{ settings.overview_border_color }};
+}
+
+div#overview h5, div#overview p {
+	color: {{ settings.overview_text_color }};
+}
+
+div#overview h3 {
+	color: {{ settings.overview_title_text_color }};
+}
+
+div#overview p a {
+	color: {{ settings.overview_link_color }};
+}
+
+div#overview p a:hover {
+	color: {{ settings.overview_link_hover }};
+}
+
+div#footer p {
+	color: {{ settings.footer_text_color }};
+}
+
+div#footer p a {
+	color: {{ settings.footer_link_color }};
+}
+
+div#footer p a:hover {
+	color: {{ settings.footer_link_hover }};
+}
+
+div#finder input.submit {
+	color: {{ settings.search_btn_text_color }};
+	font: bold 14px {{ settings.typography }};
+	background-color: {{ settings.search_btn_bg_color }};
+}
+
+div#finder input.submit:hover {
+	color: {{ settings.search_btn_hover_color }};
+	background-color: {{ settings.search_btn_bg_hover }};
+}
+
+.additional-checkout-buttons {
+  text-align: center;
+}
+
+.additional-checkout-buttons p {
+  margin: 12px 0;
+}
+
+/* Adjustments */
+
+#index #buy {
+text-align: center;
+clear: both;
+}
+
+#index #buy span {
+font-size: 36px;
+font-weight:normal;
+padding-left: 10px;
+}
+
+div#total {
+width: 400px;
+}
+
+div#notes {
+width: 400px;
+}
+
+/* Newsletter */
+
+div#overview input.field {
+font-size: 13px;
+color: #74695D;
+width: 95%;
+padding: 4px;
+}
+
+.errors {
+margin: 10px 0;
+color: #C80000;
+}
+
+/* Button styles */
+
+a.button, input.button {
+display:-moz-inline-stack;
+display:inline-block;
+zoom:1;
+*display:inline;
+color: white;
+padding: 0 20px;
+margin: 0;
+background: #777 none;
+font-weight: bold;
+border: none;
+-webkit-border-radius: 5px;
+-moz-border-radius: 5px;
+border-radius: 5px;
+}
+
+a.button:hover, input.button:hover {
+text-decoration: none;
+color: white;
+}
+
+#buy-this, #checkout input.checkout, #add, input.comment {
+font-size: 28px;
+height: 55px;
+line-height: 55px;
+background-color: #abcf2c;
+background: -moz-linear-gradient(top, #abcf2c, #91ae27);
+background: -webkit-gradient(linear, center top, center bottom, from(#abcf2c), to(#91ae27));
+}
+
+#buy-this:hover, #checkout input.checkout:hover, #add:hover, input.comment:hover {
+background: -moz-linear-gradient(top, #9fc41e, #7c9817);
+background: -webkit-gradient(linear, center top, center bottom, from(#9fc41e), to(#7c9817));
+}
+
+#checkout input.checkout, input#update {
+font-size: 22px;
+}
+
+input#update {
+height: 55px;
+line-height: 55px;
+width: 170px;
+background-color: #bfbfbf;
+background: -moz-linear-gradient(top, #bfbfbf, #7c7c7c);
+background: -webkit-gradient(linear, center top, center bottom, from(#bfbfbf), to(#7c7c7c));
+}
+
+input#subscribe, input#contactFormSubmit {
+font-size: 16px;
+height: 32px;
+line-height: 32px;
+font-weigth: normal;
+background-color: #bfbfbf;
+background: -moz-linear-gradient(top, #bfbfbf, #7c7c7c);
+background: -webkit-gradient(linear, center top, center bottom, from(#bfbfbf), to(#7c7c7c));
+}
+
+
+/* Contact form styles */
+
+.contact-form {margin:1em 0}
+.contact-form label {line-height:1.7;font-weight:normal}
+.contact-form input[type=text], input[type=email], input[type=telephone], .contact-form textarea {font-size:13px;color:#74695D;padding:4px}
+.feedback {padding:0.5em 0.7em;-webkit-border-radius:5px;-moz-border-radius:5px;border-radius:5px}
+.feedback p {padding:0.5em 0 !important;margin:0 !important}
+.successForm {background:#BDE0A8;color:green}
+.errorForm {background:#EEBDBD;color:red}
+
+
+/* End of Stylesheet */

@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xsd:schema elementFormDefault="qualified" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <xsd:include schemaLocation="amzn-base.xsd" />
+  <xsd:element name="Tools">
+    <xsd:complexType>
+      <xsd:sequence>
+        <xsd:element minOccurs="0" name="GritRating" type="xsd:positiveInteger" />
+        <xsd:element minOccurs="0" name="Horsepower" type="ToolsHorsepower" />
+        <xsd:element minOccurs="0" name="Diameter" type="LengthDimension" />
+        <xsd:element minOccurs="0" name="Length" type="LengthDimension" />
+        <xsd:element minOccurs="0" name="Width" type="LengthDimension" />
+        <xsd:element minOccurs="0" name="Height" type="LengthDimension" />
+        <xsd:element minOccurs="0" name="Weight" type="WeightDimension" />
+        <xsd:element minOccurs="0" maxOccurs="2" name="PowerSource">
+          <xsd:simpleType>
+            <xsd:restriction base="xsd:string">
+              <xsd:enumeration value="battery-powered" />
+              <xsd:enumeration value="gas-powered" />
+              <xsd:enumeration value="hydraulic-powered" />
+              <xsd:enumeration value="air-powered" />
+              <xsd:enumeration value="corded-electric" />
+            </xsd:restriction>
+          </xsd:simpleType>
+        </xsd:element>
+        <xsd:element minOccurs="0" name="Wattage" type="xsd:positiveInteger" />
+        <xsd:element minOccurs="0" name="Voltage" type="xsd:positiveInteger" />
+        <xsd:element minOccurs="0" name="NumberOfItemsInPackage" type="xsd:positiveInteger" />
+      </xsd:sequence>
+    </xsd:complexType>
+  </xsd:element>
+  <xsd:simpleType name="ToolsHorsepower">
+    <xsd:restriction base="xsd:decimal">
+      <xsd:totalDigits value="12" />
+      <xsd:fractionDigits value="2" fixed="true" />
+    </xsd:restriction>
+  </xsd:simpleType>
+</xsd:schema>

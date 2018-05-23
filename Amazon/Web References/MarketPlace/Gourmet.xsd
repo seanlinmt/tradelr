@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xsd:schema elementFormDefault="qualified" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <xsd:include schemaLocation="amzn-base.xsd" />
+  <xsd:element name="Gourmet">
+    <xsd:complexType>
+      <xsd:sequence>
+        <xsd:element name="ProductType">
+          <xsd:complexType>
+            <xsd:choice>
+              <xsd:element ref="GourmetMisc" />
+            </xsd:choice>
+          </xsd:complexType>
+        </xsd:element>
+      </xsd:sequence>
+    </xsd:complexType>
+  </xsd:element>
+  <xsd:element name="GourmetMisc">
+    <xsd:complexType>
+      <xsd:sequence>
+        <xsd:element minOccurs="0" name="VariationData">
+          <xsd:complexType>
+            <xsd:sequence>
+              <xsd:element name="Parentage">
+                <xsd:simpleType>
+                  <xsd:restriction base="xsd:string">
+                    <xsd:enumeration value="parent" />
+                    <xsd:enumeration value="child" />
+                  </xsd:restriction>
+                </xsd:simpleType>
+              </xsd:element>
+              <xsd:element minOccurs="0" name="VariationTheme">
+                <xsd:simpleType>
+                  <xsd:restriction base="xsd:string">
+                    <xsd:enumeration value="Size" />
+                    <xsd:enumeration value="Color" />
+                    <xsd:enumeration value="Flavor" />
+                    <xsd:enumeration value="Flavor-Size" />
+                  </xsd:restriction>
+                </xsd:simpleType>
+              </xsd:element>
+              <xsd:element minOccurs="0" name="Size" type="StringNotNull" />
+              <xsd:element minOccurs="0" name="Color" type="StringNotNull" />
+              <xsd:element minOccurs="0" name="Flavor" type="StringNotNull" />
+            </xsd:sequence>
+          </xsd:complexType>
+        </xsd:element>
+        <xsd:element minOccurs="0" name="CountryProducedIn" type="LongStringNotNull" />
+        <xsd:element minOccurs="0" name="Ingredients" type="LongStringNotNull" />
+        <xsd:element minOccurs="0" name="NutritionalFacts" type="LongStringNotNull" />
+        <xsd:element minOccurs="0" maxOccurs="5" name="KosherCertification" type="HundredString" />
+        <xsd:element minOccurs="0" maxOccurs="5" name="OrganicCertification" type="StringNotNull" />
+        <xsd:element minOccurs="0" maxOccurs="5" name="ItemSpecialty" type="StringNotNull" />
+        <xsd:element minOccurs="0" name="Warnings" type="LongStringNotNull" />
+        <xsd:element minOccurs="0" name="Directions" type="LongStringNotNull" />
+        <xsd:element minOccurs="0" name="ItemPackageQuantity" type="xsd:positiveInteger" />
+        <xsd:element minOccurs="0" name="NumberOfItems" type="xsd:positiveInteger" />
+        <xsd:element minOccurs="0" name="DisplayLength" type="LengthDimension" />
+        <xsd:element minOccurs="0" name="DisplayWeight" type="WeightDimension" />
+        <xsd:element minOccurs="0" name="DisplayVolume" type="VolumeDimension" />
+        <xsd:element minOccurs="0" name="UnitCount">
+          <xsd:complexType>
+            <xsd:simpleContent>
+              <xsd:extension base="xsd:positiveInteger">
+                <xsd:attribute name="unitOfMeasure" type="StringNotNull" use="required" />
+              </xsd:extension>
+            </xsd:simpleContent>
+          </xsd:complexType>
+        </xsd:element>
+      </xsd:sequence>
+    </xsd:complexType>
+  </xsd:element>
+</xsd:schema>

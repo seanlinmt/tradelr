@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<files>
+  <script src="codemirror.js"></script>
+  <script src="editor.js"></script>
+  <script src="parseliquid.js"></script>
+  <script src="select.js"></script>
+  <script src="stringstream.js"></script>
+  <script src="tokenize.js"></script>
+  <script src="undo.js"></script>
+  <script src="util.js"></script>
+</files>

@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<files>
+    <script src="offline.js"></script>
+    <script src="sqltables.js"></script>
+    <script src="synchronise.js"></script>
+    <script src="ajaxswitch.js"></script>
+    <script src="sqlutil.js"></script>
+    <script src="handlers/product.js"></script>
+    <script src="handlers/category.js"></script>
+    <script src="handlers/stockunit.js"></script>
+    <script src="handlers/photo.js"></script>
+    <script src="handlers/inventory.js"></script>
+    <script src="components/views.js"></script>
+</files>

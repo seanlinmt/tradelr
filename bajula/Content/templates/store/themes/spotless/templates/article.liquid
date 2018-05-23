@@ -1,0 +1,43 @@
+<!-- START ENTRY -->
+<div class="entry">{% if settings.retweet == "enabled" %}
+	<!-- START RETWEET -->
+	<div class="retweet">
+		<script type="text/javascript">tweetmeme_source = "{{ settings.retweet }}"; tweetmeme_service = "bit.ly";</script>
+		<script type="text/javascript" src="http://tweetmeme.com/i/scripts/button.js"></script>
+	</div>
+	<!-- END RETWEET -->{% endif %}
+	<h2 class="title"><a href="{{ article.url }}">{{ article.title | escape }}</a></h2>
+	<h5 class="posted"><span>Posted by {{ article.author }} on {{ article.created_at | date: "%B %d, %Y" }}</span></h5>
+	{{ article.content }}
+	<h6 class="comments"><a href="#comments">{{ article.comments_count }} {{ article.comments_count | pluralize: "Comment", "Comments" }}</a></h6>
+</div>
+<!-- END ENTRY -->{% if blog.comments_enabled? or article.comments.size > 0 %}
+<!-- START COMMENTS -->
+<div id="comments">
+	<h3>Comments <span>({{ article.comments_count }} {{ article.comments_count | pluralize: "Comment", "Comments" }})</span></h3>{% if article.comments.size == 0 %}
+	<p id="empty">There are no comments.</p>{% else %}{% for comment in article.comments %}
+	<!-- START COMMENT {{ forloop.index }} -->
+	<div class="comment{% if forloop.last %} end{% endif %}">
+		<div>
+			{{ comment.content }}
+		</div>
+		<h6 class="author">Posted by {{ comment.author }} on {{ comment.created_at | date: "%B %d, %Y" }}</h6>
+	</div>
+	<!-- END COMMENT {{ forloop.index }} -->{% endfor %}{% endif %}{% if blog.comments_enabled? %}
+	<h3>Post Comment</h3>
+	<!-- START COMMENT FORM -->
+	{% form article %}{% if form.posted_successfully? %}{% if blog.moderated? %}
+		<p id="posted">Successfully posted and awaiting approval by moderator.</p>{% endif %}{% endif %}{% if form.errors %}
+		<p id="error">Not all the fields have been filled out correctly!</p>{% endif %}
+		<label for="comment_author"{% if form.errors contains "author" %} class="error"{% endif %}>Name</label>
+		<input type="text" id="comment_author" name="name" value="{{ form.name }}" class="field{% if form.errors contains "name" %} error{% endif %}" /><br />
+		<label for="comment_email"{% if form.errors contains "email" %} class="error"{% endif %}>Email Address <span>(we never show this)</span></label>
+		<input type="text" id="comment_email" name="email" value="{{ form.email }}" class="field{% if form.errors contains "email" %} error{% endif %}" /><br />
+		<label for="comment_body"{% if form.errors contains "body" %} class="error"{% endif %}>Comment</label>
+		<textarea id="comment_body" name="body" cols="" rows=""{% if form.errors contains "body" %} class="error"{% endif %}>{{ form.body }}</textarea><br />
+		<input type="submit" value="Post Comment" class="submit" />
+	{% endform %}
+	<!-- END COMMENT FORM -->{% endif %}
+</div>
+<!-- END COMMENTS -->{% endif %}{% if blog.comments_enabled? %}{% else %}
+<p id="closed">Comments are closed for this article.</p>{% endif %}

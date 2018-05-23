@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xsd:schema elementFormDefault="qualified" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <xsd:include schemaLocation="amzn-base.xsd" />
+  <xsd:element name="OrderFulfillment">
+    <xsd:complexType>
+      <xsd:sequence>
+        <xsd:choice>
+          <xsd:element ref="AmazonOrderID" />
+          <xsd:element ref="MerchantOrderID" />
+        </xsd:choice>
+        <xsd:element minOccurs="0" name="MerchantFulfillmentID" type="IDNumber" />
+        <xsd:element name="FulfillmentDate" type="xsd:dateTime" />
+        <xsd:element minOccurs="0" name="FulfillmentData">
+          <xsd:complexType>
+            <xsd:sequence>
+              <xsd:choice>
+                <xsd:element ref="CarrierCode" />
+                <xsd:element name="CarrierName" type="String" />
+              </xsd:choice>
+              <xsd:element minOccurs="0" name="ShippingMethod" type="String" />
+              <xsd:element minOccurs="0" name="ShipperTrackingNumber" type="String" />
+            </xsd:sequence>
+          </xsd:complexType>
+        </xsd:element>
+        <xsd:element minOccurs="0" maxOccurs="unbounded" name="Item">
+          <xsd:complexType>
+            <xsd:sequence>
+              <xsd:choice>
+                <xsd:element ref="AmazonOrderItemCode" />
+                <xsd:element ref="MerchantOrderItemID" />
+              </xsd:choice>
+              <xsd:element minOccurs="0" name="MerchantFulfillmentItemID" type="IDNumber" />
+              <xsd:element minOccurs="0" name="Quantity" type="xsd:positiveInteger" />
+            </xsd:sequence>
+          </xsd:complexType>
+        </xsd:element>
+      </xsd:sequence>
+    </xsd:complexType>
+  </xsd:element>
+</xsd:schema>

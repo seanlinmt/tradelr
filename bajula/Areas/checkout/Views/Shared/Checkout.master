@@ -1,0 +1,45 @@
+﻿<%@ Master Language="C#" Inherits="System.Web.Mvc.ViewMasterPage<tradelr.Areas.checkout.Models.BaseViewModel>" %>
+<%@ Import Namespace="tradelr.Library" %>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <title>
+        <%= Model.store_name %>
+        - Checkout</title>
+        <link rel="stylesheet" media="screen" type="text/css" href="/css/checkout?v=1" />
+        <script src="/Content/js/jquery-1.4.4.min.js" type="text/javascript"></script>
+        <% if (Model.isMobileDevice) {%>
+        <link href="/Content/css/checkout/checkout-mobile.css" rel="stylesheet" type="text/css" media="screen" />
+        <% }%>
+        <script src="/jsapi/core" type="text/javascript"></script>
+    <asp:ContentPlaceHolder ID="HeadPlaceHolder" runat="server">
+    </asp:ContentPlaceHolder>
+</head>
+<body>
+    <div id="notify">
+        <img src="/Content/img/bullets/lock.png" alt="lock" />
+        <span>This secure checkout page is powered by <a href="http://wwww.tradelr.com" target="_blank">tradelr.com</a>.</span>
+    </div>
+    <div id="container">
+        <div id="header">
+            <div id="logo">
+            </div>
+            <h1><%= Model.store_name %></h1>
+            <div id="loggedin_link">
+                <%= !string.IsNullOrEmpty(Model.user_name)?"Hi " + Model.user_name:"" %></div>
+        </div>
+        <div id="main">
+            <asp:ContentPlaceHolder ID="MainContent" runat="server">
+            </asp:ContentPlaceHolder>
+        </div>
+        <div id="footer">
+            <div id="shop-policies">
+            </div>
+            <div id="shop-copyright">
+                All rights reserved. &copy;
+                <%= Model.year %>
+                <%= Model.store_name %></div>
+        </div>
+    </div>
+</body>
+</html>

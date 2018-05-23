@@ -1,0 +1,140 @@
+﻿@using tradelr.Areas.dashboard.Models.media
+@using tradelr.Areas.dashboard.Models.orchard.media.extensions
+@using tradelr.Areas.dashboard.Models.orchard.media.helpers
+@model tradelr.Areas.dashboard.Models.orchard.media.viewmodels.MediaFolderEditViewModel
+@helper FolderLink(string folderName, string mediaPath) {
+	// querystring values need to persist after a new GET when clicking on the media browser's
+	// folders for navigation.
+    @Html.ActionLink(folderName, "Index", null, null, null, "tab=1", new {
+        callback = Request["callback"],
+		uploadpath = Request["uploadpath"],
+		editmode = Request["editmode"],
+		name = folderName,
+		mediaPath = mediaPath }, null);
+}
+@{
+    var uploadAction = Url.Action("AddFromClient", "media");
+}
+        <div id="gallery">
+
+        <div class="breadCrumbs">
+            <p>@FolderLink("Media Folders".ToString(), "") 
+                @foreach (var navigation in MediaHelpers.GetFolderNavigationHierarchy(Model.MediaPath)) {
+                    <text>&#62;</text> @FolderLink(navigation.FolderName, navigation.FolderPath) 
+                }
+            </p>
+			<fieldset>
+				<input class="text-box" id="folderName" type="text" />
+                <button type="button" id="createFolder" class="small">Create Folder</button>
+			</fieldset>
+        </div>
+        <fieldset>
+        <div id="file-list">
+            <table class="items" summary="This is a table of the images currently available for use in your application.">
+                @foreach (var mediaFolder in Model.MediaFolders)
+                {
+                    <tr>
+                        <td class="media-folder" colspan="2">
+                            <img src="/Content/img/fileTree/directory.png" height="16" width="16" class="mediaTypeIcon" alt="Folder" />
+                            @FolderLink(mediaFolder.Name, mediaFolder.MediaPath)
+                        </td>
+                    </tr>
+                }
+                @if (Model.MediaFiles != null)
+                {
+                    foreach (var mediaFile in Model.MediaFiles)
+                    {
+                        var src = (((IMediaService)ViewData["Service"]).GetPublicUrl(Path.Combine(Model.MediaPath, mediaFile.Name)));
+                    <tr data-imgsrc="@src" class="media-item">
+                        <td class="media-thumbnail">
+                            <img data-filename="@src.Substring(src.LastIndexOf("/") + 1)" alt="" src="@src" onload="jQuery.mediaPicker.scalePreview(this)" />
+                        </td>
+                        <td class="media-details">
+                            <ul class="media-summary">
+                                <li><a class="media-filename" href="@src" target="_blank">@mediaFile.Name</a></li>
+                                <li>Added on: @mediaFile.LastUpdated</li>
+                                <li>Size: @mediaFile.Size.ToFriendlySizeString()</li>
+                            </ul>
+                        </td>
+                    </tr>
+                    }
+                }
+            </table>
+            </div>
+            @if (!String.IsNullOrWhiteSpace(Model.MediaPath))
+            {
+                <form action="@uploadAction" method="POST" id="lib-uploadform" enctype="multipart/form-data" onsubmit="jQuery.mediaPicker.uploadMedia(this)">
+                    <input type="hidden" name="MediaPath" value="@Model.MediaPath" />
+                    <label for="fileUpload">Upload an image from your computer</label>
+                    <input type="file" name="fileUpload" id="fileUpload"  />
+                    <button type="submit" id="upload">Upload</button>
+                </form>
+            }
+            <img id="img-indicator" src="/Content/img/mediapicker/synchronizing.gif" alt="" class="throbber" />
+
+        </fieldset>
+
+        </div>
+        <div id="file-details">
+            <img alt="" id="lib-loader" style="display:none" src="" />
+            <fieldset>
+            <ol>
+                <li>
+                <label for="lib-src">URL</label>
+                <input class="text-box" type="text" id="lib-src" />
+                </li>
+
+                <li>
+                <label for="lib-alt">Alternative Text</label>
+                <input class="text-box" type="text" id="lib-alt" />
+                </li>
+
+                <li>
+                <label for="lib-class">Class</label>
+                <input class="text-box" type="text" id="lib-class" />
+                </li>
+
+                <li>
+                <label for="lib-style">Style</label>
+                <input class="text-box" type="text" id="lib-style" />
+                </li>
+
+                <li>
+                <label for="lib-align">Alignment</label>
+                <select id="lib-align">
+                    <option value="">None</option>
+                    <option value="left">Left</option>
+                    <option value="right">Right</option>
+                    <option value="top">Top</option>
+                    <option value="texttop">Text Top</option>
+                    <option value="middle">Middle</option>
+                    <option value="absmiddle">AbsMiddle</option>
+                    <option value="bottom">Bottom</option>
+                    <option value="absbottom">AbsBottom</option>
+                    <option value="baseline">Baseline</option>
+                </select>
+                </li>
+
+                <li class="group">
+                <div class="image-width">
+                    <label for="lib-width">Width</label>
+                    <input class="text-box" type="text" id="lib-width" />&nbsp;x
+                </div>
+                <div class="image-height">
+                    <label for="lib-height">Height</label>
+                    <input class="text-box" type="text" id="lib-height" />
+                </div>
+                </li>
+
+                <li>
+                <input type="checkbox" id="lib-lock" checked="checked" />
+                <label class="forcheckbox" for="lib-lock">Lock Aspect Ratio</label>
+                </li>
+
+                <li class="actions">
+                <button id="lib-insert" class="disabled green" data-edittext="Update" type="button">Insert</button>
+                <button id="lib-cancel" type="button">Cancel</button>
+                </li>
+                </ol>
+            </fieldset>
+        </div>

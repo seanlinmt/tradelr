@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xsd:schema elementFormDefault="qualified" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <xsd:include schemaLocation="amzn-base.xsd" />
+  <xsd:element name="Office">
+    <xsd:complexType>
+      <xsd:sequence>
+        <xsd:element name="ProductType">
+          <xsd:complexType>
+            <xsd:choice>
+              <xsd:element ref="ArtSupplies" />
+              <xsd:element ref="EducationalSupplies" />
+              <xsd:element ref="OfficeProducts" />
+            </xsd:choice>
+          </xsd:complexType>
+        </xsd:element>
+        <xsd:element minOccurs="0" name="Size" type="StringNotNull" />
+      </xsd:sequence>
+    </xsd:complexType>
+  </xsd:element>
+  <xsd:element name="ArtSupplies">
+    <xsd:complexType>
+      <xsd:sequence>
+        <xsd:element minOccurs="0" ref="ColorSpecification" />
+        <xsd:element minOccurs="0" default="1" name="ItemPackageQuantity" type="xsd:positiveInteger" />
+        <xsd:element minOccurs="0" maxOccurs="2" name="MaterialType" type="StringNotNull" />
+        <xsd:element minOccurs="0" maxOccurs="3" name="PaintType" type="StringNotNull" />
+      </xsd:sequence>
+    </xsd:complexType>
+  </xsd:element>
+  <xsd:element name="EducationalSupplies">
+    <xsd:complexType>
+      <xsd:sequence>
+        <xsd:element minOccurs="0" default="1" name="ItemPackageQuantity" type="xsd:positiveInteger" />
+      </xsd:sequence>
+    </xsd:complexType>
+  </xsd:element>
+  <xsd:element name="OfficeProducts">
+    <xsd:complexType>
+      <xsd:sequence>
+        <xsd:element minOccurs="0" default="1" name="ItemPackageQuantity" type="xsd:positiveInteger" />
+        <xsd:element minOccurs="0" maxOccurs="2" name="MaterialType" type="StringNotNull" />
+      </xsd:sequence>
+    </xsd:complexType>
+  </xsd:element>
+</xsd:schema>

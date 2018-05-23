@@ -1,0 +1,77 @@
+<h2 class="light">Shopping Cart</h2>
+
+{% if cart.item_count == 0 %}
+	<p class="box"><strong>Your shopping cart is empty.</strong> Maybe you're interested in our featured products:</p>
+
+	<table id="collection">
+	{% tablerow product in collections.frontpage.products cols: 3 limit: 12 %}
+		<div class="product-image">
+			<a href="{{ product.url | within: collections.frontpage }}" title="{{ product.title | escape }} &mdash; {{ product.description | strip_html | truncate: 50 | escape }}"><img src="{{ product.images.first | product_img_url: 'small' }}" alt="{{ product.title | escape }}" /></a>
+		</div>
+		<div class="product-info">
+			<p class="title"><a href="{{ product.url | within: collection }}">{{ product.title | truncate: 30 }}</a>
+			<p class="price">
+			  {{ product.price | money }}
+			  {% if product.price_varies %}
+          - {{ product.price_max | money }}
+        {% endif %}
+      </p>
+      <p class="details">
+        <a href="{{ product.url | within: collection }}" class="button">details</a>
+      </p>
+		</div>
+	{% endtablerow %}
+	</table>
+{% else %}
+<form action="/cart" method="post" id="cartform">
+
+	<table id="cart">
+		<tr>
+			<th>&nbsp;</th>
+			<th class="alt">Item</th>
+			<th class="alt r">Quantity</th>
+			<th class="alt r">Total</th>
+			<th class="action-col">&nbsp;</th>
+		</tr>
+		
+		{% for item in cart.items %}
+	
+		<tr class="row-{% cycle 'row2' : 'odd', 'even' %} ">
+			<td class="product-image-cell">
+				<a href="{{ item.product.url }}" title="{{ item.title | escape }}"><img src="{{ item.product.images.first | product_img_url: 'small' }}" alt="{{ item.title | escape }}" /></a>
+			</td>
+			<td><a href="{{ item.product.url }}" class="alt-link bold">{{ item.title }}</a><br />{{ item.price | money }}</td>
+			<td class="r"><input type="text" size="4" name="updates" id="updates_{{ item.id }}" value="{{ item.quantity }}" onfocus="this.select();"/></td>
+			<td class="r">{{ item.total_price | money }}</td>
+			<td>
+                <a href="/cart/change/{{ item.id }}?quantity=0">
+                    <img src="{{ settings.remove_image | asset_url }}" alt="remove" class="supersleight" />
+                </a>
+            </td>
+		</tr>
+		{% endfor %}
+		
+		<tr id="subtotal">
+		  <td class="r" colspan="3">Subtotal:</td>
+		  <td class="r">{{ cart.total_price | money }}</td>
+		  <td>&nbsp;</td>
+		</tr>
+	</table>
+	
+	
+	<div id="checkout">
+    <input type="submit" class="button" name="update" value="Update" />
+    <input type="submit" class="button" name="checkout" value="Checkout" />
+    
+    {% if additional_checkout_buttons %}
+      <div class="additional-checkout-buttons">
+        <p style="margin: 18px 58px 18px">- or -</p>
+        {{ content_for_additional_checkout_buttons }}
+      </div>
+    {% endif %}
+    
+	</div>
+	
+</form>
+
+{% endif %}

@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="utf-8" ?> 
+<files>
+    <script src="jquery.class.js"></script>
+    <script src="jquery.color.js"></script>
+    <script src="jquery.easing.1.3.js"></script>
+    <script src="jqgrid.js"></script>
+    <script src="jqgrid_contacts.js"></script>
+    <script src="jqgrid_coupons.js"></script>
+    <script src="jqgrid_transactions.js"></script>
+    <script src="jqgrid_pricing.js"></script>
+    <script src="jqgrid_products.js"></script>
+</files>

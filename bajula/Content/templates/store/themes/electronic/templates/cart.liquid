@@ -1,0 +1,88 @@
+<div class="page-header clearfix">
+  <h1 class="title">Shopping Cart</h1>
+</div>
+
+<div id="cart">
+  {% if cart.item_count == 0 %} 
+  <div class="empty">Your shopping cart is empty. Check out our <a href="/collections/all">catalog</a> to see what's available.</div>	
+  {% else %}
+
+  <form action="/cart" method="post" id="cartform" class="clearfix">
+
+    <table class="items">
+			
+			<colgroup>
+				<col class="checkout-image" />
+				<col class="checkout-info" />
+				<col class="checkout-price" />
+				<col class="checkout-quantity" />
+				<col class="checkout-totals" />
+				<col class="checkout-delete" />
+			</colgroup>
+	
+			<thead>
+				<tr class="top-labels">
+	        <th class="empty">&nbsp;</th>
+	        <th>Item</th>
+	        <th>Price</th>
+	        <th>Quantity</th>
+	        <th>Total</th>
+	        <th class="empty">&nbsp;</th>
+				</tr>
+			</thead>
+
+			<tbody>
+	      {% for item in cart.items %}
+	      <tr class="{{ item.product.handle }} item">
+	        <td class="product-photo-cell">
+	          <a href="{{ item.product.url }}">
+	            <img src="{{ item.product.default_image | product_img_url: 'thumb' }}"  alt="{{ item.product.title }}" />
+	          </a>
+					</td>
+	        <td class="product-title-cell"> <a href="{{item.product.url }}">{{ item.title }}</a></td>
+	        <td class="product-price-cell">{{ item.price | money }}</td>
+	        <td class="update-quantities-cell"> <input class="text" type="text" size="4" name="updates" id="updates_{{item.id}}" value="{{ item.quantity }}" onfocus="this.select();" class="replace" /> </td>
+	        <td class="combined-price-cell">{{ item.total_price | money }}</td>
+	        <td><input class="btn-remove" type="button" onClick="window.location = '/cart/change/{{ item.id }}?quantity=0'; return false;" value="Remove" /></td>
+	      </tr>
+        {% endfor %}
+                <tr class="bottom-summary">
+                    <td colspan="4" class="discount">
+                        <span>Enter coupon code if available:</span>
+                        <input type="text" id="coupon_code" name="coupon_code" value="{{ cart.coupon_code }}"></input>
+                    </td>
+                    <td class="subtotal">
+                      - {{ cart.discount_amount | money }}
+                    </td>
+                    <td>&nbsp;</td>
+                </tr>
+				<tr class="bottom-summary">
+					<td colspan="3"></td>
+	        <td class="update-quantities"><input type="submit" id="update-cart" class="btn-txt" name="update" value="Update" /></td>
+	        <td class="subtotal"><span>{{ cart.total_price | money }}</span></td>
+	        <td>&nbsp;</td>
+				</tr>
+			</tbody>
+			
+    </table>
+
+     <div id="checkout-addnote">
+       <label for="note">Add a note to your order (optional):</label>
+       <textarea id="note" name="note" class="hide">{{ cart.note }}</textarea>
+     </div>
+
+		<div id="checkout-proceed">
+			<input type="submit" class="checkout-button btn" name="checkout" value="Proceed to Checkout &rarr;" />
+			
+			{% if additional_checkout_buttons %}
+			<div id="additional-checkout-buttons">
+				<span id="additional-checkout-buttons-label">Or checkout using:</span>
+			 {{ content_for_additional_checkout_buttons }}
+			</div>
+			{% endif %}												
+			
+		</div>
+
+  </form>
+  {% endif %}
+</div> <!-- end #cart -->

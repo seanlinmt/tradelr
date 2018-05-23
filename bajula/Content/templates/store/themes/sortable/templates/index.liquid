@@ -1,0 +1,24 @@
+{% if settings.intro == "enabled" %}<!-- START INTRO -->
+<div id="intro">
+	<h1 class="title">{% if settings.intro_title.size > 0 %}{{ settings.intro_title | escape }}{% else %}Howdy! You can change this text from the theme editor in your admin.{% endif %}</h1>
+	<p>{% if settings.intro_text.size > 0 %}{{ settings.intro_text | escape }}{% else %}You can change this text from the theme editor in your admin.{% endif %} <a href="{% if settings.intro_link.size > 0 %}{{ settings.intro_link | strip_html | strip_newlines }}{% else %}/dashboard/themes{% endif %}">{% if settings.intro_link_text.size > 0 %}{{ settings.intro_link_text | escape }}{% else %}Update...{% endif %}</a></p>
+</div>
+<!-- END INTRO -->
+{% endif %}{% if collections.frontpage.products.size > 0 %}<!-- START PRODUCTS -->
+<ul id="products" class="clear">{% for product in collections.frontpage.products %}
+	<!-- START PRODUCT {{ forloop.index }} -->
+	<li{% cycle '', '', ' class="end"' %}>
+		<!-- START IMAGE -->
+		<div class="image">
+			<div class="align">
+				<div><a href="{{ product.url | within: collections.all }}"><img src="{{ product.images[0] | product_img_url: "compact" }}" alt="{{ product.title | escape }}" /></a></div>
+			</div>
+		</div>
+		<!-- END IMAGE -->
+		<h3><a href="{{ product.url | within: collections.all }}">{{ product.title }}</a></h3>
+		<h4>{{ product.price | money }}{% if product.compare_at_price_max > product.price %} <del>{{ product.compare_at_price_max | money }}</del>{% endif %}</h4>
+		<h5><a href="{{ product.url | within: collections.all }}">View</a></h5>
+	</li>
+	<!-- END PRODUCT {{ forloop.index }} -->{% endfor %}
+</ul>
+<!-- END PRODUCTS -->{% else %}<p id="empty"><a href="/dashboard/inventory">Create a collection</a> with handle <strong>frontpage</strong> to see products here.</p>{% endif %}

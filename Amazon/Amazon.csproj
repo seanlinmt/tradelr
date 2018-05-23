@@ -1,0 +1,327 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{0BFD5476-5665-4A33-88B6-DC7B2B71C0D9}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Amazon</RootNamespace>
+    <AssemblyName>Amazon</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.EnterpriseServices" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Web References\MarketPlace\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.map</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="schema\amzn-base.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="schema\amzn-envelope.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="schema\amzn-header.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="schema\AutoAccessory.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="schema\Beauty.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="schema\CameraPhoto.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="schema\CE.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="schema\ClothingAccessories.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="schema\FoodAndBeverages.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="schema\FulfillmentCenter.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="schema\Gourmet.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="schema\Health.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="schema\Home.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="schema\HomeImprovement.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="schema\Inventory.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="schema\Jewelry.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="schema\Listings.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="schema\Miscellaneous.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="schema\MusicalInstruments.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="schema\Office.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="schema\OrderAcknowledgement.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="schema\OrderAdjustment.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="schema\OrderFulfillment.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="schema\OrderReport.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="schema\Override.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="schema\PetSupplies.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="schema\Price.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="schema\ProcessingReport.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="schema\Product.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="schema\ProductClothing.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="schema\ProductImage.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="schema\Relationship.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="schema\SettlementReport.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="schema\Sports.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="schema\SWVG.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="schema\TestOrderRequest.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="schema\TiresAndWheels.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="schema\Tools.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="schema\ToysBaby.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="schema\Wireless.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Web References\MarketPlace\amzn-base.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Web References\MarketPlace\amzn-envelope.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Web References\MarketPlace\amzn-header.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Web References\MarketPlace\AutoAccessory.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Web References\MarketPlace\Beauty.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Web References\MarketPlace\CameraPhoto.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Web References\MarketPlace\CE.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Web References\MarketPlace\ClothingAccessories.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Web References\MarketPlace\FoodAndBeverages.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Web References\MarketPlace\FulfillmentCenter.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Web References\MarketPlace\Gourmet.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Web References\MarketPlace\Health.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Web References\MarketPlace\Home.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Web References\MarketPlace\HomeImprovement.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Web References\MarketPlace\Inventory.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Web References\MarketPlace\Jewelry.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Web References\MarketPlace\Listings.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Web References\MarketPlace\Miscellaneous.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Web References\MarketPlace\MusicalInstruments.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Web References\MarketPlace\Office.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Web References\MarketPlace\OrderAcknowledgement.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Web References\MarketPlace\OrderAdjustment.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Web References\MarketPlace\OrderFulfillment.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Web References\MarketPlace\OrderReport.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Web References\MarketPlace\Override.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Web References\MarketPlace\PetSupplies.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Web References\MarketPlace\Price.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Web References\MarketPlace\ProcessingReport.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Web References\MarketPlace\Product.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Web References\MarketPlace\ProductClothing.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Web References\MarketPlace\ProductImage.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Web References\MarketPlace\Reference.map">
+      <Generator>MSDiscoCodeGenerator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+    <None Include="Web References\MarketPlace\Relationship.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Web References\MarketPlace\SettlementReport.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Web References\MarketPlace\Sports.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Web References\MarketPlace\SWVG.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Web References\MarketPlace\TestOrderRequest.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Web References\MarketPlace\TiresAndWheels.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Web References\MarketPlace\Tools.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Web References\MarketPlace\ToysBaby.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Web References\MarketPlace\Wireless.xsd">
+      <SubType>Designer</SubType>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <WebReferences Include="Web References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <WebReferenceUrl Include="D:\code\tradelr\bajula\Amazon\schema\amzn-envelope.xsd">
+      <UrlBehavior>Dynamic</UrlBehavior>
+      <RelPath>Web References\MarketPlace\</RelPath>
+      <UpdateFromURL>D:\code\tradelr\bajula\Amazon\schema\amzn-envelope.xsd</UpdateFromURL>
+      <ServiceLocationURL>
+      </ServiceLocationURL>
+      <CachedDynamicPropName>
+      </CachedDynamicPropName>
+      <CachedAppSettingsObjectName>
+      </CachedAppSettingsObjectName>
+      <CachedSettingsPropName>
+      </CachedSettingsPropName>
+    </WebReferenceUrl>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

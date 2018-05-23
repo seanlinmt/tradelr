@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<files>
+    <script src="constants.js"></script>
+    <script src="ajax.js"></script>
+    <script src="general.js"></script>
+    <script src="stacktrace.js"></script>
+    <script src="analytics.js"></script>
+    <script src="jquery.autocomplete.js"></script>
+    <script src="jquery.cookie.js"></script>
+    <script src="jquery.autogrow.js"></script>
+    <script src="jquery.validate.js"></script>
+    <script src="jquery.jgrowl.js"></script>
+    <script src="jquery.json-2.2.js"></script>
+    <script src="jquery.tooltip.js"></script>
+    <script src="jquery.jqzoom1.0.1.js"></script>
+    <script src="jquery.alphanumeric.js"></script>
+    <script src="jquery.scrollTo.js"></script>
+    <script src="jquery.limit-1.2.source.js"></script>
+    <script src="jquery.watermark.js"></script>
+    <script src="jquery.prettyLoader.js"></script>
+</files>

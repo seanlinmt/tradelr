@@ -1,0 +1,80 @@
+<h1>My Cart</h1>{% if cart.item_count > 0 %}
+<form action="/cart" method="post" name="cartform">
+	<!-- START TABLE -->
+	<table id="cart-table" cellpadding="0" cellspacing="0">
+		<!-- START HEADERS -->
+		<tr>
+			<th colspan="2" class="start">Description</th>
+			<th>Price</th>
+			<th>Quantity</th>
+			<th>Delete</th>
+			<th>Total</th>
+		</tr>
+		<!-- END HEADERS -->{% for item in cart.items %}
+		<!-- START PRODUCT {{ forloop.index }} -->
+		<tr class="{% cycle "odd", "even" %}">
+			<td class="pic">
+				<div><a href="{{ item.product.url | within: collections.all }}"><img src="{{ item.product.images[0] | product_img_url: "thumb" }}" alt="{{ item.title | escape }}" /></a></div>
+			</td>
+			<td class="title">
+				<h3><a href="{{ item.product.url | within: collections.all }}">{{ item.title | escape }}</a></h3>
+			</td>
+			<td>{{ item.price | money }}</td>
+			<td><input type="text" class="field" name="updates" id="updates_{{ item.id }}" value="{{ item.quantity }}" /></td>
+			<td class="remove"><a href="/cart/change/{{ item.id }}?quantity=0">Remove</a></td>
+            <td><strong>{{ item.total_price | money }}</strong></td>
+		</tr>
+		<!-- END PRODUCT {{ forloop.index }} -->{% endfor %}
+	</table>
+	<!-- END TABLE -->
+	<!-- START COMPLETE -->
+	<div id="complete" class="clear">
+        <div id="extra">
+            <div id="discount">
+                <label for="coupon_code">Enter coupon code if available:</label>
+                <input type="text" id="coupon_code" name="coupon_code" value="{{ cart.coupon_code }}"></input>
+            </div>
+            {% if settings.notes.size > 0 %}
+            <!-- START NOTES -->
+            <div id="notes">
+                <label for="note">{% if settings.notes.size > 0 %}{{ settings.notes | escape }}{% else %}Tell us about any special instructions:{% endif %}</label>
+                <textarea name="note" id="note" rows="" cols="">{{ cart.note }}</textarea>
+            </div>
+            <!-- END NOTES -->{% endif %}
+        </div>
+        <!-- START TOTAL -->
+		<div id="total">
+            <table class="cart-total">
+                {% if cart.discount_amount > 0 %}
+                <tr>
+                    <td>Subtotal:</td>
+                    <td>{{ cart.subtotal_price | money }}</td>
+                </tr>
+                <tr>
+                    <td>Discount:</td>
+                    <td>-{{ cart.discount_amount | money }}</td>
+                </tr>
+                {% endif %}
+                <tr>
+                    <td>Total:</td>
+                    <td>{{ cart.total_price | money }}</td>
+                </tr>
+            </table>
+			<!-- START CHECKOUT -->
+			<div id="checkout" class="clear">
+				<input type="submit" name="checkout" class="button checkout" value="{{ settings.checkout_button_text }}" />
+                <input type="submit" name="update" id="update" class="button update" value="{{ settings.update_button_text }}" />
+			</div>
+      {% if additional_checkout_buttons %}
+        <div class="additional-checkout-buttons">
+          <p>- or -</p>
+          {{ content_for_additional_checkout_buttons }}
+        </div>
+      {% endif %}
+			<!-- END CHECKOUT -->
+		</div>
+		<!-- END TOTAL -->
+	</div>
+	<!-- END COMPLETE -->
+</form>{% else %}
+<p id="empty">Your shopping cart is empty. <a href="/collections/all">Continue shopping...</a></p>{% endif %}

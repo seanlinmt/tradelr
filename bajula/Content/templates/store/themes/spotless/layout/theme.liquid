@@ -1,0 +1,180 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+
+<head>
+	<title>{{ shop.name | escape }} &mdash; {% if template == "404" %}Page Missing{% else %}{{ page_title | escape }}{% endif %}</title>
+	<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+	<meta name="copyright" content="{{ shop.name | escape }}" />
+	{{ content_for_header }}
+	{{ "reset.css" | asset_url | stylesheet_tag }}
+	{{ "screen.css" | asset_url | stylesheet_tag }}
+	{{ "theme.css" | asset_url | stylesheet_tag }}
+	<!--[if lte IE 6]>{{ "ie6.css" | asset_url | stylesheet_tag }}<![endif]-->
+	<!--[if lte IE 7]>{{ "ie7.css" | asset_url | stylesheet_tag }}<![endif]-->
+	{{ "jquery-1.4.2.min.js" | asset_url | script_tag }}
+	{% if template == "product" %}
+	{{ "option_selection.js" | tradelr_asset_url | script_tag }}{% endif %}
+	{{ 'api.jquery.js' | tradelr_asset_url | script_tag }}
+	{% if template == "product" %}
+		{{ "jquery-slimbox-2-02.js" | asset_url | script_tag }}
+	{% endif %}
+	{% if settings.twitter.size > 0 %}
+	{{ "jquery-tweet-1-0.js" | asset_url | script_tag }}{% endif %}
+	{{ "jquery-theme-1-0.js" | asset_url | script_tag }}
+</head>
+
+<body>
+{{ login_for_store }}
+	<!-- START CONTAINER -->
+	<div id="{% if template == "404" %}missing{% else %}{{ template | replace: '.', ' ' | truncatewords: 1, '' }}{% endif %}" class="container">{% if template == "404" %}
+		{{ content_for_layout }}{% else %}
+		<!-- START HEADER -->
+		<div id="header" class="clear">
+			<!-- START NAVIGATE -->
+			<div id="navigate">
+				<!-- START LOGO -->{% if settings.logo_usage == "enabled" %}
+				<div id="logo">
+					<a href="/"><img src="{{ "logo.png" | asset_url }}" alt="{{ shop.name | escape }}" /></a>
+				</div>{% else %}
+				<h3><a href="/">{{ shop.name | escape }}</a></h3>{% endif %}
+				<!-- END LOGO -->
+				<!-- START NAV -->
+				<div id="nav">{% capture active_url %}{% if template == "index" %}/{% elsif template == "collection" %}/collections/{{ collection.handle }}{% elsif template == "product" %}{{ product.url }}{% elsif template == "page" %}/pages/{{ page.handle }}{% elsif template == "blog" %}/blogs/{{ blog.handle }}{% elsif template == "cart" %}/cart{% elsif template == "search" %}/search{% endif %}{% endcapture %}
+					<ul>{% for link in linklists.main-menu.links %}
+						<li{% if forloop.last %} class="end"{% endif %}><a href="{{ link.url }}"{% if link.url == active_url %} class="active"{% endif %}>{{ link.title | escape }}</a></li>{% endfor %}
+					</ul>
+				</div>
+				<!-- END NAV -->
+			</div>
+			<!-- END NAVIGATE -->
+			<!-- START ITEMS -->
+			<div id="items">
+				<h2>{{ cart.item_count }}</h2>
+				<p>{{ cart.item_count | pluralize: "Item", "Items" }} in <a href="/cart">your cart</a> &rarr;</p>
+			</div>
+			<!-- END ITEMS -->
+		</div>
+		<!-- END HEADER -->
+		<!-- START CONTENT -->
+		<div id="content" class="clear">{% if template == "cart" %}
+			{{ content_for_layout }}{% else %}
+			<!-- START MAIN -->
+			<div id="main">
+				{{ content_for_layout }}
+			</div>
+			<!-- END MAIN -->
+			<!-- START SIDEBAR -->
+			<div id="sidebar">
+				<!-- START FINDER -->
+				<div id="finder" class="clear">
+					<form method="get" action="/search">
+						<input type="text" name="q" value="{% if search.performed %}{{ search.terms | escape | downcase }}{% else %}Search this site{% endif %}" class="field" /> 
+						<input type="submit" value="Search" class="submit" />
+					</form>
+				</div>
+				<!-- END FINDER -->{% if template contains "blog" or template == "article" %}{% else %}{% if collections.size > 1 %}
+				<!-- START COLLECTIONS -->
+				<div id="collections" class="section">
+					<!-- START TITLE -->
+					<div class="title">
+						<h4>Collections</h4>
+					</div>
+					<!-- END TITLE -->
+					<ul>{% for c in collections %}{% if c.handle == "frontpage" %}{% else %}
+						<li><a href="{{ c.url }}"{% if collection.url == c.url %} class="active"{% endif %}>{{ c.title | escape }}</a></li>{% endif %}{% endfor %}
+					</ul>
+				</div>
+				<!-- END COLLECTIONS -->{% endif %}{% endif %}{% if template == "index" or template contains "blog" or template == "article" %}{% capture blog_handle %}{% if template == "index" %}news{% else %}{{ blog.handle }}{% endif %}{% endcapture %}{% if blogs.[blog_handle].articles.size > 0 %}
+				<!-- START ENTRIES -->
+				<div id="entries" class="section">
+					<!-- START TITLE -->
+					<div class="title">
+						<h4>Latest Posts</h4>
+					</div>
+					<!-- END TITLE -->{% for article in blogs.[blog_handle].articles limit: 2 %}
+					<!-- START ENTRY -->
+					<div class="entry{% if forloop.first %} start{% endif %}{% if forloop.last %} end{% endif %}">
+						<h5><a href="{{ article.url }}">{{ article.title | escape }}</a></h5>
+						<h6><span>Posted by {{ article.author }} on {{ article.created_at | date: "%B %d, %Y" }}</span></h6>
+						<p>{{ article.content | strip_html | strip_newlines | truncate: 100 }}</p>
+					</div>
+					<!-- END ENTRY -->{% endfor %}
+				</div>
+				<!-- END ENTRIES -->{% endif %}{% endif %}{% if template == "collection" %}{% if collection.all_tags.size > 0 %}
+				<!-- START TAGS -->
+				<div id="tags" class="section">
+					<!-- START TITLE -->
+					<div class="title">
+						<h4>Tags</h4>
+					</div>
+					<!-- END TITLE -->
+					<ul class="clear">{% for tag in collection.all_tags %}{% if current_tags contains tag %}
+						<li class="active">{{ tag | escape | link_to_remove_tag: tag }}</li>{% else %}
+						<li>{{ tag | escape | link_to_add_tag: tag }}</li>{% endif %}{% endfor %}
+					</ul>
+				</div>
+				<!-- END TAGS -->{% endif %}{% endif %}{% if template == "index" or template contains "blog" or template == "article" or template contains "page" or template == "search" %}{% if settings.twitter.size > 0 %}
+				<!-- START TWITTER -->
+				<div id="twitter" class="section">
+					<!-- START TITLE -->
+					<div class="title">
+						<h4>Follow Us</h4>
+					</div>
+					<!-- END TITLE -->{% capture twitter_id %}{{ settings.twitter | replace: "http://", "" | replace: "www", "" | replace: "twitter.com", "" | replace: ".", "" }}{% endcapture %}
+					<h6><a href="http://twitter.com/{{ twitter_id }}" rel="{{ twitter_id }}">Follow us on Twitter</a></h6>
+				</div>
+				<!-- END TWITTER -->{% endif %}{% endif %}{% if template == "blog" or template == "article" %}
+				<!-- START RSS -->
+				<div id="rss">
+					<p><a href="{{ shop.url }}/blogs/{{ blog.handle }}.atom">{{ blog.title | escape }} RSS Feed</a></p>
+				</div>
+				<!-- END RSS -->{% endif %}
+			</div>
+			<!-- END SIDEBAR -->{% endif %}
+		</div>
+		<!-- END CONTENT -->
+		<!-- START FOOTER -->
+		<div id="footer" class="clear">
+			<p>Copyright &copy; {{ "now" | date: "%Y" }} {{ shop.name | escape }}. {{ powered_by_link }}.</p>{% if linklists.footer.links.size > 0 %}
+			<p class="links">{% for link in linklists.footer.links %}<a href="{{ link.url }}">{{ link.title | escape }}</a>{% unless forloop.last %} <span>&#124;</span> {% endunless %}{% endfor %}</p>{% endif %}
+		</div>
+		<!-- END FOOTER -->{% endif %}
+	</div>
+	<!-- END CONTAINER -->{% if template == "product" and product.variants.size > 1 %}
+	<script type="text/javascript">
+		// <![CDATA[
+		var selectCallback = function(variant, selector) {
+			if (variant && variant.available == true) {
+				$("input#add").removeClass("disabled").removeAttr("disabled");
+				$("h2#price span").html(Tradelr.formatMoney(variant.price, "{{ shop.currency_symbol}}", {{ shop.currency_decimal_places}}));
+				if (variant.compare_at_price > 0) {
+					$("h2#price del").html(Tradelr.formatMoney(variant.compare_at_price, "{{ shop.currency_symbol}}", {{ shop.currency_decimal_places}}));
+				}
+				else {
+					$("h2#price del").html('');
+				}
+			} else {
+				$("input#add").addClass("disabled").attr("disabled", "disabled");
+				var message = variant ? "Sold Out" : "Unavailable";
+				$("h2#price span").text(message);
+				$("h2#price del").html('');
+			}
+		};
+		$(function() {
+			new Tradelr.OptionSelectors("id", { product: {{ product | json }}, onVariantSelected: selectCallback });
+			{% if product.available %}
+				{% assign found_one_in_stock = false %}
+				{% for variant in product.variants %}
+						{% if variant.available and found_one_in_stock == false %}
+								{% assign found_one_in_stock = true %}
+								{% for option in product.options %}
+										$('#id-option-' + {{ forloop.index0 }}).val('{{ variant.options[forloop.index0] }}').trigger('change');
+								{% endfor %}
+						{% endif %}
+				{% endfor %}
+			{% endif %}
+		});
+		// ]]>
+	</script>{% endif %}
+</body>
+</html>

@@ -1,0 +1,73 @@
+{% if search.performed %}
+
+<script type="text/javascript">
+  document.search.q.value = "{{search.terms | escape}}";
+</script>
+
+{{ search.results.length }}
+{% if search.results == empty %}
+<p>{{ settings.txt_no_results }} <strong>"{{search.terms | escape}}"</strong></p>
+<p>{{ settings.txt_search_again }} <a href="{{shop.url}}">{{ settings.txt_continue_shopping }}</a>.</p>
+
+{% else %}
+
+<p style="padding-bottom:30px;">{{ settings.txt_results_for }} <strong>"{{search.terms | escape}}"</strong></p>
+  {% paginate search.results by 24 %}
+  <table id="gallery">
+  {% tablerow item in search.results cols: 3 limit: 24 %}
+  <div class="gallery-image">
+    
+    {% if item.selling_price > item.price %}
+    <a href="{{ item.url | within: collection }}" title="{{ item.description | strip_html | truncate: 50 | escape }}">
+      <div class="salemarker"> </div>
+    </a>
+    {% endif %}
+
+    <a href="{{ item.url | within: collection }}" title="{{ item.description | strip_html | truncate: 50 | escape }}">
+      <div class="gallery-image-wrapper">
+        
+        {% capture badUrl %}{{ item.images.first | product_img_url: 'large' }}{% endcapture %}
+        <img src=
+        "
+        {% if badUrl contains "no-image-large.gif" %}
+        {{ 'no-image.gif' | asset_url }}
+        {% else %}
+        {{ item.images.first | product_img_url: 'large' }}
+        {% endif %}
+        "
+        alt="{{ item.title | escape }}" />
+      </div>
+    </a>
+
+    <div class="gallery-title">
+      <a href="{{ item.url | within: collection }}">{{ item.title | truncate: 40 }}</a>
+    </div>
+    
+    <div class="gallery-price">
+      {% if item.selling_price > item.price %}
+        <span class="bold-red">Sale: {{ item.price | money }}</span> <del>{{ item.selling_price | money }}</del>
+      {% else %}
+        <span id="product-price">{{ item.price | money }}</span>
+      {% endif %}
+    </div>
+    
+    <p class="datetime">
+      <a href="{{item.url}}#social" title="like"><span id="like-{{ item.handle }}">Like</span></a>
+      <script type="text/javascript">updateSummary("{{shop.url}}{{item.url}}", "like-{{ item.handle }}", 'likes');</script>
+
+      {% if settings.product_comments_enabled %}
+       &#183; 
+      <a href="{{item.url}}#social" title="{{ settings.txt_comment_this }}"><span id="comment-{{ item.handle }}">Comment</span></a>
+      <script type="text/javascript">updateSummary("{{shop.url}}{{item.url}}", "comment-{{ item.handle }}", 'comments');</script>
+      {% endif %}
+    </p>
+  </div>
+  {% endtablerow %}
+  </table>
+
+  {% if paginate.pages > 1 %}
+    <div id="paginate">{{ paginate | default_pagination }}</div>
+  {% endif %}
+  {% endpaginate %}
+ {% endif %}
+{% endif %}

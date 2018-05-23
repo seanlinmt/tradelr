@@ -1,0 +1,36 @@
+<style>
+#gallery .gallery-image { float: left; height: 300px; margin: 20px 114px 20px 0 }
+#gallery .gallery-image.last { margin-right: 0 }
+#gallery a { text-transform:capitalize;}
+</style>
+
+<h1>Product Collections</h1>
+
+<div id="gallery" class="clearfix">
+{% for collection in collections %}{% unless collection.handle == 'frontpage' or collection.handle == 'all' %}
+    <div class="gallery-image{% cycle '', '', ' last' %}">
+    
+      <a href="{{ collection.url }}" title="{{ collection.title | escape }}">
+        <div class="gallery-image-wrapper">
+          
+          {% capture badUrl %}{{ collection.products.first.images.first | product_img_url: 'large' }}{% endcapture %}
+          <img src=
+          "
+          {% if badUrl contains "no-image-large.gif" %}
+          {{ 'no-image.gif' | asset_url }}
+          {% else %}
+          {{ collection.products.first.images.first | product_img_url: 'large' }}
+          {% endif %}
+          "
+          alt="{{ collection.title | escape }}" />
+        </div>
+      </a>
+
+      <div class="gallery-title">
+        <a href="{{ collection.url }}">{{ collection.title }}</a>
+        <span class="grey">{{ collection.all_products_count }} {{ collection.all_products_count | pluralize: 'item', 'items' }}</span>
+      </div>
+      
+    </div>{% endunless %}
+{% endfor %}
+</div>

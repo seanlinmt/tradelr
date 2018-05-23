@@ -1,0 +1,15 @@
+﻿<p>The <strong>About Us</strong> page of your shop is important because it is where users go when first trying to determine a level of trust.  Since trust is important when doing business online, you should cover the following topics: </p>
+<ul>
+  <li>Who you are</li>
+  <li>Why you sell the items you sell</li>
+  <li>Where you are located</li>
+  <li>How long you have been in business</li>
+  <li>How long you have been running your online shop</li>
+  <li>Who are the people on your team</li>
+</ul>
+<p>To edit this information you can go to the <a href="/dashboard/store/settings">Blogs &amp; Pages Tab</a> of the administration menu.</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>

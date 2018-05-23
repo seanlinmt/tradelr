@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xsd:schema elementFormDefault="qualified" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <xsd:include schemaLocation="amzn-base.xsd" />
+  <xsd:element name="OrderAcknowledgement">
+    <xsd:complexType>
+      <xsd:sequence>
+        <xsd:element ref="AmazonOrderID" />
+        <xsd:element minOccurs="0" ref="MerchantOrderID" />
+        <xsd:element name="StatusCode">
+          <xsd:simpleType>
+            <xsd:restriction base="xsd:string">
+              <xsd:enumeration value="Success" />
+              <xsd:enumeration value="Failure" />
+            </xsd:restriction>
+          </xsd:simpleType>
+        </xsd:element>
+        <xsd:element minOccurs="0" maxOccurs="unbounded" name="Item">
+          <xsd:complexType>
+            <xsd:sequence>
+              <xsd:element ref="AmazonOrderItemCode" />
+              <xsd:element minOccurs="0" ref="MerchantOrderItemID" />
+              <xsd:element minOccurs="0" name="CancelReason">
+                <xsd:simpleType>
+                  <xsd:restriction base="xsd:string">
+                    <xsd:enumeration value="NoInventory" />
+                    <xsd:enumeration value="ShippingAddressUndeliverable" />
+                    <xsd:enumeration value="CustomerExchange" />
+                    <xsd:enumeration value="BuyerCanceled" />
+                    <xsd:enumeration value="GeneralAdjustment" />
+                    <xsd:enumeration value="CarrierCreditDecision" />
+                    <xsd:enumeration value="RiskAssessmentInformationNotValid" />
+                    <xsd:enumeration value="CarrierCoverageFailure" />
+                    <xsd:enumeration value="CustomerReturn" />
+                    <xsd:enumeration value="MerchandiseNotReceived" />
+                  </xsd:restriction>
+                </xsd:simpleType>
+              </xsd:element>
+            </xsd:sequence>
+          </xsd:complexType>
+        </xsd:element>
+      </xsd:sequence>
+    </xsd:complexType>
+  </xsd:element>
+</xsd:schema>

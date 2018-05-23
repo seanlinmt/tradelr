@@ -1,0 +1,11 @@
+﻿#header, #mainmenu, .ui-tabs-nav, .content_filter, 
+.buttonRow_big, #order_messages, .ribbon_status, .ribbon_status_triangle,
+#footer, #subnav {
+    display:none;
+    float: none !important;
+}
+
+.main_columnright, #order_container { width:100%; margin:0; border:0;padding: 0;}
+#main {
+    width: 100%;
+}

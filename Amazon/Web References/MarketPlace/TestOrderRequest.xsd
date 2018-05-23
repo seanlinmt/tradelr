@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xsd:schema elementFormDefault="qualified" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <xsd:include schemaLocation="amzn-base.xsd" />
+  <xsd:element name="TestOrderRequest">
+    <xsd:complexType>
+      <xsd:sequence>
+        <xsd:element name="BillingData">
+          <xsd:complexType>
+            <xsd:sequence>
+              <xsd:element name="BuyerEmailAddress">
+                <xsd:simpleType>
+                  <xsd:restriction base="xsd:normalizedString">
+                    <xsd:pattern value="[\w\._\-]+@([\w_\-]+\.)+\w+" />
+                  </xsd:restriction>
+                </xsd:simpleType>
+              </xsd:element>
+              <xsd:element name="CreditCard">
+                <xsd:complexType>
+                  <xsd:sequence>
+                    <xsd:element name="Issuer">
+                      <xsd:simpleType>
+                        <xsd:restriction base="xsd:string">
+                          <xsd:enumeration value="Visa" />
+                          <xsd:enumeration value="MasterCard" />
+                          <xsd:enumeration value="AmericanExpress" />
+                          <xsd:enumeration value="Discover" />
+                          <xsd:enumeration value="DinersClub" />
+                          <xsd:enumeration value="JCB" />
+                        </xsd:restriction>
+                      </xsd:simpleType>
+                    </xsd:element>
+                  </xsd:sequence>
+                </xsd:complexType>
+              </xsd:element>
+            </xsd:sequence>
+          </xsd:complexType>
+        </xsd:element>
+        <xsd:element name="FulfillmentData">
+          <xsd:complexType>
+            <xsd:sequence>
+              <xsd:element ref="FulfillmentMethod" />
+              <xsd:element ref="FulfillmentServiceLevel" />
+              <xsd:element minOccurs="0" ref="FulfillmentCenterID" />
+              <xsd:element minOccurs="0" name="PostalCode" type="String" />
+            </xsd:sequence>
+          </xsd:complexType>
+        </xsd:element>
+        <xsd:element minOccurs="0" maxOccurs="unbounded" ref="PromotionClaimCode" />
+        <xsd:element maxOccurs="unbounded" name="Item">
+          <xsd:complexType>
+            <xsd:sequence>
+              <xsd:element ref="SKU" />
+              <xsd:element name="Quantity" type="xsd:positiveInteger" />
+              <xsd:element minOccurs="0" name="GiftWrapLevel" type="StringNotNull" />
+              <xsd:element minOccurs="0" name="GiftMessageText">
+                <xsd:simpleType>
+                  <xsd:restriction base="xsd:string">
+                    <xsd:maxLength value="500" />
+                  </xsd:restriction>
+                </xsd:simpleType>
+              </xsd:element>
+            </xsd:sequence>
+          </xsd:complexType>
+        </xsd:element>
+      </xsd:sequence>
+    </xsd:complexType>
+  </xsd:element>
+</xsd:schema>

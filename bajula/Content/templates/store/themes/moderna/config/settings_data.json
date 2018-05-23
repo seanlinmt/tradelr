@@ -1,0 +1,18 @@
+{"presets":
+  {"Default":
+    {"bg_color": "#ffffff",
+     "alternate_text_color": "#ffffff",
+     "regular_font": "Helvetica, Arial, sans-serif",
+     "use_logo_image": false,
+     "header_font": "Helvetica, Arial, sans-serif",
+     "use_bg_image": false,
+     "bg_image_x_position": "right",
+     "bg_image_repeat": "no-repeat",
+     "bg_image_attachment": "fixed",
+     "alternate_bg_color": "#000000",
+     "text_color": "#000000",
+     "bg_image_y_position": "bottom",
+     "border_color": "#000000",
+     "accent_color": "#e95200",
+     "alternate_border_color": "#ffffff"}},
+ "current": "Default"}

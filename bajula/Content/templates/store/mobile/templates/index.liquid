@@ -1,0 +1,43 @@
+<div id="index" class="clearfix">
+  
+  {% if settings.display_slideshow %}
+  <div class="hide-overflow">
+    <div class="swipe images clearfix" style="width:2400px;">
+      <div class="image">
+        <img src="{{ 'slideshow_1.jpg' | asset_url }}" alt="{{ shop.name }}" data-url="{{ settings.image_1_link }}" />
+      </div>
+      <div class="image">
+        <img src="{{ 'slideshow_2.jpg' | asset_url }}" alt="{{ shop.name }}" data-url="{{ settings.image_2_link }}" />
+      </div>
+      <div class="image">
+        <img src="{{ 'slideshow_3.jpg' | asset_url }}" alt="{{ shop.name }}" data-url="{{ settings.image_3_link }}" />
+      </div>
+      <div class="image">
+        <img src="{{ 'slideshow_4.jpg' | asset_url }}" alt="{{ shop.name }}" data-url="{{ settings.image_4_link }}" />
+      </div>
+      <div class="image">
+        <img src="{{ 'slideshow_5.jpg' | asset_url }}" alt="{{ shop.name }}" data-url="{{ settings.image_5_link }}" />
+      </div>
+    </div> <!-- /.images -->
+  </div>
+  <div class="swipe-controls">
+    <ul>
+      <li class="active">1</li>
+      <li>2</li>
+      <li>3</li>
+      <li>4</li>
+      <li>5</li>
+    </ul>
+  </div>
+  {% endif %}
+
+  
+  <h3 class="title">{{ settings.tr_featured_products }}</h3>
+  
+  <div id="products" class="products clearfix">
+    {% for product in collections[settings.frontpage_collection].products %}
+    {% include 'product-loop' %}
+    {% endfor %}
+  </div>
+  
+</div>

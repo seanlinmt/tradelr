@@ -1,0 +1,210 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+<title>{{ shop.name }} &mdash; {{ page_title }}</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+{{ 'screen.css' | asset_url | stylesheet_tag }}
+{{ 'fancy.css'  | asset_url | stylesheet_tag }}
+{{ 'ie.css'     | asset_url | stylesheet_tag }}
+{{ 'onyx.css'   | asset_url | stylesheet_tag }}
+
+<!--[if lte IE 6]>
+{{ 'ie6.css'  | asset_url | stylesheet_tag }}
+<![endif]-->
+
+
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.min.js"></script>
+
+{% if settings.use_reflections %}{{ 'reflection.js' | asset_url | script_tag }}{% endif %}
+{{ 'fancybox.js'         | asset_url         | script_tag }}
+{{ 'pngfix.js'           | asset_url         | script_tag }}
+{{ 'option_selection.js' | tradelr_asset_url | script_tag }}
+
+{% if settings.use_font_replacement %}
+  {{ 'cufon-yui.js' | asset_url | script_tag }}
+
+  {{ settings.font_family | asset_url | script_tag }}
+
+<script type="text/javascript">
+  Cufon.replace('h1', {
+    fontFamily: '{{ settings.font_family | replace: ".font.js", "" }}',
+    textShadow: '1px 1px black',
+  	color: '-linear-gradient({{ settings.fancy_text_color }}, {{ settings.fancy_text_gradient_color }})'
+  });
+</script>
+
+{% endif %}
+
+{{ content_for_header }}
+
+<script type="text/javascript" charset="utf-8">
+  $(document).ready(function() {
+    $("a.fancybox").fancybox({'overlayShow':	true});
+  });
+</script>
+
+<!--[if lte IE 6]>
+  {{ 'supersleight.js' | asset_url | script_tag }}
+  <script type="text/javascript" charset="utf-8">
+  $(document).ready(function() {
+    $('.supersleight').supersleight();
+  });
+  </script>
+<![endif]-->
+
+</head>
+
+<body>
+{{ login_for_store }}
+<div class="container">
+
+  <div id="header" class="span-24 last">
+    
+    <div class="span-17">
+  		<div id="logo">
+  			<h1>
+  			  <a href="/" title="{{ shop.name }}">
+  			    {% if settings.use_logo_image %}
+  			      {{ settings.logo_image | asset_url | img_tag, shop.name }}
+  			    {% else %}  			  
+		  			  {{ shop.name }}  
+  			    {% endif %}
+  			  </a>
+  			</h1>
+  		</div>
+		</div>
+		
+		<div class="span-7 last">
+      <ul id="top-right-list">
+  		  {% for link in linklists[settings.footer_linklist].links %}
+  			  <li>{{ link.title | link_to: link.url }}</li>
+  			{% endfor %}
+      </ul>
+		</div>
+
+  </div>
+  
+  <div id="subheaderbar" class="span-24 last">    
+    <div id="subheaderbar-content">
+      <div class="inner">
+
+			  <a id="shopping-cart" href="/cart" class="alt-link bold supersleight">
+			    {% if cart.item_count > 0 %}
+			      {{ cart.item_count}} {{ cart.item_count | pluralize: 'item', 'items' }} in your cart
+			    {% else %}
+			      your cart is empty
+			    {% endif %}
+			  </a>
+        
+        <div id="home-btn">
+          <a href="/">{{ "home.gif" | asset_url | img_tag, "HOME" }}</a>
+        </div>
+        
+        <div id="breadcrumb" class="alt">
+          &raquo; <a href="/" title="back to the frontpage">Home</a>
+
+          {% case template %}
+          
+          {% when "product" %}
+            {% if collection %}            
+              &raquo; {{ collection.title | link_to: collection.url }}
+            {% endif %}
+            &raquo; {{ product.title | link_to: product.url }}
+          {% when "collection" %}
+              &raquo; {{ collection.title | link_to: collection.url }}          
+          {% when "blog" %}
+              &raquo; {{ blog.title | link_to: blog.url }}
+          {% when "page" %}
+              &raquo; {{ page.title | link_to: page.url }}
+          {% when "article" %}
+              &raquo; {{ blog.title | link_to: blog.url }}
+              &raquo; {{ article.title | link_to: article.url }}
+          {% when "cart" %}
+              &raquo; <a href="/cart">Shopping Cart</a>
+          {% endcase %}          
+        </div>
+        
+  		</div>
+    </div>
+  </div>
+  
+  <div id="sidebar" class="span-7">
+		<div id="search-box">
+			<form action="/search" method="get">
+			  <input type="text" id="q" name="q" onblur="if( this.value == '' ) {this.value = 'Search...';};" onclick="if( this.value == 'Search...' ) {this.value = '';};" size="23" value="Search..."/>
+				<input type="image" src="{{ settings.search_image | asset_url }}" value="Search" onclick="this.parentNode.submit(); return false;" id="search" />
+			</form>
+		</div>
+		
+    <div id="navigation">
+			<ul class="no-bull">
+			  {% for link in linklists[settings.main_linklist].links %}
+				  <li onclick="window.location='{{ link.url }}'; return false"><a href="{{ link.url }}">{{ link.title }}</a></li>
+				{% endfor %}
+			</ul>
+		</div>
+	
+	  <div class="sidebar-box">
+      <div class="inner">
+                    
+        {% if template == "blog" %}
+      	  <p><a href="{{ shop.url }}/blogs/news.xml" id="subscribe-link" class="alt-link supersleight bold">subscribe to this blog</a></p>
+        {% endif %}
+        
+        {% if template != "cart" %}        
+          <!-- ADDTHIS BUTTON BEGIN -->
+          <p><a href="http://www.addthis.com/bookmark.php" id="recommend-link" class="addthis_button_email supersleight alt-link bold">recommend to a friend</a></p>
+
+          <script type="text/javascript" src="http://s7.addthis.com/js/250/addthis_widget.js"></script>
+          <!-- ADDTHIS BUTTON END -->
+        {% endif %}
+        
+      </div>
+    </div>
+
+
+  	{% if blogs.news.articles.size > 0 %}
+	  <div class="sidebar-box">
+      <div class="inner" id="sidebar-blog">
+        <a href="{{ shop.url }}/blogs/news.xml" id="feed" class="supersleight"></a>
+      	<h3><a href="/blogs/news">Read the latest</a></h3>
+      	<ul>
+      	  {% for article in blogs.news.articles limit: 3 offset: 0 %}
+      		<li {% if forloop.last %}class="last"{% endif %}>
+      		  <h4 class="blog-title"><a href="{{ article.url }}">{{ article.title | strip_html | truncate: 28 }}</a></h4>
+      			<div class="blog-content">{{ article.content | strip_html | truncatewords: 20 }}</div>
+      		</li>
+      		{% endfor %}
+      	</ul>
+      </div>
+    </div>
+  	{% endif %}
+
+  </div>
+
+	
+	<div class="span-17 last">
+    <div id="content">
+      {{ content_for_layout }}
+    </div>
+	</div>
+  
+  <div class="span-24 last">
+		<div id="footer">
+
+  		<p>Copyright &copy; {{ "now" | date: "%Y" }} {{ shop.name }}. All Rights Reserved. All prices {{ shop.currency }}.</p>
+  		
+  		<p class="tradelr alt">{{ powered_by_link }}</p>
+  		
+		</div>
+  </div>
+
+</div>
+{% if settings.use_font_replacement %}
+  <script type="text/javascript"> Cufon.now(); </script>
+{% endif %}
+	
+</body>
+</html>

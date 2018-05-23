@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xsd:schema elementFormDefault="qualified" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <xsd:include schemaLocation="amzn-base.xsd" />
+  <xsd:element name="SettlementReport">
+    <xsd:complexType>
+      <xsd:sequence>
+        <xsd:element name="SettlementData">
+          <xsd:complexType>
+            <xsd:sequence>
+              <xsd:element name="AmazonSettlementID" type="IDNumber" />
+              <xsd:element name="TotalAmount" type="CurrencyAmount" />
+              <xsd:element name="StartDate" type="xsd:dateTime" />
+              <xsd:element name="EndDate" type="xsd:dateTime" />
+              <xsd:element name="DepositDate" type="xsd:dateTime" />
+            </xsd:sequence>
+          </xsd:complexType>
+        </xsd:element>
+        <xsd:element minOccurs="0" maxOccurs="unbounded" name="Order">
+          <xsd:complexType>
+            <xsd:sequence>
+              <xsd:element name="AmazonOrderID" type="AmazonAlphaOrderID" />
+              <xsd:element minOccurs="0" ref="MerchantOrderID" />
+              <xsd:element minOccurs="0" name="ShipmentID" />
+              <xsd:element minOccurs="0" maxOccurs="unbounded" name="ShipmentFees" type="AmazonFees" />
+              <xsd:element ref="MarketplaceName" />
+              <xsd:element name="Fulfillment">
+                <xsd:complexType>
+                  <xsd:sequence>
+                    <xsd:element minOccurs="0" ref="MerchantFulfillmentID" />
+                    <xsd:element name="PostedDate" type="xsd:dateTime" />
+                    <xsd:element maxOccurs="unbounded" name="Item">
+                      <xsd:complexType>
+                        <xsd:sequence>
+                          <xsd:element ref="AmazonOrderItemCode" />
+                          <xsd:element minOccurs="0" ref="MerchantOrderItemID" />
+                          <xsd:element ref="SKU" />
+                          <xsd:element name="Quantity" type="xsd:positiveInteger" />
+                          <xsd:element name="ItemPrice" type="BuyerPrice" />
+                          <xsd:element minOccurs="0" name="ItemFees" type="AmazonFees" />
+                          <xsd:element minOccurs="0" maxOccurs="unbounded" name="Promotion">
+                            <xsd:complexType>
+                              <xsd:sequence>
+                                <xsd:element ref="MerchantPromotionID" />
+                                <xsd:element name="Type" type="StringNotNull" />
+                                <xsd:element name="Amount" type="CurrencyAmount" />
+                              </xsd:sequence>
+                            </xsd:complexType>
+                          </xsd:element>
+                        </xsd:sequence>
+                      </xsd:complexType>
+                    </xsd:element>
+                    <xsd:element minOccurs="0" name="DirectPayment" type="DirectPaymentType" />
+                  </xsd:sequence>
+                </xsd:complexType>
+              </xsd:element>
+              <xsd:element minOccurs="0" maxOccurs="unbounded" name="OrderFee" type="AmazonFees" />
+            </xsd:sequence>
+          </xsd:complexType>
+        </xsd:element>
+        <xsd:element minOccurs="0" maxOccurs="unbounded" name="Adjustment">
+          <xsd:complexType>
+            <xsd:sequence>
+              <xsd:element name="AmazonOrderID" type="AmazonAlphaOrderID" />
+              <xsd:element minOccurs="0" ref="MerchantOrderID" />
+              <xsd:element minOccurs="0" name="AdjustmentID" type="StringNotNull" />
+              <xsd:element ref="MarketplaceName" />
+              <xsd:element name="Fulfillment">
+                <xsd:complexType>
+                  <xsd:sequence>
+                    <xsd:element minOccurs="0" ref="MerchantFulfillmentID" />
+                    <xsd:element name="PostedDate" type="xsd:dateTime" />
+                    <xsd:element maxOccurs="unbounded" name="AdjustedItem">
+                      <xsd:complexType>
+                        <xsd:sequence>
+                          <xsd:element ref="AmazonOrderItemCode" />
+                          <xsd:element minOccurs="0" ref="MerchantOrderItemID" />
+                          <xsd:element minOccurs="0" name="MerchantAdjustmentItemID" type="StringNotNull" />
+                          <xsd:element ref="SKU" />
+                          <xsd:element name="ItemPriceAdjustments" type="BuyerPrice" />
+                          <xsd:element minOccurs="0" name="ItemFeeAdjustments" type="AmazonFees" />
+                          <xsd:element minOccurs="0" maxOccurs="unbounded" name="PromotionAdjustment">
+                            <xsd:complexType>
+                              <xsd:sequence>
+                                <xsd:element ref="MerchantPromotionID" />
+                                <xsd:element name="Type" type="StringNotNull" />
+                                <xsd:element name="Amount" type="CurrencyAmount" />
+                              </xsd:sequence>
+                            </xsd:complexType>
+                          </xsd:element>
+                        </xsd:sequence>
+                      </xsd:complexType>
+                    </xsd:element>
+                    <xsd:element minOccurs="0" name="DirectPayment" type="DirectPaymentType" />
+                  </xsd:sequence>
+                </xsd:complexType>
+              </xsd:element>
+              <xsd:element minOccurs="0" maxOccurs="unbounded" name="OrderFeeAdjustment" type="AmazonFees" />
+            </xsd:sequence>
+          </xsd:complexType>
+        </xsd:element>
+        <xsd:element minOccurs="0" maxOccurs="unbounded" name="OtherFee">
+          <xsd:complexType>
+            <xsd:sequence>
+              <xsd:element minOccurs="0" name="AmazonOrderID" type="AmazonAlphaOrderID" />
+              <xsd:element minOccurs="0" ref="MerchantOrderID" />
+              <xsd:element ref="MarketplaceName" />
+              <xsd:element minOccurs="0" ref="MerchantFulfillmentID" />
+              <xsd:element name="PostedDate" type="xsd:dateTime" />
+              <xsd:element name="Amount" type="CurrencyAmount" />
+              <xsd:element name="ReasonDescription" type="StringNotNull" />
+            </xsd:sequence>
+          </xsd:complexType>
+        </xsd:element>
+        <xsd:element minOccurs="0" maxOccurs="unbounded" name="OtherTransaction">
+          <xsd:complexType>
+            <xsd:sequence>
+              <xsd:element minOccurs="0" name="AmazonOrderID" type="AmazonAlphaOrderID" />
+              <xsd:element minOccurs="0" ref="MerchantOrderID" />
+              <xsd:element minOccurs="0" ref="MarketplaceName" />
+              <xsd:element minOccurs="0" ref="MerchantFulfillmentID" />
+              <xsd:element name="TransactionType" type="StringNotNull" />
+              <xsd:element minOccurs="0" name="TransactionID" type="StringNotNull" />
+              <xsd:element name="PostedDate" type="xsd:dateTime" />
+              <xsd:element name="Amount" type="CurrencyAmount" />
+              <xsd:element minOccurs="0" name="ReasonDescription" type="StringNotNull" />
+              <xsd:element minOccurs="0" name="Fees" type="AmazonFees" />
+            </xsd:sequence>
+          </xsd:complexType>
+        </xsd:element>
+        <xsd:element minOccurs="0" maxOccurs="unbounded" name="MiscEvent">
+          <xsd:complexType>
+            <xsd:sequence>
+              <xsd:element name="PostedDate" type="xsd:dateTime" />
+              <xsd:element name="Amount" type="CurrencyAmount" />
+            </xsd:sequence>
+          </xsd:complexType>
+        </xsd:element>
+      </xsd:sequence>
+    </xsd:complexType>
+  </xsd:element>
+  <xsd:simpleType name="AmazonAlphaOrderID">
+    <xsd:restriction base="xsd:string">
+      <xsd:pattern value="\w{1}\d{2}-\d{7}-\d{7}" />
+    </xsd:restriction>
+  </xsd:simpleType>
+</xsd:schema>

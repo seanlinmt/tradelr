@@ -1,0 +1,294 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xsd:schema elementFormDefault="qualified" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <xsd:include schemaLocation="amzn-base.xsd" />
+  <xsd:element name="Sports">
+    <xsd:complexType>
+      <xsd:sequence>
+        <xsd:element minOccurs="0" name="ProductType">
+          <xsd:simpleType>
+            <xsd:restriction base="xsd:string">
+              <xsd:enumeration value="SportingGoods" />
+              <xsd:enumeration value="GolfClubHybrid" />
+              <xsd:enumeration value="GolfClubIron" />
+              <xsd:enumeration value="GolfClubPutter" />
+              <xsd:enumeration value="GolfClubWedge" />
+              <xsd:enumeration value="GolfClubWood" />
+              <xsd:enumeration value="GolfClubs" />
+            </xsd:restriction>
+          </xsd:simpleType>
+        </xsd:element>
+        <xsd:element minOccurs="0" name="VariationData">
+          <xsd:complexType>
+            <xsd:sequence>
+              <xsd:element name="Parentage">
+                <xsd:simpleType>
+                  <xsd:restriction base="xsd:string">
+                    <xsd:enumeration value="parent" />
+                    <xsd:enumeration value="child" />
+                  </xsd:restriction>
+                </xsd:simpleType>
+              </xsd:element>
+              <xsd:element minOccurs="0" name="VariationTheme">
+                <xsd:simpleType>
+                  <xsd:restriction base="xsd:string">
+                    <xsd:enumeration value="AgeGenderCategory" />
+                    <xsd:enumeration value="Amperage" />
+                    <xsd:enumeration value="BikeRimSize" />
+                    <xsd:enumeration value="BikeRimSizeMaterial" />
+                    <xsd:enumeration value="BootSize" />
+                    <xsd:enumeration value="BootSizeCalfSize" />
+                    <xsd:enumeration value="CalfSize" />
+                    <xsd:enumeration value="Caliber" />
+                    <xsd:enumeration value="CaliberRounds" />
+                    <xsd:enumeration value="Capacity" />
+                    <xsd:enumeration value="Color" />
+                    <xsd:enumeration value="ColorDesign" />
+                    <xsd:enumeration value="ColorFlavor" />
+                    <xsd:enumeration value="ColorItemThickness" />
+                    <xsd:enumeration value="ColorLength" />
+                    <xsd:enumeration value="ColorLensColor" />
+                    <xsd:enumeration value="ColorQuantity" />
+                    <xsd:enumeration value="ColorRounds" />
+                    <xsd:enumeration value="ColorShaftMaterial" />
+                    <xsd:enumeration value="ColorShaftType" />
+                    <xsd:enumeration value="ColorShape" />
+                    <xsd:enumeration value="ColorSize" />
+                    <xsd:enumeration value="ColorStyle" />
+                    <xsd:enumeration value="ColorTensionLevel" />
+                    <xsd:enumeration value="ColorWattage" />
+                    <xsd:enumeration value="ColorWeight" />
+                    <xsd:enumeration value="ColorWheelSize" />
+                    <xsd:enumeration value="ColorWidth" />
+                    <xsd:enumeration value="Curvature" />
+                    <xsd:enumeration value="CurvatureHand" />
+                    <xsd:enumeration value="Design" />
+                    <xsd:enumeration value="DesignFlavor" />
+                    <xsd:enumeration value="DesignLength" />
+                    <xsd:enumeration value="DesignLensColor" />
+                    <xsd:enumeration value="DesignShaftMaterial" />
+                    <xsd:enumeration value="DesignShaftType" />
+                    <xsd:enumeration value="DesignShape" />
+                    <xsd:enumeration value="DesignSize" />
+                    <xsd:enumeration value="DesignStyle" />
+                    <xsd:enumeration value="DesignTensionLevel" />
+                    <xsd:enumeration value="DesignWeight" />
+                    <xsd:enumeration value="DesignWheelSize" />
+                    <xsd:enumeration value="DesignWidth" />
+                    <xsd:enumeration value="Diameter" />
+                    <xsd:enumeration value="DivingHoodThickness" />
+                    <xsd:enumeration value="FencingPommelType" />
+                    <xsd:enumeration value="FencingPommelTypeGripType" />
+                    <xsd:enumeration value="Flavor" />
+                    <xsd:enumeration value="FlavorSize" />
+                    <xsd:enumeration value="GolfFlex" />
+                    <xsd:enumeration value="GolfFlexGolfLoft" />
+                    <xsd:enumeration value="GolfFlexMaterial" />
+                    <xsd:enumeration value="GolfFlexShaftMaterial" />
+                    <xsd:enumeration value="GolfLoft" />
+                    <xsd:enumeration value="GolfLoftShaftMaterial" />
+                    <xsd:enumeration value="GripSize" />
+                    <xsd:enumeration value="GripSizeGripType" />
+                    <xsd:enumeration value="GripSizeHeadSize" />
+                    <xsd:enumeration value="GripType" />
+                    <xsd:enumeration value="Hand" />
+                    <xsd:enumeration value="HandBounceGolfFlex" />
+                    <xsd:enumeration value="HandBounceShaftTypeGolfFlex" />
+                    <xsd:enumeration value="HandClubGolfFlex" />
+                    <xsd:enumeration value="HandClubShaftTypeGolfFlex" />
+                    <xsd:enumeration value="HandGolfFlex" />
+                    <xsd:enumeration value="HandIronsGolfFlex" />
+                    <xsd:enumeration value="HandIronsLieAngleGolfFlex" />
+                    <xsd:enumeration value="HandIronsLieAngleShaftTypeGolfFlex" />
+                    <xsd:enumeration value="HandIronsShaftTypeGolfFlex" />
+                    <xsd:enumeration value="HandLength" />
+                    <xsd:enumeration value="HandLieAngle" />
+                    <xsd:enumeration value="HandLieAngleGolfFlex" />
+                    <xsd:enumeration value="HandLieAngleLength" />
+                    <xsd:enumeration value="HandLieAngleShaftType" />
+                    <xsd:enumeration value="HandLieAngleShaftTypeGolfFlex" />
+                    <xsd:enumeration value="HandLieAngleShaftTypeLength" />
+                    <xsd:enumeration value="HandGolfLoftBounceGolfFlex" />
+                    <xsd:enumeration value="HandGolfLoftBounceShaftTypeGolfFlex" />
+                    <xsd:enumeration value="HandGolfLoftGolfFlex" />
+                    <xsd:enumeration value="HandGolfLoftShaftTypeGolfFlex" />
+                    <xsd:enumeration value="HandModel" />
+                    <xsd:enumeration value="HandModelLength" />
+                    <xsd:enumeration value="HandModelShaftType" />
+                    <xsd:enumeration value="HandModelShaftTypeLength" />
+                    <xsd:enumeration value="HandShaftLength" />
+                    <xsd:enumeration value="HandShaftMaterialGolfFlex" />
+                    <xsd:enumeration value="HandShaftMaterialGolfFlexGolfLoft" />
+                    <xsd:enumeration value="HandShaftType" />
+                    <xsd:enumeration value="HandShaftTypeGolfFlex" />
+                    <xsd:enumeration value="HandShaftTypeLength" />
+                    <xsd:enumeration value="HandSize" />
+                    <xsd:enumeration value="HandTensionLevel" />
+                    <xsd:enumeration value="HandWeight" />
+                    <xsd:enumeration value="HandWoodGolfFlex" />
+                    <xsd:enumeration value="HandWoodShaftTypeGolfFlex" />
+                    <xsd:enumeration value="HeadSize" />
+                    <xsd:enumeration value="HeadSizeShape" />
+                    <xsd:enumeration value="Height" />
+                    <xsd:enumeration value="HeightSize" />
+                    <xsd:enumeration value="HeightStyle" />
+                    <xsd:enumeration value="HeightWeight" />
+                    <xsd:enumeration value="HeightWidth" />
+                    <xsd:enumeration value="ItemThickness" />
+                    <xsd:enumeration value="Length" />
+                    <xsd:enumeration value="LengthLineCapacity" />
+                    <xsd:enumeration value="LengthLineWeight" />
+                    <xsd:enumeration value="LengthMaterial" />
+                    <xsd:enumeration value="LengthShaftType" />
+                    <xsd:enumeration value="LengthSize" />
+                    <xsd:enumeration value="LengthStyle" />
+                    <xsd:enumeration value="LengthWeight" />
+                    <xsd:enumeration value="LengthWeightSupported" />
+                    <xsd:enumeration value="LengthWidth" />
+                    <xsd:enumeration value="LensColor" />
+                    <xsd:enumeration value="LensColorMaterial" />
+                    <xsd:enumeration value="LensColorShape" />
+                    <xsd:enumeration value="LineCapacity" />
+                    <xsd:enumeration value="LineCapacitySize" />
+                    <xsd:enumeration value="LineCapacityWeight" />
+                    <xsd:enumeration value="LineWeight" />
+                    <xsd:enumeration value="LineWeightSize" />
+                    <xsd:enumeration value="Material" />
+                    <xsd:enumeration value="MaterialShape" />
+                    <xsd:enumeration value="MaterialSize" />
+                    <xsd:enumeration value="MaterialStyle" />
+                    <xsd:enumeration value="MaterialTensionLevel" />
+                    <xsd:enumeration value="MaterialWeight" />
+                    <xsd:enumeration value="MaterialWheelSize" />
+                    <xsd:enumeration value="MaterialWidth" />
+                    <xsd:enumeration value="Quantity" />
+                    <xsd:enumeration value="QuantityShape" />
+                    <xsd:enumeration value="QuantitySize" />
+                    <xsd:enumeration value="QuantityWeight" />
+                    <xsd:enumeration value="Rounds" />
+                    <xsd:enumeration value="RoundsSize" />
+                    <xsd:enumeration value="ShaftMaterial" />
+                    <xsd:enumeration value="ShaftMaterialShaftType" />
+                    <xsd:enumeration value="ShaftType" />
+                    <xsd:enumeration value="Shape" />
+                    <xsd:enumeration value="ShapeSize" />
+                    <xsd:enumeration value="ShapeTensionLevel" />
+                    <xsd:enumeration value="ShapeWeight" />
+                    <xsd:enumeration value="Size" />
+                    <xsd:enumeration value="SizeStyle" />
+                    <xsd:enumeration value="SizeTensionLevel" />
+                    <xsd:enumeration value="SizeWattage" />
+                    <xsd:enumeration value="SizeWeight" />
+                    <xsd:enumeration value="SizeWeightSupported" />
+                    <xsd:enumeration value="SizeWheelSize" />
+                    <xsd:enumeration value="SizeWidth" />
+                    <xsd:enumeration value="Style" />
+                    <xsd:enumeration value="StyleTensionLevel" />
+                    <xsd:enumeration value="StyleWeight" />
+                    <xsd:enumeration value="StyleWheelSize" />
+                    <xsd:enumeration value="StyleWidth" />
+                    <xsd:enumeration value="TemperatureRating" />
+                    <xsd:enumeration value="TemperatureRatingColor" />
+                    <xsd:enumeration value="TemperatureRatingDesign" />
+                    <xsd:enumeration value="TemperatureRatingHand" />
+                    <xsd:enumeration value="TemperatureRatingLength" />
+                    <xsd:enumeration value="TemperatureRatingMaterial" />
+                    <xsd:enumeration value="TemperatureRatingShape" />
+                    <xsd:enumeration value="TemperatureRatingSize" />
+                    <xsd:enumeration value="TensionLevel" />
+                    <xsd:enumeration value="TensionLevelWeight" />
+                    <xsd:enumeration value="TensionLevelWeightSupported" />
+                    <xsd:enumeration value="Wattage" />
+                    <xsd:enumeration value="Weight" />
+                    <xsd:enumeration value="WeightSupported" />
+                    <xsd:enumeration value="WeightWidth" />
+                    <xsd:enumeration value="WheelSize" />
+                    <xsd:enumeration value="WheelSizeWeight" />
+                    <xsd:enumeration value="Width" />
+                  </xsd:restriction>
+                </xsd:simpleType>
+              </xsd:element>
+              <xsd:element minOccurs="0" name="AgeGenderCategory" type="StringNotNull" />
+              <xsd:element minOccurs="0" name="Amperage" type="AmperageDimension" />
+              <xsd:element minOccurs="0" name="BikeRimSize" type="LengthDimension" />
+              <xsd:element minOccurs="0" name="BootSize" type="Dimension" />
+              <xsd:element minOccurs="0" name="Bounce" type="StringNotNull" />
+              <xsd:element minOccurs="0" name="CalfSize" type="StringNotNull" />
+              <xsd:element minOccurs="0" name="Caliber" type="FourDecimal" />
+              <xsd:element minOccurs="0" name="Capacity" type="VolumeDimension" />
+              <xsd:element minOccurs="0" name="Club" type="StringNotNull" />
+              <xsd:element minOccurs="0" name="Color" type="StringNotNull" />
+              <xsd:element minOccurs="0" name="Curvature" type="StringNotNull" />
+              <xsd:element minOccurs="0" name="Design" type="StringNotNull" />
+              <xsd:element minOccurs="0" name="Diameter" type="LengthDimension" />
+              <xsd:element minOccurs="0" name="DivingHoodThickness" type="LengthDimension" />
+              <xsd:element minOccurs="0" name="FencingPommelType" type="StringNotNull" />
+              <xsd:element minOccurs="0" name="Flavor" type="StringNotNull" />
+              <xsd:element minOccurs="0" name="GolfFlex" type="StringNotNull" />
+              <xsd:element minOccurs="0" name="GolfLoft" type="DegreeDimension" />
+              <xsd:element minOccurs="0" name="GripSize" type="StringNotNull" />
+              <xsd:element minOccurs="0" name="GripType" type="StringNotNull" />
+              <xsd:element minOccurs="0" name="Hand">
+                <xsd:simpleType>
+                  <xsd:restriction base="xsd:string">
+                    <xsd:enumeration value="left" />
+                    <xsd:enumeration value="right" />
+                  </xsd:restriction>
+                </xsd:simpleType>
+              </xsd:element>
+              <xsd:element minOccurs="0" name="HeadSize">
+                <xsd:simpleType>
+                  <xsd:restriction base="xsd:string">
+                    <xsd:enumeration value="mid-plus" />
+                    <xsd:enumeration value="mid-sized" />
+                    <xsd:enumeration value="over-sized" />
+                    <xsd:enumeration value="super-oversized" />
+                  </xsd:restriction>
+                </xsd:simpleType>
+              </xsd:element>
+              <xsd:element minOccurs="0" name="Height" type="LengthDimension" />
+              <xsd:element minOccurs="0" name="Irons" type="StringNotNull" />
+              <xsd:element minOccurs="0" name="ItemThickness" type="LengthDimension" />
+              <xsd:element minOccurs="0" name="Length" type="LengthDimension" />
+              <xsd:element minOccurs="0" name="LensColor" type="StringNotNull" />
+              <xsd:element minOccurs="0" name="LieAngle" type="StringNotNull" />
+              <xsd:element minOccurs="0" name="LineCapacity" type="StringNotNull" />
+              <xsd:element minOccurs="0" name="LineWeight" type="StringNotNull" />
+              <xsd:element minOccurs="0" name="Material" type="StringNotNull" />
+              <xsd:element minOccurs="0" name="Model" type="StringNotNull" />
+              <xsd:element minOccurs="0" name="NumberOfItems" type="xsd:positiveInteger" />
+              <xsd:element minOccurs="0" name="Quantity" type="xsd:positiveInteger" />
+              <xsd:element minOccurs="0" name="Rounds" type="PositiveInteger" />
+              <xsd:element minOccurs="0" name="ShaftLength" type="LengthDimension" />
+              <xsd:element minOccurs="0" name="ShaftMaterial" type="StringNotNull" />
+              <xsd:element minOccurs="0" name="ShaftType">
+                <xsd:simpleType>
+                  <xsd:restriction base="xsd:string">
+                    <xsd:enumeration value="attacker-shafts" />
+                    <xsd:enumeration value="defender-shafts" />
+                    <xsd:enumeration value="goalie-shafts" />
+                    <xsd:enumeration value="midfielder-shafts" />
+                  </xsd:restriction>
+                </xsd:simpleType>
+              </xsd:element>
+              <xsd:element minOccurs="0" name="Shape" type="StringNotNull" />
+              <xsd:element minOccurs="0" name="Size" type="StringNotNull" />
+              <xsd:element minOccurs="0" name="Style" type="StringNotNull" />
+              <xsd:element minOccurs="0" name="TemperatureRating" type="TemperatureRatingDimension" />
+              <xsd:element minOccurs="0" name="TensionLevel" type="StringNotNull" />
+              <xsd:element minOccurs="0" name="Volume" type="VolumeDimension" />
+              <xsd:element minOccurs="0" name="Wattage" type="WattageDimension" />
+              <xsd:element minOccurs="0" name="Weight" type="WeightDimension" />
+              <xsd:element minOccurs="0" name="WeightSupported" type="WeightDimension" />
+              <xsd:element minOccurs="0" name="WheelSize" type="LengthDimension" />
+              <xsd:element minOccurs="0" name="Width" type="LengthDimension" />
+              <xsd:element minOccurs="0" name="Wood" type="StringNotNull" />
+            </xsd:sequence>
+          </xsd:complexType>
+        </xsd:element>
+        <xsd:element minOccurs="0" name="Packaging" type="StringNotNull" />
+        <xsd:element minOccurs="0" name="IsCustomizable" type="xsd:boolean" />
+        <xsd:element minOccurs="0" name="IsAdultProduct" type="xsd:boolean" />
+      </xsd:sequence>
+    </xsd:complexType>
+  </xsd:element>
+</xsd:schema>

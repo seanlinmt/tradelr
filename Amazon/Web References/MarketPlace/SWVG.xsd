@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xsd:schema elementFormDefault="qualified" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <xsd:include schemaLocation="amzn-base.xsd" />
+  <xsd:element name="SoftwareVideoGames">
+    <xsd:complexType>
+      <xsd:sequence>
+        <xsd:element name="ProductType">
+          <xsd:complexType>
+            <xsd:choice>
+              <xsd:element ref="Software" />
+              <xsd:element ref="HandheldSoftwareDownloads" />
+              <xsd:element ref="SoftwareGames" />
+              <xsd:element ref="VideoGames" />
+              <xsd:element ref="VideoGamesAccessories" />
+              <xsd:element ref="VideoGamesHardware" />
+            </xsd:choice>
+          </xsd:complexType>
+        </xsd:element>
+      </xsd:sequence>
+    </xsd:complexType>
+  </xsd:element>
+  <xsd:element name="Software">
+    <xsd:complexType>
+      <xsd:sequence>
+        <xsd:element maxOccurs="3" name="MediaFormat" type="MediumStringNotNull" />
+        <xsd:element maxOccurs="7" name="OperatingSystem" type="MediumStringNotNull" />
+        <xsd:element minOccurs="0" name="Bundles" type="ThirtyStringNotNull" />
+        <xsd:element minOccurs="0" maxOccurs="5" name="ChildrensSoftwareGenre" type="StringNotNull" />
+        <xsd:element minOccurs="0" name="ESRBRating" type="FortyStringNotNull" />
+        <xsd:element minOccurs="0" maxOccurs="5" name="ESRBDescriptors" type="StringNotNull" />
+        <xsd:element minOccurs="0" name="MFGSuggestedAgeMin" type="xsd:positiveInteger" />
+        <xsd:element minOccurs="0" name="MFGSuggestedAgeMax" type="xsd:positiveInteger" />
+        <xsd:element minOccurs="0" maxOccurs="4" ref="SoftwarePlatform" />
+        <xsd:element minOccurs="0" name="ApplicationVersion" type="StringNotNull" />
+        <xsd:element minOccurs="0" name="NumberOfLicenses" type="xsd:positiveInteger" />
+      </xsd:sequence>
+    </xsd:complexType>
+  </xsd:element>
+  <xsd:element name="HandheldSoftwareDownloads">
+    <xsd:complexType>
+      <xsd:sequence>
+        <xsd:element name="ApplicationVersion" type="StringNotNull" />
+        <xsd:element ref="DownloadableFile" />
+        <xsd:element maxOccurs="7" name="OperatingSystem" type="MediumStringNotNull" />
+        <xsd:element minOccurs="0" name="SystemRequirements" type="LongStringNotNull" />
+        <xsd:element minOccurs="0" name="NumberOfLicenses" type="xsd:positiveInteger" />
+      </xsd:sequence>
+    </xsd:complexType>
+  </xsd:element>
+  <xsd:element name="SoftwareGames">
+    <xsd:complexType>
+      <xsd:sequence>
+        <xsd:element maxOccurs="5" name="SoftwareVideoGamesGenre" type="StringNotNull" />
+        <xsd:element name="ESRBRating" type="FortyStringNotNull" />
+        <xsd:element maxOccurs="3" name="MediaFormat" type="MediumStringNotNull" />
+        <xsd:element maxOccurs="7" name="OperatingSystem" type="MediumStringNotNull" />
+        <xsd:element minOccurs="0" name="Bundles" type="ThirtyStringNotNull" />
+        <xsd:element minOccurs="0" maxOccurs="5" name="ESRBDescriptors" type="StringNotNull" />
+        <xsd:element minOccurs="0" name="MFGSuggestedAgeMin" type="xsd:positiveInteger" />
+        <xsd:element minOccurs="0" name="MFGSuggestedAgeMax" type="xsd:positiveInteger" />
+        <xsd:element minOccurs="0" name="MaxNumberOfPlayers" type="xsd:positiveInteger" />
+        <xsd:element minOccurs="0" maxOccurs="4" ref="SoftwarePlatform" />
+        <xsd:element minOccurs="0" name="OnlinePlay" type="xsd:boolean" />
+      </xsd:sequence>
+    </xsd:complexType>
+  </xsd:element>
+  <xsd:element name="VideoGames">
+    <xsd:complexType>
+      <xsd:sequence>
+        <xsd:element maxOccurs="5" name="ConsoleVideoGamesGenre" type="StringNotNull" />
+        <xsd:element name="ESRBRating" type="FortyStringNotNull" />
+        <xsd:element name="HardwarePlatform" type="MediumStringNotNull" />
+        <xsd:element minOccurs="0" name="Bundles" type="ThirtyStringNotNull" />
+        <xsd:element minOccurs="0" maxOccurs="5" name="ESRBDescriptors" type="StringNotNull" />
+        <xsd:element minOccurs="0" name="MaxNumberOfPlayers" type="xsd:positiveInteger" />
+      </xsd:sequence>
+    </xsd:complexType>
+  </xsd:element>
+  <xsd:element name="VideoGamesAccessories">
+    <xsd:complexType>
+      <xsd:sequence>
+        <xsd:element maxOccurs="5" name="HardwarePlatform" type="MediumStringNotNull" />
+        <xsd:element minOccurs="0" name="Bundles" type="ThirtyStringNotNull" />
+        <xsd:element minOccurs="0" name="Color" type="StringNotNull" />
+        <xsd:element minOccurs="0" ref="ColorMap" />
+        <xsd:element minOccurs="0" name="AdditionalFeatures" type="LongStringNotNull" />
+        <xsd:element minOccurs="0" name="ItemPackageQuantity" type="xsd:positiveInteger" />
+      </xsd:sequence>
+    </xsd:complexType>
+  </xsd:element>
+  <xsd:element name="VideoGamesHardware">
+    <xsd:complexType>
+      <xsd:sequence>
+        <xsd:element name="HardwarePlatform" type="MediumStringNotNull" />
+        <xsd:element minOccurs="0" name="Bundles" type="ThirtyStringNotNull" />
+        <xsd:element minOccurs="0" name="Color" type="StringNotNull" />
+        <xsd:element minOccurs="0" ref="ColorMap" />
+        <xsd:element minOccurs="0" name="AdditionalFeatures" type="LongStringNotNull" />
+        <xsd:element minOccurs="0" name="ItemPackageQuantity" type="xsd:positiveInteger" />
+      </xsd:sequence>
+    </xsd:complexType>
+  </xsd:element>
+  <xsd:element name="SoftwarePlatform">
+    <xsd:complexType>
+      <xsd:sequence>
+        <xsd:element name="HardwarePlatform" type="HardwarePlatformType" />
+        <xsd:element minOccurs="0" default="N/A" name="SystemRequirements" type="LongStringNotNull" />
+      </xsd:sequence>
+    </xsd:complexType>
+  </xsd:element>
+  <xsd:simpleType name="HardwarePlatformType">
+    <xsd:restriction base="xsd:string">
+      <xsd:enumeration value="linux" />
+      <xsd:enumeration value="mac" />
+      <xsd:enumeration value="windows" />
+      <xsd:enumeration value="unix" />
+    </xsd:restriction>
+  </xsd:simpleType>
+  <xsd:element name="DownloadableFile">
+    <xsd:complexType>
+      <xsd:sequence>
+        <xsd:element name="DownloadableFileFormat" type="FortyStringNotNull" />
+        <xsd:element name="FileSize" type="MemorySizeDimension" />
+      </xsd:sequence>
+    </xsd:complexType>
+  </xsd:element>
+</xsd:schema>

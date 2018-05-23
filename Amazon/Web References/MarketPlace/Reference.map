@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<DiscoveryClientResultsFile xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Results>
+    <DiscoveryClientResult referenceType="System.Web.Services.Discovery.SchemaReference" url="file:///D:/code/tradelr/bajula/Amazon/schema/amzn-envelope.xsd" filename="amzn-envelope.xsd" />
+    <DiscoveryClientResult referenceType="System.Web.Services.Discovery.SchemaReference" url="file:///D:/code/tradelr/bajula/Amazon/schema/TiresAndWheels.xsd" filename="TiresAndWheels.xsd" />
+    <DiscoveryClientResult referenceType="System.Web.Services.Discovery.SchemaReference" url="file:///D:/code/tradelr/bajula/Amazon/schema/OrderAcknowledgement.xsd" filename="OrderAcknowledgement.xsd" />
+    <DiscoveryClientResult referenceType="System.Web.Services.Discovery.SchemaReference" url="file:///D:/code/tradelr/bajula/Amazon/schema/ToysBaby.xsd" filename="ToysBaby.xsd" />
+    <DiscoveryClientResult referenceType="System.Web.Services.Discovery.SchemaReference" url="file:///D:/code/tradelr/bajula/Amazon/schema/SettlementReport.xsd" filename="SettlementReport.xsd" />
+    <DiscoveryClientResult referenceType="System.Web.Services.Discovery.SchemaReference" url="file:///D:/code/tradelr/bajula/Amazon/schema/ProcessingReport.xsd" filename="ProcessingReport.xsd" />
+    <DiscoveryClientResult referenceType="System.Web.Services.Discovery.SchemaReference" url="file:///D:/code/tradelr/bajula/Amazon/schema/OrderReport.xsd" filename="OrderReport.xsd" />
+    <DiscoveryClientResult referenceType="System.Web.Services.Discovery.SchemaReference" url="file:///D:/code/tradelr/bajula/Amazon/schema/Home.xsd" filename="Home.xsd" />
+    <DiscoveryClientResult referenceType="System.Web.Services.Discovery.SchemaReference" url="file:///D:/code/tradelr/bajula/Amazon/schema/Gourmet.xsd" filename="Gourmet.xsd" />
+    <DiscoveryClientResult referenceType="System.Web.Services.Discovery.SchemaReference" url="file:///D:/code/tradelr/bajula/Amazon/schema/Beauty.xsd" filename="Beauty.xsd" />
+    <DiscoveryClientResult referenceType="System.Web.Services.Discovery.SchemaReference" url="file:///D:/code/tradelr/bajula/Amazon/schema/amzn-header.xsd" filename="amzn-header.xsd" />
+    <DiscoveryClientResult referenceType="System.Web.Services.Discovery.SchemaReference" url="file:///D:/code/tradelr/bajula/Amazon/schema/Tools.xsd" filename="Tools.xsd" />
+    <DiscoveryClientResult referenceType="System.Web.Services.Discovery.SchemaReference" url="file:///D:/code/tradelr/bajula/Amazon/schema/Price.xsd" filename="Price.xsd" />
+    <DiscoveryClientResult referenceType="System.Web.Services.Discovery.SchemaReference" url="file:///D:/code/tradelr/bajula/Amazon/schema/amzn-base.xsd" filename="amzn-base.xsd" />
+    <DiscoveryClientResult referenceType="System.Web.Services.Discovery.SchemaReference" url="file:///D:/code/tradelr/bajula/Amazon/schema/AutoAccessory.xsd" filename="AutoAccessory.xsd" />
+    <DiscoveryClientResult referenceType="System.Web.Services.Discovery.SchemaReference" url="file:///D:/code/tradelr/bajula/Amazon/schema/Office.xsd" filename="Office.xsd" />
+    <DiscoveryClientResult referenceType="System.Web.Services.Discovery.SchemaReference" url="file:///D:/code/tradelr/bajula/Amazon/schema/Jewelry.xsd" filename="Jewelry.xsd" />
+    <DiscoveryClientResult referenceType="System.Web.Services.Discovery.SchemaReference" url="file:///D:/code/tradelr/bajula/Amazon/schema/Product.xsd" filename="Product.xsd" />
+    <DiscoveryClientResult referenceType="System.Web.Services.Discovery.SchemaReference" url="file:///D:/code/tradelr/bajula/Amazon/schema/Wireless.xsd" filename="Wireless.xsd" />
+    <DiscoveryClientResult referenceType="System.Web.Services.Discovery.SchemaReference" url="file:///D:/code/tradelr/bajula/Amazon/schema/SWVG.xsd" filename="SWVG.xsd" />
+    <DiscoveryClientResult referenceType="System.Web.Services.Discovery.SchemaReference" url="file:///D:/code/tradelr/bajula/Amazon/schema/FoodAndBeverages.xsd" filename="FoodAndBeverages.xsd" />
+    <DiscoveryClientResult referenceType="System.Web.Services.Discovery.SchemaReference" url="file:///D:/code/tradelr/bajula/Amazon/schema/OrderAdjustment.xsd" filename="OrderAdjustment.xsd" />
+    <DiscoveryClientResult referenceType="System.Web.Services.Discovery.SchemaReference" url="file:///D:/code/tradelr/bajula/Amazon/schema/CameraPhoto.xsd" filename="CameraPhoto.xsd" />
+    <DiscoveryClientResult referenceType="System.Web.Services.Discovery.SchemaReference" url="file:///D:/code/tradelr/bajula/Amazon/schema/Miscellaneous.xsd" filename="Miscellaneous.xsd" />
+    <DiscoveryClientResult referenceType="System.Web.Services.Discovery.SchemaReference" url="file:///D:/code/tradelr/bajula/Amazon/schema/Listings.xsd" filename="Listings.xsd" />
+    <DiscoveryClientResult referenceType="System.Web.Services.Discovery.SchemaReference" url="file:///D:/code/tradelr/bajula/Amazon/schema/MusicalInstruments.xsd" filename="MusicalInstruments.xsd" />
+    <DiscoveryClientResult referenceType="System.Web.Services.Discovery.SchemaReference" url="file:///D:/code/tradelr/bajula/Amazon/schema/FulfillmentCenter.xsd" filename="FulfillmentCenter.xsd" />
+    <DiscoveryClientResult referenceType="System.Web.Services.Discovery.SchemaReference" url="file:///D:/code/tradelr/bajula/Amazon/schema/CE.xsd" filename="CE.xsd" />
+    <DiscoveryClientResult referenceType="System.Web.Services.Discovery.SchemaReference" url="file:///D:/code/tradelr/bajula/Amazon/schema/HomeImprovement.xsd" filename="HomeImprovement.xsd" />
+    <DiscoveryClientResult referenceType="System.Web.Services.Discovery.SchemaReference" url="file:///D:/code/tradelr/bajula/Amazon/schema/Sports.xsd" filename="Sports.xsd" />
+    <DiscoveryClientResult referenceType="System.Web.Services.Discovery.SchemaReference" url="file:///D:/code/tradelr/bajula/Amazon/schema/Inventory.xsd" filename="Inventory.xsd" />
+    <DiscoveryClientResult referenceType="System.Web.Services.Discovery.SchemaReference" url="file:///D:/code/tradelr/bajula/Amazon/schema/ProductImage.xsd" filename="ProductImage.xsd" />
+    <DiscoveryClientResult referenceType="System.Web.Services.Discovery.SchemaReference" url="file:///D:/code/tradelr/bajula/Amazon/schema/TestOrderRequest.xsd" filename="TestOrderRequest.xsd" />
+    <DiscoveryClientResult referenceType="System.Web.Services.Discovery.SchemaReference" url="file:///D:/code/tradelr/bajula/Amazon/schema/PetSupplies.xsd" filename="PetSupplies.xsd" />
+    <DiscoveryClientResult referenceType="System.Web.Services.Discovery.SchemaReference" url="file:///D:/code/tradelr/bajula/Amazon/schema/ClothingAccessories.xsd" filename="ClothingAccessories.xsd" />
+    <DiscoveryClientResult referenceType="System.Web.Services.Discovery.SchemaReference" url="file:///D:/code/tradelr/bajula/Amazon/schema/Relationship.xsd" filename="Relationship.xsd" />
+    <DiscoveryClientResult referenceType="System.Web.Services.Discovery.SchemaReference" url="file:///D:/code/tradelr/bajula/Amazon/schema/Override.xsd" filename="Override.xsd" />
+    <DiscoveryClientResult referenceType="System.Web.Services.Discovery.SchemaReference" url="file:///D:/code/tradelr/bajula/Amazon/schema/Health.xsd" filename="Health.xsd" />
+    <DiscoveryClientResult referenceType="System.Web.Services.Discovery.SchemaReference" url="file:///D:/code/tradelr/bajula/Amazon/schema/OrderFulfillment.xsd" filename="OrderFulfillment.xsd" />
+    <DiscoveryClientResult referenceType="System.Web.Services.Discovery.SchemaReference" url="file:///D:/code/tradelr/bajula/Amazon/schema/ProductClothing.xsd" filename="ProductClothing.xsd" />
+  </Results>
+</DiscoveryClientResultsFile>

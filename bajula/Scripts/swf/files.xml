@@ -1,0 +1,6 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<files>
+    <script src="swfupload.js"></script>
+    <script src="handlers.js"></script>
+    <script src="photos.js"></script>
+</files>

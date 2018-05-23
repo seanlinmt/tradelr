@@ -1,0 +1,31 @@
+{% paginate blog.articles by 10 %}
+	{% for article in blog.articles %}
+	<a name="article-{{ article.id }}"></a>
+
+	<div class="article {% if forloop.first %}first{% endif %}">
+    <div>
+      <p class="user"></p>
+  		<h2><a href="{{ article.url }}">{{ article.title }}</a></h2>
+      <p class="note">by {{ article.author }} on {{ article.created_at | date: "%B %d, %Y" }}</p>
+      <div class="textile">
+  		  {{ article.content }}
+  		</div>
+    </div>
+    
+  	<div class="blog-details">
+      {% if blog.comments_enabled? %}
+        <p class="comments"><a href="{{article.url}}#comments">comments ({{ article.comments_count }})</a></p>
+      {% endif %}
+      <a href="{{ article.url }}">continue reading</a>
+  	</div>
+	</div>
+
+	{% endfor %}
+	
+	{% if paginate.pages > 1 %}
+	<div class="pagination">
+		{{ paginate | default_pagination }}
+	</div>
+	{% endif %}
+
+{% endpaginate %}

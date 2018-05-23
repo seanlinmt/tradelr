@@ -1,0 +1,302 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xsd:schema elementFormDefault="qualified" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <xsd:include schemaLocation="amzn-base.xsd" />
+  <xsd:include schemaLocation="ClothingAccessories.xsd" />
+  <xsd:include schemaLocation="ProductClothing.xsd" />
+  <xsd:include schemaLocation="Miscellaneous.xsd" />
+  <xsd:include schemaLocation="CameraPhoto.xsd" />
+  <xsd:include schemaLocation="Home.xsd" />
+  <xsd:include schemaLocation="Sports.xsd" />
+  <xsd:include schemaLocation="HomeImprovement.xsd" />
+  <xsd:include schemaLocation="Tools.xsd" />
+  <xsd:include schemaLocation="FoodAndBeverages.xsd" />
+  <xsd:include schemaLocation="Gourmet.xsd" />
+  <xsd:include schemaLocation="Jewelry.xsd" />
+  <xsd:include schemaLocation="Health.xsd" />
+  <xsd:include schemaLocation="CE.xsd" />
+  <xsd:include schemaLocation="SWVG.xsd" />
+  <xsd:include schemaLocation="Wireless.xsd" />
+  <xsd:include schemaLocation="Beauty.xsd" />
+  <xsd:include schemaLocation="Office.xsd" />
+  <xsd:include schemaLocation="MusicalInstruments.xsd" />
+  <xsd:include schemaLocation="AutoAccessory.xsd" />
+  <xsd:include schemaLocation="PetSupplies.xsd" />
+  <xsd:include schemaLocation="ToysBaby.xsd" />
+  <xsd:include schemaLocation="TiresAndWheels.xsd" />
+  <xsd:element name="Product">
+    <xsd:complexType>
+      <xsd:sequence>
+        <xsd:element ref="SKU" />
+        <xsd:element minOccurs="0" ref="StandardProductID" />
+        <xsd:element minOccurs="0" ref="ProductTaxCode" />
+        <xsd:element minOccurs="0" name="LaunchDate" type="xsd:dateTime" />
+        <xsd:element minOccurs="0" name="DiscontinueDate" type="xsd:dateTime" />
+        <xsd:element minOccurs="0" name="ReleaseDate" type="xsd:dateTime" />
+        <xsd:element minOccurs="0" name="ExternalProductUrl" type="xsd:anyURI" />
+        <xsd:element minOccurs="0" name="OffAmazonChannel">
+          <xsd:simpleType>
+            <xsd:restriction base="xsd:string">
+              <xsd:enumeration value="advertise" />
+              <xsd:enumeration value="exclude" />
+            </xsd:restriction>
+          </xsd:simpleType>
+        </xsd:element>
+        <xsd:element minOccurs="0" name="OnAmazonChannel">
+          <xsd:simpleType>
+            <xsd:restriction base="xsd:string">
+              <xsd:enumeration value="sell" />
+              <xsd:enumeration value="advertise" />
+              <xsd:enumeration value="exclude" />
+            </xsd:restriction>
+          </xsd:simpleType>
+        </xsd:element>
+        <xsd:element minOccurs="0" name="Condition" type="ConditionInfo" />
+        <xsd:element minOccurs="0" maxOccurs="2" name="Rebate" type="RebateType" />
+        <xsd:element minOccurs="0" name="ItemPackageQuantity" type="xsd:positiveInteger">
+          <xsd:annotation>
+            <xsd:documentation>
+							Use this field to indicate the number of units included in
+							the item you are offering for sale, such that each unit
+							is packaged for individual sale.
+						</xsd:documentation>
+          </xsd:annotation>
+        </xsd:element>
+        <xsd:element minOccurs="0" name="NumberOfItems" type="xsd:positiveInteger">
+          <xsd:annotation>
+            <xsd:documentation>
+                                                        Use this field to indicate the number of discrete items          
+                                                        included in the item you are offering for sale, such that each 
+                                                        item is not packaged for individual sale.
+
+							For example, if you are selling a case of 10 packages of socks,
+							and each package contains 3 pairs of socks, the case would have 
+							ItemPackageQuantity = 10 and NumberOfItems = 30.
+						</xsd:documentation>
+          </xsd:annotation>
+        </xsd:element>
+        <xsd:element minOccurs="0" name="DescriptionData">
+          <xsd:complexType>
+            <xsd:sequence>
+              <xsd:element name="Title" type="LongStringNotNull" />
+              <xsd:element minOccurs="0" name="Brand" type="StringNotNull" />
+              <xsd:element minOccurs="0" name="Designer" type="StringNotNull" />
+              <xsd:element minOccurs="0" name="Description">
+                <xsd:simpleType>
+                  <xsd:restriction base="xsd:normalizedString">
+                    <xsd:maxLength value="2000" />
+                  </xsd:restriction>
+                </xsd:simpleType>
+              </xsd:element>
+              <xsd:element minOccurs="0" maxOccurs="5" name="BulletPoint" type="LongStringNotNull" />
+              <xsd:element minOccurs="0" name="ItemDimensions" type="Dimensions" />
+              <xsd:element minOccurs="0" name="PackageDimensions" type="SpatialDimensions" />
+              <xsd:element minOccurs="0" name="PackageWeight" type="PositiveNonZeroWeightDimension" />
+              <xsd:element minOccurs="0" name="ShippingWeight" type="PositiveNonZeroWeightDimension" />
+              <xsd:element minOccurs="0" name="MerchantCatalogNumber" type="FortyStringNotNull" />
+              <xsd:element minOccurs="0" name="MSRP" type="CurrencyAmount" />
+              <xsd:element minOccurs="0" name="MaxOrderQuantity" type="xsd:positiveInteger" />
+              <xsd:element minOccurs="0" name="SerialNumberRequired" type="xsd:boolean" />
+              <xsd:element minOccurs="0" name="Prop65" type="xsd:boolean" />
+              <xsd:element minOccurs="0" maxOccurs="4" name="CPSIAWarning">
+                <xsd:simpleType>
+                  <xsd:restriction base="xsd:string">
+                    <xsd:enumeration value="choking_hazard_balloon" />
+                    <xsd:enumeration value="choking_hazard_contains_a_marble" />
+                    <xsd:enumeration value="choking_hazard_contains_small_ball" />
+                    <xsd:enumeration value="choking_hazard_is_a_marble" />
+                    <xsd:enumeration value="choking_hazard_is_a_small_ball" />
+                    <xsd:enumeration value="choking_hazard_small_parts" />
+                    <xsd:enumeration value="no_warning_applicable" />
+                  </xsd:restriction>
+                </xsd:simpleType>
+              </xsd:element>
+              <xsd:element minOccurs="0" name="CPSIAWarningDescription" type="TwoFiftyStringNotNull" />
+              <xsd:element minOccurs="0" name="LegalDisclaimer">
+                <xsd:simpleType>
+                  <xsd:restriction base="xsd:normalizedString">
+                    <xsd:maxLength value="1000" />
+                  </xsd:restriction>
+                </xsd:simpleType>
+              </xsd:element>
+              <xsd:element minOccurs="0" name="Manufacturer" type="StringNotNull" />
+              <xsd:element minOccurs="0" name="MfrPartNumber" type="FortyStringNotNull" />
+              <xsd:element minOccurs="0" maxOccurs="5" name="SearchTerms" type="StringNotNull" />
+              <xsd:element minOccurs="0" maxOccurs="20" name="PlatinumKeywords" type="StringNotNull" />
+              <xsd:element minOccurs="0" name="Memorabilia" type="xsd:boolean" />
+              <xsd:element minOccurs="0" name="Autographed" type="xsd:boolean" />
+              <xsd:element minOccurs="0" maxOccurs="5" name="UsedFor" type="StringNotNull" />
+              <xsd:element minOccurs="0" name="ItemType" type="LongStringNotNull" />
+              <xsd:element minOccurs="0" maxOccurs="5" name="OtherItemAttributes" type="LongStringNotNull" />
+              <xsd:element minOccurs="0" maxOccurs="4" name="TargetAudience" type="StringNotNull" />
+              <xsd:element minOccurs="0" maxOccurs="5" name="SubjectContent" type="StringNotNull" />
+              <xsd:element minOccurs="0" name="IsGiftWrapAvailable" type="xsd:boolean" />
+              <xsd:element minOccurs="0" name="IsGiftMessageAvailable" type="xsd:boolean" />
+              <xsd:element minOccurs="0" maxOccurs="10" name="PromotionKeywords" type="StringNotNull" />
+              <xsd:element minOccurs="0" name="IsDiscontinuedByManufacturer" type="xsd:boolean" />
+              <xsd:element minOccurs="0" maxOccurs="2" ref="DeliveryChannel" />
+              <xsd:element minOccurs="0" name="MaxAggregateShipQuantity" type="xsd:positiveInteger" />
+              <xsd:element minOccurs="0" maxOccurs="2" name="RecommendedBrowseNode" type="xsd:positiveInteger" />
+              <xsd:element minOccurs="0" name="FEDAS_ID">
+                <xsd:simpleType>
+                  <xsd:restriction base="xsd:normalizedString">
+                    <xsd:length value="6" fixed="true" />
+                  </xsd:restriction>
+                </xsd:simpleType>
+              </xsd:element>
+              <xsd:element minOccurs="0" maxOccurs="1" name="TSDAgeWarning">
+                <xsd:simpleType>
+                  <xsd:restriction base="xsd:string">
+                    <xsd:enumeration value="not_suitable_under_36_months" />
+                    <xsd:enumeration value="not_suitable_under_3_years_supervision" />
+                    <xsd:enumeration value="not_suitable_under_4_years_supervision" />
+                    <xsd:enumeration value="not_suitable_under_5_years_supervision" />
+                    <xsd:enumeration value="not_suitable_under_6_years_supervision" />
+                    <xsd:enumeration value="not_suitable_under_7_years_supervision" />
+                    <xsd:enumeration value="not_suitable_under_8_years_supervision" />
+                    <xsd:enumeration value="not_suitable_under_9_years_supervision" />
+                    <xsd:enumeration value="not_suitable_under_10_years_supervision" />
+                    <xsd:enumeration value="not_suitable_under_11_years_supervision" />
+                    <xsd:enumeration value="not_suitable_under_12_years_supervision" />
+                    <xsd:enumeration value="not_suitable_under_13_years_supervision" />
+                    <xsd:enumeration value="not_suitable_under_14_years_supervision" />
+                    <xsd:enumeration value="no_warning_applicable" />
+                  </xsd:restriction>
+                </xsd:simpleType>
+              </xsd:element>
+              <xsd:element minOccurs="0" maxOccurs="8" name="TSDWarning">
+                <xsd:simpleType>
+                  <xsd:restriction base="xsd:string">
+                    <xsd:enumeration value="only_domestic_use" />
+                    <xsd:enumeration value="adult_supervision_required" />
+                    <xsd:enumeration value="protective_equipment_required" />
+                    <xsd:enumeration value="water_adult_supervision_required" />
+                    <xsd:enumeration value="toy_inside" />
+                    <xsd:enumeration value="no_protective_equipment" />
+                    <xsd:enumeration value="risk_of_entanglement" />
+                    <xsd:enumeration value="fragrances_allergy_risk" />
+                    <xsd:enumeration value="no_warning_applicable" />
+                  </xsd:restriction>
+                </xsd:simpleType>
+              </xsd:element>
+              <xsd:element minOccurs="0" maxOccurs="21" name="TSDLanguage">
+                <xsd:simpleType>
+                  <xsd:restriction base="xsd:string">
+                    <xsd:enumeration value="English" />
+                    <xsd:enumeration value="French" />
+                    <xsd:enumeration value="German" />
+                    <xsd:enumeration value="Italian" />
+                    <xsd:enumeration value="Spanish" />
+                    <xsd:enumeration value="Dutch" />
+                    <xsd:enumeration value="Polish" />
+                    <xsd:enumeration value="Bulgarian" />
+                    <xsd:enumeration value="Czech" />
+                    <xsd:enumeration value="Danish" />
+                    <xsd:enumeration value="Estonian" />
+                    <xsd:enumeration value="Finnish" />
+                    <xsd:enumeration value="Greek" />
+                    <xsd:enumeration value="Hungarian" />
+                    <xsd:enumeration value="Latvian" />
+                    <xsd:enumeration value="Lithuanian" />
+                    <xsd:enumeration value="Portuguese" />
+                    <xsd:enumeration value="Romanian" />
+                    <xsd:enumeration value="Slovak" />
+                    <xsd:enumeration value="Slovene" />
+                    <xsd:enumeration value="Swedish" />
+                  </xsd:restriction>
+                </xsd:simpleType>
+              </xsd:element>
+              <xsd:element minOccurs="0" maxOccurs="2" name="OptionalPaymentTypeExclusion">
+                <xsd:simpleType>
+                  <xsd:restriction base="xsd:string">
+                    <xsd:enumeration value="cash_on_delivery" />
+                    <xsd:enumeration value="cvs" />
+                  </xsd:restriction>
+                </xsd:simpleType>
+              </xsd:element>
+            </xsd:sequence>
+          </xsd:complexType>
+        </xsd:element>
+        <xsd:element minOccurs="0" name="DiscoveryData">
+          <xsd:complexType>
+            <xsd:sequence>
+              <xsd:element minOccurs="0" name="Priority">
+                <xsd:simpleType>
+                  <xsd:restriction base="xsd:positiveInteger">
+                    <xsd:minInclusive value="1" />
+                    <xsd:maxInclusive value="10" />
+                  </xsd:restriction>
+                </xsd:simpleType>
+              </xsd:element>
+              <xsd:element minOccurs="0" name="BrowseExclusion" type="xsd:boolean" />
+              <xsd:element minOccurs="0" name="RecommendationExclusion" type="xsd:boolean" />
+            </xsd:sequence>
+          </xsd:complexType>
+        </xsd:element>
+        <xsd:element minOccurs="0" name="ProductData">
+          <xsd:complexType>
+            <xsd:choice>
+              <xsd:element ref="ClothingAccessories" />
+              <xsd:element ref="Clothing" />
+              <xsd:element ref="Miscellaneous" />
+              <xsd:element ref="CameraPhoto" />
+              <xsd:element ref="Home" />
+              <xsd:element ref="Sports" />
+              <xsd:element ref="HomeImprovement" />
+              <xsd:element ref="Tools" />
+              <xsd:element ref="FoodAndBeverages" />
+              <xsd:element ref="Gourmet" />
+              <xsd:element ref="Jewelry" />
+              <xsd:element ref="Health" />
+              <xsd:element ref="CE" />
+              <xsd:element ref="Computers" />
+              <xsd:element ref="SoftwareVideoGames" />
+              <xsd:element ref="Wireless" />
+              <xsd:element ref="Beauty" />
+              <xsd:element ref="Office" />
+              <xsd:element ref="MusicalInstruments" />
+              <xsd:element ref="AutoAccessory" />
+              <xsd:element ref="PetSupplies" />
+              <xsd:element ref="ToysBaby" />
+              <xsd:element ref="TiresAndWheels" />
+              <xsd:element ref="Music" />
+              <xsd:element ref="Video" />
+              <xsd:element ref="Lighting" />
+              <xsd:element ref="LargeAppliances" />
+              <xsd:element ref="FBA" />
+              <xsd:element ref="Toys" />
+              <xsd:element ref="GiftCard" />
+              <xsd:element ref="LabSupplies" />
+              <xsd:element ref="RawMaterials" />
+              <xsd:element ref="Shoes" />
+            </xsd:choice>
+          </xsd:complexType>
+        </xsd:element>
+        <xsd:element minOccurs="0" name="RegisteredParameter">
+          <xsd:simpleType>
+            <xsd:restriction base="xsd:string">
+              <xsd:enumeration value="PrivateLabel" />
+              <xsd:enumeration value="Specialized" />
+              <xsd:enumeration value="NonConsumer" />
+              <xsd:enumeration value="PreConfigured" />
+            </xsd:restriction>
+          </xsd:simpleType>
+        </xsd:element>
+      </xsd:sequence>
+    </xsd:complexType>
+  </xsd:element>
+  <xsd:complexType name="Dimensions">
+    <xsd:sequence>
+      <xsd:element minOccurs="0" name="Length" type="LengthDimension" />
+      <xsd:element minOccurs="0" name="Width" type="LengthDimension" />
+      <xsd:element minOccurs="0" name="Height" type="LengthDimension" />
+      <xsd:element minOccurs="0" name="Weight" type="WeightDimension" />
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="SpatialDimensions">
+    <xsd:sequence>
+      <xsd:element minOccurs="0" name="Length" type="LengthDimension" />
+      <xsd:element minOccurs="0" name="Width" type="LengthDimension" />
+      <xsd:element minOccurs="0" name="Height" type="LengthDimension" />
+    </xsd:sequence>
+  </xsd:complexType>
+</xsd:schema>

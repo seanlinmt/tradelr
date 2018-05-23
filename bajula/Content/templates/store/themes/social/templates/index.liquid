@@ -1,0 +1,134 @@
+{% for article in blogs.frontpage.articles  %}
+  <p>{{ article.content }}</p>
+{% endfor %}
+
+
+<div>
+  <div id="cycle" class="pics left">
+    {% for product in collections.frontpage.products limit: 5 %}
+      <a href="{{ product.url }}" alt="{{ product.description | strip_html | truncate: 50 | escape }}" id="image_{{product.id}}">
+        <div>
+          <img src="{{ product.images.first | product_img_url: 'large' }}" alt="{{ product.title | escape }}" />
+        </div>
+      </a>
+    {% endfor %}
+  </div>
+
+  <div id="cycle-buttons" style="display:none;">
+    <button id="prevButton"></button>
+    <button id="pauseButton"></button>
+    <button id="nextButton"></button>
+  </div>
+
+  <div id="featured-product-list" class="right">
+  
+    {% for product in collections.frontpage.products limit: 5 %}
+  
+      <div class="featured-list" id="button_{{product.id}}">
+        <div class="arrow-left"></div>
+        
+        <div class="left">
+          <a href="{{ product.url }}" class="product-title left">{{ product.title | truncate: 60 }}</a><br/>
+        
+          {% if product.selling_price > product.price %}
+          <span class="red">Sale: {{ product.price | money }}</span>
+          {% else %}
+          <span class="product-price">{{ product.price | money }}</span>
+          {% endif %}
+        </div>
+        
+        <div class="right">
+          <a class="counter-box fb-likes" href="{{ product.url }}#social"><span id="like-{{ product.title | handleize }}" class="like-icon">0</span></a>
+          <script type="text/javascript">updateCount("{{shop.url}}{{product.url}}", "like-{{ product.title | handleize }}", 'shares');</script>
+          {% if settings.product_comments_enabled %}
+          <a class="counter-box" href="{{ product.url }}#social"><span id="comment-{{ product.title | handleize }}" class="comment-icon">0</span></a>
+          <script type="text/javascript">updateCount("{{shop.url}}{{product.url}}", "comment-{{ product.title | handleize }}", 'comments');</script>
+          {% endif %}
+        </div>
+      </div>
+    
+    {% endfor %}
+  
+  </div>
+</div>
+
+
+<div class="clearfix"></div>
+
+
+<div id="frontpage" class="dynamic">
+  {% assign article = pages.frontpage %}
+  
+  {% if article.content != "" %}
+    {{ pages.frontpage.content }}
+  {% else %}
+    In <em>Admin &gt; Blogs &amp; Pages</em>, create a page with the handle <strong><code>frontpage</code></strong> and it will show up here.<br />
+    {{ "Learn more about handles" | link_to "http://wiki.Tradelr.com/Handle" }}
+  {% endif %}
+</div>
+
+
+<div id="blog-feed" class="left">
+  <a href="{{ shop.url }}/blogs/news.xml" class="rss-icon"></a>
+  <h3 class="pb0"><a href="/blogs/news">Blog</a></h3>
+  <hr class="hr_underline"/>
+  
+  <ul id="blogs" class="ml0">
+    {% for article in blogs.news.articles limit: 3 %}
+    <li class="news-{% cycle 'odd', 'even' %}">
+      <strong><a href="{{ article.url }}">{{ article.title | strip_html | truncate: 50 }}</a></strong><br />
+      <p class="feed-para">{{ article.content | strip_html | truncate: 120 }}</p>
+      <p class="datetime">
+        <span title="{{ article.created_at | date: '%Y-%m-%dT%H:%M:%SZ' }}">{{ article.created_at | date: "%I:%M %p %b %d" }}</span> &#183; 
+        
+        <a href="{{shop.url}}{{article.url}}#social" title="like"><span id="like-{{ article.title | handleize }}">Like</span></a>
+        <script type="text/javascript">updateSummary("{{shop.url}}{{article.url}}", "like-{{ article.title | handleize }}", 'likes');</script>
+        
+        {% if settings.blog_comments_enabled %}
+         &#183; 
+        <a href="{{shop.url}}{{article.url}}#social" title="{{ settings.txt_comment_this }}"><span id="comment-{{ article.title | handleize }}">Comment</span></a>
+        <script type="text/javascript">updateSummary("{{shop.url}}{{article.url}}", "comment-{{ article.title | handleize }}", 'comments');</script>
+        {% endif %}
+      </p>
+    </li>
+    {% endfor %}
+  </ul>
+</div>
+
+
+{% if settings.twitterID %}
+<div id="twitter" class="left">
+  <a class="twitter-icon" href="http://www.twitter.com/{{ settings.twitterID }}" target="_blank"></a>
+  <h3 class="pb0"><a href="http://www.twitter.com/{{ settings.twitterID }}" target="_blank">Twitter</a></h3>
+  <hr class="hr_underline"/>
+  
+  <div id="tweets" class="ml0">
+    <p><img src="{{ 'loading.gif' | asset_url }}" style="vertical-align:middle;"/> &nbsp; {{ settings.txt_loading_tweets }}</p>
+  </div>
+</div>
+{% endif %}
+
+
+<div id="fb-recommends" class="left">
+  <span class="fb-icon"></span>
+  
+  {% if settings.fb_indexchoice == 'recommendations' %}
+  <h3 class="pb0">{{ settings.txt_most_popular }}</h3>
+  <hr class="hr_underline"/>
+  
+  <div class="recommendations-wrapper" style="width:298px;">
+    <fb:recommendations site="{{ shop.domain }}" header="false" border_color="{{ settings.bg_color }}" font="{{ settings.regular_font }}" width="300px" id="fb_recommendations" colorscheme="{{settings.fb_colorscheme}}"></fb:recommendations>
+  </div>
+  {% else %}
+  <h3 class="pb0">Facebook</h3>
+  <hr class="hr_underline"/>
+  
+  <div class="likebox-wrapper" style="width:298px;">
+    <fb:like-box href="{{ settings.fb_pageurl }}" width="300" show_faces="true" border_color="{{ settings.bg_color }}" font="{{ settings.regular_font }}" colorscheme="{{settings.fb_colorscheme}}" stream="false" header="false"></fb:like-box>
+  </div>
+  {% endif %}
+  
+</div>
+
+
+<script type="text/javascript"> $(document).ready(function(){ indexPage('{{ settings.twitterID }}'); }); </script>

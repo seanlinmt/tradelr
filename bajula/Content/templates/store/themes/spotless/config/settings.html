@@ -1,0 +1,98 @@
+<fieldset>
+	<legend>Typography &amp; Logo</legend>
+	<table>
+		<tr>
+			<th><label for="typography">Site Font</label></th>
+			<td>
+				<select name="typography" id="typography" class="font">
+					<option value="'Lucida Grande', 'Lucida Sans Unicode', 'Lucida Sans', Lucida, Helvetica, Arial, sans-serif">'Lucida Grande', 'Lucida Sans Unicode', 'Lucida Sans', Lucida, Helvetica, Arial, sans-serif</option>
+					<option value="Georgia, Utopia, 'Times New Roman', Times, serif" selected="selected">Georgia, Utopia, 'Times New Roman', Times, serif</option>
+					<option value="Impact, Charcoal, Helvetica, Arial, sans-serif">Impact, Charcoal, Helvetica, Arial, sans-serif</option>
+					<option value="Helvetica, Arial, sans-serif">Helvetica/Arial</option>
+				</select>
+			</td>
+		</tr>
+		<tr>
+			<th><label for="logo_usage">Custom Logo</label></th>
+			<td>
+				<select name="logo_usage" id="logo_usage">
+					<option value="disabled" selected="selected">Disabled</option>
+					<option value="enabled">Enabled</option>
+				</select>
+			</td>
+		</tr>
+		<tr>
+			<th><label for="logo">Logo Image</label></th>
+			<td><input type="file" name="logo.png" id="logo" data-max-width="180" data-max-height="120"/></td>
+		</tr>
+	</table>
+</fieldset>
+<fieldset>
+	<legend>Text Colors</legend>
+	<table>
+		<tr>
+			<th><label for="text_primary_color">Primary Text Color</label></th>
+			<td><input name="text_primary_color" id="text_primary_color" class="color" value="#262626"/></td>
+		</tr>
+		<tr>
+			<th><label for="text_secondary_color">Secondary Text Color</label></th>
+			<td><input name="text_secondary_color" id="text_secondary_color" class="color" value="#11234e"/></td>
+		</tr>
+		<tr>
+			<th><label for="text_alternate_color">Alternate Text Color</label></th>
+			<td><input name="text_alternate_color" id="text_alternate_color" class="color" value="#0e74be"/></td>
+		</tr>
+		<tr>
+			<th><label for="text_accent_color">Accent Text Color</label></th>
+			<td><input name="text_accent_color" id="text_accent_color" class="color" value="#65c12c"/></td>
+		</tr>
+	</table>
+</fieldset>
+<fieldset>
+	<legend>Background Colors</legend>
+	<table>
+		<tr>
+			<th><label for="bg_primary_color">Primary Color</label></th>
+			<td><input name="bg_primary_color" id="bg_primary_color" class="color" value="#0e74be"/></td>
+		</tr>
+		<tr>
+			<th><label for="bg_secondary_color">Secondary Color</label></th>
+			<td><input name="bg_secondary_color" id="bg_secondary_color" class="color" value="#bed9ee"/></td>
+		</tr>
+		<tr>
+			<th><label for="bg_alternate_color">Alternate Color</label></th>
+			<td><input name="bg_alternate_color" id="bg_alternate_color" class="color" value="#11234e"/></td>
+		</tr>
+		<tr>
+			<th><label for="bg_accent_color">Accent Color</label></th>
+			<td><input name="bg_accent_color" id="bg_accent_color" class="color" value="#65c12c"/></td>
+		</tr>
+	</table>
+</fieldset>
+<fieldset>
+	<legend>Options</legend>
+	<table>
+		<tr>
+			<th><label for="twitter">Twitter Username</label></th>
+			<td><input name="twitter" id="twitter" value="jaredburns"/></td>
+		</tr>
+		<tr>
+			<th><label for="retweet">TweetMeme Button</label></th>
+			<td>
+				<select name="retweet" id="retweet">
+					<option value="disabled">Disabled</option>
+					<option value="enabled" selected="selected">Enabled</option>
+				</select>
+			</td>
+		</tr>
+		<tr>
+			<th><label for="notes">Cart Comments</label></th>
+			<td>
+				<select name="notes" id="notes">
+					<option value="disabled">Disabled</option>
+					<option value="enabled" selected="selected">Enabled</option>
+				</select>
+			</td>
+		</tr>
+	</table>
+</fieldset>

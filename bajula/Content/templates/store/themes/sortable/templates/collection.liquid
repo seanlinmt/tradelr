@@ -1,0 +1,30 @@
+{% paginate collection.products by 12 %}<!-- START INTRO -->
+<div id="intro">
+	<h1 class="title">{{ collection.title | escape }}</h1>{% if collection.description.size > 0 %}
+	{{ collection.description }}{% endif %}
+</div>
+<!-- END INTRO -->{% if collection.products.size > 0 %}
+<!-- START PRODUCTS -->
+<ul id="products" class="clear">{% for product in collection.products %}
+	<!-- START PRODUCT {{ forloop.index }} -->
+	<li{% cycle '', '', ' class="end"' %}>
+		<!-- START IMAGE -->
+		<div class="image">
+			<div class="align">
+				<div><a href="{{ product.url | within: collection }}"><img src="{{ product.images[0] | product_img_url: "compact" }}" alt="{{ product.title | escape }}" /></a></div>
+			</div>
+		</div>
+		<!-- END IMAGE -->
+		<h3><a href="{{ product.url | within: collections }}">{{ product.title }}</a></h3>
+		<h4>{{ product.price | money }}{% if product.compare_at_price_max > product.price %} <del>{{ product.compare_at_price_max | money }}</del>{% endif %}</h4>
+		<h5><a href="{{ product.url | within: collections }}">View</a></h5>
+	</li>
+	<!-- END PRODUCT {{ forloop.index }} -->{% endfor %}
+</ul>
+<!-- END PRODUCTS -->{% if paginate.pages > 1 %}
+<!-- START PAGINATE -->
+<div id="paginate">
+	{{ paginate | default_pagination }}
+</div>
+<!-- END PAGINATE -->{% endif %}{% else %}
+<p id="empty">There are no products in this collection.</p>{% endif %}{% endpaginate %}

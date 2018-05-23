@@ -1,0 +1,7 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<files>
+  <script src="colorpicker.js"></script>
+  <script src="eye.js"></script>
+  <script src="utils.js"></script>
+  <script src="layout.js"></script>
+</files>

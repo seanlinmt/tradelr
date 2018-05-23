@@ -1,0 +1,33 @@
+{% paginate collection.products by 12 %}<!-- START EXCERPT -->
+<div id="excerpt">
+	<h1>{{ collection.title | escape }}</h1>{% if collection.description.size > 0 %}
+	{{ collection.description }}{% endif %}
+</div>
+<!-- END EXCERPT -->
+<!-- START PRODUCTS -->{% if collection.products.size > 0 %}
+<ul id="products" class="clear">{% for product in collection.products %}
+	<!-- START PRODUCT {{ forloop.index }} -->
+	<li{% cycle '', '', ' class="end"' %}>
+		<!-- START IMAGE -->
+		<div class="image">
+			<div class="overflow">
+				<div class="align">
+					<h6>{{ product.price | money }}</h6>
+					<div><a href="{{ product.url | within: collection }}"><img src="{{ product.images[0] | product_img_url: "medium" }}" alt="{{ product.title | escape }}" /></a></div>
+				</div>
+			</div>
+		</div>
+		<!-- END IMAGE -->
+		<p><a href="{{ product.url | within: collection }}">{{ product.title | escape | truncate: 25 }}</a></p>
+	</li>
+	<!-- END PRODUCT {{ forloop.index }} -->{% endfor %}
+</ul>{% else %}
+<p id="empty">There are no products in this collection.</p>{% endif %}
+<!-- END PRODUCTS -->{% if paginate.pages > 1 %}
+<!-- START PAGINATE -->
+<div id="paginate">
+	<div>
+		{{ paginate | default_pagination }}
+	</div>
+</div>
+<!-- END PAGINATE -->{% endif %}{% endpaginate %}

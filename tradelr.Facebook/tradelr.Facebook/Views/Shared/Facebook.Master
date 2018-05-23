@@ -1,0 +1,109 @@
+﻿<%@ Master Language="C#" Inherits="System.Web.Mvc.ViewMasterPage<tradelr.Facebook.Models.facebook.FacebookViewData>" %>
+<%@ Import Namespace="tradelr.Library.Constants" %>
+
+<style type="text/css">
+    h1 {
+        color: #3B5998;
+        font-size: 18px;
+        margin-bottom: 20px;
+        padding: 10px 0;
+    }
+    h2 {
+        color: #3B5998;
+        font-size: 18px;
+        margin-top: 10px;
+    }
+    
+    input[type=submit] {
+        background-color:#3B5998;
+        border-color:#D8DFEA #0E1F5B #0E1F5B #D8DFEA;
+        border-style:solid;
+        border-width:1px;
+        color:#FFFFFF;
+        font-family:"lucida grande",tahoma,verdana,arial,sans-serif;
+        font-size:11px;
+        margin:0 2px;
+        padding:2px 18px;
+    }
+
+    ol {
+        color:#666666;
+        font-size:24px;
+        font-weight:bold;
+    }
+    ol li {padding-bottom:10px;}
+    ol li p {font-weight:normal; font-size:13px;}
+    .imgdiv { margin-left: 360px;}
+    .contentdiv { float:left; width:370px;}
+    .clear { clear:both; }
+    .fl {float:left;}
+    .fr {float:right;}
+    .header {
+        padding-bottom: 10px;
+        border-bottom: 1px solid #ccc;
+        position: relative;
+        min-height: 50px;
+    }
+    .header-content {
+        margin-left: 80px;
+    }
+    .header-logo {
+        position: absolute;
+        line-height:50px;
+    }
+    .header-logo > img {
+        vertical-align:middle;
+    }
+    .header-title {
+        color: #3B5998;
+        font-size: 18px;
+        padding-top: 5px;
+    }
+    .header-desc {
+        color: #666666;
+    }
+    .header-storename {
+        float:left;
+        color: #3B5998;
+        font-size:18px;
+        font-weight:bold;
+        font-family:Arial;
+        margin-top:10px;
+    }
+    .header-ad {
+        padding:10px;
+        float:right;
+    }
+    .hidden { display:none; }
+    .list_tick li {
+        background: transparent url(<%= GeneralConstants.FACEBOOK_HOST %>/Content/img/tick.png) no-repeat left;
+        padding:5px 0 5px 20px;
+    }
+    .pt20 { padding-top:20px;}
+    .pb20 { padding-bottom:20px;}
+    .mt10 { margin-top:10px;}
+    .strong { font-weight: bold;}
+</style>
+<div id="container">
+    <div id="main">
+        <div class="header">
+            <div class="header-logo">
+                <img src="<%= Model.logoUrl %>" alt="<%= Model.storeName %>" />
+            </div>
+            <div class="header-content">
+            <% if(Model.isTab && Model.isConfigured){%>
+                  <div class="header-storename"><%= Model.storeName %></div>
+            <%}else{%>
+            <div class="header-title">
+                    tradelr for Facebook</div>
+                <div class="header-desc">
+                    Display your products from tradelr.com on your Facebook Fan Page.
+                </div>
+            <%} %>
+                <div class="clear"></div>
+            </div>
+        </div>
+        <asp:contentplaceholder id="MainContent" runat="server">
+            </asp:contentplaceholder>
+    </div>
+</div>

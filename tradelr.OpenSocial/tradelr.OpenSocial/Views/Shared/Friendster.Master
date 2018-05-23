@@ -1,0 +1,18 @@
+<%@ Master Language="C#" Inherits="System.Web.Mvc.ViewMasterPage<tradelr.OpenSocial.Models.OpenSocialViewData>" %>
+<%@ Import Namespace="tradelr.Common.Constants" %>
+    <div class="header">
+        <div class="header-logo">
+            <img src="http://os.tradelr.com/Content/img/logo2.png" alt="" />
+        </div>
+        <div class="header-content">
+        <div class="header-storename"><%= Model.storeName %></div>
+                <div class="header-ad">
+                <b><a target="_blank" href="<%=GeneralConstants.OS_FRIENDSTER_APP_URL%>">Want your tradelr store on friendster?</a></b>
+                <div>
+                <a target="_blank" href="<%=GeneralConstants.OS_FRIENDSTER_APP_URL%>">Click here</a> to get started!
+                </div></div>
+            <div class="clear"></div>
+        </div>
+    </div>
+    <asp:contentplaceholder id="MainContent" runat="server">
+    </asp:contentplaceholder>

@@ -1,0 +1,26 @@
+<div id="collection" class="clearfix">
+
+  <div class="banner p">
+    {% unless collection.handle == "all" %}
+    <h2 class="title">{{ collection.title }}</h2>
+    <div class="description">{{ collection.description }}</div>
+    {% else %}
+    <h2 class="title">{{ settings.tr_all_products }}</h2>
+    {% endunless %}
+  </div>
+
+  {% paginate collection.products by settings.pagination_limit %}
+
+  <h3 class="title">{{ settings.tr_products }} {% if paginate.pages > 1 %}<span class="details">{{ settings.tr_viewing }} {{ paginate.current_offset | plus: 1 }} - {% if paginate.next %}{{ paginate.current_offset | plus: paginate.page_size }}{% else %}{{ paginate.items }}{% endif %} of {{ paginate.items }}</span>{% endif %}</h3>
+  
+  <div id="products" class="products clearfix">
+    {% for product in collection.products %}
+    {% include 'product-loop' %}
+    {% endfor %}
+  </div>
+
+  {% include 'pagination' %}
+
+  {% endpaginate %}
+
+</div> <!-- /#collection -->

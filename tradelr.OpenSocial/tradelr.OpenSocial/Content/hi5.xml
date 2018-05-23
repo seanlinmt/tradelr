@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Module xmlns:os="http://ns.opensocial.org/2008/markup">
+  <ModulePrefs title="tradelr for hi5"
+			   description="Display products from tradelr.com in your profile and allow your friends to share and buy directly on hi5."
+			   thumbnail="http://os.tradelr.com/Content/img/icon75x75.png"
+			   icon="http://os.tradelr.com/Content/img/icon16x16.png"
+			   author_email="administrator@tradelr.com"
+         category="shopping">
+    <Require feature="opensocial-0.7"/>
+    <Require feature="views"/>
+    <Require feature="dynamic-height"/>
+    <Optional feature="hi5" />
+    <Optional feature="hi5-lifecycle">
+      <Param name="installPingUrl" value="http://os.tradelr.com/hi5/install"></Param>
+      <Param name="removePingUrl" value="http://os.tradelr.com/hi5/uninstall"></Param>
+    </Optional>
+  </ModulePrefs>
+  <Content type="html" view="preview">
+    <![CDATA[
+    <link rel="stylesheet" type="text/css" media="all" href="http://os.tradelr.com/Content/css/hi5.css"/>
+    <div class="contentdiv">
+      <h3>tradelr for hi5</h3>
+      <p style="font-size:12px">
+        By adding your tradelr store to your hi5 profile,
+        you will allow friends and fans to share your products on <a href="http://www.tradelr.com">tradelr.com</a> directly on hi5.
+      </p>
+    </div>
+    <div class="imgdiv">
+      <img src="http://os.tradelr.com/Content/img/preview.jpg" alt="" />
+    </div>
+    ]]>
+  </Content>
+  <Content type="html" view="profile, home">
+    <![CDATA[
+    <link rel="stylesheet" type="text/css" media="all" href="http://os.tradelr.com/Content/css/hi5.css"/>
+    <style>
+	  .container{ font-family: arial,sans-serif; font-size:12px; width:600px;margin-left:16px;}
+
+.galleryBox .productThumbnail{
+    position:relative;
+}
+
+.galleryBox .productThumbnail img{
+    top:0;
+    bottom:0;
+    left:0;
+    right:0;
+    margin:auto;
+    position:absolute;
+}
+	  </style>
+	  <div class="container">
+	  <div id="store_content">
+    <div style="margin:10px 0;">
+		<img src="http://os.tradelr.com/Content/img/loading.gif" alt="" />
+    </div>
+	  </div>
+	  <div id="processerror" class="error"></div>
+	</div>
+  <script type="text/javascript" src="http://os.tradelr.com/Scripts/jquery-1.4.1.min.js"></script>
+  <script type="text/javascript" src="http://os.tradelr.com/Scripts/hi5.js?v=1"></script>
+	<script type="text/javascript">
+		function init() {
+      gadgets.window.adjustHeight();
+			os = opensocial.Container.get();
+			var req = os.newDataRequest();
+
+			req.add(req.newFetchPersonRequest(opensocial.IdSpec.PersonId.OWNER), "o");
+			req.add(req.newFetchPersonRequest(opensocial.IdSpec.PersonId.VIEWER), "v");
+			req.send(function(response){
+				if (response.hadError()) {
+					$('#processerror').html('No response from tradelr. Please refresh page.');
+				}
+				else {
+					ownerid = response.get("o").getData().getField(opensocial.Person.Field.ID);
+					viewerid = response.get("v").getData().getField(opensocial.Person.Field.ID);
+				  RenderContent(ownerid, viewerid, false, "http://os.tradelr.com/hi5");
+				}
+			});
+		}
+		$('#buttonSave').live('click',function() {
+			$(this).attr('disabled', true);
+			$('#inputerror').html('');
+			var address = $('#address').val();
+			if (address == ''){
+				$('#inputerror').html('Value entered is not a valid store address. Please try again.');
+        $(this).attr('disabled', false);
+				return false;
+			}
+			ConfigureAndRender(ownerid, viewerid, address, false, "http://os.tradelr.com/hi5/configure");
+		});
+    
+    gadgets.util.registerOnLoadHandler(init);
+   </script>
+    ]]>
+  </Content>
+  <Content type="html" view="canvas">
+    <![CDATA[
+    <link rel="stylesheet" type="text/css" media="all" href="http://os.tradelr.com/Content/css/hi5.css"/>
+  <style>
+	  .container{ font-family: arial,sans-serif; font-size:12px; float:left; width:770px;margin:0 10px;}
+
+.galleryBox .productThumbnail{
+    height:150px;
+    width:150px;
+    position:relative;
+}
+
+.galleryBox .productThumbnail img{
+    top:0;
+    bottom:0;
+    left:0;
+    right:0;
+    margin:auto;
+    position:absolute;
+}
+
+	  </style>
+	  <div class="container">
+	  <div id="store_content">
+    <div style="margin:10px 0;">
+		<img src="http://os.tradelr.com/Content/img/loading.gif" alt="" />
+    </div>
+	  </div>
+	  <div id="processerror" class="error"></div>
+	</div>
+	<div class="ad_content">
+	<script type="text/javascript"><!--
+google_ad_client = "pub-0354492030673990";
+/* 160x600, created 6/8/10 */
+google_ad_slot = "8194099012";
+google_ad_width = 160;
+google_ad_height = 600;
+//-->
+</script>
+<script type="text/javascript"
+src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+	</div>
+  <script type="text/javascript" src="http://os.tradelr.com/Scripts/jquery-1.4.1.min.js"></script>
+  <script type="text/javascript" src="http://os.tradelr.com/Scripts/hi5.js?v=1"></script>
+	<script type="text/javascript">
+		function init() {
+      gadgets.window.adjustHeight();
+			os = opensocial.Container.get();
+			var req = os.newDataRequest();
+
+			req.add(req.newFetchPersonRequest(opensocial.IdSpec.PersonId.OWNER), "o");
+			req.add(req.newFetchPersonRequest(opensocial.IdSpec.PersonId.VIEWER), "v");
+			req.send(function(response){
+				if (response.hadError()) {
+					$('#processerror').html('No response from tradelr. Please refresh page.');
+				}
+				else {
+					ownerid = response.get("o").getData().getField(opensocial.Person.Field.ID);
+					viewerid = response.get("v").getData().getField(opensocial.Person.Field.ID);
+						RenderContent(ownerid, viewerid, true, "http://os.tradelr.com/hi5");
+				}
+			});
+		}
+		
+		$('#buttonSave').live('click',function() {
+			$(this).attr('disabled', true);
+			$('#inputerror').html('');
+			var address = $('#address').val();
+			if (address == ''){
+				$('#inputerror').html('Value entered is not a valid store address. Please try again.');
+        $(this).attr('disabled', false);
+				return false;
+			}
+			ConfigureAndRender(ownerid, viewerid, address, true, "http://os.tradelr.com/hi5/configure");
+		});
+    
+    gadgets.util.registerOnLoadHandler(init);
+</script>
+  ]]>
+  </Content>
+</Module>

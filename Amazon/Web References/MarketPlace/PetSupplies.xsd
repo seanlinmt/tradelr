@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xsd:schema elementFormDefault="qualified" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <xsd:include schemaLocation="amzn-base.xsd" />
+  <xsd:element name="PetSupplies">
+    <xsd:complexType>
+      <xsd:sequence>
+        <xsd:element name="ProductType">
+          <xsd:complexType>
+            <xsd:choice>
+              <xsd:element ref="PetSuppliesMisc" />
+            </xsd:choice>
+          </xsd:complexType>
+        </xsd:element>
+      </xsd:sequence>
+    </xsd:complexType>
+  </xsd:element>
+  <xsd:element name="PetSuppliesMisc">
+    <xsd:complexType>
+      <xsd:sequence>
+        <xsd:element minOccurs="0" name="VariationData">
+          <xsd:complexType>
+            <xsd:sequence>
+              <xsd:element name="Parentage">
+                <xsd:simpleType>
+                  <xsd:restriction base="xsd:string">
+                    <xsd:enumeration value="parent" />
+                    <xsd:enumeration value="child" />
+                  </xsd:restriction>
+                </xsd:simpleType>
+              </xsd:element>
+              <xsd:element minOccurs="0" name="VariationTheme">
+                <xsd:simpleType>
+                  <xsd:restriction base="xsd:string">
+                    <xsd:enumeration value="Color" />
+                    <xsd:enumeration value="Size" />
+                    <xsd:enumeration value="SizeColor" />
+                    <xsd:enumeration value="Flavor" />
+                    <xsd:enumeration value="FlavorSize" />
+                  </xsd:restriction>
+                </xsd:simpleType>
+              </xsd:element>
+            </xsd:sequence>
+          </xsd:complexType>
+        </xsd:element>
+        <xsd:element minOccurs="0" maxOccurs="5" name="AllergenInformation" type="StringNotNull" />
+        <xsd:element minOccurs="0" ref="Battery" />
+        <xsd:element minOccurs="0" name="BreedRecommendation" type="HundredFiftyStringNotNull" />
+        <xsd:element minOccurs="0" name="BulbLifeSpan" type="TimeIntegerDimension" />
+        <xsd:element minOccurs="0" maxOccurs="3" name="CareInstructions" type="StringNotNull" />
+        <xsd:element minOccurs="0" name="ClosureType" type="StringNotNull" />
+        <xsd:element minOccurs="0" name="CompatibleDevices" type="LongStringNotNull" />
+        <xsd:element minOccurs="0" name="CountryOfOrigin" type="CountryOfOriginType" />
+        <xsd:element minOccurs="0" name="ColorSpecification">
+          <xsd:complexType>
+            <xsd:sequence>
+              <xsd:element name="Color" type="StringNotNull" />
+              <xsd:element name="ColorMap" type="StringNotNull" />
+            </xsd:sequence>
+          </xsd:complexType>
+        </xsd:element>
+        <xsd:element minOccurs="0" name="Directions" type="SuperLongStringNotNull" />
+        <xsd:element minOccurs="0" name="DisplayLength" type="LengthDimension" />
+        <xsd:element minOccurs="0" name="DisplayVolume" type="VolumeDimension" />
+        <xsd:element minOccurs="0" name="DisplayWeight" type="WeightDimension" />
+        <xsd:element minOccurs="0" name="DogSize" type="StringNotNull" />
+        <xsd:element minOccurs="0" name="EnergyEfficiencyRating" type="StringNotNull" />
+        <xsd:element minOccurs="0" maxOccurs="5" name="ExternalCertification" type="StringNotNull" />
+        <xsd:element minOccurs="0" name="FillMaterialType" type="StringNotNull" />
+        <xsd:element minOccurs="0" name="Flavor" type="StringNotNull" />
+        <xsd:element minOccurs="0" name="GirthSize" type="GirthSizeType" />
+        <xsd:element minOccurs="0" name="HeightRecommendation" type="HeightRecommendationType" />
+        <xsd:element minOccurs="0" name="HealthBenefits" type="StringNotNull" />
+        <xsd:element minOccurs="0" name="Ingredients" type="SuperLongStringNotNull" />
+        <xsd:element minOccurs="0" name="InnerMaterialType" type="StringNotNull" />
+        <xsd:element minOccurs="0" name="ItemDiameter" type="LengthDimension" />
+        <xsd:element minOccurs="0" name="ItemForm" type="StringNotNull" />
+        <xsd:element minOccurs="0" name="ItemThickness" type="LengthDimension" />
+        <xsd:element minOccurs="0" default="1" name="ItemPackageQuantity" type="xsd:positiveInteger" />
+        <xsd:element minOccurs="0" name="LightOutputLuminance" type="LuminancePositiveIntegerDimension" />
+        <xsd:element minOccurs="0" name="LithiumBatteryEnergyContent" type="Dimension" />
+        <xsd:element minOccurs="0" name="LithiumBatteryPackaging">
+          <xsd:simpleType>
+            <xsd:restriction base="xsd:string">
+              <xsd:enumeration value="batteries_contained_in_equipment" />
+              <xsd:enumeration value="batteries_only" />
+              <xsd:enumeration value="batteries_packed_with_equipment" />
+            </xsd:restriction>
+          </xsd:simpleType>
+        </xsd:element>
+        <xsd:element minOccurs="0" name="LithiumBatteryVoltage" type="Dimension" />
+        <xsd:element minOccurs="0" name="LithiumBatteryWeight" type="Dimension" />
+        <xsd:element minOccurs="0" name="Material" type="StringNotNull" />
+        <xsd:element minOccurs="0" name="MaterialComposition" type="SuperLongStringNotNull" />
+        <xsd:element minOccurs="0" name="MaxOrderingQuantity" type="xsd:positiveInteger" />
+        <xsd:element minOccurs="0" name="MaximumAgeRecommendation" type="xsd:positiveInteger" />
+        <xsd:element minOccurs="0" name="MaximumPower" type="PetPowerDimension" />
+        <xsd:element minOccurs="0" name="MinimumAgeRecommendation" type="xsd:positiveInteger" />
+        <xsd:element minOccurs="0" name="NeckSize" type="NeckSizeType" />
+        <xsd:element minOccurs="0" name="NumberOfItems" type="xsd:positiveInteger" />
+        <xsd:element minOccurs="0" name="NumberOfLithiumIonCells" type="xsd:positiveInteger" />
+        <xsd:element minOccurs="0" name="NumberOfLithiumMetalCells" type="xsd:positiveInteger" />
+        <xsd:element minOccurs="0" name="NutritionFacts" type="SuperLongStringNotNull" />
+        <xsd:element minOccurs="0" name="OuterMaterialType" type="StringNotNull" />
+        <xsd:element minOccurs="0" name="PetLifeStage" type="StringNotNull" />
+        <xsd:element minOccurs="0" maxOccurs="5" name="PetType" type="StringNotNull" />
+        <xsd:element minOccurs="0" name="ProductFeature" type="StringNotNull" />
+        <xsd:element minOccurs="0" name="RecycledContentPercentage" type="PercentageType" />
+        <xsd:element minOccurs="0" name="SellerWarrantyDescription" type="SuperLongStringNotNull" />
+        <xsd:element minOccurs="0" name="Size" type="StringNotNull" />
+        <xsd:element minOccurs="0" name="SizeMap" type="StringNotNull" />
+        <xsd:element minOccurs="0" maxOccurs="5" name="SpecialFeatures" type="StringNotNull" />
+        <xsd:element minOccurs="0" name="SpecificationMet" type="StringNotNull" />
+        <xsd:element minOccurs="0" name="StorageInstructions" type="LongStringNotNull" />
+        <xsd:element minOccurs="0" name="TankSize" type="VolumeDimension" />
+        <xsd:element minOccurs="0" name="Voltage" type="xsd:positiveInteger" />
+        <xsd:element minOccurs="0" name="Volume" type="VolumeDimension" />
+        <xsd:element minOccurs="0" name="Warnings" type="SuperLongStringNotNull" />
+        <xsd:element minOccurs="0" name="Wattage" type="xsd:positiveInteger" />
+        <xsd:element minOccurs="0" name="WeightRecommendation" type="WeightRecommendationType" />
+        <xsd:element minOccurs="0" name="WidthSize" type="WidthSizeType" />
+      </xsd:sequence>
+    </xsd:complexType>
+  </xsd:element>
+  <xsd:complexType name="GirthSizeType">
+    <xsd:sequence>
+      <xsd:element minOccurs="0" name="MaximumGirthSize" type="LengthDimension" />
+      <xsd:element minOccurs="0" name="MinimumGirthSize" type="LengthDimension" />
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="NeckSizeType">
+    <xsd:sequence>
+      <xsd:element minOccurs="0" name="MaximumNeckSize" type="LengthDimension" />
+      <xsd:element minOccurs="0" name="MinimumNeckSize" type="LengthDimension" />
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="HeightRecommendationType">
+    <xsd:sequence>
+      <xsd:element minOccurs="0" name="MaximumHeightRecommendation" type="LengthDimension" />
+      <xsd:element minOccurs="0" name="MinimumHeightRecommendation" type="LengthDimension" />
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="WidthSizeType">
+    <xsd:sequence>
+      <xsd:element minOccurs="0" name="MaximumWidthSize" type="LengthDimension" />
+      <xsd:element minOccurs="0" name="MinimumWidthSize" type="LengthDimension" />
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="PetPowerDimension">
+    <xsd:simpleContent>
+      <xsd:extension base="Dimension">
+        <xsd:attribute name="unitOfMeasure" type="PowerUnitOfMeasure" use="required" />
+      </xsd:extension>
+    </xsd:simpleContent>
+  </xsd:complexType>
+</xsd:schema>

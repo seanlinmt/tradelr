@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xsd:schema elementFormDefault="qualified" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <xsd:include schemaLocation="amzn-base.xsd" />
+  <xsd:element name="Wireless">
+    <xsd:complexType>
+      <xsd:sequence>
+        <xsd:element name="ProductType">
+          <xsd:complexType>
+            <xsd:choice>
+              <xsd:element ref="WirelessAccessories" />
+              <xsd:element ref="WirelessDownloads" />
+            </xsd:choice>
+          </xsd:complexType>
+        </xsd:element>
+      </xsd:sequence>
+    </xsd:complexType>
+  </xsd:element>
+  <xsd:element name="WirelessAccessories">
+    <xsd:complexType>
+      <xsd:sequence>
+        <xsd:element minOccurs="0" name="Color" type="StringNotNull" />
+        <xsd:element minOccurs="0" ref="ColorMap" />
+        <xsd:element minOccurs="0" name="AdditionalFeatures" type="LongStringNotNull" />
+        <xsd:element minOccurs="0" name="TalkTime" type="TimeDimension" />
+        <xsd:element minOccurs="0" name="StandbyTime" type="TimeDimension" />
+        <xsd:element minOccurs="0" name="ChargingTime" type="TimeDimension" />
+        <xsd:element minOccurs="0" name="BatteryPower" type="BatteryPowerIntegerDimension" />
+        <xsd:element minOccurs="0" name="Solar" type="xsd:boolean" />
+        <xsd:element minOccurs="0" name="Refillable" type="xsd:boolean" />
+        <xsd:element minOccurs="0" name="Extended" type="xsd:boolean" />
+        <xsd:element minOccurs="0" name="Slim" type="xsd:boolean" />
+        <xsd:element minOccurs="0" name="Auxiliary" type="xsd:boolean" />
+        <xsd:element minOccurs="0" name="BatteryType" type="StringNotNull" />
+        <xsd:element minOccurs="0" name="AntennaType" type="StringNotNull" />
+        <xsd:element minOccurs="0" maxOccurs="18" name="CompatiblePhoneModels" type="StringNotNull" />
+        <xsd:element minOccurs="0" name="ManufacturerName" type="StringNotNull" />
+        <xsd:element minOccurs="0" maxOccurs="5" name="Keywords" type="StringNotNull" />
+        <xsd:element minOccurs="0" name="ItemPackageQuantity" type="xsd:positiveInteger" />
+      </xsd:sequence>
+    </xsd:complexType>
+  </xsd:element>
+  <xsd:element name="WirelessDownloads">
+    <xsd:complexType>
+      <xsd:sequence>
+        <xsd:element minOccurs="0" maxOccurs="18" name="CompatiblePhoneModels" type="StringNotNull" />
+        <xsd:element minOccurs="0" name="ManufacturerName" type="StringNotNull" />
+        <xsd:element minOccurs="0" name="AdditionalFeatures" type="LongStringNotNull" />
+        <xsd:element minOccurs="0" maxOccurs="5" name="Keywords" type="StringNotNull" />
+        <xsd:element minOccurs="0" name="ApplicationVersion" type="StringNotNull" />
+      </xsd:sequence>
+    </xsd:complexType>
+  </xsd:element>
+</xsd:schema>

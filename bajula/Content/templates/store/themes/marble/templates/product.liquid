@@ -1,0 +1,84 @@
+<!-- Main Product Image -->
+<div id="main-product-image">
+  <a href="{{ product.images.first | product_img_url: 'large' }}" class="fancybox"><img src="{{ product.images.first | product_img_url: 'medium' }}" class="reflect" alt="" /></a>
+</div>
+
+<h2 id="product-title">{{ product.title }}</h2>
+<div id="product-purchase">
+  <div class="price">
+    <span id="price-field">{{ product.price | money }}</span>
+  </div>
+  {% if product.available %}
+    <form action="/cart/add" method="post">
+    	<div id="product-variants">
+        {% if product.variants.size == 1 %}
+          <!-- If there is only 1 variant, only show the purchase button -->
+          <input type="hidden" name="id" value="{{ product.variants.first.id }}" id="variant-{{ variant.id }}" />
+        {% else %}
+          <select id="product-select" name="id">
+      		  {% for variant in product.variants %}
+      		    {% if variant.available %}
+          			<option value="{{ variant.id }}" id="variant-{{ variant.id }}">    			
+        			    {{ variant.title | escape }} for {{ variant.price | money }}
+          			</option>
+          		{% else %}
+          		  <option value="{{ variant.id }}" id="variant-{{ variant.id }}" disabled="disabled" class="disabled">    			
+        			    {{ variant.title | escape }} &mdash; SOLD OUT
+          			</option>
+          		{% endif %}
+      			{% endfor %}
+      		</select>
+      	{% endif %}
+    	</div>
+  	  <input type="image" src="{{ 'add-onyx.png' | asset_url }}" name="add" value="add" class="supersleight" id="add-to-cart" />
+    </form>
+  {% else %}
+    <p class="bold-red">This product is temporarily unavailable</p>
+  {% endif %}
+</div>
+
+<div id="product-description">
+  {{ product.description }}
+</div>
+
+{% if product.images.size > 1 %}
+
+<!-- All the other product images -->
+<div id="product-images">
+{% for image in product.images %}
+  {% unless forloop.first %}
+    <div class="small-image">
+	    <a href="{{ image | product_img_url: 'large' }}" class="fancybox"><img src="{{ image | product_img_url: 'small' }}" alt="" /></a>
+    </div>
+  {% endunless %}
+{% endfor %}
+
+<div class="cl"></div>
+  
+</div>
+
+{% endif %}
+
+{% if product.variants.size > 1 %}
+<script type="text/javascript" charset="utf-8">
+  var selectCallback = function(variant, selector) {
+    if (variant && variant.available == true) {
+
+    // selected a valid variant
+    jQuery('#add-to-cart').removeAttr('disabled'); // remove unavailable class from add-to-cart button, and re-enable button
+    jQuery('#price-field').html(Tradelr.formatMoney(variant.price, "{{ shop.currency_symbol}}", {{ shop.currency_decimal_places}}));  // update price field
+    } else {
+    // variant doesn't exist
+    jQuery('#add-to-cart').attr('disabled', 'disabled');      // set add-to-cart button to unavailable class and disable button
+    var message = variant ? "Sold Out" : "Unavailable";
+    jQuery('#price-field').text(message); // update price-field message
+    }
+    };
+
+
+    $(document).ready(function() {
+    new Tradelr.OptionSelectors("product-select", { product: {{ product | json }}, onVariantSelected: selectCallback });
+    });
+
+</script>
+{% endif %}

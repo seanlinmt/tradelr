@@ -1,0 +1,22 @@
+<div id="blog" class="clearfix">
+
+  <h3 class="title">{{ blog.title }} <span class="details">{{ blog.articles.size }} {% if blog.articles.size == 1 %}{{ settings.tr_article }}{% else %}{{ settings.tr_articles }}{% endif %}</span></h3>
+
+  {% paginate blog.articles by settings.pagination_limit %}
+  <div class="articles">
+    {% for article in blog.articles %}
+    <div class="article clearfix{% cycle 'alternate': ' even', ' odd' %}">
+      <a href="{{ article.url }}" class="full clearfix">
+        <span class="date">{{ article.created_at | date: "%b %d" }}</span>
+        <h2 class="title">{{ article.title }}</h2>
+        <div class="details">{{ article.content | strip_html | truncatewords:20 }}</div>
+      </a>
+    </div> <!-- /.article -->
+    {% endfor %}
+  </div> <!-- /.articles -->
+
+  {% include 'pagination' %}
+
+  {% endpaginate %}
+
+</div> <!-- /#blog -->

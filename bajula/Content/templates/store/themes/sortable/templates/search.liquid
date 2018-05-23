@@ -1,0 +1,35 @@
+{% paginate search.results by 12 %}<!-- START HEADING -->
+<div id="heading">
+	<h1>Search Results</h1>
+</div>
+<!-- END HEADING -->{% if search.results.size > 0 %}
+<!-- START RESULTS -->
+<ul id="results" class="clear">{% for item in search.results %}
+	<!-- START RESULT {{ forloop.index }} -->
+	<li{% cycle '', '', ' class="end"' %}>{% if item.default_image %}
+		<!-- START IMAGE -->
+		<div class="image">
+			<div class="align">
+				<div><a href="{{ item.url | within: collections.all }}"><img src="{{ item.default_image | product_img_url: "compact" }}" alt="{{ item.title | escape }}" /></a></div>
+			</div>
+		</div>
+		<!-- END IMAGE -->
+		<h3><a href="{{ item.url | within: collections.all }}">{{ item.title | escape | truncate: 15 }}</a></h3>
+		<h5><a href="{{ item.url | within: collections.all }}">View</a></h5>{% else %}
+		<!-- START DESC -->
+		<div class="desc">
+			<p>{{ item.content | strip_html | strip_newlines | truncate: 115 | highlight: search.terms }}</p>
+		</div>
+		<!-- END DESC -->
+		<h3><a href="{{ item.url }}">{{ item.title | escape | truncate: 15 }}</a></h3>
+		<h5><a href="{{ item.url }}">View</a></h5>{% endif %}
+	</li>
+	<!-- END RESULT {{ forloop.index }} -->{% endfor %}
+</ul>
+<!-- END RESULTS -->{% if paginate.pages > 1 %}
+<!-- START PAGINATE -->
+<div id="paginate">
+	{{ paginate | default_pagination }}
+</div>
+<!-- END PAGINATE -->{% endif %}{% else %}
+<p id="empty">No results for your search.</p>{% endif %}{% endpaginate %}

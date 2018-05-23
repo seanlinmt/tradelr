@@ -1,0 +1,191 @@
+﻿<%@ Master Language="C#" Inherits="System.Web.Mvc.ViewMasterPage<tradelr.Models.BaseViewModel>" %>
+
+<%@ Import Namespace="tradelr.Library" %>
+<%@ Import Namespace="tradelr.Library.Constants" %>
+
+<%@ Import Namespace="tradelr.Models.users" %>
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:fb="http://www.facebook.com/2008/fbml" <%= Model.manifestFile %>>
+<head runat="server">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link rel="icon" href="/Content/img/favicon.png" type="image/png" />
+    <link rel="shortcut icon" href="/Content/img/favicon.png" type="image/png" />
+    <title>
+        <asp:ContentPlaceHolder ID="TitleContent" runat="server" />
+    </title>
+    <link rel="stylesheet" media="screen, print" type="text/css" href="/css/inside?v=1" />
+    <!--[if IE]>
+	<link rel="stylesheet" type="text/css" href="../../Content/css/ie.css" media="screen, print" />
+	<![endif]-->
+    <link href="/Content/css/print.css" rel="stylesheet" type="text/css" media="print" />
+    <script src="/Scripts/jquery-1.7.1.min.js" type="text/javascript"></script>
+    <asp:ContentPlaceHolder ID="HeadContent" runat="server" />
+</head>
+<body>
+    <div id="container">
+        <div id="header">
+            <div class="content">
+                <div class="content_top">
+                    <div class="inline-block mt6">
+                    <div class="logo">
+                        <a href="/"><%= Model.orgName %></a>
+                    </div>
+                    <a title="your site address" class="font_darkgrey" href="http://<%= Model.shopUrl %>" target="_blank"><%= Model.shopUrl %></a>
+                    </div>
+                    <a href="/dashboard/store/settings" title="change store status">
+                    <% if (Model.storeEnabled)
+                       { %>
+                       <span id="store_status" class="ok_post">public store</span>
+                    <%}
+                       else
+                       {%>
+                        <span id="store_status" class="error_post">private store</span>
+                    <%
+                       }%>
+                    </a>
+                    <div id="authentication">
+                        <% if (Model.role.HasFlag(UserRole.CREATOR))
+                           {%>
+                        <a href="http://www.tradelr.com/help" target="_blank">help</a>
+                        <a id="supportlink" href="#">support / feedback</a> 
+                        <%
+                            }%>
+                        <a class="power" href="/logout">logout</a>
+                    </div>
+                    <div class="clear"></div>
+                    
+                </div>
+                <div class="content_bottom">
+                    <ul id='mainnav'>
+                        <li id='navhome'><a href="/dashboard">home</a>
+                        </li>
+                        <%
+                            if (Model.permission.HasFlag(UserPermission.INVENTORY_VIEW))
+                            {%>
+                        <li id='navinventory'><a href="/dashboard/inventory">inventory</a>
+                        <%
+                            if (Model.permission.HasFlag(UserPermission.INVENTORY_ADD))
+                                {%>
+                            <ul>
+                                <li><a href="/dashboard/product/add">new product</a></li>
+                            </ul>
+                            <%
+                                }%></li>
+                        <%    } %>
+                        <li id='navsales'><a href="/dashboard/transactions">transactions</a>
+                        <%
+                            if (Model.permission.HasFlag(UserPermission.INVOICES_ADD | UserPermission.ORDERS_ADD))
+                                {%>
+                            <ul>
+                            <%
+                            if (Model.permission.HasFlag(UserPermission.INVOICES_ADD))
+                                {%>
+                                <li><a href="/dashboard/invoices/add">new invoice</a></li>
+                                <%
+                                }%>
+                                <%
+                            if (Model.permission.HasFlag(UserPermission.ORDERS_ADD))
+                                {%>
+                                <li><a href="/dashboard/orders/add">new order</a></li>
+                            <%
+                                }%>
+                            </ul>
+                            <%
+                                }%>
+                            </li>
+                        <%  if (Model.permission.HasFlag(UserPermission.CONTACTS_VIEW))
+                            {%>
+                        <li id='navcontact'><a href="/dashboard/contacts">contacts</a>
+                        <%
+                            if (Model.permission.HasFlag(UserPermission.CONTACTS_ADD))
+                                {%>
+                            <ul>
+                                <li><a href="/dashboard/contacts/add">new</a></li>
+                            </ul>
+                            <%
+                                }%></li>
+                        <%    } %>
+<%
+                            if (Model.permission.HasFlag(UserPermission.NETWORK_STORE))
+                                {%>
+                        <li id='navstore'><a href="/dashboard/store/settings">store</a>
+                            <ul>
+                                <li><a href="/dashboard/marketing">marketing</a></li>
+                                <li><a href="/dashboard/themes">themes</a></li>
+                            </ul>
+                        </li>
+                        <li id='navshipping'><a href="/dashboard/shipping">shipping</a>
+                        </li>
+<%
+                                }%>
+                        <li id='navaccount'><a href="/dashboard/account">account</a>
+                            <%
+                                if (Model.permission.HasFlag(UserPermission.NETWORK_SETTINGS) || Model.role.HasFlag(UserRole.CREATOR))
+                                {%>
+                            <ul>
+                            <%
+                            if (Model.permission.HasFlag(UserPermission.NETWORK_SETTINGS))
+                                {%>
+                                <li><a id="snnetworks" href="/dashboard/networks">networks</a></li>
+                                <%
+                                }%>
+                                <%
+                                if (Model.role.HasFlag(UserRole.CREATOR))
+                                {%>
+                                <li class="custom-plan"><a id="snacc" href="/dashboard/account/plan">plans</a></li>
+                            <%
+                                }%>
+                            </ul>
+                            <%
+                                }%>
+                        </li>
+                    </ul>
+                    <div class="fr"><a class="font_black" href="/"><img src="/Content/img/cart.png" /> view store</a></div>
+                     <div class="clear"></div>
+                </div>
+            </div>
+        </div>
+        <div id="main">
+            <script src="/jsapi/core" type="text/javascript"></script>
+            <asp:ContentPlaceHolder ID="MainContent" runat="server" />
+        </div>
+    </div>
+    <script src="/jsapi/extend" type="text/javascript"></script>
+    <asp:ContentPlaceHolder ID="AdditionalJS" runat="server" />
+    <%= Html.Hidden("notification_scripts", Model.notifications)%>
+    <script type="text/javascript">
+        if ($('#notification_scripts').val() != '') {
+            var notifys = $.evalJSON($('#notification_scripts').val());
+            $.each(notifys, function (i, v) {
+                var stick = this.sticky;
+                var msg = this.message;
+                $.jGrowl(msg, { sticky: stick });
+            });
+        }
+        $(document).ready(function () {
+            $('#supportlink,#networkContact').click(function () {
+                dialogBox_open('/support/message', 600);
+                return false;
+            });
+        });
+    </script>
+    <% if (!GeneralConstants.DEBUG)
+       {%>
+    <script type="text/javascript">
+        window.onload = function () { load_analytics("UA-12041588-1"); };
+    </script>
+    <%}%>
+    <% if (Model.role.HasFlag(UserRole.CREATOR))
+       { %>
+       <script type="text/javascript">
+           var uvOptions = {};
+           (function () {
+               var uv = document.createElement('script'); uv.type = 'text/javascript'; uv.async = true;
+               uv.src = ('https:' == document.location.protocol ? 'https://' : 'http://') + 'widget.uservoice.com/6DxYPFwy797TgDENhDaLw.js';
+               var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(uv, s);
+           })();
+</script>
+    <% } %>
+</body>
+</html>

@@ -1,0 +1,40 @@
+{% paginate search.results by 12 %}{% if search.results == empty %}<h1>No Results</h1>
+<p id="empty">Your search for "{{ search.terms | escape | downcase }}" did not yield any results.</p>{% else %}<!-- START EXCERPT -->
+<div id="excerpt">
+	<h1>Results for "{{ search.terms | escape | downcase }}"</h1>
+</div>
+<!-- END EXCERPT -->
+<!-- START RESULTS -->
+<ul id="results" class="clear">{% for item in search.results %}
+	<!-- START RESULT {{ forloop.index }} -->
+	<li{% cycle '', '', ' class="end"' %}>{% if item.default_image %}
+		<!-- START IMAGE -->
+		<div class="image">
+			<div class="overflow">
+				<div class="align">
+					<h6>{{ item.price | money }}</h6>
+					<div><a href="{{ item.url | within: collections.all }}"><img src="{{ item.default_image | product_img_url: "medium" }}" alt="{{ item.title | escape }}" /></a></div>
+				</div>
+			</div>
+		</div>
+		<!-- END IMAGE -->
+		<p><a href="{{ item.url | within: collections.all }}">{{ item.title | escape | truncate: 25 }}</a></p>{% else %}
+		<!-- START DESC -->
+		<div class="desc">
+			<div class="bg">
+				<p>{{ item.content | strip_html | strip_newlines | truncate: 200 | highlight: search.terms }}</p>
+			</div>
+		</div>
+		<!-- END DESC -->
+		<p><a href="{{ item.url }}">{{ item.title | escape | truncate: 25 }}</a></p>{% endif %}
+	</li>
+	<!-- END RESULT {{ forloop.index }} -->{% endfor %}
+</ul>
+<!-- END RESULTS -->{% if paginate.pages > 1 %}
+<!-- START PAGINATE -->
+<div id="paginate">
+	<div>
+		{{ paginate | default_pagination }}
+	</div>
+</div>
+<!-- END PAGINATE -->{% endif %}{% endif %}{% endpaginate %}

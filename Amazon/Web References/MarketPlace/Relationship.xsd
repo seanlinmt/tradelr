@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xsd:schema elementFormDefault="qualified" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <xsd:include schemaLocation="amzn-base.xsd" />
+  <xsd:element name="Relationship">
+    <xsd:complexType>
+      <xsd:sequence>
+        <xsd:element name="ParentSKU" type="SKUType" />
+        <xsd:element maxOccurs="unbounded" name="Relation">
+          <xsd:complexType>
+            <xsd:sequence>
+              <xsd:element ref="SKU" />
+              <xsd:element name="Type">
+                <xsd:simpleType>
+                  <xsd:restriction base="xsd:string">
+                    <xsd:enumeration value="Variation" />
+                    <xsd:enumeration value="DisplaySet" />
+                    <xsd:enumeration value="Collection" />
+                    <xsd:enumeration value="Accessory" />
+                    <xsd:enumeration value="Customized" />
+                    <xsd:enumeration value="Part" />
+                    <xsd:enumeration value="Complements" />
+                    <xsd:enumeration value="Piece" />
+                    <xsd:enumeration value="Necessary" />
+                    <xsd:enumeration value="ReplacementPart" />
+                    <xsd:enumeration value="Similar" />
+                    <xsd:enumeration value="Episode" />
+                    <xsd:enumeration value="Season" />
+                  </xsd:restriction>
+                </xsd:simpleType>
+              </xsd:element>
+            </xsd:sequence>
+          </xsd:complexType>
+        </xsd:element>
+      </xsd:sequence>
+    </xsd:complexType>
+  </xsd:element>
+</xsd:schema>

@@ -1,0 +1,49 @@
+{% if collections.frontpage.products.size > 0 %}<!-- START SHOWCASE -->
+<div id="showcase" class="clear">{% for product in collections.frontpage.products limit: 1 %}
+	<!-- START DETAILS -->
+	<div id="details">
+		<h3>{{ product.title | escape }}</h3>
+		<h4>{{ product.price | money }}{% if product.price_varies %} - {{ product.price_max | money }}{% endif %}</h4>
+		<p>{{ product.description | strip_html | strip_newlines | truncate: 215 }}</p>
+		<h5 class="clear"><a href="{{ product.url | within: collections.all }}">Details</a></h5>{% if settings.retweet == "enabled" %}
+		<!-- START RETWEET -->
+		<div id="retweet">
+			<script type="text/javascript">tweetmeme_source = "{{ settings.retweet }}"; tweetmeme_service = "bit.ly";</script>
+			<script type="text/javascript" src="http://tweetmeme.com/i/scripts/button.js"></script>
+		</div>
+		<!-- END RETWEET -->{% endif %}
+	</div>
+	<!-- END DETAILS -->
+	<!-- START IMAGE -->
+	<div id="image">
+		<a href="{{ product.url | within: collections.all }}"><img src="{{ product.images[0] | product_img_url: "large" }}" alt="{{ product.title | escape }}" /></a>
+	</div>
+	<!-- END IMAGE -->{% endfor %}
+</div>
+<!-- END SHOWCASE -->{% endif %}{% if pages.frontpage.content.size > 0 %}
+<!-- START EXCERPT -->
+<div id="excerpt">
+	<div>
+		{{ pages.frontpage.content }}
+	</div>
+</div>
+<!-- END EXCERPT -->{% endif %}{% if collections.frontpage.products.size > 1 %}
+<!-- START PRODUCTS -->
+<ul id="products" class="clear">{% for product in collections.frontpage.products offset: 1 %}
+	<!-- START PRODUCT {{ forloop.index }} -->
+	<li{% cycle '', '', ' class="end"' %}>
+		<!-- START IMAGE -->
+		<div class="image">
+			<div class="overflow">
+				<div class="align">
+					<h6>{{ product.price | money }}</h6>
+					<div><a href="{{ product.url | within: collections.all }}"><img src="{{ product.images[0] | product_img_url: "medium" }}" alt="{{ product.title | escape }}" /></a></div>
+				</div>
+			</div>
+		</div>
+		<!-- END IMAGE -->
+		<p><a href="{{ product.url | within: collections.all }}">{{ product.title | escape | truncate: 25 }}</a></p>
+	</li>
+	<!-- END PRODUCT {{ forloop.index }} -->{% endfor %}
+</ul>
+<!-- END PRODUCTS -->{% endif %}

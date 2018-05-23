@@ -1,0 +1,160 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{A5F62960-F2CC-4299-B488-83D239BE5E3D}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Etsy</RootNamespace>
+    <AssemblyName>Etsy</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Constants.cs" />
+    <Compile Include="EtsyService.cs" />
+    <Compile Include="Identifier.cs" />
+    <Compile Include="Parameters.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Resources\BillCharge.cs" />
+    <Compile Include="Resources\BillPayment.cs" />
+    <Compile Include="Resources\Country.cs" />
+    <Compile Include="Resources\FavoriteListing.cs" />
+    <Compile Include="Resources\FavoriteUser.cs" />
+    <Compile Include="Resources\FeaturedListing.cs" />
+    <Compile Include="Resources\FeaturedListingPicker.cs" />
+    <Compile Include="Resources\FeaturedUser.cs" />
+    <Compile Include="Resources\Feedback.cs" />
+    <Compile Include="Resources\Listing.cs" />
+    <Compile Include="Resources\ListingImage.cs" />
+    <Compile Include="Resources\ListingPayment.cs" />
+    <Compile Include="Resources\Order.cs" />
+    <Compile Include="Resources\PaymentTemplate.cs" />
+    <Compile Include="Resources\Receipt.cs" />
+    <Compile Include="Resources\Region.cs" />
+    <Compile Include="Resources\ShippingInfo.cs" />
+    <Compile Include="Resources\Shop.cs" />
+    <Compile Include="Resources\ShopBanner.cs" />
+    <Compile Include="Resources\ShopSection.cs" />
+    <Compile Include="Resources\FeedbackInfo.cs" />
+    <Compile Include="Resources\ShippingTemplate.cs" />
+    <Compile Include="Resources\ShippingTemplateEntry.cs" />
+    <Compile Include="Resources\Category.cs" />
+    <Compile Include="Resources\Tag.cs" />
+    <Compile Include="Resources\Transaction.cs" />
+    <Compile Include="Resources\Treasury.cs" />
+    <Compile Include="Resources\TreasuryCounts.cs" />
+    <Compile Include="Resources\TreasuryListing.cs" />
+    <Compile Include="Resources\TreasuryListingData.cs" />
+    <Compile Include="Resources\User.cs" />
+    <Compile Include="Resources\UserAddress.cs" />
+    <Compile Include="Resources\UserProfile.cs" />
+    <Compile Include="ResponseData.cs" />
+    <Compile Include="RestBase.cs" />
+    <Compile Include="Services\Taxonomy.cs" />
+    <Compile Include="Services\Misc.cs" />
+    <Compile Include="Services\Listing.cs" />
+    <Compile Include="Services\Shop.cs" />
+    <Compile Include="Services\User.cs" />
+    <Compile Include="SessionInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\clearpixels.git\clearpixels.Logging\clearpixels.Logging.csproj">
+      <Project>{c5eaea68-6654-4311-951c-577f8924640f}</Project>
+      <Name>clearpixels.Logging</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\tradelr.Library\tradelr.Library.csproj">
+      <Project>{B03BA251-706A-4691-9E0E-FBB746052E81}</Project>
+      <Name>tradelr.Library</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\tradelr.Time\tradelr.Time.csproj">
+      <Project>{A9729436-5786-4024-B522-8624522991B7}</Project>
+      <Name>tradelr.Time</Name>
+    </ProjectReference>
+    <ProjectReference Include="X:\gdata-new\clients\cs\src\core\Core Client.csproj">
+      <Project>{b6f6d938-0d45-42ba-8a67-55d92ef03995}</Project>
+      <Name>Core Client</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include=".NETFramework,Version=v4.0">
+      <Visible>False</Visible>
+      <ProductName>Microsoft .NET Framework 4 %28x86 and x64%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1 Client Profile</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Windows.Installer.3.1">
+      <Visible>False</Visible>
+      <ProductName>Windows Installer 3.1</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

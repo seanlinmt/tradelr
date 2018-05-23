@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xsd:schema elementFormDefault="qualified" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <xsd:include schemaLocation="amzn-base.xsd" />
+  <xsd:element name="ProductImage">
+    <xsd:complexType>
+      <xsd:sequence>
+        <xsd:element ref="SKU" />
+        <xsd:element name="ImageType">
+          <xsd:simpleType>
+            <xsd:restriction base="xsd:string">
+              <xsd:enumeration value="Main" />
+              <xsd:enumeration value="Swatch" />
+              <xsd:enumeration value="PT1" />
+              <xsd:enumeration value="PT2" />
+              <xsd:enumeration value="PT3" />
+              <xsd:enumeration value="PT4" />
+              <xsd:enumeration value="PT5" />
+              <xsd:enumeration value="PT6" />
+              <xsd:enumeration value="PT7" />
+              <xsd:enumeration value="PT8" />
+              <xsd:enumeration value="Search" />
+            </xsd:restriction>
+          </xsd:simpleType>
+        </xsd:element>
+        <xsd:element minOccurs="0" name="ImageLocation" type="xsd:anyURI" />
+      </xsd:sequence>
+    </xsd:complexType>
+  </xsd:element>
+</xsd:schema>

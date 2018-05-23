@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xsd:schema elementFormDefault="qualified" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <xsd:include schemaLocation="amzn-base.xsd" />
+  <xsd:include schemaLocation="Inventory.xsd" />
+  <xsd:include schemaLocation="Override.xsd" />
+  <xsd:include schemaLocation="Price.xsd" />
+  <xsd:include schemaLocation="Product.xsd" />
+  <xsd:include schemaLocation="ProductImage.xsd" />
+  <xsd:include schemaLocation="Relationship.xsd" />
+  <xsd:element name="Listings">
+    <xsd:complexType>
+      <xsd:sequence>
+        <xsd:element minOccurs="0" ref="Product" />
+        <xsd:element minOccurs="0" ref="Relationship" />
+        <xsd:element minOccurs="0" maxOccurs="10" ref="ProductImage" />
+        <xsd:element minOccurs="0" ref="Price" />
+        <xsd:element minOccurs="0" ref="Inventory" />
+        <xsd:element minOccurs="0" ref="Override" />
+      </xsd:sequence>
+    </xsd:complexType>
+  </xsd:element>
+</xsd:schema>

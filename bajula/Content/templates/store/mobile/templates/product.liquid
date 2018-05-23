@@ -1,0 +1,117 @@
+<div id="product">
+
+  <div style="background:#fff; overflow:hidden; {% if product.images.size == 1 %}border-bottom:1px solid #ddd; -webkit-box-shadow:0px 1px 0px #fff;{% endif %}">
+    <div class="swipe images clearfix" style="width:{{ product.images.size | times:480 }}px;">
+      {% for image in product.images %}
+      <div class="image">
+        <a href="{{ image | product_img_url: 'large'}}" class="preview"><img src="{{ image | product_img_url: 'large'}}" alt="{{ product.title | escape }}" /></a>
+      </div>
+      {% endfor %}
+    </div> <!-- /.images -->
+  </div>
+  {% if product.images.size > 1 %}
+  <div class="swipe-controls" style="border-bottom:1px solid #ddd; -webkit-box-shadow:0px 1px 0px #fff;">
+    <ul>
+      {% for image in product.images %}
+      <li{% if forloop.first %} class="active"{% endif %}>{{ forloop.index }}</li>
+      {% endfor %}
+    </ul>
+  </div>
+  {% endif %}
+
+  <div class="details">
+    <div class="description p">
+      <h2 class="title">{{ product.title }}</h2>
+      {{ product.description}}
+    </div>
+
+
+    <h3 class="title">{{ settings.tr_purchase }} <span class="details price" id="price-preview">{{ product.price | money }}{% if product.price < product.selling_price %}<del> {{ product.selling_price | money }}</del>{% endif %}</span></h3>
+
+    <div class="p">
+
+      <form action="/cart/add" method="post" class="variants clearfix">
+        {% if product.options.size > 1 %}
+        <div class="select clearfix">
+          <select id="product-select" name='id'>
+            {% for variant in product.variants %}
+            <option value="{{ variant.id }}">{{ variant.title }} - {{ variant.price | money }}</option>
+            {% endfor %}
+          </select>
+        </div> <!-- end multiple options -->
+        {% elsif product.options.size == 1 and product.variants.size > 1 %}
+        <div class="select clearfix">
+          <label>{{ product.options[0] }}</label>
+          <select id="product-select" name='id'>
+            {% for variant in product.variants %}
+            <option value="{{ variant.id }}">{{ variant.title }} - {{ variant.price | money }}</option>
+            {% endfor %}
+          </select>
+        </div>
+        {% else %} <!-- end multiple variants -->
+        <div class="select" style="display:none;">
+          <input type="hidden" name="id" value="{{ product.variants.first.id }}" />
+          <input type="radio" name="{{ product.handle }}" value="{{ product.variants.first.title }}" checked="checked" /> {{ product.variants.first.title }}
+        </div>
+        {% endif %} <!-- end single variant -->
+        <div class="purchase clearfix">
+          {% if product.variants.size != 1 %}
+          {% endif %}
+          {% if product.variants.first.available == true && product.variants.size == 1 %}
+          <span><input type="submit" name="add" id="add-to-cart" value="{{ settings.tr_add_to_cart }}" class="cart btn" /></span>
+          {% else %}
+          <span><input type="submit" name="add" id="add-to-cart" value="{{ settings.tr_sold_out }}" disabled="disabled" class="cart btn disabled" /></span>
+          {% endif %}
+        </div> <!-- /.purchase -->
+      </form> <!-- /.variants -->
+
+    </div> <!-- /.details -->
+
+    <h3 class="title">{{ settings.tr_browse_similar }}</h3>
+
+    {% if collection %}
+    <div class="products">
+      <h3 class="title"><a href="{{ collection.url }}">{{ settings.tr_more_from_collection }} <span class="details">{{ settings.tr_view_all }}</span></a></h3>
+      {% for product in collection.products limit:4 %}
+      {% include 'product-loop' %}
+      {% endfor %}
+    </div>
+    {% endif %}
+
+  </div>
+
+</div> <!-- /#product -->
+
+<script type="text/javascript">
+// <![CDATA[  
+var selectCallback = function(variant, selector) {
+  if (variant && variant.available == true) {
+    // selected a valid variant
+    jQuery('#add-to-cart').removeClass('disabled').removeAttr('disabled'); // remove unavailable class from add-to-cart button, and re-enable button
+  } else {
+    // variant doesn't exist
+    jQuery('#add-to-cart').addClass('disabled').attr('disabled', 'disabled');      // set add-to-cart button to unavailable class and disable button
+    var message = variant ? "{{ settings.tr_sold_out }}" : "{{ settings.tr_unavailable }}";    
+    jQuery('#product .variants .price').text(message); // update price-field message
+  }
+};
+
+// initialize multi selector for product
+jQuery(function() {
+  {% if product.variants.size > 1 or product.options.size > 1 %}
+  new Tradelr.OptionSelectors("product-select", { product: {{ product | json }}, onVariantSelected: selectCallback });
+  
+  {% assign found_one_in_stock = false %}
+  {% for variant in product.variants %}
+    {% if variant.available and found_one_in_stock == false %}
+      {% assign found_one_in_stock = true %}
+      {% for option in product.options %}
+        jQuery('#product-select-option-' + {{ forloop.index0 }}).val({{ variant.options[forloop.index0] | json }}).trigger('change');
+      {% endfor %}
+    {% endif %}
+  {% endfor %}
+  
+  {% endif %}
+});
+// ]]>
+</script>

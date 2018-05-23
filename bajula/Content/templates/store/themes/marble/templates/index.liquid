@@ -1,0 +1,95 @@
+{% assign product = collections.frontpage.products.first %}
+
+{% if product.handle == "tradelr-t-shirt" %}
+<div class="box">
+  <div>
+    <h3 class="alt">Welcome to Tradelr</h3>
+
+    <p>Congratulations to your new store!</p>
+
+    <p style="margin-bottom: 0">We created this following product for you to show what a product in Tradelr looks like.</p>
+    <div style="position: relative; bottom: 20px"><img src="{{ product.images.first | product_img_url: 'icon' }}" class="small-image" alt="" style="position: relative; top: 20px;" /> {{ product.title | link_to: product.url }}</div>
+    
+
+    <p>The text you see here will disappear as soon as you remove this example product. Once your shop is running, this would make a great space for ongoing promotions or displaying your main categories.</p>
+  </div>
+</div>
+{% endif %}
+
+
+<h2 class="light">Featured Products</h2>
+
+{% if collections.frontpage.products.size > 0 %}
+
+<div class="big-product">
+
+  <div class="product-image">
+    <a href="{{ product.url | within: collections.frontpage }}" title="{{ product.title | escape }} &mdash; {{ product.description | strip_html | truncate: 50 | escape }}"><img src="{{ product.images.first | product_img_url: 'medium' }}" alt="{{ product.title | escape }}" /></a>
+  </div>
+  
+  <div class="product-info">
+    <h3 class="title"><a href="{{ product.url | within: collections.frontpage }}">{{ product.title }}</a></h3>
+    
+
+    <p class="description">{{ product.description | strip_html | truncatewords: 40 | escape_html }}</p>
+
+    <form action="/cart/add" method="post">
+      {% if product.variants.size == 1 %}
+        <!-- If there is only 1 variant, only show the purchase button -->
+        <input type="hidden" name="id" value="{{ product.variants.first.id }}" id="variant-{{ product.variants.first.id }}" />
+      {% else %}
+        <select name="id">
+    		  {% for variant in product.variants %}
+    		    {% if variant.available %}
+        			<option value="{{ variant.id }}" id="variant-{{ variant.id }}">    			
+      			    {{ variant.title | escape }} for {{ variant.price | money }}
+        			</option>
+        		{% else %}
+        		  <option value="{{ variant.id }}" id="variant-{{ variant.id }}" disabled="disabled" class="disabled">    			
+      			    {{ variant.title | escape }} &mdash; SOLD OUT
+        			</option>
+        		{% endif %}
+    			{% endfor %}
+    		</select>
+    	{% endif %}
+
+      <input type="submit" href="{{ product.url }}" class="button" name="add" value="add to cart" />
+      <a href="{{ product.url | within: collections.frontpage }}" class="button">details</a>
+    </form>
+
+    <p class="tags alt">
+      {{ product.tags | join: ', ' }}
+    </p>
+
+  </div>
+  
+</div>
+
+<table id="collection" cellpadding="0" cellspacing="0">
+
+	{% tablerow product in collections.frontpage.products cols: 2, limit: 10, offset: 1 %}      
+    
+		<div class="product-image">
+			<a href="{{ product.url | within: collection }}" title="{{ product.title | escape }} &mdash; {{ product.description | strip_html | truncate: 50 | escape }}"><img src="{{ product.images.first | product_img_url: 'small' }}" alt="{{ product.title | escape }}" /></a>
+		</div>
+		<div class="product-info">
+			<h4 class="title"><a href="{{ product.url | within: collection }}">{{ product.title | truncate: 30 }}</a></h4>
+			<p class="price">
+			  {{ product.price | money }}
+			  {% if product.price_varies %}
+          - {{ product.price_max | money }}
+        {% endif %}
+      </p>
+      <p class="details">
+        <a href="{{ product.url }}" class="button">details</a>
+      </p>
+		</div>
+	{% endtablerow %}
+
+</table>
+
+{% else %}
+
+ <p class="box">You have no featured products.<br />Create a collection with the handle <em class="alt">FRONTPAGE</em> for products you want to show up here.</p>
+
+{% endif %}

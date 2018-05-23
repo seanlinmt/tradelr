@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<files>
+  <script src='i18n/grid.locale-en.js'></script>
+  <script src='debug/grid.base.js'></script>
+  <script src='debug/grid.common.js'></script>
+  <script src='debug/grid.formedit.js'></script>
+  <script src='debug/grid.inlinedit.js'></script>
+  <script src='debug/grid.celledit.js'></script>
+  <script src='debug/grid.subgrid.js'></script>
+  <script src='debug/grid.treegrid.js'></script>
+  <script src='debug/grid.custom.js'></script>
+  <script src='debug/grid.postext.js'></script>
+  <script src='debug/grid.tbltogrid.js'></script>
+  <script src='debug/grid.setcolumns.js'></script>
+  <script src='debug/grid.import.js'></script>
+  <script src='debug/jquery.fmatter.js'></script>
+  <script src='debug/JsonXml.js'></script>
+  <script src='debug/jquery.searchFilter.js'></script>
+</files>

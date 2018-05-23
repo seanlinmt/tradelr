@@ -1,0 +1,83 @@
+<div id="product-left">
+	<h2>{{ product.title }}{% unless product.price_varies %} <span>{{ product.price | money }}</span>{% endunless %}</h2>
+	<div class="description">{{ product.description }}</div>
+	<div id="product-select">
+		<form action="/cart/add" method="post" name="cartadd">
+
+  			{% if product.available %}
+
+  			<div id="product-variants">
+
+  			{% if product.variants.size == 1 and product.variants.first.title contains 'Default' %}
+  			
+  			<input type="hidden" name="id" value="{{ product.variants.first.id }}" />
+  			
+  			{% else %}
+	
+          <select id="variant-select" name='id'>
+            {% for variant in product.variants %}
+              {% if variant.available %}
+                <option value="{{ variant.id }}">{{ variant.title }}</option>
+              {% else %}
+                <option value="{{ variant.id }}" disabled="disabled">{{ variant.title }} - SOLD OUT</option>
+              {% endif %}
+            {% endfor %}
+          </select>
+
+  			{% endif %}
+
+  			</div>      			
+
+  			<div class="buy">
+                             <span id="price-field">{% if product.variants.size == 1 and product.variants.first.title contains 'Default' %}{{ product.price | money_with_currency }}{% endif %}</span>
+  			     <input type="submit" name="add" value="ADD TO CART" id="add-cart">
+  			</div>
+
+			{% else %}
+			  <h6>TEMPORARILY UNAVAILABLE</h6>
+			{% endif %}
+		</form>
+	</div>{% if collection %}
+	<div id="navigate-collection">
+		<ul>{% if collection.previous_product %}
+			<li id="back">{{ 'PREV' | link_to: collection.previous_product }} <span>&#124;</span> </li>{% endif %}
+			<li><a href="/collections/{{ collection.handle }}">{{ collection.title | upcase }}</a></li>{% if collection.next_product %}
+			<li id="forward"> <span>&#124;</span> {{ 'NEXT' | link_to: collection.next_product }}</li>{% endif %}
+		</ul>
+	</div>{% endif %}
+</div>
+<div id="product-right">{% for image in product.images limit: 1 %}
+	<div id="product-image">
+		<img src="{{ image | product_img_url: 'large' }}" alt="{{ product.title | escape }}" />
+	</div>{% endfor %}
+	<div id="thumbs">{% for image in product.images %}
+		<a href="{{ image | product_img_url: 'grande' }}" rel="lightbox[images]" title="{{ product.title }}"{% if forloop.first %} class="show"{% endif %}>{{ forloop.index }}</a>{% endfor %}
+	</div>
+</div>
+
+{% if product.variants.size == 1 and product.variants.first.title contains 'Default' %}
+{% else %}
+
+<script type="text/javascript">
+// <![CDATA[  
+var selectCallback = function(variant, selector) {
+  if (variant && variant.available == true) {
+    // selected a valid variant
+    jQuery('#add-cart').removeClass('disabled').removeAttr('disabled'); // remove unavailable class from add-to-cart button, and re-enable button
+    jQuery('#price-field').html(Tradelr.formatMoney(variant.price, "{{ shop.currency_symbol}}", {{ shop.currency_decimal_places}}));  // update price field
+  } else {
+    // variant doesn't exist
+    jQuery('#add-cart').addClass('disabled').attr('disabled', 'disabled');      // set add-to-cart button to unavailable class and disable button
+    var message = variant ? "Sold Out" : "Unavailable";    
+    jQuery('#price-field').text(message); // update price-field message
+  }
+};
+
+// initialize multi selector for product
+jQuery(function() {
+  new Tradelr.OptionSelectors("variant-select", { product: {{ product | json }}, onVariantSelected: selectCallback });
+});
+// ]]>
+</script>
+
+{% endif %}

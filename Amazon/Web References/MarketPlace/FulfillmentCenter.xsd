@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xsd:schema elementFormDefault="qualified" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <xsd:include schemaLocation="amzn-base.xsd" />
+  <xsd:element name="FulfillmentCenter">
+    <xsd:complexType>
+      <xsd:sequence>
+        <xsd:element ref="FulfillmentCenterID" />
+        <xsd:element name="SupportsInStorePickup" type="xsd:boolean" />
+        <xsd:element name="OperatingHours">
+          <xsd:complexType>
+            <xsd:sequence>
+              <xsd:element minOccurs="0" name="Monday" type="OperatingHoursBase" />
+              <xsd:element minOccurs="0" name="Tuesday" type="OperatingHoursBase" />
+              <xsd:element minOccurs="0" name="Wednesday" type="OperatingHoursBase" />
+              <xsd:element minOccurs="0" name="Thursday" type="OperatingHoursBase" />
+              <xsd:element minOccurs="0" name="Friday" type="OperatingHoursBase" />
+              <xsd:element minOccurs="0" name="Saturday" type="OperatingHoursBase" />
+              <xsd:element minOccurs="0" name="Sunday" type="OperatingHoursBase" />
+            </xsd:sequence>
+          </xsd:complexType>
+        </xsd:element>
+      </xsd:sequence>
+    </xsd:complexType>
+  </xsd:element>
+  <xsd:complexType name="OperatingHoursBase">
+    <xsd:sequence>
+      <xsd:element name="Open" type="xsd:time" />
+      <xsd:element name="Close" type="xsd:time" />
+    </xsd:sequence>
+  </xsd:complexType>
+</xsd:schema>

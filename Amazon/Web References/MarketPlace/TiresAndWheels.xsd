@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xsd:schema elementFormDefault="qualified" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <xsd:include schemaLocation="amzn-base.xsd" />
+  <xsd:element name="TiresAndWheels">
+    <xsd:complexType>
+      <xsd:sequence>
+        <xsd:element name="ProductType">
+          <xsd:complexType>
+            <xsd:choice>
+              <xsd:element ref="Tires" />
+              <xsd:element ref="Wheels" />
+            </xsd:choice>
+          </xsd:complexType>
+        </xsd:element>
+      </xsd:sequence>
+    </xsd:complexType>
+  </xsd:element>
+  <xsd:element name="Tires">
+    <xsd:complexType>
+      <xsd:sequence>
+        <xsd:element minOccurs="0" name="VehicleServiceType">
+          <xsd:simpleType>
+            <xsd:restriction base="xsd:string">
+              <xsd:maxLength value="5" />
+            </xsd:restriction>
+          </xsd:simpleType>
+        </xsd:element>
+        <xsd:element minOccurs="0" name="ConstructionType">
+          <xsd:simpleType>
+            <xsd:restriction base="xsd:string">
+              <xsd:enumeration value="B" />
+              <xsd:enumeration value="D" />
+              <xsd:enumeration value="R" />
+            </xsd:restriction>
+          </xsd:simpleType>
+        </xsd:element>
+        <xsd:element minOccurs="0" name="LoadIndex" type="xsd:positiveInteger" />
+        <xsd:element minOccurs="0" name="SpeedRating">
+          <xsd:simpleType>
+            <xsd:restriction base="xsd:string">
+              <xsd:enumeration value="A1" />
+              <xsd:enumeration value="A2" />
+              <xsd:enumeration value="A3" />
+              <xsd:enumeration value="A4" />
+              <xsd:enumeration value="A5" />
+              <xsd:enumeration value="A6" />
+              <xsd:enumeration value="A7" />
+              <xsd:enumeration value="A8" />
+              <xsd:enumeration value="B" />
+              <xsd:enumeration value="C" />
+              <xsd:enumeration value="D" />
+              <xsd:enumeration value="E" />
+              <xsd:enumeration value="F" />
+              <xsd:enumeration value="G" />
+              <xsd:enumeration value="J" />
+              <xsd:enumeration value="K" />
+              <xsd:enumeration value="L" />
+              <xsd:enumeration value="M" />
+              <xsd:enumeration value="N" />
+              <xsd:enumeration value="P" />
+              <xsd:enumeration value="Q" />
+              <xsd:enumeration value="R" />
+              <xsd:enumeration value="S" />
+              <xsd:enumeration value="T" />
+              <xsd:enumeration value="U" />
+              <xsd:enumeration value="H" />
+              <xsd:enumeration value="V" />
+              <xsd:enumeration value="Z" />
+              <xsd:enumeration value="W" />
+              <xsd:enumeration value="Y" />
+              <xsd:enumeration value="SR" />
+              <xsd:enumeration value="HR" />
+              <xsd:enumeration value="VR" />
+              <xsd:enumeration value="ZR" />
+              <xsd:enumeration value="Other" />
+            </xsd:restriction>
+          </xsd:simpleType>
+        </xsd:element>
+        <xsd:element minOccurs="0" name="UTQGRating" type="String" />
+        <xsd:element minOccurs="0" name="SpecialFeatures">
+          <xsd:simpleType>
+            <xsd:restriction base="xsd:string">
+              <xsd:enumeration value="run_flat" />
+            </xsd:restriction>
+          </xsd:simpleType>
+        </xsd:element>
+        <xsd:element minOccurs="0" name="ModelName" type="FortyStringNotNull" />
+        <xsd:element minOccurs="0" name="RimDiameter" type="LengthDimension" />
+        <xsd:element minOccurs="0" name="SectionWidth">
+          <xsd:simpleType>
+            <xsd:restriction base="xsd:string">
+              <xsd:maxLength value="5" />
+            </xsd:restriction>
+          </xsd:simpleType>
+        </xsd:element>
+        <xsd:element minOccurs="0" name="TireAspectRatio" type="LengthDimension" />
+        <xsd:element minOccurs="0" name="TreadDepth" type="LengthDimension" />
+        <xsd:element minOccurs="0" name="ItemPackageQuantity" type="xsd:positiveInteger" />
+      </xsd:sequence>
+    </xsd:complexType>
+  </xsd:element>
+  <xsd:element name="Wheels">
+    <xsd:complexType>
+      <xsd:sequence>
+        <xsd:element maxOccurs="2" name="PitchCircleDiameter" type="LengthDimension" />
+        <xsd:element minOccurs="0" name="ConstructionType">
+          <xsd:simpleType>
+            <xsd:restriction base="xsd:string">
+              <xsd:enumeration value="1-piece" />
+              <xsd:enumeration value="2-piece" />
+              <xsd:enumeration value="3-piece" />
+            </xsd:restriction>
+          </xsd:simpleType>
+        </xsd:element>
+        <xsd:element minOccurs="0" ref="ColorSpecification" />
+        <xsd:element minOccurs="0" name="ExteriorFinish" type="String" />
+        <xsd:element minOccurs="0" name="ExteriorFinishMap">
+          <xsd:simpleType>
+            <xsd:restriction base="xsd:string">
+              <xsd:enumeration value="Chrome" />
+              <xsd:enumeration value="Steel" />
+              <xsd:enumeration value="Brushed Aluminum" />
+              <xsd:enumeration value="Machined Aluminum" />
+              <xsd:enumeration value="Polished Aluminum" />
+              <xsd:enumeration value="Painted" />
+            </xsd:restriction>
+          </xsd:simpleType>
+        </xsd:element>
+        <xsd:element minOccurs="0" name="SpecialFeatures">
+          <xsd:simpleType>
+            <xsd:restriction base="xsd:string">
+              <xsd:enumeration value="tpms" />
+            </xsd:restriction>
+          </xsd:simpleType>
+        </xsd:element>
+        <xsd:element minOccurs="0" name="ModelName" type="FortyStringNotNull" />
+        <xsd:element minOccurs="0" name="NumberOfHoles" type="xsd:positiveInteger" />
+        <xsd:element minOccurs="0" name="NumberOfSpokes" type="TwentyStringNotNull" />
+        <xsd:element minOccurs="0" name="WheelBackspacing" type="LengthDimension" />
+        <xsd:element minOccurs="0" name="RimDiameter" type="LengthDimension" />
+        <xsd:element minOccurs="0" name="RimWidth" type="LengthDimension" />
+        <xsd:element minOccurs="0" name="BoreDiameter" type="LengthDimension" />
+        <xsd:element minOccurs="0" name="Offset" type="LengthDimension" />
+        <xsd:element minOccurs="0" name="ItemPackageQuantity" type="xsd:positiveInteger" />
+      </xsd:sequence>
+    </xsd:complexType>
+  </xsd:element>
+</xsd:schema>

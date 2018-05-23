@@ -1,0 +1,31 @@
+<Configuration>
+  <RecentFiles>
+    <RecentFiles>
+      <File id="59EF996B-DBF8-4CF9-A375-4C90723C1062/d:Models/d:facebook/f:PageType.cs" caret="233" fromTop="12" />
+      <File id="59EF996B-DBF8-4CF9-A375-4C90723C1062/d:Views/d:fbapp/f:Redirect.aspx" caret="0" fromTop="0" />
+      <File id="59EF996B-DBF8-4CF9-A375-4C90723C1062/d:Views/d:fbapp/f:Gallery.aspx" caret="0" fromTop="0" />
+      <File id="59EF996B-DBF8-4CF9-A375-4C90723C1062/d:Views/d:fbapp/f:Index.aspx" caret="0" fromTop="0" />
+      <File id="59EF996B-DBF8-4CF9-A375-4C90723C1062/d:Views/d:fbapp/f:Profile.aspx" caret="524" fromTop="7" />
+      <File id="59EF996B-DBF8-4CF9-A375-4C90723C1062/d:Controllers/d:facebook/f:fbappController.cs" caret="1208" fromTop="13" />
+    </RecentFiles>
+    <RecentEdits />
+  </RecentFiles>
+  <NAntValidationSettings>
+    <NAntPath value="" />
+  </NAntValidationSettings>
+  <UnitTestRunner>
+    <Providers />
+  </UnitTestRunner>
+  <UnitTestRunnerNUnit>
+    <NUnitInstallDir IsNull="False">
+    </NUnitInstallDir>
+    <UseAddins>Never</UseAddins>
+  </UnitTestRunnerNUnit>
+  <SettingsComponent>
+    <string />
+    <integer />
+    <boolean>
+      <setting name="SolutionAnalysisEnabled">False</setting>
+    </boolean>
+  </SettingsComponent>
+</Configuration>

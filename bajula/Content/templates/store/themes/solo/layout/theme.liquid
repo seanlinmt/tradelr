@@ -1,0 +1,171 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+
+<head>
+	<title>{{ shop.name | escape }} &mdash; {% if template == "404" %}Page Not Found{% else %}{{ page_title | escape }}{% endif %}</title>
+	<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+	<meta name="copyright" content="{{ shop.name | escape }}" />
+	{{ content_for_header }}
+	{{ "reset.css" | asset_url | stylesheet_tag }}
+	{{ "screen.css" | asset_url | stylesheet_tag }}
+	{{ "theme.css" | asset_url | stylesheet_tag }}
+	<!--[if lte IE 6]>{{ "ie6.css" | asset_url | stylesheet_tag }}<![endif]-->
+    <!--[if IE 7]>{{ "ie7.css" | asset_url | stylesheet_tag }}<![endif]-->
+	{{ "jquery-1.4.2.min.js" | asset_url | script_tag }}
+	{{ "option_selection.js" | tradelr_asset_url | script_tag }}
+	{{ 'api.jquery.js' | tradelr_asset_url | script_tag }}
+	
+	{{ "jquery-ui-1-7-1.js" | asset_url | script_tag }}{% if template == "product" or settings.homepage_is_product_page %}
+	{{ "jquery-slimbox-2-02.js" | asset_url | script_tag }}{% endif %}
+	{{ "jquery-theme-1-0.js" | asset_url | script_tag }}
+</head>
+
+<body>
+{{ login_for_store }}
+	<!-- START CONTAINER -->
+	<div id="container">
+		<!-- START HEADER -->
+		<div id="header" class="clear">
+			<!-- START LOGO -->{% if settings.logo == "enabled" %}
+			<div id="logo">
+				<a href="/"><img src="{{ "logo.png" | asset_url }}" alt="{{ shop.name | escape }}" /></a>
+			</div>{% else %}
+			<h2><a href="/">{{ shop.name | escape }}</a></h2>{% endif %}
+			<!-- END LOGO -->{% if settings.phone.size > 0 or settings.email.size > 0 %}
+			<!-- START HELLO -->
+			<div id="hello">
+				<div>{% if settings.phone.size > 0 %}
+					<p><strong>t:</strong> {{ settings.phone | escape }}</p>{% endif %}{% if settings.email.size > 0 %}
+					<p><strong>e:</strong> <a href="mailto:{{ settings.email }}">{{ settings.email | escape }}</a></p>{% endif %}
+				</div>
+			</div>
+			<!-- END HELLO -->{% endif %}
+		</div>
+		<!-- END HEADER -->
+		<!-- START NAVIGATE -->
+		<div id="navigate">
+			<!-- START NAV -->
+			<div id="nav">&nbsp;</div>
+			<!-- START LINKS -->{% capture active_url %}{% if template == "index" %}/{% elsif template == "collection" %}/collections/{{ collection.handle }}{% elsif template == 'list-collections' %}/collections{% elsif template == "product" %}{{ product.url }}{% elsif template == "page" %}/pages/{{ page.handle }}{% elsif template == "blog" %}/blogs/{{ blog.handle }}{% elsif template == "cart" %}/cart{% elsif template == "search" %}/search{% endif %}{% endcapture %}
+			<ul id="links">{% for link in linklists.main-menu.links limit: 6 %}
+				<li class="link-{{ forloop.index }}"><a href="{{ link.url }}"{% if link.url == active_url %} class="active"{% endif %}>{{ link.title | escape }}</a></li>{% endfor %}
+			</ul>
+			<!-- END LINKS -->
+			<!-- START GOCART -->
+			<div id="gocart">
+				<p><a href="/cart"{% if template == "cart" %} class="active"{% endif %}>{{ cart.item_count }} {{ cart.item_count | pluralize: "Item", "Items" }}</a></p>
+			</div>
+			<!-- END GOCART -->
+			<!-- END NAV -->
+		</div>
+		<!-- END NAVIGATE -->
+		<!-- START CONTENT -->
+		<div id="shadow">&nbsp;</div>
+		<div id="{% if template == "404" %}missing{% elsif template == 'index' and settings.homepage_is_product_page %}product{% else %}{{ template | replace: '.', ' ' | truncatewords: 1, '' }}{% endif %}" class="content">
+			<!-- START BG -->
+			<div id="bg" class="clear">{% if template contains "page" or template contains "blog" or template == "article" %}
+				<h1 class="title">{{ page.title | escape }}{{ blog.title | escape }}</h1>
+				<!-- START MAIN -->
+				<div id="main">
+					{{ content_for_layout }}
+				</div>
+				<!-- END MAIN -->
+				<!-- START SIDEBAR -->
+				<div id="sidebar">{% unless settings.disable_blog %}
+					<h3>Recent Articles</h3>{% capture blog_handle %}{% if template == "page" %}news{% else %}{{ blog.handle }}{% endif %}{% endcapture %}{% if blogs.[blog_handle].articles.size > 0 %}{% for article in blogs.[blog_handle].articles limit: 4 %}
+					<!-- START POST {{ forloop.index }} -->
+					<div class="post{% if forloop.last %} end{% endif %}">
+						<h5><a href="{{ article.url }}">{{ article.title | escape }}</a></h5>
+						<p>{{ article.content | strip_html | strip_newlines | truncate: 80 }}</p>
+					</div>
+					<!-- END POST {{ forloop.index }} -->{% endfor %}{% else %}
+					<p>No articles.</p>{% endif %}
+					<p id="feed"><a href="{{ shop.url }}/blogs/{{ blog_handle }}.atom">{{ blog.title | escape }} Feed Subscription</a></p>{% endunless %}
+				</div>
+				<!-- END SIDEBAR -->{% elsif template == 'list-collections' %}
+                {% include 'collection-listing' %}{% else %}
+                {{ content_for_layout }}{% endif %}
+			</div>
+			<!-- END BG -->
+		</div>
+		<div id="roundup">&nbsp;</div>
+		<!-- END CONTENT -->
+		<!-- START OVERVIEW -->
+		<div id="overview">
+			<ul class="clear">
+				<li>
+					<h3>{{ pages.frontpage.title }}</h3>
+					<p>{{ pages.frontpage.content | strip_html | strip_newlines | truncatewords: 45 }}</p>
+					<p><a href="/pages/frontpage">Read More</a></p>
+				</li>
+				<li>{% if settings.disable_blog %}
+    				<h3>{{ pages[settings.extra_content].title }}</h3>
+					<p>{{ pages[settings.extra_content].content | strip_html | strip_newlines | truncatewords: 45 }}</p>
+					<p><a href="/pages/{{ settings.extra_content }}">Read More</a></p>{% else %}
+					<h3>From Our Blog</h3>{% for article in blogs.news.articles limit: 1 %}
+					<h5>{{ article.title }}</h5>
+					<p>{{ article.content | strip_html | strip_newlines | truncatewords: 30 }}</p>
+					<p><a href="{{ article.url }}">Read More</a></p>{% endfor %}{% endif %}
+				</li>{% if settings.newsletter == "disabled" %}
+				<li>
+					<h3>{{ pages.about-us.title }}</h3>
+					<p>{{ pages.about-us.content | strip_html | strip_newlines | truncatewords: 45 }}</p>
+					<p><a href="/pages/about-us">Read More</a></p>
+				</li>{% else %}
+				<li class="newsletter">
+					<h3>{{ settings.newsletter_heading }}</h3>
+					<form method="post" action="{{ settings.newsletter_action }}">
+						<p><input type="text" value="{{ settings.newsletter_first_name_label }}" name="{{ settings.newsletter_first_name }}" id="fname" class="field" /></p>
+						<p><input type="text" value="{{ settings.newsletter_last_name_label }}" name="{{ settings.newsletter_last_name }}" id="lname" class="field" /></p>
+						<p><input type="text" value="{{ settings.newsletter_email_label }}" name="{{ settings.newsletter_email }}" id="email" class="field" /></p>
+						<input class="button" id="subscribe" type="submit" value="{{ settings.newsletter_submit }}" />
+					</form>
+				</li>{% endif %}
+			</ul>
+		</div>
+		<!-- END OVERVIEW -->
+		<!-- START FOOTER -->
+		<div id="footer" class="clear">
+			<p>&copy; {{ "now" | date: "%Y" }} {{ shop.name | escape }}. {{ powered_by_link }}.</p>{% if linklists.footer.links.size > 0 %}
+			<p class="links">{% for link in linklists.footer.links %}<a href="{{ link.url }}">{{ link.title | escape }}</a>{% unless forloop.last %} <span>&#124;</span> {% endunless %}{% endfor %}</p>{% endif %}
+		</div>
+		<!-- END FOOTER -->
+	</div>
+	<!-- END CONTAINER -->{% if template == "product" or settings.homepage_is_product_page %}{% if product.available %}{% if product.variants.size > 1 %}
+	<script type="text/javascript">
+		// <![CDATA[
+		var selectCallback = function(variant, selector) {
+			if (variant && variant.available == true) {
+				$("input#add").removeClass("disabled").removeAttr("disabled");
+				$("h2#price span").html(Tradelr.formatMoney(variant.price, "{{ shop.currency_symbol}}", {{ shop.currency_decimal_places}}));
+			} else {
+				$("input#add").addClass("disabled").attr("disabled", "disabled");
+				var message = variant ? "Sold Out" : "Unavailable";
+				$("h2#price span").text(message);
+				$("h2#price del").empty();
+			}
+		};
+		$(function() {
+			new Tradelr.OptionSelectors("id", { product: {{ product | json }}, onVariantSelected: selectCallback });
+			{% assign found_one_in_stock = false %}
+			{% for variant in product.variants %}
+			  {% if variant.available and found_one_in_stock == false %}
+			    {% assign found_one_in_stock = true %}
+			    {% for option in product.options %}
+			      $('#id-option-' + {{ forloop.index0 }}).val({{ variant.options[forloop.index0] | json }}).trigger('change');
+			    {% endfor %}
+			  {% endif %}
+			{% endfor %}
+            {% if product.options.size == 1 %}
+                {% for variant in product.variants %}
+                    {% unless variant.available %}
+                        jQuery('option:contains(' + {{ variant.title | json }} + ')').attr('disabled', 'disabled');
+                    {% endunless %}
+                {% endfor %}
+            {% endif %}
+		});
+		// ]]>
+	</script>{% endif %}{% endif %}{% endif %}
+
+</body>
+</html>

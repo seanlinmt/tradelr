@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xsd:schema elementFormDefault="qualified" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <xsd:include schemaLocation="amzn-base.xsd" />
+  <xsd:element name="Inventory">
+    <xsd:complexType>
+      <xsd:sequence>
+        <xsd:element ref="SKU" />
+        <xsd:element minOccurs="0" ref="FulfillmentCenterID" />
+        <xsd:choice>
+          <xsd:element name="Available" type="xsd:boolean" />
+          <xsd:element name="Quantity" type="xsd:nonNegativeInteger" />
+          <xsd:element name="Lookup">
+            <xsd:simpleType>
+              <xsd:restriction base="xsd:string">
+                <xsd:enumeration value="FulfillmentNetwork" />
+              </xsd:restriction>
+            </xsd:simpleType>
+          </xsd:element>
+        </xsd:choice>
+        <xsd:element minOccurs="0" name="RestockDate" type="xsd:date" />
+        <xsd:element minOccurs="0" name="FulfillmentLatency" type="xsd:positiveInteger" />
+        <xsd:element minOccurs="0" name="SwitchFulfillmentTo">
+          <xsd:simpleType>
+            <xsd:restriction base="xsd:string">
+              <xsd:enumeration value="MFN" />
+              <xsd:enumeration value="AFN" />
+            </xsd:restriction>
+          </xsd:simpleType>
+        </xsd:element>
+      </xsd:sequence>
+    </xsd:complexType>
+  </xsd:element>
+</xsd:schema>

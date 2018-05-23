@@ -1,0 +1,73 @@
+{% paginate collection.products by 24 %}
+
+  {% if collection.description != '' %}
+    <div id="collection-description">
+      {{ collection.description }}
+    </div>
+  {% endif %}
+  
+
+  {% if collection.products.size == 0 %}
+    <span class="bold-red">{{ settings.txt_empty_collection }}</span>
+  {% else %}
+
+    <table id="gallery">
+    {% tablerow product in collection.products cols: 3 limit: 24 %}
+        <div class="gallery-image">
+          
+          {% if product.price > product.price %}
+             <a href="{{ product.url }}" title="{{ product.description | strip_html | truncate: 50 | escape }}">
+               <div class="salemarker"> </div>
+             </a>
+          {% endif %}
+          
+          <a href="{{ product.url }}" title="{{ product.description | strip_html | truncate: 50 | escape }}">
+            <div class="gallery-image-wrapper">
+              
+              {% capture badUrl %}{{ product.images.first | product_img_url: 'large' }}{% endcapture %}
+              <img src=
+              "
+              {% if badUrl contains "no-image-large.gif" %}
+              {{ 'no-image.gif' | asset_url }}
+              {% else %}
+              {{ product.images.first | product_img_url: 'large' }}
+              {% endif %}
+              "
+              alt="{{ product.title | escape }}" />
+            </div>
+          </a>
+
+          <div class="gallery-title">
+            <a href="{{ product.url }}">{{ product.title }}</a>
+          </div>
+          
+          <div class="gallery-price">
+            {% if product.price > product.price %}
+              <span class="bold-red">{{ settings.txt_sale }}: {{ product.price | money }}</span> <del>{{ product.price | money }}</del>
+            {% else %}
+              <span id="product-price">{{ product.price | money }}</span>
+            {% endif %}
+          </div>
+          
+          <p class="datetime">
+            <a href="{{product.url}}#social" title="like"><span id="like-{{ product.handle }}">Like</span></a>
+            <script type="text/javascript">updateSummary("{{shop.url}}{{product.url}}", "like-{{ product.handle }}", 'likes');</script>
+
+            {% if settings.product_comments_enabled %}
+             &#183; 
+            <a href="{{product.url}}#social" title="{{ settings.txt_comment_this }}"><span id="comment-{{ product.handle }}">Comment</span></a>
+            <script type="text/javascript">updateSummary("{{shop.url}}{{product.url}}", "comment-{{ product.handle }}", 'comments');</script>
+            {% endif %}
+          </p>
+        </div>
+    {% endtablerow %}
+    </table>
+
+    {% if paginate.pages > 1 %}
+      <div id="paginate">{{ paginate | default_pagination }}</div>
+    {% endif %}
+
+  {% endif %}
+{% endpaginate %}
+
+<script type="text/javascript">$(document).ready(function() { collectionPage(); }); </script>

@@ -1,0 +1,468 @@
+/* @group Global */
+
+body {
+	color: {{ settings.text_primary_color }};
+	font-family: {{ settings.typography }};
+}
+
+div#main, div#sidebar {
+	border-top: 5px solid {{ settings.bg_secondary_color }};
+}
+
+div.section {
+	border-bottom: 5px solid {{ settings.bg_secondary_color }};
+}
+
+a {
+	color: {{ settings.text_secondary_color }};
+}
+
+a:hover {
+	color: {{ settings.text_accent_color }};
+}
+
+/* @end */
+
+/* @group Header */
+
+div#navigate h3 a, div#missing h1 a {
+	background-color: {{ settings.bg_primary_color }};
+}
+
+div#nav li a {
+	color: {{ settings.text_alternate_color }};
+	border-right: 1px solid {{ settings.bg_primary_color }};
+}
+
+div#nav li a:hover {
+	color: {{ settings.text_secondary_color }};
+}
+
+div#nav li a.active, div#nav li a.active:hover {
+	color: {{ settings.text_accent_color }};
+}
+
+div#items h2 {
+	color: {{ settings.text_secondary_color }};
+}
+
+div#items p {
+	color: {{ settings.text_alternate_color }};
+}
+
+div#items p a {
+	color: {{ settings.text_accent_color }};
+}
+
+div#items p a:hover {
+	color: {{ settings.text_secondary_color }};
+}
+
+/* @end */
+
+/* @group Index */
+
+div#showcase h3, div#showcase h4 {
+	color: {{ settings.text_secondary_color }};
+}
+
+div#showcase h4 {
+	color: {{ settings.text_alternate_color }};
+}
+
+div#showcase h5 a {
+	background-color: {{ settings.text_alternate_color }};
+}
+
+div#showcase h5 a:hover {
+	background-color: {{ settings.text_secondary_color }};
+}
+
+div#excerpt div, div#collection div#excerpt, div#search div#excerpt {
+	background: {{ settings.bg_secondary_color }} url(excerpt.png) no-repeat 0 bottom;
+}
+
+div#excerpt h1, div#excerpt h2, div#excerpt h3, div#excerpt h4, div#excerpt h5, div#excerpt h6, div#overview h1, div#overview h2, div#overview h3, div#overview h4, div#overview h5, div#overview h6, div#page div#main h1, div#page div#main h2, div#page div#main h3, div#page div#main h4, div#page div#main h5, div#page div#main h6, div.entry h1, div.entry h2, div.entry h3, div.entry h4, div.entry h5, div.entry h6, div.comment h1, div.comment h2, div.comment h3, div.comment h4, div.comment h5, div.comment h6, div#collections-listing h2 {
+	color: {{ settings.text_secondary_color }};
+}
+
+/* @end */
+
+/* @group Collection & Search */
+
+div#collections-listing li a {
+	color: {{ settings.text_accent_color }};
+}
+
+div#collections-listing li a:hover {
+	color: {{ settings.text_secondary_color }};
+}
+
+ul#products li div.image, ul#results li div.image, ul#results li div.desc {
+	background-color: {{ settings.bg_secondary_color }};
+}
+
+ul#products li div.image div.align h6, ul#results li div.image div.align h6 {
+	background-color: {{ settings.text_accent_color }};
+}
+
+div#search div#main h1 {
+	color: {{ settings.text_secondary_color }};
+}
+
+div#paginate div {
+	border-top: 1px solid {{ settings.bg_secondary_color }};
+}
+
+div#paginate a {
+	color: {{ settings.text_alternate_color }};
+}
+
+div#paginate a:hover {
+	color: {{ settings.text_secondary_color }};
+}
+
+div#paginate span.current {
+	color: {{ settings.text_accent_color }};
+}
+
+/* @end */
+
+/* @group Product */
+
+div#overview h1#title {
+	color: {{ settings.text_secondary_color }};
+}
+
+div#overview h2#price {
+	color: {{ settings.text_alternate_color }};
+}
+
+div#variants label {
+	color: {{ settings.text_alternate_color }};
+}
+
+div#buy input {
+	font: italic 22px {{ settings.typography }};
+	background-color: {{ settings.text_alternate_color }};
+}
+
+div#buy input:hover {
+	background-color: {{ settings.text_secondary_color }};
+}
+
+div#overview div#buy h6 {
+	color: {{ settings.text_alternate_color }};
+}
+
+div#overview p#continue a {
+	color: {{ settings.text_accent_color }};
+}
+
+div#overview p#continue a:hover {
+	color: {{ settings.text_secondary_color }};
+}
+
+div#images div {
+	background: {{ settings.bg_secondary_color }} url(excerpt.png) no-repeat 0 bottom;
+}
+
+div#images h6 {
+	color: {{ settings.text_secondary_color }};
+}
+
+div#related h4 {
+	color: {{ settings.text_alternate_color }};
+	border-top: 5px solid {{ settings.bg_secondary_color }};
+	border-bottom: 1px solid {{ settings.bg_secondary_color }};
+}
+
+.disabled { 
+	-moz-opacity: 0.50;
+	opacity: .50;
+	filter: alpha(opacity=50);
+	cursor: default;
+}
+
+/* @end */
+
+/* @group Cart */
+
+div#cart div#title h1 {
+	color: {{ settings.text_secondary_color }};
+	border-top: 5px solid {{ settings.bg_secondary_color }};
+}
+
+div#cart div#title h2 {
+	border-top: 5px solid {{ settings.bg_secondary_color }};
+}
+
+div#cart div#content th {
+	color: {{ settings.text_secondary_color }};
+}
+
+div#cart div#content td {
+	border-bottom: 1px solid {{ settings.bg_secondary_color }};
+}
+
+div#cart div#content tr.odd td {
+	background-color: {{ settings.bg_secondary_color }};
+}
+
+div#cart div#content td.pic div {
+	border: 2px solid {{ settings.bg_secondary_color }};
+}
+
+div#cart div#content td input {
+	font: 13px {{ settings.typography }};
+}
+
+div#cart div#content td.remove a {
+	background-color: {{ settings.text_accent_color }};
+}
+
+div#cart div#content td.remove a:hover {
+	background-color: {{ settings.text_secondary_color }};
+}
+
+div#cart div#discount {
+	padding-top: 20px;
+	border-bottom: 1px solid #BED9EE;
+}
+
+div#cart div#total {
+	border-bottom: 1px solid {{ settings.bg_secondary_color }};
+}
+
+div#cart div#continue p a {
+	color: {{ settings.text_accent_color }};
+}
+
+div#cart div#continue p a:hover {
+	color: {{ settings.text_secondary_color }};
+}
+
+div#cart div#price h3 {
+	color: {{ settings.text_alternate_color }};
+}
+
+div#cart div#notes label {
+	color: {{ settings.text_secondary_color }};
+}
+
+div#cart div#checkout {
+	color: {{ settings.text_alternate_color }};
+}
+
+div#cart div#checkout input.update {
+	color: {{ settings.text_secondary_color }};
+	font: italic 22px {{ settings.typography }};
+}
+
+div#cart div#checkout input.update:hover {
+	color: {{ settings.text_alternate_color }};
+}
+
+div#cart div#checkout input.checkout {
+	font: italic 22px {{ settings.typography }};
+	background-color: {{ settings.text_alternate_color }};
+}
+
+div#cart div#checkout input.checkout:hover {
+	background-color: {{ settings.text_secondary_color }};
+}
+
+/* @end */
+
+/* @group Blog & Page */
+
+div.entry {
+	border-bottom: 1px solid {{ settings.bg_secondary_color }};
+}
+
+div.entry h5.posted span {
+	background-color: {{ settings.bg_secondary_color }};
+}
+
+div#comments h3 span {
+	color: {{ settings.text_alternate_color }};
+}
+
+div.comment div {
+	background: {{ settings.bg_secondary_color }} url(excerpt.png) no-repeat 0 bottom;
+}
+
+div#comments form label {
+	color: {{ settings.text_alternate_color }};
+}
+
+div#comments form input.submit {
+	font: italic 22px {{ settings.typography }};
+	background-color: {{ settings.text_alternate_color }};
+}
+
+div#comments form input.submit:hover {
+	background-color: {{ settings.text_secondary_color }};
+}
+
+div#comments p#posted, div#comments p#error {
+	color: {{ settings.text_accent_color }};
+}
+
+div#page div#main p a, div#page div#main li a, div.entry h6.comments a, div.entry p a, div.entry li a {
+	color: {{ settings.text_accent_color }};
+}
+
+div#page div#main p a:hover, div#page div#main li a:hover, div.entry h6.comments a:hover, div.entry p a:hover, div.entry li a:hover {
+	color: {{ settings.text_secondary_color }};
+}
+
+div#missing h2 {
+	color: {{ settings.text_secondary_color }};
+	background: {{ settings.bg_secondary_color }} url(excerpt.png) no-repeat 0 bottom;
+}
+
+div#missing h3 {
+	color: {{ settings.text_alternate_color }};
+}
+
+div#missing h3 a {
+	color: {{ settings.text_accent_color }};
+}
+
+div#missing h3 a:hover {
+	color: {{ settings.text_secondary_color }};
+}
+
+/* @end */
+
+/* @group Sidebar */
+
+div#finder input.field {
+	color: {{ settings.text_alternate_color }};
+	font: italic 13px {{ settings.typography }};
+	border-top: 1px solid {{ settings.bg_primary_color }};
+	border-bottom: 1px solid {{ settings.bg_primary_color }};
+	border-left: 1px solid {{ settings.bg_primary_color }};
+}
+
+div#finder input.submit {
+	font: 13px {{ settings.typography }};
+	background-color: {{ settings.text_secondary_color }};
+}
+
+div#finder input.submit:hover {
+	background-color: {{ settings.text_alternate_color }};
+}
+
+div.section {
+	border-bottom: 5px solid {{ settings.bg_secondary_color }};
+}
+
+div.section div.title {
+	background: {{ settings.bg_primary_color }} url(sidebar.png) no-repeat 0 bottom;
+}
+
+div.section li a.active, div.section li a.active:hover {
+	color: {{ settings.text_accent_color }};
+}
+
+div#tags li a {
+	color: {{ settings.text_secondary_color }};
+	background-color: {{ settings.bg_secondary_color }};
+}
+
+div#tags li.active a, div#tags li.active a:hover {
+	background-color: {{ settings.text_accent_color }};
+}
+
+div.section div.entry {
+	border-top: 5px solid {{ settings.bg_secondary_color }};
+}
+
+div.section div.start {
+	border-top: none;
+}
+
+div.section div.entry h6 {
+	color: {{ settings.text_secondary_color }};
+}
+
+div.section div.entry h6 span {
+	background-color: {{ settings.bg_secondary_color }};
+}
+
+div#rss p a, div.section div#tweet li a {
+	color: {{ settings.text_alternate_color }};
+}
+
+div#rss p a:hover {
+	color: {{ settings.text_secondary_color }};
+}
+
+div.section div#tweet li a:hover {
+	color: {{ settings.text_accent_color }};
+}
+
+/* @end */
+
+/* @group Footer */
+
+div#footer {
+	border-top: 1px solid {{ settings.bg_primary_color }};
+}
+
+div#footer p {
+	color: {{ settings.text_alternate_color }};
+}
+
+div#footer p a {
+	color: {{ settings.text_alternate_color }};
+}
+
+div#footer p a:hover {
+	color: {{ settings.text_secondary_color }};
+}
+
+.additional-checkout-buttons {
+  float:right;
+  text-align:center;
+  width:300px;
+}
+
+.additional-checkout-buttons p {
+  margin: 12px 0;
+}
+
+/* @end */
+
+/* Contact Form Styles */
+
+.contact-form {margin:1em 0}
+.contact-form label {line-height:1.7;font-weight:normal}
+.contact-form input[type=text], input[type=email], input[type=telephone], .contact-form textarea {font-size:13px;color:#74695D;padding:4px}
+.feedback {padding:0.5em 0.7em;-webkit-border-radius: 5px;-moz-border-radius:5px;border-radius: 5px;margin-bottom:15px}
+.feedback p {padding:0.5em 0 !important;margin:0 !important}
+.successForm {background:#BDE0A8;color:green}
+.errorForm {background:#EEBDBD;color:red}
+
+input#contactFormSubmit {
+font-size: 22px;
+color: white;
+font-style: italic;
+background-color: {{ settings.text_alternate_color }};
+text-align: center;
+text-decoration: underline;
+width: 100px;
+margin: 0;
+padding: 10px;
+cursor: pointer;
+border: none;
+float: left;
+}
+
+input#contactFormSubmit:hover {
+background-color: {{ settings.text_secondary_color }};
+}
+
+/* End of Stylesheet */

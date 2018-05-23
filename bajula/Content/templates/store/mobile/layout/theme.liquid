@@ -1,0 +1,68 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <title>{{ shop.name }} - {{ page_title | escape }}</title>
+  <meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0;" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  <link rel="apple-touch-icon" href="{{ 'icon.png' | asset_url }}"/>
+
+  {{ content_for_header }}
+  {% include 'capture' %}
+
+  <script type="text/javascript" src="http://www.google.com/jsapi"></script>
+  <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
+  {{ 'option_selection.js' | tradelr_asset_url | script_tag }}
+  {{ 'shop.js' | asset_url | script_tag }}
+
+  {{ 'shop.css' | asset_url | stylesheet_tag }}
+
+  <script type="text/javascript"> 
+    window.onload = function initialLoad(){ updateOrientation(); }
+  </script>
+</head>
+<body onorientationchange="updateOrientation();" class="vertical">
+  <div class="wrapper">
+    <div class="header{% if shop_name_length > '13' %} centered{% endif %}">
+      <h1><a href="/">{{ shop.name | truncate: 24 }}</a></h1>
+      <div id="cart" class="clearfix"><a href="/cart" {% if template == "cart" %} class="selected corner"{% else %} class="corner"{% endif %}>{{ settings.tr_cart }} ({{ cart.item_count }})</a></div>
+    </div>
+    <div class="header navigation clearfix">
+      <label for="main_navigation">Menu</label>
+      <select name="main_navigation" id="main_navigation">
+        <option value="{{ active_url }}" selected="selected">{{ active_title }}</option>
+        {% for link in linklists[settings.main_linklist].links %}
+        {% if active_url != link.url %}
+        <option value="{{ link.url }}">{{ link.title }}</option>
+        {% endif %}
+        {% endfor %}
+      </select>
+    </div>
+
+    <div class="body">
+      {{ content_for_layout }}
+    </div>
+
+    <div class="footer navigation clearfix">
+      <label for="footer_navigation">Menu</label>
+      <select name="footer_navigation" id="footer_navigation">
+        <option value="{{ active_url }}" selected="selected">{{ active_title }}</option>
+        {% for link in linklists[settings.footer_linklist].links %}
+        {% if active_url != link.url %}
+        <option value="{{ link.url }}">{{ link.title }}</option>
+        {% endif %}
+        {% endfor %}
+      </select>
+    </div>
+    <div class="search clearfix">
+      <form name="productSearchForm" action="/search">
+        <input type="text" id="product_search" name="q" class="replace" title="Search" value="{{ settings.tr_search }}..." />
+        <input type="submit" id="go_search" alt="Search" class="submit rounded-btn" value="{{ settings.tr_search }}" />
+      </form>
+    </div>
+    <div class="view-toggle">
+      <p>{{ settings.tr_current_view }} {{ settings.tr_switch_view | link_to_theme: "main" }}</p>
+    </div>
+  </div>
+</body>
+</html>

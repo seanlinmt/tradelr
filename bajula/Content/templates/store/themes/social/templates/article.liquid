@@ -1,0 +1,54 @@
+<div class="article">
+  <div class="gravatar"><img src="http://www.gravatar.com/avatar/{{ article.user.email | md5}}.jpg?size=50&default={{ 'blank.gif' | asset_url }}" /></div> 
+  <h3 class="article-head-title">{{ article.title }}</h3>
+  <p class="datetime">{{ article.author }} &#183; <span title="{{ article.created_at | date: '%Y-%m-%dT%H:%M:%SZ' }}">{{ article.created_at | date: "%I:%M %p %b %d" }}</span></p>
+  
+  <div class="article-body textile">
+    {{ article.content }}
+  </div>
+  
+  <ul class="social" id="social">
+    {% if article.tags.size > 0 %}
+    <p class="article_tags right datetime">
+    {{ settings.txt_posted_in }}: 
+      {% for tag in article.tags %}
+        <a href="/blogs/{{blog.handle}}/tagged/{{ tag | handleize }}">{{ tag }}</a>{% unless forloop.last %} &#183; {% endunless %}
+      {% endfor %}
+    </p>
+    {% endif %}
+    
+    {% if settings.blog_comments_enabled %}
+    <li class="comment-count">
+      <span class="counter-box"><span id="{{ article.title | handleize }}" class="comment-icon">Comment</span></span>
+    </li>
+    {% endif %}
+    
+    <li class="tweet-count">
+      <a href="http://twitter.com/share" class="twitter-share-button" data-url="{{ shop.url }}{{ article.url }}" data-text="{{ shop.name }} - {{ article.title }}" data-count="horizontal" {% if settings.twitterID %}data-via="{{ settings.twitterID }}"{% endif %}>Tweet</a>
+      <script type="text/javascript" src="http://platform.twitter.com/widgets.js"></script>
+    </li>
+    
+    <li class="like-count">
+      <fb:like href="{{shop.url}}{{article.url}}" title="{{shop.url}}{{article.title}}" layout="button_count" show_faces="false" send="true" colorscheme="{{settings.fb_colorscheme}}"></fb:like>
+    </li>
+    
+    {% if settings.plusone_enabled %}
+    <li class="plusone-count">
+      <g:plusone size="medium" href="{{store.url}}{{article.url}}"></g:plusone>
+    </li>
+    {% endif %}
+  </ul>
+</div>
+
+{% if settings.blog_comments_enabled %}
+  <fb:comments href="{{shop.url}}{{article.url}}" num_posts="6" width="980" xid="{{article.url}}" title="{{article.title}}" simple="1" colorscheme="{{settings.fb_colorscheme}}"></fb:comments>
+{% endif %}
+
+<script type="text/javascript">
+$(document).ready(function() {
+  $(".datetime span").prettyDate();
+  setInterval(function(){ $(".datetime span").prettyDate(); }, 5000);
+  
+  updateSummary("{{shop.url}}{{article.url}}", "{{ article.title | handleize }}", 'comments');
+});
+</script>

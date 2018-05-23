@@ -1,0 +1,70 @@
+<!-- START OVERVIEW -->
+<div id="overview" class="clear">
+	<p id="image"><img src="{{ product.images[0] | product_img_url: "large" }}" alt="{{ product.title | escape }}" /></p>
+	<h1 id="title">{{ product.title | escape }}</h1>
+	<h2 id="price"><span>{{ product.price | money }}</span>{% if product.price > product.price %} <del>{{ product.price | money }}</del>{% endif %}</h2>
+	{{ product.description }}
+	<!-- START OPTIONS -->
+	<div id="options">
+		<form method="post" action="/cart/add">{% if product.variants.size == 1 %}
+			<input type="hidden" name="id" value="{{ product.variants.first.id }}" />{% else %}
+			<!-- START VARIANTS -->
+			<div id="variants">
+				<select name="id" id="id">{% for variant in product.variants %}{% if variant.available %}
+					<option value="{{ variant.id }}">{{ variant.title | escape }}</option>{% else %}
+					<option value="{{ variant.id }}" disabled="disabled">{{ variant.title | escape }} - SOLD OUT</option>{% endif %}{% endfor %}
+				</select>
+			</div>
+			<!-- END VARIANTS -->{% endif %}
+			<!-- START BUY -->
+			<div id="buy" class="clear">{% if product.available %}
+				<input type="submit" value="Add to Cart" id="add" />{% else %}
+				<h6>Sold Out</h6>{% endif %}{% if settings.retweet == "enabled" %}
+				<!-- START RETWEET -->
+				<div id="retweet">
+					<script type="text/javascript">tweetmeme_source = "{{ settings.retweet }}"; tweetmeme_service = "bit.ly";</script>
+					<script type="text/javascript" src="http://tweetmeme.com/i/scripts/button.js"></script>
+				</div>
+				<!-- END RETWEET -->{% endif %}
+			</div>
+			<!-- END BUY -->
+			<!-- START CONTINUE -->
+			<p id="continue"><a href="/collections/{% if collection %}{{ collection.handle }}{% else %}all{% endif %}">Continue shopping...</a></p>
+			<!-- END CONTINUE -->
+		</form>
+	</div>
+	<!-- END OPTIONS -->
+</div>
+<!-- END OVERVIEW -->{% if product.images.size > 1 %}
+<!-- START IMAGES -->
+<div id="images">
+	<div>
+		<h6>More Images <span>(click to enlarge)</span></h6>{% for image in product.images offset:1 %}
+		<a href="{{ image | product_img_url: "large" }}" rel="lightbox-images"><img src="{{ image | product_img_url: "small" }}" alt="{{ product.title | escape }}" /></a>{% endfor %}
+	</div>
+</div>
+<!-- END IMAGES -->{% endif %}{% if collections.frontpage.products.size > 1 %}
+<!-- START RELATED -->
+<div id="related">
+	<h4>If you like this item you may also be interested in these featured products:</h4>
+	<!-- START PRODUCTS -->
+	<ul id="products" class="clear">{% for prod in collections.frontpage.products limit: 3 %}{% unless prod.handle == product.handle %}
+		<!-- START PRODUCT {{ forloop.index }} -->
+		<li{% cycle '', '', ' class="end"' %}>
+			<!-- START IMAGE -->
+			<div class="image">
+				<div class="overflow">
+					<div class="align">
+						<h6>{{ prod.price | money }}</h6>
+						<div><a href="{{ prod.url | within: collections.all }}"><img src="{{ prod.images[0] | product_img_url: "medium" }}" alt="{{ prod.title | escape }}" /></a></div>
+					</div>
+				</div>
+			</div>
+			<!-- END IMAGE -->
+			<p><a href="{{ prod.url | within: collections.all }}">{{ prod.title | escape | truncate: 25 }}</a></p>
+		</li>
+		<!-- END PRODUCT {{ forloop.index }} -->{% endunless %}{% endfor %}
+	</ul>
+	<!-- END PRODUCTS -->
+</div>
+<!-- END RELATED -->{% endif %}

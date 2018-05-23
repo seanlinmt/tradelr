@@ -1,0 +1,26 @@
+{% paginate blog.articles by 10 %}<!-- START HEADING -->
+<div id="heading">
+	<h1>{{ blog.title | escape }}</h1>
+</div>
+<!-- END HEADING -->{% for article in blog.articles %}
+<!-- START ENTRY {{ forloop.index }} -->
+<div class="entry{% if forloop.first %} start{% endif %}{% if forloop.last %} end{% endif %}">
+	<!-- START TITLE -->
+	<div class="title">
+		<h2><a href="{{ article.url }}">{{ article.title | escape }}</a></h2>
+		<h5>Posted by {{ article.author }} on {{ article.created_at | date: "%B %d, %Y" }} <span>(<a href="{{ article.url }}{% if blog.comments_enabled? %}#comments{% endif %}">{{ article.comments_count }} {{ article.comments_count | pluralize: "Comment", "Comments" }}</a>)</span></h5>
+	</div>
+	<!-- END TITLE -->
+	<!-- START BODY -->
+	<div class="body">
+		{{ article.content }}
+		<p><a href="{{ article.url }}">Continue...</a></p>
+	</div>
+	<!-- END BODY -->
+</div>
+<!-- END ENTRY {{ forloop.index }} -->{% endfor %}{% if paginate.pages > 1 %}
+<!-- START PAGINATE -->
+<div id="paginate">
+	{{ paginate | default_pagination }}
+</div>
+<!-- END PAGINATE -->{% endif %}{% endpaginate %}

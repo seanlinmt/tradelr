@@ -1,0 +1,67 @@
+<a href="{{ shop.url }}/blogs/{{blog.handle}}.xml" class="rss-icon feed"></a>
+
+{% paginate blog.articles by 20 %}
+  {% for article in blog.articles  %}
+    <div class="article">
+      
+      <h2 class="pb0"><a href="{{ article.url }}">{{ article.title }}</a></h2>
+      
+      <div class="article-author">
+        <p class="datetime">{{ article.author }} &#183; <span title="{{ article.created_at | date: '%Y-%m-%dT%H:%M:%SZ' }}">{{ article.created_at | date: "%I:%M %p %b %d" }}</span> &#183; <a href="{{shop.url}}{{article.url}}#social" title="{{ settings.txt_comment_this }}">Comment</a></p>
+      </div>
+      
+      <div class="article-body">
+        {% if article.excerpt == blank %}
+          {{ article.content }}
+        {% else %}
+          {{ article.excerpt }}
+        {% endif %}
+        
+        <ul class="social">
+          {% if article.tags.size > 0 %}
+          <p class="article_tags right datetime">
+          {{ settings.txt_posted_in }}: 
+            {% for tag in article.tags %}
+              <a href="/blogs/{{blog.handle}}/tagged/{{ tag | handleize }}">{{ tag }}</a>{% unless forloop.last %} &#183; {% endunless %}
+            {% endfor %}
+          </p>
+          {% endif %}
+          
+          {% if settings.blog_comments_enabled %}
+          <li class="comment-count">
+            <a class="counter-box" href="{{shop.url}}{{article.url}}#social"><span id="{{ article.title | handleize }}" class="comment-icon">Comment</span></a>
+            <script type="text/javascript">updateSummary("{{shop.url}}{{article.url}}", "{{ article.title | handleize }}", 'comments');</script>
+          </li>
+          {% endif %}
+          
+          <li class="tweet-count">
+            <a href="http://twitter.com/share" class="twitter-share-button" data-url="{{ shop.url }}{{ article.url }}" data-text="{{ shop.name }} - {{ article.title }}" data-count="horizontal" {% if settings.twitterID %}data-via="{{ settings.twitterID }}"{% endif %}>Tweet</a>
+            <script type="text/javascript" src="http://platform.twitter.com/widgets.js"></script>
+          </li>
+          
+          <li class="like-count">
+            <fb:like href="{{shop.url}}{{article.url}}" layout="button_count" show_faces="false" send="true" colorscheme="{{settings.fb_colorscheme}}"></fb:like>
+          </li>
+          
+          {% if settings.plusone_enabled %}
+          <li class="plusone-count">
+            <g:plusone size="medium" href="{{store.url}}{{article.url}}"></g:plusone>
+          </li>
+          {% endif %}
+        </ul>
+      </div>
+      
+    </div><!-- article -->
+  {% endfor %}
+  
+  <div id="pagination">
+    {{ paginate | default_pagination }}
+  </div>
+{% endpaginate %}
+
+<script type="text/javascript">
+$(document).ready(function() {
+  $(".datetime span").prettyDate();
+  setInterval(function(){ $(".datetime span").prettyDate(); }, 5000);
+});
+</script>

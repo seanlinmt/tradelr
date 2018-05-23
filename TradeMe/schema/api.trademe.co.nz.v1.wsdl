@@ -1,0 +1,1998 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:tns="http://api.trademe.co.nz/v1" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:wsa10="http://www.w3.org/2005/08/addressing" xmlns:wsx="http://schemas.xmlsoap.org/ws/2004/09/mex" targetNamespace="http://api.trademe.co.nz/v1" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://api.trademe.co.nz/v1/Imports">
+      <xsd:import namespace="http://api.trademe.co.nz/v1" />
+      <xsd:import namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+      <xsd:import namespace="http://api.trademe.co.nz" />
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="Selling_CreateListing_InputMessage">
+    <wsdl:part name="parameters" element="tns:CreateListing" />
+  </wsdl:message>
+  <wsdl:message name="Selling_CreateListing_OutputMessage">
+    <wsdl:part name="parameters" element="tns:CreateListingResponse" />
+  </wsdl:message>
+  <wsdl:message name="Selling_Fees_InputMessage">
+    <wsdl:part name="parameters" element="tns:Fees" />
+  </wsdl:message>
+  <wsdl:message name="Selling_Fees_OutputMessage">
+    <wsdl:part name="parameters" element="tns:FeesResponse" />
+  </wsdl:message>
+  <wsdl:message name="Photos_AddPhoto_InputMessage">
+    <wsdl:part name="parameters" element="tns:AddPhoto" />
+  </wsdl:message>
+  <wsdl:message name="Photos_AddPhoto_OutputMessage">
+    <wsdl:part name="parameters" element="tns:AddPhotoResponse" />
+  </wsdl:message>
+  <wsdl:message name="Photos_RemovePhoto_InputMessage">
+    <wsdl:part name="parameters" element="tns:RemovePhoto" />
+  </wsdl:message>
+  <wsdl:message name="Photos_RemovePhoto_OutputMessage">
+    <wsdl:part name="parameters" element="tns:RemovePhotoResponse" />
+  </wsdl:message>
+  <wsdl:message name="Photos_GetPhotos_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetPhotos" />
+  </wsdl:message>
+  <wsdl:message name="Photos_GetPhotos_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetPhotosResponse" />
+  </wsdl:message>
+  <wsdl:message name="Photos_GetPhotosWithDetails_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetPhotosWithDetails" />
+  </wsdl:message>
+  <wsdl:message name="Photos_GetPhotosWithDetails_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetPhotosWithDetailsResponse" />
+  </wsdl:message>
+  <wsdl:message name="Photos_AddPhotoToListing_InputMessage">
+    <wsdl:part name="parameters" element="tns:AddPhotoToListing" />
+  </wsdl:message>
+  <wsdl:message name="Photos_AddPhotoToListing_OutputMessage">
+    <wsdl:part name="parameters" element="tns:AddPhotoToListingResponse" />
+  </wsdl:message>
+  <wsdl:message name="MyTradeMe_RequestRelist_InputMessage">
+    <wsdl:part name="parameters" element="tns:RequestRelist" />
+  </wsdl:message>
+  <wsdl:message name="MyTradeMe_RequestRelist_OutputMessage">
+    <wsdl:part name="parameters" element="tns:RequestRelistResponse" />
+  </wsdl:message>
+  <wsdl:message name="MyTradeMe_GetSoldItems_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetSoldItems" />
+  </wsdl:message>
+  <wsdl:message name="MyTradeMe_GetSoldItems_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetSoldItemsResponse" />
+  </wsdl:message>
+  <wsdl:message name="MyTradeMe_GetUnsoldItems_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetUnsoldItems" />
+  </wsdl:message>
+  <wsdl:message name="MyTradeMe_GetUnsoldItems_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetUnsoldItemsResponse" />
+  </wsdl:message>
+  <wsdl:message name="MyTradeMe_GetListedItems_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetListedItems" />
+  </wsdl:message>
+  <wsdl:message name="MyTradeMe_GetListedItems_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetListedItemsResponse" />
+  </wsdl:message>
+  <wsdl:message name="MyTradeMe_GetProductMapping_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetProductMapping" />
+  </wsdl:message>
+  <wsdl:message name="MyTradeMe_GetProductMapping_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetProductMappingResponse" />
+  </wsdl:message>
+  <wsdl:message name="MyTradeMe_GetMemberLedger_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetMemberLedger" />
+  </wsdl:message>
+  <wsdl:message name="MyTradeMe_GetMemberLedger_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetMemberLedgerResponse" />
+  </wsdl:message>
+  <wsdl:message name="MyTradeMe_GetPayNowLedger_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetPayNowLedger" />
+  </wsdl:message>
+  <wsdl:message name="MyTradeMe_GetPayNowLedger_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetPayNowLedgerResponse" />
+  </wsdl:message>
+  <wsdl:message name="MyTradeMe_GetWonItems_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetWonItems" />
+  </wsdl:message>
+  <wsdl:message name="MyTradeMe_GetWonItems_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetWonItemsResponse" />
+  </wsdl:message>
+  <wsdl:message name="MyTradeMe_GetLostItems_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetLostItems" />
+  </wsdl:message>
+  <wsdl:message name="MyTradeMe_GetLostItems_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetLostItemsResponse" />
+  </wsdl:message>
+  <wsdl:message name="MyTradeMe_GetWatchlist_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetWatchlist" />
+  </wsdl:message>
+  <wsdl:message name="MyTradeMe_GetWatchlist_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetWatchlistResponse" />
+  </wsdl:message>
+  <wsdl:message name="MyTradeMe_GetSalesSummary_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetSalesSummary" />
+  </wsdl:message>
+  <wsdl:message name="MyTradeMe_GetSalesSummary_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetSalesSummaryResponse" />
+  </wsdl:message>
+  <wsdl:message name="MyTradeMe_GetMemberSummary_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetMemberSummary" />
+  </wsdl:message>
+  <wsdl:message name="MyTradeMe_GetMemberSummary_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetMemberSummaryResponse" />
+  </wsdl:message>
+  <wsdl:message name="MyTradeMe_AddToWatchList_InputMessage">
+    <wsdl:part name="parameters" element="tns:AddToWatchList" />
+  </wsdl:message>
+  <wsdl:message name="MyTradeMe_AddToWatchList_OutputMessage">
+    <wsdl:part name="parameters" element="tns:AddToWatchListResponse" />
+  </wsdl:message>
+  <wsdl:message name="MyTradeMe_AddToWatchListWithEmailOption_InputMessage">
+    <wsdl:part name="parameters" element="tns:AddToWatchListWithEmailOption" />
+  </wsdl:message>
+  <wsdl:message name="MyTradeMe_AddToWatchListWithEmailOption_OutputMessage">
+    <wsdl:part name="parameters" element="tns:AddToWatchListWithEmailOptionResponse" />
+  </wsdl:message>
+  <wsdl:message name="MyTradeMe_RemoveFromWatchList_InputMessage">
+    <wsdl:part name="parameters" element="tns:RemoveFromWatchList" />
+  </wsdl:message>
+  <wsdl:message name="MyTradeMe_RemoveFromWatchList_OutputMessage">
+    <wsdl:part name="parameters" element="tns:RemoveFromWatchListResponse" />
+  </wsdl:message>
+  <wsdl:message name="MyTradeMe_GetJobAgentReport_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetJobAgentReport" />
+  </wsdl:message>
+  <wsdl:message name="MyTradeMe_GetJobAgentReport_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetJobAgentReportResponse" />
+  </wsdl:message>
+  <wsdl:message name="MyTradeMe_GetPropertyAgentReport_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetPropertyAgentReport" />
+  </wsdl:message>
+  <wsdl:message name="MyTradeMe_GetPropertyAgentReport_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetPropertyAgentReportResponse" />
+  </wsdl:message>
+  <wsdl:message name="MyTradeMe_GetFixedPriceOffers_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetFixedPriceOffers" />
+  </wsdl:message>
+  <wsdl:message name="MyTradeMe_GetFixedPriceOffers_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetFixedPriceOffersResponse" />
+  </wsdl:message>
+  <wsdl:message name="MyTradeMe_MakeFixedPriceOffer_InputMessage">
+    <wsdl:part name="parameters" element="tns:MakeFixedPriceOffer" />
+  </wsdl:message>
+  <wsdl:message name="MyTradeMe_MakeFixedPriceOffer_OutputMessage">
+    <wsdl:part name="parameters" element="tns:MakeFixedPriceOfferResponse" />
+  </wsdl:message>
+  <wsdl:message name="MyTradeMe_GetListingFee_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetListingFee" />
+  </wsdl:message>
+  <wsdl:message name="MyTradeMe_GetListingFee_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetListingFeeResponse" />
+  </wsdl:message>
+  <wsdl:message name="MyTradeMe_SaveNote_InputMessage">
+    <wsdl:part name="parameters" element="tns:SaveNote" />
+  </wsdl:message>
+  <wsdl:message name="MyTradeMe_SaveNote_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SaveNoteResponse" />
+  </wsdl:message>
+  <wsdl:message name="MyTradeMe_GetNote_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetNote" />
+  </wsdl:message>
+  <wsdl:message name="MyTradeMe_GetNote_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetNoteResponse" />
+  </wsdl:message>
+  <wsdl:message name="MyTradeMe_DeleteNote_InputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteNote" />
+  </wsdl:message>
+  <wsdl:message name="MyTradeMe_DeleteNote_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteNoteResponse" />
+  </wsdl:message>
+  <wsdl:message name="MyTradeMe_SaveStatus_InputMessage">
+    <wsdl:part name="parameters" element="tns:SaveStatus" />
+  </wsdl:message>
+  <wsdl:message name="MyTradeMe_SaveStatus_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SaveStatusResponse" />
+  </wsdl:message>
+  <wsdl:message name="MyTradeMe_DeleteStatus_InputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteStatus" />
+  </wsdl:message>
+  <wsdl:message name="MyTradeMe_DeleteStatus_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteStatusResponse" />
+  </wsdl:message>
+  <wsdl:message name="MyTradeMe_GetDeliveryAddresses_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetDeliveryAddresses" />
+  </wsdl:message>
+  <wsdl:message name="MyTradeMe_GetDeliveryAddresses_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetDeliveryAddressesResponse" />
+  </wsdl:message>
+  <wsdl:message name="MyTradeMe_RemoveDeliveryAddress_InputMessage">
+    <wsdl:part name="parameters" element="tns:RemoveDeliveryAddress" />
+  </wsdl:message>
+  <wsdl:message name="MyTradeMe_RemoveDeliveryAddress_OutputMessage">
+    <wsdl:part name="parameters" element="tns:RemoveDeliveryAddressResponse" />
+  </wsdl:message>
+  <wsdl:message name="MyTradeMe_AddDeliveryAddress_InputMessage">
+    <wsdl:part name="parameters" element="tns:AddDeliveryAddress" />
+  </wsdl:message>
+  <wsdl:message name="MyTradeMe_AddDeliveryAddress_OutputMessage">
+    <wsdl:part name="parameters" element="tns:AddDeliveryAddressResponse" />
+  </wsdl:message>
+  <wsdl:message name="MyTradeMe_UpdateDeliveryAddress_InputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateDeliveryAddress" />
+  </wsdl:message>
+  <wsdl:message name="MyTradeMe_UpdateDeliveryAddress_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateDeliveryAddressResponse" />
+  </wsdl:message>
+  <wsdl:message name="MyTradeMe_AddFeedback_InputMessage">
+    <wsdl:part name="parameters" element="tns:AddFeedback" />
+  </wsdl:message>
+  <wsdl:message name="MyTradeMe_AddFeedback_OutputMessage">
+    <wsdl:part name="parameters" element="tns:AddFeedbackResponse" />
+  </wsdl:message>
+  <wsdl:message name="MyTradeMe_UpdateFeedback_InputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateFeedback" />
+  </wsdl:message>
+  <wsdl:message name="MyTradeMe_UpdateFeedback_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateFeedbackResponse" />
+  </wsdl:message>
+  <wsdl:message name="MyTradeMe_RemoveFeedback_InputMessage">
+    <wsdl:part name="parameters" element="tns:RemoveFeedback" />
+  </wsdl:message>
+  <wsdl:message name="MyTradeMe_RemoveFeedback_OutputMessage">
+    <wsdl:part name="parameters" element="tns:RemoveFeedbackResponse" />
+  </wsdl:message>
+  <wsdl:message name="MyTradeMe_ReplyToFeedback_InputMessage">
+    <wsdl:part name="parameters" element="tns:ReplyToFeedback" />
+  </wsdl:message>
+  <wsdl:message name="MyTradeMe_ReplyToFeedback_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ReplyToFeedbackResponse" />
+  </wsdl:message>
+  <wsdl:message name="Catalogue_GetCategories_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetCategories" />
+  </wsdl:message>
+  <wsdl:message name="Catalogue_GetCategories_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetCategoriesResponse" />
+  </wsdl:message>
+  <wsdl:message name="Catalogue_GetUsedCarMakes_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetUsedCarMakes" />
+  </wsdl:message>
+  <wsdl:message name="Catalogue_GetUsedCarMakes_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetUsedCarMakesResponse" />
+  </wsdl:message>
+  <wsdl:message name="Catalogue_GetMotorBikeTypes_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetMotorBikeTypes" />
+  </wsdl:message>
+  <wsdl:message name="Catalogue_GetMotorBikeTypes_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetMotorBikeTypesResponse" />
+  </wsdl:message>
+  <wsdl:message name="Catalogue_GetJobCategories_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetJobCategories" />
+  </wsdl:message>
+  <wsdl:message name="Catalogue_GetJobCategories_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetJobCategoriesResponse" />
+  </wsdl:message>
+  <wsdl:message name="Catalogue_GetCategoryLastUpdated_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetCategoryLastUpdated" />
+  </wsdl:message>
+  <wsdl:message name="Catalogue_GetCategoryLastUpdated_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetCategoryLastUpdatedResponse" />
+  </wsdl:message>
+  <wsdl:message name="Catalogue_GetCategoryAttributes_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetCategoryAttributes" />
+  </wsdl:message>
+  <wsdl:message name="Catalogue_GetCategoryAttributes_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetCategoryAttributesResponse" />
+  </wsdl:message>
+  <wsdl:message name="Catalogue_GetCategoryLegalNotice_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetCategoryLegalNotice" />
+  </wsdl:message>
+  <wsdl:message name="Catalogue_GetCategoryLegalNotice_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetCategoryLegalNoticeResponse" />
+  </wsdl:message>
+  <wsdl:message name="Catalogue_GetCategoryDuration_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetCategoryDuration" />
+  </wsdl:message>
+  <wsdl:message name="Catalogue_GetCategoryDuration_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetCategoryDurationResponse" />
+  </wsdl:message>
+  <wsdl:message name="Catalogue_GetCategoryFees_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetCategoryFees" />
+  </wsdl:message>
+  <wsdl:message name="Catalogue_GetCategoryFees_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetCategoryFeesResponse" />
+  </wsdl:message>
+  <wsdl:message name="Catalogue_GetLocalites_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetLocalites" />
+  </wsdl:message>
+  <wsdl:message name="Catalogue_GetLocalites_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetLocalitesResponse" />
+  </wsdl:message>
+  <wsdl:message name="Catalogue_GetRegions_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetRegions" />
+  </wsdl:message>
+  <wsdl:message name="Catalogue_GetRegions_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetRegionsResponse" />
+  </wsdl:message>
+  <wsdl:message name="Catalogue_GetDistricts_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetDistricts" />
+  </wsdl:message>
+  <wsdl:message name="Catalogue_GetDistricts_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetDistrictsResponse" />
+  </wsdl:message>
+  <wsdl:message name="Catalogue_GetSuburbs_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetSuburbs" />
+  </wsdl:message>
+  <wsdl:message name="Catalogue_GetSuburbs_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetSuburbsResponse" />
+  </wsdl:message>
+  <wsdl:message name="Catalogue_GetSearchAreas_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetSearchAreas" />
+  </wsdl:message>
+  <wsdl:message name="Catalogue_GetSearchAreas_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetSearchAreasResponse" />
+  </wsdl:message>
+  <wsdl:message name="Catalogue_GetTravelAreas_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetTravelAreas" />
+  </wsdl:message>
+  <wsdl:message name="Catalogue_GetTravelAreas_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetTravelAreasResponse" />
+  </wsdl:message>
+  <wsdl:message name="Catalogue_GetDvdValidations_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetDvdValidations" />
+  </wsdl:message>
+  <wsdl:message name="Catalogue_GetDvdValidations_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetDvdValidationsResponse" />
+  </wsdl:message>
+  <wsdl:message name="Catalogue_GetBluRayValidations_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetBluRayValidations" />
+  </wsdl:message>
+  <wsdl:message name="Catalogue_GetBluRayValidations_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetBluRayValidationsResponse" />
+  </wsdl:message>
+  <wsdl:message name="Listings_ListingsUnansweredQuestions_InputMessage">
+    <wsdl:part name="parameters" element="tns:ListingsUnansweredQuestions" />
+  </wsdl:message>
+  <wsdl:message name="Listings_ListingsUnansweredQuestions_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ListingsUnansweredQuestionsResponse" />
+  </wsdl:message>
+  <wsdl:message name="Listings_ListingUnansweredQuestions_InputMessage">
+    <wsdl:part name="parameters" element="tns:ListingUnansweredQuestions" />
+  </wsdl:message>
+  <wsdl:message name="Listings_ListingUnansweredQuestions_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ListingUnansweredQuestionsResponse" />
+  </wsdl:message>
+  <wsdl:message name="Listings_ListingAnswerQuestion_InputMessage">
+    <wsdl:part name="parameters" element="tns:ListingAnswerQuestion" />
+  </wsdl:message>
+  <wsdl:message name="Listings_ListingAnswerQuestion_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ListingAnswerQuestionResponse" />
+  </wsdl:message>
+  <wsdl:message name="Listings_ListingAddComment_InputMessage">
+    <wsdl:part name="parameters" element="tns:ListingAddComment" />
+  </wsdl:message>
+  <wsdl:message name="Listings_ListingAddComment_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ListingAddCommentResponse" />
+  </wsdl:message>
+  <wsdl:message name="Listings_ListingDetails_InputMessage">
+    <wsdl:part name="parameters" element="tns:ListingDetails" />
+  </wsdl:message>
+  <wsdl:message name="Listings_ListingDetails_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ListingDetailsResponse" />
+  </wsdl:message>
+  <wsdl:message name="Listings_SendEmailToSeller_InputMessage">
+    <wsdl:part name="parameters" element="tns:SendEmailToSeller" />
+  </wsdl:message>
+  <wsdl:message name="Listings_SendEmailToSeller_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SendEmailToSellerResponse" />
+  </wsdl:message>
+  <wsdl:message name="Listings_SendEmailToFriend_InputMessage">
+    <wsdl:part name="parameters" element="tns:SendEmailToFriend" />
+  </wsdl:message>
+  <wsdl:message name="Listings_SendEmailToFriend_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SendEmailToFriendResponse" />
+  </wsdl:message>
+  <wsdl:message name="Listings_Featured_InputMessage">
+    <wsdl:part name="parameters" element="tns:Featured" />
+  </wsdl:message>
+  <wsdl:message name="Listings_Featured_OutputMessage">
+    <wsdl:part name="parameters" element="tns:FeaturedResponse" />
+  </wsdl:message>
+  <wsdl:message name="Listings_Hot_InputMessage">
+    <wsdl:part name="parameters" element="tns:Hot" />
+  </wsdl:message>
+  <wsdl:message name="Listings_Hot_OutputMessage">
+    <wsdl:part name="parameters" element="tns:HotResponse" />
+  </wsdl:message>
+  <wsdl:message name="Listings_Latest_InputMessage">
+    <wsdl:part name="parameters" element="tns:Latest" />
+  </wsdl:message>
+  <wsdl:message name="Listings_Latest_OutputMessage">
+    <wsdl:part name="parameters" element="tns:LatestResponse" />
+  </wsdl:message>
+  <wsdl:message name="Listings_ClosingSoon_InputMessage">
+    <wsdl:part name="parameters" element="tns:ClosingSoon" />
+  </wsdl:message>
+  <wsdl:message name="Listings_ClosingSoon_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ClosingSoonResponse" />
+  </wsdl:message>
+  <wsdl:message name="Listings_OneDollar_InputMessage">
+    <wsdl:part name="parameters" element="tns:OneDollar" />
+  </wsdl:message>
+  <wsdl:message name="Listings_OneDollar_OutputMessage">
+    <wsdl:part name="parameters" element="tns:OneDollarResponse" />
+  </wsdl:message>
+  <wsdl:message name="Favourites_SaveSeller_InputMessage">
+    <wsdl:part name="parameters" element="tns:SaveSeller" />
+  </wsdl:message>
+  <wsdl:message name="Favourites_SaveSeller_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SaveSellerResponse" />
+  </wsdl:message>
+  <wsdl:message name="Favourites_SaveSearch_InputMessage">
+    <wsdl:part name="parameters" element="tns:SaveSearch" />
+  </wsdl:message>
+  <wsdl:message name="Favourites_SaveSearch_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SaveSearchResponse" />
+  </wsdl:message>
+  <wsdl:message name="Favourites_SaveCategory_InputMessage">
+    <wsdl:part name="parameters" element="tns:SaveCategory" />
+  </wsdl:message>
+  <wsdl:message name="Favourites_SaveCategory_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SaveCategoryResponse" />
+  </wsdl:message>
+  <wsdl:message name="Favourites_GetSavedSellers_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetSavedSellers" />
+  </wsdl:message>
+  <wsdl:message name="Favourites_GetSavedSellers_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetSavedSellersResponse" />
+  </wsdl:message>
+  <wsdl:message name="Favourites_GetSavedCategories_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetSavedCategories" />
+  </wsdl:message>
+  <wsdl:message name="Favourites_GetSavedCategories_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetSavedCategoriesResponse" />
+  </wsdl:message>
+  <wsdl:message name="Favourites_GetSavedSearches_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetSavedSearches" />
+  </wsdl:message>
+  <wsdl:message name="Favourites_GetSavedSearches_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetSavedSearchesResponse" />
+  </wsdl:message>
+  <wsdl:message name="Favourites_RemoveFavourite_InputMessage">
+    <wsdl:part name="parameters" element="tns:RemoveFavourite" />
+  </wsdl:message>
+  <wsdl:message name="Favourites_RemoveFavourite_OutputMessage">
+    <wsdl:part name="parameters" element="tns:RemoveFavouriteResponse" />
+  </wsdl:message>
+  <wsdl:message name="Favourites_UpdateFavourite_InputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateFavourite" />
+  </wsdl:message>
+  <wsdl:message name="Favourites_UpdateFavourite_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateFavouriteResponse" />
+  </wsdl:message>
+  <wsdl:message name="Members_GetMemberId_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetMemberId" />
+  </wsdl:message>
+  <wsdl:message name="Members_GetMemberId_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetMemberIdResponse" />
+  </wsdl:message>
+  <wsdl:message name="Members_GetMemberProfile_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetMemberProfile" />
+  </wsdl:message>
+  <wsdl:message name="Members_GetMemberProfile_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetMemberProfileResponse" />
+  </wsdl:message>
+  <wsdl:message name="Members_GetMemberFeedback_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetMemberFeedback" />
+  </wsdl:message>
+  <wsdl:message name="Members_GetMemberFeedback_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetMemberFeedbackResponse" />
+  </wsdl:message>
+  <wsdl:message name="Members_GetMemberListings_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetMemberListings" />
+  </wsdl:message>
+  <wsdl:message name="Members_GetMemberListings_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetMemberListingsResponse" />
+  </wsdl:message>
+  <wsdl:message name="Members_GetMemberFeedbackCount_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetMemberFeedbackCount" />
+  </wsdl:message>
+  <wsdl:message name="Members_GetMemberFeedbackCount_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetMemberFeedbackCountResponse" />
+  </wsdl:message>
+  <wsdl:message name="Members_GetMemberFees_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetMemberFees" />
+  </wsdl:message>
+  <wsdl:message name="Members_GetMemberFees_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetMemberFeesResponse" />
+  </wsdl:message>
+  <wsdl:message name="DeviceRegistration_RegisterDevice_InputMessage">
+    <wsdl:part name="parameters" element="tns:RegisterDevice" />
+  </wsdl:message>
+  <wsdl:message name="DeviceRegistration_RegisterDevice_OutputMessage">
+    <wsdl:part name="parameters" element="tns:RegisterDeviceResponse" />
+  </wsdl:message>
+  <wsdl:message name="Bidding_MakeBid_InputMessage">
+    <wsdl:part name="parameters" element="tns:MakeBid" />
+  </wsdl:message>
+  <wsdl:message name="Bidding_MakeBid_OutputMessage">
+    <wsdl:part name="parameters" element="tns:MakeBidResponse" />
+  </wsdl:message>
+  <wsdl:message name="Bidding_UseBuyNow_InputMessage">
+    <wsdl:part name="parameters" element="tns:UseBuyNow" />
+  </wsdl:message>
+  <wsdl:message name="Bidding_UseBuyNow_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UseBuyNowResponse" />
+  </wsdl:message>
+  <wsdl:message name="Searches_GeneralSearch_InputMessage">
+    <wsdl:part name="parameters" element="tns:GeneralSearch" />
+  </wsdl:message>
+  <wsdl:message name="Searches_GeneralSearch_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GeneralSearchResponse" />
+  </wsdl:message>
+  <wsdl:message name="Searches_MotorSearch_InputMessage">
+    <wsdl:part name="parameters" element="tns:MotorSearch" />
+  </wsdl:message>
+  <wsdl:message name="Searches_MotorSearch_OutputMessage">
+    <wsdl:part name="parameters" element="tns:MotorSearchResponse" />
+  </wsdl:message>
+  <wsdl:message name="Searches_NewMotorSearch_InputMessage">
+    <wsdl:part name="parameters" element="tns:NewMotorSearch" />
+  </wsdl:message>
+  <wsdl:message name="Searches_NewMotorSearch_OutputMessage">
+    <wsdl:part name="parameters" element="tns:NewMotorSearchResponse" />
+  </wsdl:message>
+  <wsdl:message name="Searches_MotorBoatsSearch_InputMessage">
+    <wsdl:part name="parameters" element="tns:MotorBoatsSearch" />
+  </wsdl:message>
+  <wsdl:message name="Searches_MotorBoatsSearch_OutputMessage">
+    <wsdl:part name="parameters" element="tns:MotorBoatsSearchResponse" />
+  </wsdl:message>
+  <wsdl:message name="Searches_MotorBikeSearch_InputMessage">
+    <wsdl:part name="parameters" element="tns:MotorBikeSearch" />
+  </wsdl:message>
+  <wsdl:message name="Searches_MotorBikeSearch_OutputMessage">
+    <wsdl:part name="parameters" element="tns:MotorBikeSearchResponse" />
+  </wsdl:message>
+  <wsdl:message name="Searches_ResidentialSearch_InputMessage">
+    <wsdl:part name="parameters" element="tns:ResidentialSearch" />
+  </wsdl:message>
+  <wsdl:message name="Searches_ResidentialSearch_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ResidentialSearchResponse" />
+  </wsdl:message>
+  <wsdl:message name="Searches_RentalSearch_InputMessage">
+    <wsdl:part name="parameters" element="tns:RentalSearch" />
+  </wsdl:message>
+  <wsdl:message name="Searches_RentalSearch_OutputMessage">
+    <wsdl:part name="parameters" element="tns:RentalSearchResponse" />
+  </wsdl:message>
+  <wsdl:message name="Searches_CommercialSaleSearch_InputMessage">
+    <wsdl:part name="parameters" element="tns:CommercialSaleSearch" />
+  </wsdl:message>
+  <wsdl:message name="Searches_CommercialSaleSearch_OutputMessage">
+    <wsdl:part name="parameters" element="tns:CommercialSaleSearchResponse" />
+  </wsdl:message>
+  <wsdl:message name="Searches_CommercialLeaseSearch_InputMessage">
+    <wsdl:part name="parameters" element="tns:CommercialLeaseSearch" />
+  </wsdl:message>
+  <wsdl:message name="Searches_CommercialLeaseSearch_OutputMessage">
+    <wsdl:part name="parameters" element="tns:CommercialLeaseSearchResponse" />
+  </wsdl:message>
+  <wsdl:message name="Searches_RuralSearch_InputMessage">
+    <wsdl:part name="parameters" element="tns:RuralSearch" />
+  </wsdl:message>
+  <wsdl:message name="Searches_RuralSearch_OutputMessage">
+    <wsdl:part name="parameters" element="tns:RuralSearchResponse" />
+  </wsdl:message>
+  <wsdl:message name="Searches_LifestyleSearch_InputMessage">
+    <wsdl:part name="parameters" element="tns:LifestyleSearch" />
+  </wsdl:message>
+  <wsdl:message name="Searches_LifestyleSearch_OutputMessage">
+    <wsdl:part name="parameters" element="tns:LifestyleSearchResponse" />
+  </wsdl:message>
+  <wsdl:message name="Searches_RetirementVillageSearch_InputMessage">
+    <wsdl:part name="parameters" element="tns:RetirementVillageSearch" />
+  </wsdl:message>
+  <wsdl:message name="Searches_RetirementVillageSearch_OutputMessage">
+    <wsdl:part name="parameters" element="tns:RetirementVillageSearchResponse" />
+  </wsdl:message>
+  <wsdl:message name="Searches_FlatmateSearch_InputMessage">
+    <wsdl:part name="parameters" element="tns:FlatmateSearch" />
+  </wsdl:message>
+  <wsdl:message name="Searches_FlatmateSearch_OutputMessage">
+    <wsdl:part name="parameters" element="tns:FlatmateSearchResponse" />
+  </wsdl:message>
+  <wsdl:message name="Searches_OpenHomesSearch_InputMessage">
+    <wsdl:part name="parameters" element="tns:OpenHomesSearch" />
+  </wsdl:message>
+  <wsdl:message name="Searches_OpenHomesSearch_OutputMessage">
+    <wsdl:part name="parameters" element="tns:OpenHomesSearchResponse" />
+  </wsdl:message>
+  <wsdl:message name="Searches_JobsSearch_InputMessage">
+    <wsdl:part name="parameters" element="tns:JobsSearch" />
+  </wsdl:message>
+  <wsdl:message name="Searches_JobsSearch_OutputMessage">
+    <wsdl:part name="parameters" element="tns:JobsSearchResponse" />
+  </wsdl:message>
+  <wsdl:message name="Searches_StoresSearch_InputMessage">
+    <wsdl:part name="parameters" element="tns:StoresSearch" />
+  </wsdl:message>
+  <wsdl:message name="Searches_StoresSearch_OutputMessage">
+    <wsdl:part name="parameters" element="tns:StoresSearchResponse" />
+  </wsdl:message>
+  <wsdl:portType name="Selling">
+    <wsdl:operation name="CreateListing">
+      <wsdl:input wsaw:Action="http://api.trademe.co.nz/v1/Selling/CreateListing" message="tns:Selling_CreateListing_InputMessage" />
+      <wsdl:output wsaw:Action="http://api.trademe.co.nz/v1/Selling/CreateListingResponse" message="tns:Selling_CreateListing_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="Fees">
+      <wsdl:input wsaw:Action="http://api.trademe.co.nz/v1/Selling/Fees" message="tns:Selling_Fees_InputMessage" />
+      <wsdl:output wsaw:Action="http://api.trademe.co.nz/v1/Selling/FeesResponse" message="tns:Selling_Fees_OutputMessage" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="Photos">
+    <wsdl:operation name="AddPhoto">
+      <wsdl:input wsaw:Action="http://api.trademe.co.nz/v1/Photos/AddPhoto" message="tns:Photos_AddPhoto_InputMessage" />
+      <wsdl:output wsaw:Action="http://api.trademe.co.nz/v1/Photos/AddPhotoResponse" message="tns:Photos_AddPhoto_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="RemovePhoto">
+      <wsdl:input wsaw:Action="http://api.trademe.co.nz/v1/Photos/RemovePhoto" message="tns:Photos_RemovePhoto_InputMessage" />
+      <wsdl:output wsaw:Action="http://api.trademe.co.nz/v1/Photos/RemovePhotoResponse" message="tns:Photos_RemovePhoto_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetPhotos">
+      <wsdl:input wsaw:Action="http://api.trademe.co.nz/v1/Photos/GetPhotos" message="tns:Photos_GetPhotos_InputMessage" />
+      <wsdl:output wsaw:Action="http://api.trademe.co.nz/v1/Photos/GetPhotosResponse" message="tns:Photos_GetPhotos_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetPhotosWithDetails">
+      <wsdl:input wsaw:Action="http://api.trademe.co.nz/v1/Photos/GetPhotosWithDetails" message="tns:Photos_GetPhotosWithDetails_InputMessage" />
+      <wsdl:output wsaw:Action="http://api.trademe.co.nz/v1/Photos/GetPhotosWithDetailsResponse" message="tns:Photos_GetPhotosWithDetails_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="AddPhotoToListing">
+      <wsdl:input wsaw:Action="http://api.trademe.co.nz/v1/Photos/AddPhotoToListing" message="tns:Photos_AddPhotoToListing_InputMessage" />
+      <wsdl:output wsaw:Action="http://api.trademe.co.nz/v1/Photos/AddPhotoToListingResponse" message="tns:Photos_AddPhotoToListing_OutputMessage" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="MyTradeMe">
+    <wsdl:operation name="RequestRelist">
+      <wsdl:input wsaw:Action="http://api.trademe.co.nz/v1/MyTradeMe/RequestRelist" message="tns:MyTradeMe_RequestRelist_InputMessage" />
+      <wsdl:output wsaw:Action="http://api.trademe.co.nz/v1/MyTradeMe/RequestRelistResponse" message="tns:MyTradeMe_RequestRelist_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetSoldItems">
+      <wsdl:input wsaw:Action="http://api.trademe.co.nz/v1/MyTradeMe/GetSoldItems" message="tns:MyTradeMe_GetSoldItems_InputMessage" />
+      <wsdl:output wsaw:Action="http://api.trademe.co.nz/v1/MyTradeMe/GetSoldItemsResponse" message="tns:MyTradeMe_GetSoldItems_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetUnsoldItems">
+      <wsdl:input wsaw:Action="http://api.trademe.co.nz/v1/MyTradeMe/GetUnsoldItems" message="tns:MyTradeMe_GetUnsoldItems_InputMessage" />
+      <wsdl:output wsaw:Action="http://api.trademe.co.nz/v1/MyTradeMe/GetUnsoldItemsResponse" message="tns:MyTradeMe_GetUnsoldItems_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetListedItems">
+      <wsdl:input wsaw:Action="http://api.trademe.co.nz/v1/MyTradeMe/GetListedItems" message="tns:MyTradeMe_GetListedItems_InputMessage" />
+      <wsdl:output wsaw:Action="http://api.trademe.co.nz/v1/MyTradeMe/GetListedItemsResponse" message="tns:MyTradeMe_GetListedItems_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetProductMapping">
+      <wsdl:input wsaw:Action="http://api.trademe.co.nz/v1/MyTradeMe/GetProductMapping" message="tns:MyTradeMe_GetProductMapping_InputMessage" />
+      <wsdl:output wsaw:Action="http://api.trademe.co.nz/v1/MyTradeMe/GetProductMappingResponse" message="tns:MyTradeMe_GetProductMapping_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetMemberLedger">
+      <wsdl:input wsaw:Action="http://api.trademe.co.nz/v1/MyTradeMe/GetMemberLedger" message="tns:MyTradeMe_GetMemberLedger_InputMessage" />
+      <wsdl:output wsaw:Action="http://api.trademe.co.nz/v1/MyTradeMe/GetMemberLedgerResponse" message="tns:MyTradeMe_GetMemberLedger_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetPayNowLedger">
+      <wsdl:input wsaw:Action="http://api.trademe.co.nz/v1/MyTradeMe/GetPayNowLedger" message="tns:MyTradeMe_GetPayNowLedger_InputMessage" />
+      <wsdl:output wsaw:Action="http://api.trademe.co.nz/v1/MyTradeMe/GetPayNowLedgerResponse" message="tns:MyTradeMe_GetPayNowLedger_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetWonItems">
+      <wsdl:input wsaw:Action="http://api.trademe.co.nz/v1/MyTradeMe/GetWonItems" message="tns:MyTradeMe_GetWonItems_InputMessage" />
+      <wsdl:output wsaw:Action="http://api.trademe.co.nz/v1/MyTradeMe/GetWonItemsResponse" message="tns:MyTradeMe_GetWonItems_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetLostItems">
+      <wsdl:input wsaw:Action="http://api.trademe.co.nz/v1/MyTradeMe/GetLostItems" message="tns:MyTradeMe_GetLostItems_InputMessage" />
+      <wsdl:output wsaw:Action="http://api.trademe.co.nz/v1/MyTradeMe/GetLostItemsResponse" message="tns:MyTradeMe_GetLostItems_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetWatchlist">
+      <wsdl:input wsaw:Action="http://api.trademe.co.nz/v1/MyTradeMe/GetWatchlist" message="tns:MyTradeMe_GetWatchlist_InputMessage" />
+      <wsdl:output wsaw:Action="http://api.trademe.co.nz/v1/MyTradeMe/GetWatchlistResponse" message="tns:MyTradeMe_GetWatchlist_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetSalesSummary">
+      <wsdl:input wsaw:Action="http://api.trademe.co.nz/v1/MyTradeMe/GetSalesSummary" message="tns:MyTradeMe_GetSalesSummary_InputMessage" />
+      <wsdl:output wsaw:Action="http://api.trademe.co.nz/v1/MyTradeMe/GetSalesSummaryResponse" message="tns:MyTradeMe_GetSalesSummary_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetMemberSummary">
+      <wsdl:input wsaw:Action="http://api.trademe.co.nz/v1/MyTradeMe/GetMemberSummary" message="tns:MyTradeMe_GetMemberSummary_InputMessage" />
+      <wsdl:output wsaw:Action="http://api.trademe.co.nz/v1/MyTradeMe/GetMemberSummaryResponse" message="tns:MyTradeMe_GetMemberSummary_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="AddToWatchList">
+      <wsdl:input wsaw:Action="http://api.trademe.co.nz/v1/MyTradeMe/AddToWatchList" message="tns:MyTradeMe_AddToWatchList_InputMessage" />
+      <wsdl:output wsaw:Action="http://api.trademe.co.nz/v1/MyTradeMe/AddToWatchListResponse" message="tns:MyTradeMe_AddToWatchList_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="AddToWatchListWithEmailOption">
+      <wsdl:input wsaw:Action="http://api.trademe.co.nz/v1/MyTradeMe/AddToWatchListWithEmailOption" message="tns:MyTradeMe_AddToWatchListWithEmailOption_InputMessage" />
+      <wsdl:output wsaw:Action="http://api.trademe.co.nz/v1/MyTradeMe/AddToWatchListWithEmailOptionResponse" message="tns:MyTradeMe_AddToWatchListWithEmailOption_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="RemoveFromWatchList">
+      <wsdl:input wsaw:Action="http://api.trademe.co.nz/v1/MyTradeMe/RemoveFromWatchList" message="tns:MyTradeMe_RemoveFromWatchList_InputMessage" />
+      <wsdl:output wsaw:Action="http://api.trademe.co.nz/v1/MyTradeMe/RemoveFromWatchListResponse" message="tns:MyTradeMe_RemoveFromWatchList_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetJobAgentReport">
+      <wsdl:input wsaw:Action="http://api.trademe.co.nz/v1/MyTradeMe/GetJobAgentReport" message="tns:MyTradeMe_GetJobAgentReport_InputMessage" />
+      <wsdl:output wsaw:Action="http://api.trademe.co.nz/v1/MyTradeMe/GetJobAgentReportResponse" message="tns:MyTradeMe_GetJobAgentReport_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetPropertyAgentReport">
+      <wsdl:input wsaw:Action="http://api.trademe.co.nz/v1/MyTradeMe/GetPropertyAgentReport" message="tns:MyTradeMe_GetPropertyAgentReport_InputMessage" />
+      <wsdl:output wsaw:Action="http://api.trademe.co.nz/v1/MyTradeMe/GetPropertyAgentReportResponse" message="tns:MyTradeMe_GetPropertyAgentReport_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetFixedPriceOffers">
+      <wsdl:input wsaw:Action="http://api.trademe.co.nz/v1/MyTradeMe/GetFixedPriceOffers" message="tns:MyTradeMe_GetFixedPriceOffers_InputMessage" />
+      <wsdl:output wsaw:Action="http://api.trademe.co.nz/v1/MyTradeMe/GetFixedPriceOffersResponse" message="tns:MyTradeMe_GetFixedPriceOffers_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="MakeFixedPriceOffer">
+      <wsdl:input wsaw:Action="http://api.trademe.co.nz/v1/MyTradeMe/MakeFixedPriceOffer" message="tns:MyTradeMe_MakeFixedPriceOffer_InputMessage" />
+      <wsdl:output wsaw:Action="http://api.trademe.co.nz/v1/MyTradeMe/MakeFixedPriceOfferResponse" message="tns:MyTradeMe_MakeFixedPriceOffer_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetListingFee">
+      <wsdl:input wsaw:Action="http://api.trademe.co.nz/v1/MyTradeMe/GetListingFee" message="tns:MyTradeMe_GetListingFee_InputMessage" />
+      <wsdl:output wsaw:Action="http://api.trademe.co.nz/v1/MyTradeMe/GetListingFeeResponse" message="tns:MyTradeMe_GetListingFee_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SaveNote">
+      <wsdl:input wsaw:Action="http://api.trademe.co.nz/v1/MyTradeMe/SaveNote" message="tns:MyTradeMe_SaveNote_InputMessage" />
+      <wsdl:output wsaw:Action="http://api.trademe.co.nz/v1/MyTradeMe/SaveNoteResponse" message="tns:MyTradeMe_SaveNote_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetNote">
+      <wsdl:input wsaw:Action="http://api.trademe.co.nz/v1/MyTradeMe/GetNote" message="tns:MyTradeMe_GetNote_InputMessage" />
+      <wsdl:output wsaw:Action="http://api.trademe.co.nz/v1/MyTradeMe/GetNoteResponse" message="tns:MyTradeMe_GetNote_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteNote">
+      <wsdl:input wsaw:Action="http://api.trademe.co.nz/v1/MyTradeMe/DeleteNote" message="tns:MyTradeMe_DeleteNote_InputMessage" />
+      <wsdl:output wsaw:Action="http://api.trademe.co.nz/v1/MyTradeMe/DeleteNoteResponse" message="tns:MyTradeMe_DeleteNote_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SaveStatus">
+      <wsdl:input wsaw:Action="http://api.trademe.co.nz/v1/MyTradeMe/SaveStatus" message="tns:MyTradeMe_SaveStatus_InputMessage" />
+      <wsdl:output wsaw:Action="http://api.trademe.co.nz/v1/MyTradeMe/SaveStatusResponse" message="tns:MyTradeMe_SaveStatus_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteStatus">
+      <wsdl:input wsaw:Action="http://api.trademe.co.nz/v1/MyTradeMe/DeleteStatus" message="tns:MyTradeMe_DeleteStatus_InputMessage" />
+      <wsdl:output wsaw:Action="http://api.trademe.co.nz/v1/MyTradeMe/DeleteStatusResponse" message="tns:MyTradeMe_DeleteStatus_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetDeliveryAddresses">
+      <wsdl:input wsaw:Action="http://api.trademe.co.nz/v1/MyTradeMe/GetDeliveryAddresses" message="tns:MyTradeMe_GetDeliveryAddresses_InputMessage" />
+      <wsdl:output wsaw:Action="http://api.trademe.co.nz/v1/MyTradeMe/GetDeliveryAddressesResponse" message="tns:MyTradeMe_GetDeliveryAddresses_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="RemoveDeliveryAddress">
+      <wsdl:input wsaw:Action="http://api.trademe.co.nz/v1/MyTradeMe/RemoveDeliveryAddress" message="tns:MyTradeMe_RemoveDeliveryAddress_InputMessage" />
+      <wsdl:output wsaw:Action="http://api.trademe.co.nz/v1/MyTradeMe/RemoveDeliveryAddressResponse" message="tns:MyTradeMe_RemoveDeliveryAddress_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="AddDeliveryAddress">
+      <wsdl:input wsaw:Action="http://api.trademe.co.nz/v1/MyTradeMe/AddDeliveryAddress" message="tns:MyTradeMe_AddDeliveryAddress_InputMessage" />
+      <wsdl:output wsaw:Action="http://api.trademe.co.nz/v1/MyTradeMe/AddDeliveryAddressResponse" message="tns:MyTradeMe_AddDeliveryAddress_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateDeliveryAddress">
+      <wsdl:input wsaw:Action="http://api.trademe.co.nz/v1/MyTradeMe/UpdateDeliveryAddress" message="tns:MyTradeMe_UpdateDeliveryAddress_InputMessage" />
+      <wsdl:output wsaw:Action="http://api.trademe.co.nz/v1/MyTradeMe/UpdateDeliveryAddressResponse" message="tns:MyTradeMe_UpdateDeliveryAddress_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="AddFeedback">
+      <wsdl:input wsaw:Action="http://api.trademe.co.nz/v1/MyTradeMe/AddFeedback" message="tns:MyTradeMe_AddFeedback_InputMessage" />
+      <wsdl:output wsaw:Action="http://api.trademe.co.nz/v1/MyTradeMe/AddFeedbackResponse" message="tns:MyTradeMe_AddFeedback_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateFeedback">
+      <wsdl:input wsaw:Action="http://api.trademe.co.nz/v1/MyTradeMe/UpdateFeedback" message="tns:MyTradeMe_UpdateFeedback_InputMessage" />
+      <wsdl:output wsaw:Action="http://api.trademe.co.nz/v1/MyTradeMe/UpdateFeedbackResponse" message="tns:MyTradeMe_UpdateFeedback_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="RemoveFeedback">
+      <wsdl:input wsaw:Action="http://api.trademe.co.nz/v1/MyTradeMe/RemoveFeedback" message="tns:MyTradeMe_RemoveFeedback_InputMessage" />
+      <wsdl:output wsaw:Action="http://api.trademe.co.nz/v1/MyTradeMe/RemoveFeedbackResponse" message="tns:MyTradeMe_RemoveFeedback_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ReplyToFeedback">
+      <wsdl:input wsaw:Action="http://api.trademe.co.nz/v1/MyTradeMe/ReplyToFeedback" message="tns:MyTradeMe_ReplyToFeedback_InputMessage" />
+      <wsdl:output wsaw:Action="http://api.trademe.co.nz/v1/MyTradeMe/ReplyToFeedbackResponse" message="tns:MyTradeMe_ReplyToFeedback_OutputMessage" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="Catalogue">
+    <wsdl:operation name="GetCategories">
+      <wsdl:input wsaw:Action="http://api.trademe.co.nz/v1/Catalogue/GetCategories" message="tns:Catalogue_GetCategories_InputMessage" />
+      <wsdl:output wsaw:Action="http://api.trademe.co.nz/v1/Catalogue/GetCategoriesResponse" message="tns:Catalogue_GetCategories_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetUsedCarMakes">
+      <wsdl:input wsaw:Action="http://api.trademe.co.nz/v1/Catalogue/GetUsedCarMakes" message="tns:Catalogue_GetUsedCarMakes_InputMessage" />
+      <wsdl:output wsaw:Action="http://api.trademe.co.nz/v1/Catalogue/GetUsedCarMakesResponse" message="tns:Catalogue_GetUsedCarMakes_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetMotorBikeTypes">
+      <wsdl:input wsaw:Action="http://api.trademe.co.nz/v1/Catalogue/GetMotorBikeTypes" message="tns:Catalogue_GetMotorBikeTypes_InputMessage" />
+      <wsdl:output wsaw:Action="http://api.trademe.co.nz/v1/Catalogue/GetMotorBikeTypesResponse" message="tns:Catalogue_GetMotorBikeTypes_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetJobCategories">
+      <wsdl:input wsaw:Action="http://api.trademe.co.nz/v1/Catalogue/GetJobCategories" message="tns:Catalogue_GetJobCategories_InputMessage" />
+      <wsdl:output wsaw:Action="http://api.trademe.co.nz/v1/Catalogue/GetJobCategoriesResponse" message="tns:Catalogue_GetJobCategories_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetCategoryLastUpdated">
+      <wsdl:input wsaw:Action="http://api.trademe.co.nz/v1/Catalogue/GetCategoryLastUpdated" message="tns:Catalogue_GetCategoryLastUpdated_InputMessage" />
+      <wsdl:output wsaw:Action="http://api.trademe.co.nz/v1/Catalogue/GetCategoryLastUpdatedResponse" message="tns:Catalogue_GetCategoryLastUpdated_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetCategoryAttributes">
+      <wsdl:input wsaw:Action="http://api.trademe.co.nz/v1/Catalogue/GetCategoryAttributes" message="tns:Catalogue_GetCategoryAttributes_InputMessage" />
+      <wsdl:output wsaw:Action="http://api.trademe.co.nz/v1/Catalogue/GetCategoryAttributesResponse" message="tns:Catalogue_GetCategoryAttributes_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetCategoryLegalNotice">
+      <wsdl:input wsaw:Action="http://api.trademe.co.nz/v1/Catalogue/GetCategoryLegalNotice" message="tns:Catalogue_GetCategoryLegalNotice_InputMessage" />
+      <wsdl:output wsaw:Action="http://api.trademe.co.nz/v1/Catalogue/GetCategoryLegalNoticeResponse" message="tns:Catalogue_GetCategoryLegalNotice_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetCategoryDuration">
+      <wsdl:input wsaw:Action="http://api.trademe.co.nz/v1/Catalogue/GetCategoryDuration" message="tns:Catalogue_GetCategoryDuration_InputMessage" />
+      <wsdl:output wsaw:Action="http://api.trademe.co.nz/v1/Catalogue/GetCategoryDurationResponse" message="tns:Catalogue_GetCategoryDuration_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetCategoryFees">
+      <wsdl:input wsaw:Action="http://api.trademe.co.nz/v1/Catalogue/GetCategoryFees" message="tns:Catalogue_GetCategoryFees_InputMessage" />
+      <wsdl:output wsaw:Action="http://api.trademe.co.nz/v1/Catalogue/GetCategoryFeesResponse" message="tns:Catalogue_GetCategoryFees_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetLocalites">
+      <wsdl:input wsaw:Action="http://api.trademe.co.nz/v1/Catalogue/GetLocalites" message="tns:Catalogue_GetLocalites_InputMessage" />
+      <wsdl:output wsaw:Action="http://api.trademe.co.nz/v1/Catalogue/GetLocalitesResponse" message="tns:Catalogue_GetLocalites_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetRegions">
+      <wsdl:input wsaw:Action="http://api.trademe.co.nz/v1/Catalogue/GetRegions" message="tns:Catalogue_GetRegions_InputMessage" />
+      <wsdl:output wsaw:Action="http://api.trademe.co.nz/v1/Catalogue/GetRegionsResponse" message="tns:Catalogue_GetRegions_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetDistricts">
+      <wsdl:input wsaw:Action="http://api.trademe.co.nz/v1/Catalogue/GetDistricts" message="tns:Catalogue_GetDistricts_InputMessage" />
+      <wsdl:output wsaw:Action="http://api.trademe.co.nz/v1/Catalogue/GetDistrictsResponse" message="tns:Catalogue_GetDistricts_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetSuburbs">
+      <wsdl:input wsaw:Action="http://api.trademe.co.nz/v1/Catalogue/GetSuburbs" message="tns:Catalogue_GetSuburbs_InputMessage" />
+      <wsdl:output wsaw:Action="http://api.trademe.co.nz/v1/Catalogue/GetSuburbsResponse" message="tns:Catalogue_GetSuburbs_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetSearchAreas">
+      <wsdl:input wsaw:Action="http://api.trademe.co.nz/v1/Catalogue/GetSearchAreas" message="tns:Catalogue_GetSearchAreas_InputMessage" />
+      <wsdl:output wsaw:Action="http://api.trademe.co.nz/v1/Catalogue/GetSearchAreasResponse" message="tns:Catalogue_GetSearchAreas_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetTravelAreas">
+      <wsdl:input wsaw:Action="http://api.trademe.co.nz/v1/Catalogue/GetTravelAreas" message="tns:Catalogue_GetTravelAreas_InputMessage" />
+      <wsdl:output wsaw:Action="http://api.trademe.co.nz/v1/Catalogue/GetTravelAreasResponse" message="tns:Catalogue_GetTravelAreas_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetDvdValidations">
+      <wsdl:input wsaw:Action="http://api.trademe.co.nz/v1/Catalogue/GetDvdValidations" message="tns:Catalogue_GetDvdValidations_InputMessage" />
+      <wsdl:output wsaw:Action="http://api.trademe.co.nz/v1/Catalogue/GetDvdValidationsResponse" message="tns:Catalogue_GetDvdValidations_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetBluRayValidations">
+      <wsdl:input wsaw:Action="http://api.trademe.co.nz/v1/Catalogue/GetBluRayValidations" message="tns:Catalogue_GetBluRayValidations_InputMessage" />
+      <wsdl:output wsaw:Action="http://api.trademe.co.nz/v1/Catalogue/GetBluRayValidationsResponse" message="tns:Catalogue_GetBluRayValidations_OutputMessage" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="Listings">
+    <wsdl:operation name="ListingsUnansweredQuestions">
+      <wsdl:input wsaw:Action="http://api.trademe.co.nz/v1/Listings/ListingsUnansweredQuestions" message="tns:Listings_ListingsUnansweredQuestions_InputMessage" />
+      <wsdl:output wsaw:Action="http://api.trademe.co.nz/v1/Listings/ListingsUnansweredQuestionsResponse" message="tns:Listings_ListingsUnansweredQuestions_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ListingUnansweredQuestions">
+      <wsdl:input wsaw:Action="http://api.trademe.co.nz/v1/Listings/ListingUnansweredQuestions" message="tns:Listings_ListingUnansweredQuestions_InputMessage" />
+      <wsdl:output wsaw:Action="http://api.trademe.co.nz/v1/Listings/ListingUnansweredQuestionsResponse" message="tns:Listings_ListingUnansweredQuestions_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ListingAnswerQuestion">
+      <wsdl:input wsaw:Action="http://api.trademe.co.nz/v1/Listings/ListingAnswerQuestion" message="tns:Listings_ListingAnswerQuestion_InputMessage" />
+      <wsdl:output wsaw:Action="http://api.trademe.co.nz/v1/Listings/ListingAnswerQuestionResponse" message="tns:Listings_ListingAnswerQuestion_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ListingAddComment">
+      <wsdl:input wsaw:Action="http://api.trademe.co.nz/v1/Listings/ListingAddComment" message="tns:Listings_ListingAddComment_InputMessage" />
+      <wsdl:output wsaw:Action="http://api.trademe.co.nz/v1/Listings/ListingAddCommentResponse" message="tns:Listings_ListingAddComment_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ListingDetails">
+      <wsdl:input wsaw:Action="http://api.trademe.co.nz/v1/Listings/ListingDetails" message="tns:Listings_ListingDetails_InputMessage" />
+      <wsdl:output wsaw:Action="http://api.trademe.co.nz/v1/Listings/ListingDetailsResponse" message="tns:Listings_ListingDetails_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SendEmailToSeller">
+      <wsdl:input wsaw:Action="http://api.trademe.co.nz/v1/Listings/SendEmailToSeller" message="tns:Listings_SendEmailToSeller_InputMessage" />
+      <wsdl:output wsaw:Action="http://api.trademe.co.nz/v1/Listings/SendEmailToSellerResponse" message="tns:Listings_SendEmailToSeller_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SendEmailToFriend">
+      <wsdl:input wsaw:Action="http://api.trademe.co.nz/v1/Listings/SendEmailToFriend" message="tns:Listings_SendEmailToFriend_InputMessage" />
+      <wsdl:output wsaw:Action="http://api.trademe.co.nz/v1/Listings/SendEmailToFriendResponse" message="tns:Listings_SendEmailToFriend_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="Featured">
+      <wsdl:input wsaw:Action="http://api.trademe.co.nz/v1/Listings/Featured" message="tns:Listings_Featured_InputMessage" />
+      <wsdl:output wsaw:Action="http://api.trademe.co.nz/v1/Listings/FeaturedResponse" message="tns:Listings_Featured_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="Hot">
+      <wsdl:input wsaw:Action="http://api.trademe.co.nz/v1/Listings/Hot" message="tns:Listings_Hot_InputMessage" />
+      <wsdl:output wsaw:Action="http://api.trademe.co.nz/v1/Listings/HotResponse" message="tns:Listings_Hot_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="Latest">
+      <wsdl:input wsaw:Action="http://api.trademe.co.nz/v1/Listings/Latest" message="tns:Listings_Latest_InputMessage" />
+      <wsdl:output wsaw:Action="http://api.trademe.co.nz/v1/Listings/LatestResponse" message="tns:Listings_Latest_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ClosingSoon">
+      <wsdl:input wsaw:Action="http://api.trademe.co.nz/v1/Listings/ClosingSoon" message="tns:Listings_ClosingSoon_InputMessage" />
+      <wsdl:output wsaw:Action="http://api.trademe.co.nz/v1/Listings/ClosingSoonResponse" message="tns:Listings_ClosingSoon_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="OneDollar">
+      <wsdl:input wsaw:Action="http://api.trademe.co.nz/v1/Listings/OneDollar" message="tns:Listings_OneDollar_InputMessage" />
+      <wsdl:output wsaw:Action="http://api.trademe.co.nz/v1/Listings/OneDollarResponse" message="tns:Listings_OneDollar_OutputMessage" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="Favourites">
+    <wsdl:operation name="SaveSeller">
+      <wsdl:input wsaw:Action="http://api.trademe.co.nz/v1/Favourites/SaveSeller" message="tns:Favourites_SaveSeller_InputMessage" />
+      <wsdl:output wsaw:Action="http://api.trademe.co.nz/v1/Favourites/SaveSellerResponse" message="tns:Favourites_SaveSeller_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SaveSearch">
+      <wsdl:input wsaw:Action="http://api.trademe.co.nz/v1/Favourites/SaveSearch" message="tns:Favourites_SaveSearch_InputMessage" />
+      <wsdl:output wsaw:Action="http://api.trademe.co.nz/v1/Favourites/SaveSearchResponse" message="tns:Favourites_SaveSearch_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SaveCategory">
+      <wsdl:input wsaw:Action="http://api.trademe.co.nz/v1/Favourites/SaveCategory" message="tns:Favourites_SaveCategory_InputMessage" />
+      <wsdl:output wsaw:Action="http://api.trademe.co.nz/v1/Favourites/SaveCategoryResponse" message="tns:Favourites_SaveCategory_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetSavedSellers">
+      <wsdl:input wsaw:Action="http://api.trademe.co.nz/v1/Favourites/GetSavedSellers" message="tns:Favourites_GetSavedSellers_InputMessage" />
+      <wsdl:output wsaw:Action="http://api.trademe.co.nz/v1/Favourites/GetSavedSellersResponse" message="tns:Favourites_GetSavedSellers_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetSavedCategories">
+      <wsdl:input wsaw:Action="http://api.trademe.co.nz/v1/Favourites/GetSavedCategories" message="tns:Favourites_GetSavedCategories_InputMessage" />
+      <wsdl:output wsaw:Action="http://api.trademe.co.nz/v1/Favourites/GetSavedCategoriesResponse" message="tns:Favourites_GetSavedCategories_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetSavedSearches">
+      <wsdl:input wsaw:Action="http://api.trademe.co.nz/v1/Favourites/GetSavedSearches" message="tns:Favourites_GetSavedSearches_InputMessage" />
+      <wsdl:output wsaw:Action="http://api.trademe.co.nz/v1/Favourites/GetSavedSearchesResponse" message="tns:Favourites_GetSavedSearches_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="RemoveFavourite">
+      <wsdl:input wsaw:Action="http://api.trademe.co.nz/v1/Favourites/RemoveFavourite" message="tns:Favourites_RemoveFavourite_InputMessage" />
+      <wsdl:output wsaw:Action="http://api.trademe.co.nz/v1/Favourites/RemoveFavouriteResponse" message="tns:Favourites_RemoveFavourite_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateFavourite">
+      <wsdl:input wsaw:Action="http://api.trademe.co.nz/v1/Favourites/UpdateFavourite" message="tns:Favourites_UpdateFavourite_InputMessage" />
+      <wsdl:output wsaw:Action="http://api.trademe.co.nz/v1/Favourites/UpdateFavouriteResponse" message="tns:Favourites_UpdateFavourite_OutputMessage" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="Members">
+    <wsdl:operation name="GetMemberId">
+      <wsdl:input wsaw:Action="http://api.trademe.co.nz/v1/Members/GetMemberId" message="tns:Members_GetMemberId_InputMessage" />
+      <wsdl:output wsaw:Action="http://api.trademe.co.nz/v1/Members/GetMemberIdResponse" message="tns:Members_GetMemberId_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetMemberProfile">
+      <wsdl:input wsaw:Action="http://api.trademe.co.nz/v1/Members/GetMemberProfile" message="tns:Members_GetMemberProfile_InputMessage" />
+      <wsdl:output wsaw:Action="http://api.trademe.co.nz/v1/Members/GetMemberProfileResponse" message="tns:Members_GetMemberProfile_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetMemberFeedback">
+      <wsdl:input wsaw:Action="http://api.trademe.co.nz/v1/Members/GetMemberFeedback" message="tns:Members_GetMemberFeedback_InputMessage" />
+      <wsdl:output wsaw:Action="http://api.trademe.co.nz/v1/Members/GetMemberFeedbackResponse" message="tns:Members_GetMemberFeedback_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetMemberListings">
+      <wsdl:input wsaw:Action="http://api.trademe.co.nz/v1/Members/GetMemberListings" message="tns:Members_GetMemberListings_InputMessage" />
+      <wsdl:output wsaw:Action="http://api.trademe.co.nz/v1/Members/GetMemberListingsResponse" message="tns:Members_GetMemberListings_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetMemberFeedbackCount">
+      <wsdl:input wsaw:Action="http://api.trademe.co.nz/v1/Members/GetMemberFeedbackCount" message="tns:Members_GetMemberFeedbackCount_InputMessage" />
+      <wsdl:output wsaw:Action="http://api.trademe.co.nz/v1/Members/GetMemberFeedbackCountResponse" message="tns:Members_GetMemberFeedbackCount_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetMemberFees">
+      <wsdl:input wsaw:Action="http://api.trademe.co.nz/v1/Members/GetMemberFees" message="tns:Members_GetMemberFees_InputMessage" />
+      <wsdl:output wsaw:Action="http://api.trademe.co.nz/v1/Members/GetMemberFeesResponse" message="tns:Members_GetMemberFees_OutputMessage" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="DeviceRegistration">
+    <wsdl:operation name="RegisterDevice">
+      <wsdl:input wsaw:Action="http://api.trademe.co.nz/v1/DeviceRegistration/RegisterDevice" message="tns:DeviceRegistration_RegisterDevice_InputMessage" />
+      <wsdl:output wsaw:Action="http://api.trademe.co.nz/v1/DeviceRegistration/RegisterDeviceResponse" message="tns:DeviceRegistration_RegisterDevice_OutputMessage" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="Bidding">
+    <wsdl:operation name="MakeBid">
+      <wsdl:input wsaw:Action="http://api.trademe.co.nz/v1/Bidding/MakeBid" message="tns:Bidding_MakeBid_InputMessage" />
+      <wsdl:output wsaw:Action="http://api.trademe.co.nz/v1/Bidding/MakeBidResponse" message="tns:Bidding_MakeBid_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="UseBuyNow">
+      <wsdl:input wsaw:Action="http://api.trademe.co.nz/v1/Bidding/UseBuyNow" message="tns:Bidding_UseBuyNow_InputMessage" />
+      <wsdl:output wsaw:Action="http://api.trademe.co.nz/v1/Bidding/UseBuyNowResponse" message="tns:Bidding_UseBuyNow_OutputMessage" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="Searches">
+    <wsdl:operation name="GeneralSearch">
+      <wsdl:input wsaw:Action="http://api.trademe.co.nz/v1/Searches/GeneralSearch" message="tns:Searches_GeneralSearch_InputMessage" />
+      <wsdl:output wsaw:Action="http://api.trademe.co.nz/v1/Searches/GeneralSearchResponse" message="tns:Searches_GeneralSearch_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="MotorSearch">
+      <wsdl:input wsaw:Action="http://api.trademe.co.nz/v1/Searches/MotorSearch" message="tns:Searches_MotorSearch_InputMessage" />
+      <wsdl:output wsaw:Action="http://api.trademe.co.nz/v1/Searches/MotorSearchResponse" message="tns:Searches_MotorSearch_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="NewMotorSearch">
+      <wsdl:input wsaw:Action="http://api.trademe.co.nz/v1/Searches/NewMotorSearch" message="tns:Searches_NewMotorSearch_InputMessage" />
+      <wsdl:output wsaw:Action="http://api.trademe.co.nz/v1/Searches/NewMotorSearchResponse" message="tns:Searches_NewMotorSearch_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="MotorBoatsSearch">
+      <wsdl:input wsaw:Action="http://api.trademe.co.nz/v1/Searches/MotorBoatsSearch" message="tns:Searches_MotorBoatsSearch_InputMessage" />
+      <wsdl:output wsaw:Action="http://api.trademe.co.nz/v1/Searches/MotorBoatsSearchResponse" message="tns:Searches_MotorBoatsSearch_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="MotorBikeSearch">
+      <wsdl:input wsaw:Action="http://api.trademe.co.nz/v1/Searches/MotorBikeSearch" message="tns:Searches_MotorBikeSearch_InputMessage" />
+      <wsdl:output wsaw:Action="http://api.trademe.co.nz/v1/Searches/MotorBikeSearchResponse" message="tns:Searches_MotorBikeSearch_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ResidentialSearch">
+      <wsdl:input wsaw:Action="http://api.trademe.co.nz/v1/Searches/ResidentialSearch" message="tns:Searches_ResidentialSearch_InputMessage" />
+      <wsdl:output wsaw:Action="http://api.trademe.co.nz/v1/Searches/ResidentialSearchResponse" message="tns:Searches_ResidentialSearch_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="RentalSearch">
+      <wsdl:input wsaw:Action="http://api.trademe.co.nz/v1/Searches/RentalSearch" message="tns:Searches_RentalSearch_InputMessage" />
+      <wsdl:output wsaw:Action="http://api.trademe.co.nz/v1/Searches/RentalSearchResponse" message="tns:Searches_RentalSearch_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="CommercialSaleSearch">
+      <wsdl:input wsaw:Action="http://api.trademe.co.nz/v1/Searches/CommercialSaleSearch" message="tns:Searches_CommercialSaleSearch_InputMessage" />
+      <wsdl:output wsaw:Action="http://api.trademe.co.nz/v1/Searches/CommercialSaleSearchResponse" message="tns:Searches_CommercialSaleSearch_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="CommercialLeaseSearch">
+      <wsdl:input wsaw:Action="http://api.trademe.co.nz/v1/Searches/CommercialLeaseSearch" message="tns:Searches_CommercialLeaseSearch_InputMessage" />
+      <wsdl:output wsaw:Action="http://api.trademe.co.nz/v1/Searches/CommercialLeaseSearchResponse" message="tns:Searches_CommercialLeaseSearch_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="RuralSearch">
+      <wsdl:input wsaw:Action="http://api.trademe.co.nz/v1/Searches/RuralSearch" message="tns:Searches_RuralSearch_InputMessage" />
+      <wsdl:output wsaw:Action="http://api.trademe.co.nz/v1/Searches/RuralSearchResponse" message="tns:Searches_RuralSearch_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="LifestyleSearch">
+      <wsdl:input wsaw:Action="http://api.trademe.co.nz/v1/Searches/LifestyleSearch" message="tns:Searches_LifestyleSearch_InputMessage" />
+      <wsdl:output wsaw:Action="http://api.trademe.co.nz/v1/Searches/LifestyleSearchResponse" message="tns:Searches_LifestyleSearch_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="RetirementVillageSearch">
+      <wsdl:input wsaw:Action="http://api.trademe.co.nz/v1/Searches/RetirementVillageSearch" message="tns:Searches_RetirementVillageSearch_InputMessage" />
+      <wsdl:output wsaw:Action="http://api.trademe.co.nz/v1/Searches/RetirementVillageSearchResponse" message="tns:Searches_RetirementVillageSearch_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="FlatmateSearch">
+      <wsdl:input wsaw:Action="http://api.trademe.co.nz/v1/Searches/FlatmateSearch" message="tns:Searches_FlatmateSearch_InputMessage" />
+      <wsdl:output wsaw:Action="http://api.trademe.co.nz/v1/Searches/FlatmateSearchResponse" message="tns:Searches_FlatmateSearch_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="OpenHomesSearch">
+      <wsdl:input wsaw:Action="http://api.trademe.co.nz/v1/Searches/OpenHomesSearch" message="tns:Searches_OpenHomesSearch_InputMessage" />
+      <wsdl:output wsaw:Action="http://api.trademe.co.nz/v1/Searches/OpenHomesSearchResponse" message="tns:Searches_OpenHomesSearch_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="JobsSearch">
+      <wsdl:input wsaw:Action="http://api.trademe.co.nz/v1/Searches/JobsSearch" message="tns:Searches_JobsSearch_InputMessage" />
+      <wsdl:output wsaw:Action="http://api.trademe.co.nz/v1/Searches/JobsSearchResponse" message="tns:Searches_JobsSearch_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="StoresSearch">
+      <wsdl:input wsaw:Action="http://api.trademe.co.nz/v1/Searches/StoresSearch" message="tns:Searches_StoresSearch_InputMessage" />
+      <wsdl:output wsaw:Action="http://api.trademe.co.nz/v1/Searches/StoresSearchResponse" message="tns:Searches_StoresSearch_OutputMessage" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="DefaultBinding_Selling" type="tns:Selling">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="CreateListing">
+      <soap:operation soapAction="http://api.trademe.co.nz/v1/Selling/CreateListing" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Fees">
+      <soap:operation soapAction="http://api.trademe.co.nz/v1/Selling/Fees" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="DefaultBinding_Photos" type="tns:Photos">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="AddPhoto">
+      <soap:operation soapAction="http://api.trademe.co.nz/v1/Photos/AddPhoto" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RemovePhoto">
+      <soap:operation soapAction="http://api.trademe.co.nz/v1/Photos/RemovePhoto" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetPhotos">
+      <soap:operation soapAction="http://api.trademe.co.nz/v1/Photos/GetPhotos" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetPhotosWithDetails">
+      <soap:operation soapAction="http://api.trademe.co.nz/v1/Photos/GetPhotosWithDetails" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddPhotoToListing">
+      <soap:operation soapAction="http://api.trademe.co.nz/v1/Photos/AddPhotoToListing" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="DefaultBinding_MyTradeMe" type="tns:MyTradeMe">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="RequestRelist">
+      <soap:operation soapAction="http://api.trademe.co.nz/v1/MyTradeMe/RequestRelist" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetSoldItems">
+      <soap:operation soapAction="http://api.trademe.co.nz/v1/MyTradeMe/GetSoldItems" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetUnsoldItems">
+      <soap:operation soapAction="http://api.trademe.co.nz/v1/MyTradeMe/GetUnsoldItems" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetListedItems">
+      <soap:operation soapAction="http://api.trademe.co.nz/v1/MyTradeMe/GetListedItems" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetProductMapping">
+      <soap:operation soapAction="http://api.trademe.co.nz/v1/MyTradeMe/GetProductMapping" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetMemberLedger">
+      <soap:operation soapAction="http://api.trademe.co.nz/v1/MyTradeMe/GetMemberLedger" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetPayNowLedger">
+      <soap:operation soapAction="http://api.trademe.co.nz/v1/MyTradeMe/GetPayNowLedger" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetWonItems">
+      <soap:operation soapAction="http://api.trademe.co.nz/v1/MyTradeMe/GetWonItems" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetLostItems">
+      <soap:operation soapAction="http://api.trademe.co.nz/v1/MyTradeMe/GetLostItems" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetWatchlist">
+      <soap:operation soapAction="http://api.trademe.co.nz/v1/MyTradeMe/GetWatchlist" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetSalesSummary">
+      <soap:operation soapAction="http://api.trademe.co.nz/v1/MyTradeMe/GetSalesSummary" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetMemberSummary">
+      <soap:operation soapAction="http://api.trademe.co.nz/v1/MyTradeMe/GetMemberSummary" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddToWatchList">
+      <soap:operation soapAction="http://api.trademe.co.nz/v1/MyTradeMe/AddToWatchList" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddToWatchListWithEmailOption">
+      <soap:operation soapAction="http://api.trademe.co.nz/v1/MyTradeMe/AddToWatchListWithEmailOption" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RemoveFromWatchList">
+      <soap:operation soapAction="http://api.trademe.co.nz/v1/MyTradeMe/RemoveFromWatchList" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetJobAgentReport">
+      <soap:operation soapAction="http://api.trademe.co.nz/v1/MyTradeMe/GetJobAgentReport" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetPropertyAgentReport">
+      <soap:operation soapAction="http://api.trademe.co.nz/v1/MyTradeMe/GetPropertyAgentReport" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetFixedPriceOffers">
+      <soap:operation soapAction="http://api.trademe.co.nz/v1/MyTradeMe/GetFixedPriceOffers" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="MakeFixedPriceOffer">
+      <soap:operation soapAction="http://api.trademe.co.nz/v1/MyTradeMe/MakeFixedPriceOffer" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetListingFee">
+      <soap:operation soapAction="http://api.trademe.co.nz/v1/MyTradeMe/GetListingFee" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SaveNote">
+      <soap:operation soapAction="http://api.trademe.co.nz/v1/MyTradeMe/SaveNote" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetNote">
+      <soap:operation soapAction="http://api.trademe.co.nz/v1/MyTradeMe/GetNote" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteNote">
+      <soap:operation soapAction="http://api.trademe.co.nz/v1/MyTradeMe/DeleteNote" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SaveStatus">
+      <soap:operation soapAction="http://api.trademe.co.nz/v1/MyTradeMe/SaveStatus" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteStatus">
+      <soap:operation soapAction="http://api.trademe.co.nz/v1/MyTradeMe/DeleteStatus" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetDeliveryAddresses">
+      <soap:operation soapAction="http://api.trademe.co.nz/v1/MyTradeMe/GetDeliveryAddresses" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RemoveDeliveryAddress">
+      <soap:operation soapAction="http://api.trademe.co.nz/v1/MyTradeMe/RemoveDeliveryAddress" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddDeliveryAddress">
+      <soap:operation soapAction="http://api.trademe.co.nz/v1/MyTradeMe/AddDeliveryAddress" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateDeliveryAddress">
+      <soap:operation soapAction="http://api.trademe.co.nz/v1/MyTradeMe/UpdateDeliveryAddress" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddFeedback">
+      <soap:operation soapAction="http://api.trademe.co.nz/v1/MyTradeMe/AddFeedback" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateFeedback">
+      <soap:operation soapAction="http://api.trademe.co.nz/v1/MyTradeMe/UpdateFeedback" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RemoveFeedback">
+      <soap:operation soapAction="http://api.trademe.co.nz/v1/MyTradeMe/RemoveFeedback" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ReplyToFeedback">
+      <soap:operation soapAction="http://api.trademe.co.nz/v1/MyTradeMe/ReplyToFeedback" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="DefaultBinding_Catalogue" type="tns:Catalogue">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="GetCategories">
+      <soap:operation soapAction="http://api.trademe.co.nz/v1/Catalogue/GetCategories" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetUsedCarMakes">
+      <soap:operation soapAction="http://api.trademe.co.nz/v1/Catalogue/GetUsedCarMakes" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetMotorBikeTypes">
+      <soap:operation soapAction="http://api.trademe.co.nz/v1/Catalogue/GetMotorBikeTypes" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetJobCategories">
+      <soap:operation soapAction="http://api.trademe.co.nz/v1/Catalogue/GetJobCategories" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCategoryLastUpdated">
+      <soap:operation soapAction="http://api.trademe.co.nz/v1/Catalogue/GetCategoryLastUpdated" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCategoryAttributes">
+      <soap:operation soapAction="http://api.trademe.co.nz/v1/Catalogue/GetCategoryAttributes" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCategoryLegalNotice">
+      <soap:operation soapAction="http://api.trademe.co.nz/v1/Catalogue/GetCategoryLegalNotice" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCategoryDuration">
+      <soap:operation soapAction="http://api.trademe.co.nz/v1/Catalogue/GetCategoryDuration" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCategoryFees">
+      <soap:operation soapAction="http://api.trademe.co.nz/v1/Catalogue/GetCategoryFees" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetLocalites">
+      <soap:operation soapAction="http://api.trademe.co.nz/v1/Catalogue/GetLocalites" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetRegions">
+      <soap:operation soapAction="http://api.trademe.co.nz/v1/Catalogue/GetRegions" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetDistricts">
+      <soap:operation soapAction="http://api.trademe.co.nz/v1/Catalogue/GetDistricts" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetSuburbs">
+      <soap:operation soapAction="http://api.trademe.co.nz/v1/Catalogue/GetSuburbs" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetSearchAreas">
+      <soap:operation soapAction="http://api.trademe.co.nz/v1/Catalogue/GetSearchAreas" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetTravelAreas">
+      <soap:operation soapAction="http://api.trademe.co.nz/v1/Catalogue/GetTravelAreas" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetDvdValidations">
+      <soap:operation soapAction="http://api.trademe.co.nz/v1/Catalogue/GetDvdValidations" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetBluRayValidations">
+      <soap:operation soapAction="http://api.trademe.co.nz/v1/Catalogue/GetBluRayValidations" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="DefaultBinding_Listings" type="tns:Listings">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="ListingsUnansweredQuestions">
+      <soap:operation soapAction="http://api.trademe.co.nz/v1/Listings/ListingsUnansweredQuestions" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ListingUnansweredQuestions">
+      <soap:operation soapAction="http://api.trademe.co.nz/v1/Listings/ListingUnansweredQuestions" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ListingAnswerQuestion">
+      <soap:operation soapAction="http://api.trademe.co.nz/v1/Listings/ListingAnswerQuestion" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ListingAddComment">
+      <soap:operation soapAction="http://api.trademe.co.nz/v1/Listings/ListingAddComment" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ListingDetails">
+      <soap:operation soapAction="http://api.trademe.co.nz/v1/Listings/ListingDetails" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SendEmailToSeller">
+      <soap:operation soapAction="http://api.trademe.co.nz/v1/Listings/SendEmailToSeller" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SendEmailToFriend">
+      <soap:operation soapAction="http://api.trademe.co.nz/v1/Listings/SendEmailToFriend" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Featured">
+      <soap:operation soapAction="http://api.trademe.co.nz/v1/Listings/Featured" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Hot">
+      <soap:operation soapAction="http://api.trademe.co.nz/v1/Listings/Hot" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Latest">
+      <soap:operation soapAction="http://api.trademe.co.nz/v1/Listings/Latest" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ClosingSoon">
+      <soap:operation soapAction="http://api.trademe.co.nz/v1/Listings/ClosingSoon" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="OneDollar">
+      <soap:operation soapAction="http://api.trademe.co.nz/v1/Listings/OneDollar" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="DefaultBinding_Favourites" type="tns:Favourites">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="SaveSeller">
+      <soap:operation soapAction="http://api.trademe.co.nz/v1/Favourites/SaveSeller" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SaveSearch">
+      <soap:operation soapAction="http://api.trademe.co.nz/v1/Favourites/SaveSearch" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SaveCategory">
+      <soap:operation soapAction="http://api.trademe.co.nz/v1/Favourites/SaveCategory" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetSavedSellers">
+      <soap:operation soapAction="http://api.trademe.co.nz/v1/Favourites/GetSavedSellers" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetSavedCategories">
+      <soap:operation soapAction="http://api.trademe.co.nz/v1/Favourites/GetSavedCategories" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetSavedSearches">
+      <soap:operation soapAction="http://api.trademe.co.nz/v1/Favourites/GetSavedSearches" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RemoveFavourite">
+      <soap:operation soapAction="http://api.trademe.co.nz/v1/Favourites/RemoveFavourite" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateFavourite">
+      <soap:operation soapAction="http://api.trademe.co.nz/v1/Favourites/UpdateFavourite" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="DefaultBinding_Members" type="tns:Members">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="GetMemberId">
+      <soap:operation soapAction="http://api.trademe.co.nz/v1/Members/GetMemberId" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetMemberProfile">
+      <soap:operation soapAction="http://api.trademe.co.nz/v1/Members/GetMemberProfile" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetMemberFeedback">
+      <soap:operation soapAction="http://api.trademe.co.nz/v1/Members/GetMemberFeedback" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetMemberListings">
+      <soap:operation soapAction="http://api.trademe.co.nz/v1/Members/GetMemberListings" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetMemberFeedbackCount">
+      <soap:operation soapAction="http://api.trademe.co.nz/v1/Members/GetMemberFeedbackCount" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetMemberFees">
+      <soap:operation soapAction="http://api.trademe.co.nz/v1/Members/GetMemberFees" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="DefaultBinding_DeviceRegistration" type="tns:DeviceRegistration">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="RegisterDevice">
+      <soap:operation soapAction="http://api.trademe.co.nz/v1/DeviceRegistration/RegisterDevice" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="DefaultBinding_Bidding" type="tns:Bidding">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="MakeBid">
+      <soap:operation soapAction="http://api.trademe.co.nz/v1/Bidding/MakeBid" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UseBuyNow">
+      <soap:operation soapAction="http://api.trademe.co.nz/v1/Bidding/UseBuyNow" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="DefaultBinding_Searches" type="tns:Searches">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="GeneralSearch">
+      <soap:operation soapAction="http://api.trademe.co.nz/v1/Searches/GeneralSearch" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="MotorSearch">
+      <soap:operation soapAction="http://api.trademe.co.nz/v1/Searches/MotorSearch" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="NewMotorSearch">
+      <soap:operation soapAction="http://api.trademe.co.nz/v1/Searches/NewMotorSearch" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="MotorBoatsSearch">
+      <soap:operation soapAction="http://api.trademe.co.nz/v1/Searches/MotorBoatsSearch" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="MotorBikeSearch">
+      <soap:operation soapAction="http://api.trademe.co.nz/v1/Searches/MotorBikeSearch" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ResidentialSearch">
+      <soap:operation soapAction="http://api.trademe.co.nz/v1/Searches/ResidentialSearch" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RentalSearch">
+      <soap:operation soapAction="http://api.trademe.co.nz/v1/Searches/RentalSearch" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CommercialSaleSearch">
+      <soap:operation soapAction="http://api.trademe.co.nz/v1/Searches/CommercialSaleSearch" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CommercialLeaseSearch">
+      <soap:operation soapAction="http://api.trademe.co.nz/v1/Searches/CommercialLeaseSearch" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RuralSearch">
+      <soap:operation soapAction="http://api.trademe.co.nz/v1/Searches/RuralSearch" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="LifestyleSearch">
+      <soap:operation soapAction="http://api.trademe.co.nz/v1/Searches/LifestyleSearch" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RetirementVillageSearch">
+      <soap:operation soapAction="http://api.trademe.co.nz/v1/Searches/RetirementVillageSearch" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="FlatmateSearch">
+      <soap:operation soapAction="http://api.trademe.co.nz/v1/Searches/FlatmateSearch" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="OpenHomesSearch">
+      <soap:operation soapAction="http://api.trademe.co.nz/v1/Searches/OpenHomesSearch" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="JobsSearch">
+      <soap:operation soapAction="http://api.trademe.co.nz/v1/Searches/JobsSearch" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="StoresSearch">
+      <soap:operation soapAction="http://api.trademe.co.nz/v1/Searches/StoresSearch" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+</wsdl:definitions>

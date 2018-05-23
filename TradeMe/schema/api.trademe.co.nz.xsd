@@ -1,0 +1,7 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://api.trademe.co.nz" elementFormDefault="qualified" targetNamespace="http://api.trademe.co.nz" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:complexType name="ExtensibleDataObject">
+    <xs:sequence />
+  </xs:complexType>
+  <xs:element name="ExtensibleDataObject" nillable="true" type="tns:ExtensibleDataObject" />
+</xs:schema>

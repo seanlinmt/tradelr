@@ -1,0 +1,132 @@
+{% if cart.item_count == 0 %}
+
+  <div id="empty">
+    <h1>{{ settings.txt_empty_cart }}</h1>
+    <p>{{ settings.txt_featured }}:</p>
+  </div>
+  
+  <table id="gallery">
+    {% tablerow product in collections.frontpage.products cols: 3 limit: 6 %}
+        <div class="gallery-image">
+          
+          {% if product.selling_price > product.price %}
+          <a href="{{ product.url | within: collection }}" title="{{ product.description | strip_html | truncate: 50 | escape }}">
+            <div class="salemarker"> </div>
+          </a>
+          {% endif %}
+
+          <a href="{{ product.url | within: collection }}" title="{{ product.description | strip_html | truncate: 50 | escape }}">
+            <div class="gallery-image-wrapper">
+              
+              {% capture badUrl %}{{ product.images.first | product_img_url: 'large' }}{% endcapture %}
+              <img src=
+              "
+              {% if badUrl contains "no-image-large.gif" %}
+              {{ 'no-image.gif' | asset_url }}
+              {% else %}
+              {{ product.images.first | product_img_url: 'large' }}
+              {% endif %}
+              "
+              alt="{{ product.title | escape }}" />
+            </div>
+          </a>
+
+          <div class="gallery-title">
+            <a href="{{ product.url | within: collection }}">{{ product.title | truncate: 40 }}</a>
+          </div>
+          
+          <div class="gallery-price">
+            {% if product.selling_price > product.price %}
+              <span class="bold-red">Sale: {{ product.price | money }}</span> <del>{{ product.selling_price | money }}</del>
+            {% else %}
+              <span id="product-price">{{ product.price | money }}</span>
+            {% endif %}
+          </div>
+          
+          <p class="datetime">
+            <a href="{{product.url}}#social" title="like"><span id="like-{{ product.handle }}">Like</span></a>
+            <script type="text/javascript">updateSummary("{{shop.url}}{{product.url}}", "like-{{ product.handle }}", 'likes');</script>
+
+            {% if settings.product_comments_enabled %}
+             &#183; 
+            <a href="{{product.url}}#social" title="{{ settings.txt_comment_this }}"><span id="comment-{{ product.handle }}">Comment</span></a>
+            <script type="text/javascript">updateSummary("{{shop.url}}{{product.url}}", "comment-{{ product.handle }}", 'comments');</script>
+            {% endif %}
+          </p>
+        </div>
+    {% endtablerow %}
+  </table>
+  
+{% else %}
+
+<form action="/cart" method="post" id="cartform">
+<div id="cart-wrapper">
+  <table id="cart">
+    
+  {% for item in cart.items %}
+  <tr class="cart-{% cycle 'odd', 'even' %}">
+    
+    <td class="col1">
+      <div class="cart-images left">
+        <a href="{{ item.product.images.first | product_img_url: 'large' }}" class="product-images" title="{{ settings.txt_img_zoom }}"><img src="{{ item.product.images.first | product_img_url: 'thumb' }}" alt="{{ item.title | escape }}" /></a>
+      </div>
+      <div class="cart-desc left">
+        <a href="{{ item.product.url }}">{{ item.title }}</a>
+        <p class="grey">{{ item.product.description | strip_html | truncate: 90 }}</p>
+      </div>
+    </td>
+    
+    <td class="col2 quantity">
+      <span class='cart-btn minus-item' id='minus-item-btn_{{item.id}}'>-</span><input type="text" size="2" name="updates" id="updates_{{ item.id }}" class="cart-quantity" value="{{ item.quantity }}" onfocus="this.select();"/><span class='cart-btn add-item' id='add-item-btn_{{item.id}}'>+</span>
+    </td>
+    
+    <td class="col3">      
+      <strong {% if item.variant.selling_price > item.price %}class="red"{% endif %}>{{ item.total_price | money }}</strong><br/>
+     
+      {% if item.quantity > 1 %}
+      <p class="grey">({{ item.quantity }} @ {{ item.price | money }}/ea)</p>
+      {% endif %}
+    </td>
+    
+    <td class="col4">
+      {% if item.variant.selling_price > item.price %}<div class="salemarker"> </div>{% endif %}
+      <a href="/cart/change/{{ item.id }}?quantity=0"><img title="{{ settings.txt_remove }}" alt="[Remove]" src="{{ 'remove.png' | asset_url }}"/></a>
+    </td>
+  </tr>
+  {% endfor %}
+  <tr>
+  <td class="col1 cart-discount" colspan="2">
+  <p>{{ settings.txt_discount }} <input type="text" id="coupon_code" name="coupon_code" value="{{ cart.coupon_code }}" /></p> 
+    </td>
+    <td class="col3">  
+	{% if cart.discount_amount > 0 %}
+	<strong>- {{ cart.discount_amount | money }}</strong>
+	{% endif %}    
+    </td>
+    <td class="col4">
+    </td>
+  </tr>
+  </table>
+
+  <div id="cart-right">
+    <h2><span class="grey">{{ settings.txt_subtotal }}:</span> {{ cart.total_price | money }}</h2>
+    <input type="submit" id="update-cart" class="button" name="update" value="{{ settings.txt_update }}" /><input type="submit" id="checkout" class="button" name="checkout" value="{{ settings.txt_checkout }}" />
+    
+    {% if settings.note_enabled %}
+      <p class="grey">
+        <label for="note">{{ settings.txt_instructions }}:</label><br/>
+        <textarea name="note" id="note" rows="3" cols="60">{{ cart.note }}</textarea>
+      </p>
+    {% endif %}
+    
+    {% if additional_checkout_buttons %}<br/>
+    <div class="additional-checkout-buttons">
+      <p>{{ settings.txt_checkout_support }}:</p>
+      {{ content_for_additional_checkout_buttons }}
+    </div>
+    {% endif %}
+  </div>
+</form>
+{% endif %}
+
+<script type='text/javascript'> $(document).ready(function(){ cartPage(); }); </script>

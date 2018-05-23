@@ -1,0 +1,775 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xsd:schema elementFormDefault="qualified" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <xsd:include schemaLocation="amzn-base.xsd" />
+  <xsd:element name="FoodAndBeverages">
+    <xsd:complexType>
+      <xsd:sequence>
+        <xsd:element name="ProductType">
+          <xsd:complexType>
+            <xsd:choice>
+              <xsd:element ref="Food" />
+              <xsd:element ref="HouseholdSupplies" />
+              <xsd:element ref="Beverages" />
+              <xsd:element ref="HardLiquor" />
+              <xsd:element ref="AlcoholicBeverages" />
+              <xsd:element ref="Wine" />
+            </xsd:choice>
+          </xsd:complexType>
+        </xsd:element>
+      </xsd:sequence>
+    </xsd:complexType>
+  </xsd:element>
+  <xsd:element name="Food">
+    <xsd:complexType>
+      <xsd:sequence>
+        <xsd:element minOccurs="0" name="VariationData">
+          <xsd:complexType>
+            <xsd:sequence>
+              <xsd:element name="Parentage">
+                <xsd:simpleType>
+                  <xsd:restriction base="xsd:string">
+                    <xsd:enumeration value="parent" />
+                    <xsd:enumeration value="child" />
+                  </xsd:restriction>
+                </xsd:simpleType>
+              </xsd:element>
+              <xsd:element minOccurs="0" name="VariationTheme">
+                <xsd:simpleType>
+                  <xsd:restriction base="xsd:string">
+                    <xsd:enumeration value="Size" />
+                    <xsd:enumeration value="Flavor" />
+                    <xsd:enumeration value="Flavor-Size" />
+                    <xsd:enumeration value="PatternName" />
+                  </xsd:restriction>
+                </xsd:simpleType>
+              </xsd:element>
+              <xsd:element minOccurs="0" name="Size" type="StringNotNull" />
+              <xsd:element minOccurs="0" name="Flavor" type="StringNotNull" />
+              <xsd:element minOccurs="0" name="PatternName" type="HundredString" />
+            </xsd:sequence>
+          </xsd:complexType>
+        </xsd:element>
+        <xsd:element minOccurs="0" name="CountryProducedIn" type="LongStringNotNull" />
+        <xsd:element minOccurs="0" name="RegionOfOrigin" type="StringNotNull" />
+        <xsd:element minOccurs="0" name="Prefecture" type="StringNotNull" />
+        <xsd:element minOccurs="0" name="ItemForm" type="String" />
+        <xsd:element minOccurs="0" name="Ingredients" type="LongStringNotNull" />
+        <xsd:element minOccurs="0" name="NutritionalFacts" type="LongStringNotNull" />
+        <xsd:element minOccurs="0" maxOccurs="5" name="KosherCertification" type="HundredString" />
+        <xsd:element minOccurs="0" maxOccurs="5" name="OrganicCertification" type="HundredString" />
+        <xsd:element minOccurs="0" maxOccurs="5" name="TokuhoCertification" type="String" />
+        <xsd:element minOccurs="0" maxOccurs="5" name="ItemSpecialty" type="StringNotNull" />
+        <xsd:element minOccurs="0" name="CaffeineContent" type="String" />
+        <xsd:element minOccurs="0" name="Warnings" type="LongStringNotNull" />
+        <xsd:element minOccurs="0" name="IsPerishable" type="xsd:boolean" />
+        <xsd:element minOccurs="0" name="StorageInstructions" type="HundredString" />
+        <xsd:element minOccurs="0" name="Directions" type="LongStringNotNull" />
+        <xsd:element minOccurs="0" name="RecommendedServingInstructions" type="String" />
+        <xsd:element minOccurs="0" name="Occasion" type="MediumStringNotNull" />
+        <xsd:element minOccurs="0" maxOccurs="5" name="AwardsWon" type="HundredString" />
+        <xsd:element minOccurs="0" name="AgeRangeDescription" type="String" />
+        <xsd:element minOccurs="0" name="ItemPackageQuantity" type="xsd:positiveInteger" />
+        <xsd:element minOccurs="0" name="NumberOfItems" type="xsd:positiveInteger" />
+        <xsd:element minOccurs="0" name="DisplayLength" type="LengthDimension" />
+        <xsd:element minOccurs="0" name="DisplayWeight" type="WeightDimension" />
+        <xsd:element minOccurs="0" name="DisplayVolume" type="VolumeDimension" />
+        <xsd:element minOccurs="0" name="ContainerType" type="String" />
+        <xsd:element minOccurs="0" name="UnitCount">
+          <xsd:complexType>
+            <xsd:simpleContent>
+              <xsd:extension base="xsd:positiveInteger">
+                <xsd:attribute name="unitOfMeasure" type="StringNotNull" use="required" />
+              </xsd:extension>
+            </xsd:simpleContent>
+          </xsd:complexType>
+        </xsd:element>
+        <xsd:element minOccurs="0" ref="NutritionalFactsGroup" />
+        <xsd:element minOccurs="0" name="ContainerMaterialType" type="String" />
+        <xsd:element minOccurs="0" name="ContainerVolume" type="xsd:positiveInteger" />
+        <xsd:element minOccurs="0" name="Cuisine" type="String" />
+        <xsd:element minOccurs="0" name="UseByRecommendation" type="String" />
+      </xsd:sequence>
+    </xsd:complexType>
+  </xsd:element>
+  <xsd:element name="HouseholdSupplies">
+    <xsd:complexType>
+      <xsd:sequence>
+        <xsd:element minOccurs="0" name="VariationData">
+          <xsd:complexType>
+            <xsd:sequence>
+              <xsd:element name="Parentage">
+                <xsd:simpleType>
+                  <xsd:restriction base="xsd:string">
+                    <xsd:enumeration value="parent" />
+                    <xsd:enumeration value="child" />
+                  </xsd:restriction>
+                </xsd:simpleType>
+              </xsd:element>
+              <xsd:element minOccurs="0" name="VariationTheme">
+                <xsd:simpleType>
+                  <xsd:restriction base="xsd:string">
+                    <xsd:enumeration value="Size" />
+                    <xsd:enumeration value="Flavor" />
+                    <xsd:enumeration value="Flavor-Size" />
+                    <xsd:enumeration value="PatternName" />
+                  </xsd:restriction>
+                </xsd:simpleType>
+              </xsd:element>
+              <xsd:element minOccurs="0" name="Size" type="StringNotNull" />
+              <xsd:element minOccurs="0" name="Flavor" type="StringNotNull" />
+              <xsd:element minOccurs="0" name="PatternName" type="HundredString" />
+            </xsd:sequence>
+          </xsd:complexType>
+        </xsd:element>
+        <xsd:element minOccurs="0" name="CountryProducedIn" type="LongStringNotNull" />
+        <xsd:element minOccurs="0" name="RegionOfOrigin" type="StringNotNull" />
+        <xsd:element minOccurs="0" name="Prefecture" type="StringNotNull" />
+        <xsd:element minOccurs="0" name="ItemForm" type="String" />
+        <xsd:element minOccurs="0" name="Ingredients" type="LongStringNotNull" />
+        <xsd:element minOccurs="0" name="NutritionalFacts" type="LongStringNotNull" />
+        <xsd:element minOccurs="0" maxOccurs="5" name="KosherCertification" type="HundredString" />
+        <xsd:element minOccurs="0" maxOccurs="5" name="OrganicCertification" type="HundredString" />
+        <xsd:element minOccurs="0" maxOccurs="5" name="TokuhoCertification" type="String" />
+        <xsd:element minOccurs="0" maxOccurs="5" name="ItemSpecialty" type="StringNotNull" />
+        <xsd:element minOccurs="0" name="CaffeineContent" type="String" />
+        <xsd:element minOccurs="0" name="Warnings" type="LongStringNotNull" />
+        <xsd:element minOccurs="0" name="IsPerishable" type="xsd:boolean" />
+        <xsd:element minOccurs="0" name="StorageInstructions" type="HundredString" />
+        <xsd:element minOccurs="0" name="Directions" type="LongStringNotNull" />
+        <xsd:element minOccurs="0" name="Occasion" type="MediumStringNotNull" />
+        <xsd:element minOccurs="0" maxOccurs="5" name="AwardsWon" type="HundredString" />
+        <xsd:element minOccurs="0" name="AgeRangeDescription" type="String" />
+        <xsd:element minOccurs="0" name="ItemPackageQuantity" type="xsd:positiveInteger" />
+        <xsd:element minOccurs="0" name="NumberOfItems" type="xsd:positiveInteger" />
+        <xsd:element minOccurs="0" name="DisplayLength" type="LengthDimension" />
+        <xsd:element minOccurs="0" name="DisplayWeight" type="WeightDimension" />
+        <xsd:element minOccurs="0" name="DisplayVolume" type="VolumeDimension" />
+        <xsd:element minOccurs="0" name="ContainerType" type="String" />
+        <xsd:element minOccurs="0" name="UnitCount">
+          <xsd:complexType>
+            <xsd:simpleContent>
+              <xsd:extension base="xsd:positiveInteger">
+                <xsd:attribute name="unitOfMeasure" type="StringNotNull" use="required" />
+              </xsd:extension>
+            </xsd:simpleContent>
+          </xsd:complexType>
+        </xsd:element>
+        <xsd:element minOccurs="0" ref="NutritionalFactsGroup" />
+        <xsd:element minOccurs="0" name="ContainerMaterialType" type="String" />
+        <xsd:element minOccurs="0" name="ContainerVolume" type="xsd:positiveInteger" />
+        <xsd:element minOccurs="0" name="Cuisine" type="String" />
+        <xsd:element minOccurs="0" name="UseByRecommendation" type="String" />
+      </xsd:sequence>
+    </xsd:complexType>
+  </xsd:element>
+  <xsd:element name="Beverages">
+    <xsd:complexType>
+      <xsd:sequence>
+        <xsd:element minOccurs="0" name="VariationData">
+          <xsd:complexType>
+            <xsd:sequence>
+              <xsd:element name="Parentage">
+                <xsd:simpleType>
+                  <xsd:restriction base="xsd:string">
+                    <xsd:enumeration value="parent" />
+                    <xsd:enumeration value="child" />
+                  </xsd:restriction>
+                </xsd:simpleType>
+              </xsd:element>
+              <xsd:element minOccurs="0" name="VariationTheme">
+                <xsd:simpleType>
+                  <xsd:restriction base="xsd:string">
+                    <xsd:enumeration value="Size" />
+                    <xsd:enumeration value="Flavor" />
+                    <xsd:enumeration value="Flavor-Size" />
+                    <xsd:enumeration value="PatternName" />
+                  </xsd:restriction>
+                </xsd:simpleType>
+              </xsd:element>
+              <xsd:element minOccurs="0" name="Size" type="StringNotNull" />
+              <xsd:element minOccurs="0" name="Flavor" type="StringNotNull" />
+              <xsd:element minOccurs="0" name="PatternName" type="HundredString" />
+            </xsd:sequence>
+          </xsd:complexType>
+        </xsd:element>
+        <xsd:element minOccurs="0" name="CountryProducedIn" type="LongStringNotNull" />
+        <xsd:element minOccurs="0" name="RegionOfOrigin" type="StringNotNull" />
+        <xsd:element minOccurs="0" name="Prefecture" type="StringNotNull" />
+        <xsd:element minOccurs="0" name="ItemForm" type="String" />
+        <xsd:element minOccurs="0" name="Ingredients" type="LongStringNotNull" />
+        <xsd:element minOccurs="0" name="NutritionalFacts" type="LongStringNotNull" />
+        <xsd:element minOccurs="0" maxOccurs="5" name="KosherCertification" type="HundredString" />
+        <xsd:element minOccurs="0" maxOccurs="5" name="OrganicCertification" type="HundredString" />
+        <xsd:element minOccurs="0" maxOccurs="5" name="TokuhoCertification" type="String" />
+        <xsd:element minOccurs="0" maxOccurs="5" name="ItemSpecialty" type="StringNotNull" />
+        <xsd:element minOccurs="0" name="BodyDescription" type="String" />
+        <xsd:element minOccurs="0" name="TasteDescription" type="String" />
+        <xsd:element minOccurs="0" name="CaffeineContent" type="String" />
+        <xsd:element minOccurs="0" name="Warnings" type="LongStringNotNull" />
+        <xsd:element minOccurs="0" name="IsPerishable" type="xsd:boolean" />
+        <xsd:element minOccurs="0" name="StorageInstructions" type="HundredString" />
+        <xsd:element minOccurs="0" name="Directions" type="LongStringNotNull" />
+        <xsd:element minOccurs="0" name="RecommendedServingInstructions" type="String" />
+        <xsd:element minOccurs="0" name="Occasion" type="MediumStringNotNull" />
+        <xsd:element minOccurs="0" maxOccurs="5" name="AwardsWon" type="HundredString" />
+        <xsd:element minOccurs="0" name="AgeRangeDescription" type="String" />
+        <xsd:element minOccurs="0" name="ItemPackageQuantity" type="xsd:positiveInteger" />
+        <xsd:element minOccurs="0" name="NumberOfItems" type="xsd:positiveInteger" />
+        <xsd:element minOccurs="0" name="DisplayLength" type="LengthDimension" />
+        <xsd:element minOccurs="0" name="DisplayWeight" type="WeightDimension" />
+        <xsd:element minOccurs="0" name="DisplayVolume" type="VolumeDimension" />
+        <xsd:element minOccurs="0" name="ContainerType" type="String" />
+        <xsd:element minOccurs="0" name="UnitCount">
+          <xsd:complexType>
+            <xsd:simpleContent>
+              <xsd:extension base="xsd:positiveInteger">
+                <xsd:attribute name="unitOfMeasure" type="StringNotNull" use="required" />
+              </xsd:extension>
+            </xsd:simpleContent>
+          </xsd:complexType>
+        </xsd:element>
+        <xsd:element minOccurs="0" ref="NutritionalFactsGroup" />
+        <xsd:element minOccurs="0" name="ContainerMaterialType" type="String" />
+        <xsd:element minOccurs="0" name="ContainerVolume" type="xsd:positiveInteger" />
+        <xsd:element minOccurs="0" name="Cuisine" type="String" />
+        <xsd:element minOccurs="0" name="UseByRecommendation" type="String" />
+      </xsd:sequence>
+    </xsd:complexType>
+  </xsd:element>
+  <xsd:element name="HardLiquor">
+    <xsd:complexType>
+      <xsd:sequence>
+        <xsd:element minOccurs="0" name="VariationData">
+          <xsd:complexType>
+            <xsd:sequence>
+              <xsd:element name="Parentage">
+                <xsd:simpleType>
+                  <xsd:restriction base="xsd:string">
+                    <xsd:enumeration value="parent" />
+                    <xsd:enumeration value="child" />
+                  </xsd:restriction>
+                </xsd:simpleType>
+              </xsd:element>
+              <xsd:element minOccurs="0" name="VariationTheme">
+                <xsd:simpleType>
+                  <xsd:restriction base="xsd:string">
+                    <xsd:enumeration value="Size" />
+                    <xsd:enumeration value="Flavor" />
+                    <xsd:enumeration value="Flavor-Size" />
+                    <xsd:enumeration value="PatternName" />
+                  </xsd:restriction>
+                </xsd:simpleType>
+              </xsd:element>
+              <xsd:element minOccurs="0" name="Size" type="StringNotNull" />
+              <xsd:element minOccurs="0" name="Flavor" type="StringNotNull" />
+              <xsd:element minOccurs="0" name="PatternName" type="HundredString" />
+            </xsd:sequence>
+          </xsd:complexType>
+        </xsd:element>
+        <xsd:element minOccurs="0" name="CountryProducedIn" type="LongStringNotNull" />
+        <xsd:element minOccurs="0" name="RegionOfOrigin" type="StringNotNull" />
+        <xsd:element minOccurs="0" name="Prefecture" type="StringNotNull" />
+        <xsd:element minOccurs="0" name="ItemForm" type="String" />
+        <xsd:element minOccurs="0" name="Ingredients" type="LongStringNotNull" />
+        <xsd:element minOccurs="0" name="NutritionalFacts" type="LongStringNotNull" />
+        <xsd:element minOccurs="0" maxOccurs="5" name="KosherCertification" type="HundredString" />
+        <xsd:element minOccurs="0" maxOccurs="5" name="OrganicCertification" type="HundredString" />
+        <xsd:element minOccurs="0" maxOccurs="5" name="TokuhoCertification" type="String" />
+        <xsd:element minOccurs="0" maxOccurs="5" name="ItemSpecialty" type="StringNotNull" />
+        <xsd:element minOccurs="0" name="BodyDescription" type="String" />
+        <xsd:element minOccurs="0" name="TasteDescription" type="String" />
+        <xsd:element minOccurs="0" name="CaffeineContent" type="String" />
+        <xsd:element minOccurs="0" name="Warnings" type="LongStringNotNull" />
+        <xsd:element minOccurs="0" name="IsPerishable" type="xsd:boolean" />
+        <xsd:element minOccurs="0" name="StorageInstructions" type="HundredString" />
+        <xsd:element minOccurs="0" name="Directions" type="LongStringNotNull" />
+        <xsd:element minOccurs="0" name="RecommendedServingInstructions" type="String" />
+        <xsd:element minOccurs="0" name="Occasion" type="MediumStringNotNull" />
+        <xsd:element minOccurs="0" maxOccurs="5" name="AwardsWon" type="HundredString" />
+        <xsd:element minOccurs="0" name="AgeRangeDescription" type="String" />
+        <xsd:element minOccurs="0" name="ItemPackageQuantity" type="xsd:positiveInteger" />
+        <xsd:element minOccurs="0" name="NumberOfItems" type="xsd:positiveInteger" />
+        <xsd:element minOccurs="0" name="DisplayLength" type="LengthDimension" />
+        <xsd:element minOccurs="0" name="DisplayWeight" type="WeightDimension" />
+        <xsd:element minOccurs="0" name="DisplayVolume" type="VolumeDimension" />
+        <xsd:element minOccurs="0" name="ContainerType" type="String" />
+        <xsd:element minOccurs="0" name="UnitCount">
+          <xsd:complexType>
+            <xsd:simpleContent>
+              <xsd:extension base="xsd:positiveInteger">
+                <xsd:attribute name="unitOfMeasure" type="StringNotNull" use="required" />
+              </xsd:extension>
+            </xsd:simpleContent>
+          </xsd:complexType>
+        </xsd:element>
+        <xsd:element minOccurs="0" name="NutritionalFactsGroup">
+          <xsd:complexType>
+            <xsd:sequence>
+              <xsd:element minOccurs="0" maxOccurs="5" ref="AllergenInformation" />
+              <xsd:element minOccurs="0" maxOccurs="5" name="SpecialIngredients" type="HundredString" />
+            </xsd:sequence>
+          </xsd:complexType>
+        </xsd:element>
+        <xsd:element minOccurs="0" name="Cuisine" type="String" />
+        <xsd:element minOccurs="0" name="UseByRecommendation" type="String" />
+      </xsd:sequence>
+    </xsd:complexType>
+  </xsd:element>
+  <xsd:element name="AlcoholicBeverages">
+    <xsd:complexType>
+      <xsd:sequence>
+        <xsd:element minOccurs="0" name="VariationData">
+          <xsd:complexType>
+            <xsd:sequence>
+              <xsd:element name="Parentage">
+                <xsd:simpleType>
+                  <xsd:restriction base="xsd:string">
+                    <xsd:enumeration value="parent" />
+                    <xsd:enumeration value="child" />
+                  </xsd:restriction>
+                </xsd:simpleType>
+              </xsd:element>
+              <xsd:element minOccurs="0" name="VariationTheme">
+                <xsd:simpleType>
+                  <xsd:restriction base="xsd:string">
+                    <xsd:enumeration value="Size" />
+                    <xsd:enumeration value="Flavor" />
+                    <xsd:enumeration value="Flavor-Size" />
+                    <xsd:enumeration value="PatternName" />
+                  </xsd:restriction>
+                </xsd:simpleType>
+              </xsd:element>
+              <xsd:element minOccurs="0" name="Size" type="StringNotNull" />
+              <xsd:element minOccurs="0" name="Flavor" type="StringNotNull" />
+              <xsd:element minOccurs="0" name="PatternName" type="HundredString" />
+            </xsd:sequence>
+          </xsd:complexType>
+        </xsd:element>
+        <xsd:element minOccurs="0" name="CountryProducedIn" type="LongStringNotNull" />
+        <xsd:element minOccurs="0" name="RegionOfOrigin" type="StringNotNull" />
+        <xsd:element minOccurs="0" name="Prefecture" type="StringNotNull" />
+        <xsd:element minOccurs="0" name="ItemForm" type="String" />
+        <xsd:element minOccurs="0" name="Ingredients" type="LongStringNotNull" />
+        <xsd:element minOccurs="0" name="NutritionalFacts" type="LongStringNotNull" />
+        <xsd:element minOccurs="0" maxOccurs="5" name="KosherCertification" type="HundredString" />
+        <xsd:element minOccurs="0" maxOccurs="5" name="OrganicCertification" type="HundredString" />
+        <xsd:element minOccurs="0" maxOccurs="5" name="ItemSpecialty" type="StringNotNull" />
+        <xsd:element minOccurs="0" name="VarietalComposition" type="String" />
+        <xsd:element minOccurs="0" name="Vintage" type="FourDigitYear" />
+        <xsd:element minOccurs="0" name="BodyDescription" type="String" />
+        <xsd:element minOccurs="0" name="TasteDescription" type="String" />
+        <xsd:element minOccurs="0" name="AlcoholContent">
+          <xsd:complexType>
+            <xsd:simpleContent>
+              <xsd:extension base="Dimension">
+                <xsd:attribute name="unitOfMeasure" use="required">
+                  <xsd:simpleType>
+                    <xsd:restriction base="xsd:string">
+                      <xsd:enumeration value="percent_by_volume" />
+                      <xsd:enumeration value="percent_by_weight" />
+                      <xsd:enumeration value="proof" />
+                      <xsd:enumeration value="unit_of_alcohol" />
+                    </xsd:restriction>
+                  </xsd:simpleType>
+                </xsd:attribute>
+              </xsd:extension>
+            </xsd:simpleContent>
+          </xsd:complexType>
+        </xsd:element>
+        <xsd:element minOccurs="0" name="CaffeineContent" type="String" />
+        <xsd:element minOccurs="0" name="Warnings" type="LongStringNotNull" />
+        <xsd:element minOccurs="0" name="IsPerishable" type="xsd:boolean" />
+        <xsd:element minOccurs="0" name="StorageInstructions" type="HundredString" />
+        <xsd:element minOccurs="0" name="Directions" type="LongStringNotNull" />
+        <xsd:element minOccurs="0" name="RecommendedServingInstructions" type="String" />
+        <xsd:element minOccurs="0" name="Occasion" type="MediumStringNotNull" />
+        <xsd:element minOccurs="0" maxOccurs="5" name="AwardsWon" type="HundredString" />
+        <xsd:element minOccurs="0" name="AgeRangeDescription" type="String" />
+        <xsd:element minOccurs="0" name="ItemPackageQuantity" type="xsd:positiveInteger" />
+        <xsd:element minOccurs="0" name="NumberOfItems" type="xsd:positiveInteger" />
+        <xsd:element minOccurs="0" name="DisplayLength" type="LengthDimension" />
+        <xsd:element minOccurs="0" name="DisplayWeight" type="WeightDimension" />
+        <xsd:element minOccurs="0" name="DisplayVolume" type="VolumeDimension" />
+        <xsd:element minOccurs="0" name="ContainerType" type="String" />
+        <xsd:element minOccurs="0" name="UnitCount">
+          <xsd:complexType>
+            <xsd:simpleContent>
+              <xsd:extension base="xsd:positiveInteger">
+                <xsd:attribute name="unitOfMeasure" type="StringNotNull" use="required" />
+              </xsd:extension>
+            </xsd:simpleContent>
+          </xsd:complexType>
+        </xsd:element>
+        <xsd:element minOccurs="0" name="NutritionalFactsGroup">
+          <xsd:complexType>
+            <xsd:sequence>
+              <xsd:element minOccurs="0" maxOccurs="5" ref="AllergenInformation" />
+              <xsd:element minOccurs="0" maxOccurs="5" name="SpecialIngredients" type="HundredString" />
+            </xsd:sequence>
+          </xsd:complexType>
+        </xsd:element>
+        <xsd:element minOccurs="0" name="Cuisine" type="String" />
+        <xsd:element minOccurs="0" name="UseByRecommendation" type="String" />
+      </xsd:sequence>
+    </xsd:complexType>
+  </xsd:element>
+  <xsd:element name="Wine">
+    <xsd:complexType>
+      <xsd:sequence>
+        <xsd:element minOccurs="0" name="VariationData">
+          <xsd:complexType>
+            <xsd:sequence>
+              <xsd:element name="Parentage">
+                <xsd:simpleType>
+                  <xsd:restriction base="xsd:string">
+                    <xsd:enumeration value="parent" />
+                    <xsd:enumeration value="child" />
+                  </xsd:restriction>
+                </xsd:simpleType>
+              </xsd:element>
+              <xsd:element minOccurs="0" name="VariationTheme">
+                <xsd:simpleType>
+                  <xsd:restriction base="xsd:string">
+                    <xsd:enumeration value="Size" />
+                    <xsd:enumeration value="Flavor" />
+                    <xsd:enumeration value="Flavor-Size" />
+                    <xsd:enumeration value="PatternName" />
+                  </xsd:restriction>
+                </xsd:simpleType>
+              </xsd:element>
+              <xsd:element minOccurs="0" name="Size" type="StringNotNull" />
+              <xsd:element minOccurs="0" name="Flavor" type="StringNotNull" />
+              <xsd:element minOccurs="0" name="PatternName" type="HundredString" />
+            </xsd:sequence>
+          </xsd:complexType>
+        </xsd:element>
+        <xsd:element minOccurs="0" name="CountryProducedIn" type="LongStringNotNull" />
+        <xsd:element minOccurs="0" name="RegionOfOrigin" type="StringNotNull" />
+        <xsd:element minOccurs="0" name="Prefecture" type="StringNotNull" />
+        <xsd:element minOccurs="0" name="ItemForm" type="String" />
+        <xsd:element minOccurs="0" name="Ingredients" type="LongStringNotNull" />
+        <xsd:element minOccurs="0" name="NutritionalFacts" type="LongStringNotNull" />
+        <xsd:element minOccurs="0" maxOccurs="5" name="KosherCertification" type="HundredString" />
+        <xsd:element minOccurs="0" maxOccurs="5" name="OrganicCertification" type="HundredString" />
+        <xsd:element minOccurs="0" maxOccurs="5" name="ItemSpecialty" type="StringNotNull" />
+        <xsd:element minOccurs="0" name="VarietalComposition" type="String" />
+        <xsd:element minOccurs="0" name="Vintage" type="FourDigitYear" />
+        <xsd:element minOccurs="0" name="BodyDescription" type="String" />
+        <xsd:element minOccurs="0" name="TasteDescription" type="String" />
+        <xsd:element minOccurs="0" name="AlcoholContent">
+          <xsd:complexType>
+            <xsd:simpleContent>
+              <xsd:extension base="Dimension">
+                <xsd:attribute name="unitOfMeasure" use="required">
+                  <xsd:simpleType>
+                    <xsd:restriction base="xsd:string">
+                      <xsd:enumeration value="percent_by_volume" />
+                      <xsd:enumeration value="percent_by_weight" />
+                      <xsd:enumeration value="proof" />
+                      <xsd:enumeration value="unit_of_alcohol" />
+                    </xsd:restriction>
+                  </xsd:simpleType>
+                </xsd:attribute>
+              </xsd:extension>
+            </xsd:simpleContent>
+          </xsd:complexType>
+        </xsd:element>
+        <xsd:element minOccurs="0" name="CaffeineContent" type="String" />
+        <xsd:element minOccurs="0" name="Warnings" type="LongStringNotNull" />
+        <xsd:element minOccurs="0" name="IsPerishable" type="xsd:boolean" />
+        <xsd:element minOccurs="0" name="StorageInstructions" type="HundredString" />
+        <xsd:element minOccurs="0" name="Directions" type="LongStringNotNull" />
+        <xsd:element minOccurs="0" name="RecommendedServingInstructions" type="String" />
+        <xsd:element minOccurs="0" name="Occasion" type="MediumStringNotNull" />
+        <xsd:element minOccurs="0" maxOccurs="5" name="AwardsWon" type="HundredString" />
+        <xsd:element minOccurs="0" name="AgeRangeDescription" type="String" />
+        <xsd:element minOccurs="0" name="ItemPackageQuantity" type="xsd:positiveInteger" />
+        <xsd:element minOccurs="0" name="NumberOfItems" type="xsd:positiveInteger" />
+        <xsd:element minOccurs="0" name="DisplayLength" type="LengthDimension" />
+        <xsd:element minOccurs="0" name="DisplayWeight" type="WeightDimension" />
+        <xsd:element minOccurs="0" name="DisplayVolume" type="VolumeDimension" />
+        <xsd:element minOccurs="0" name="ContainerType" type="String" />
+        <xsd:element minOccurs="0" name="UnitCount">
+          <xsd:complexType>
+            <xsd:simpleContent>
+              <xsd:extension base="xsd:positiveInteger">
+                <xsd:attribute name="unitOfMeasure" type="StringNotNull" use="required" />
+              </xsd:extension>
+            </xsd:simpleContent>
+          </xsd:complexType>
+        </xsd:element>
+        <xsd:element minOccurs="0" name="NutritionalFactsGroup">
+          <xsd:complexType>
+            <xsd:sequence>
+              <xsd:element minOccurs="0" maxOccurs="5" ref="AllergenInformation" />
+              <xsd:element minOccurs="0" maxOccurs="5" name="SpecialIngredients" type="HundredString" />
+            </xsd:sequence>
+          </xsd:complexType>
+        </xsd:element>
+        <xsd:element minOccurs="0" name="Cuisine" type="String" />
+        <xsd:element minOccurs="0" name="UseByRecommendation" type="String" />
+        <xsd:element minOccurs="0" name="VarietalDesignation" type="String" />
+      </xsd:sequence>
+    </xsd:complexType>
+  </xsd:element>
+  <xsd:element name="NutritionalFactsGroup">
+    <xsd:complexType>
+      <xsd:sequence>
+        <xsd:element minOccurs="0" maxOccurs="5" ref="AllergenInformation" />
+        <xsd:element minOccurs="0" name="Calcium">
+          <xsd:complexType>
+            <xsd:simpleContent>
+              <xsd:extension base="xsd:positiveInteger">
+                <xsd:attribute name="unitOfMeasure" type="StringNotNull" use="required" />
+              </xsd:extension>
+            </xsd:simpleContent>
+          </xsd:complexType>
+        </xsd:element>
+        <xsd:element minOccurs="0" name="Cholesterol">
+          <xsd:complexType>
+            <xsd:simpleContent>
+              <xsd:extension base="xsd:positiveInteger">
+                <xsd:attribute name="unitOfMeasure" type="StringNotNull" use="required" />
+              </xsd:extension>
+            </xsd:simpleContent>
+          </xsd:complexType>
+        </xsd:element>
+        <xsd:element minOccurs="0" name="DietaryFiber">
+          <xsd:complexType>
+            <xsd:simpleContent>
+              <xsd:extension base="xsd:positiveInteger">
+                <xsd:attribute name="unitOfMeasure" type="StringNotNull" use="required" />
+              </xsd:extension>
+            </xsd:simpleContent>
+          </xsd:complexType>
+        </xsd:element>
+        <xsd:element minOccurs="0" name="EnergyContent">
+          <xsd:complexType>
+            <xsd:simpleContent>
+              <xsd:extension base="xsd:positiveInteger">
+                <xsd:attribute name="unitOfMeasure" type="StringNotNull" use="required" />
+              </xsd:extension>
+            </xsd:simpleContent>
+          </xsd:complexType>
+        </xsd:element>
+        <xsd:element minOccurs="0" name="EnergyContentFromFat">
+          <xsd:complexType>
+            <xsd:simpleContent>
+              <xsd:extension base="xsd:positiveInteger">
+                <xsd:attribute name="unitOfMeasure" type="StringNotNull" use="required" />
+              </xsd:extension>
+            </xsd:simpleContent>
+          </xsd:complexType>
+        </xsd:element>
+        <xsd:element minOccurs="0" name="InsolubleFiber">
+          <xsd:complexType>
+            <xsd:simpleContent>
+              <xsd:extension base="xsd:positiveInteger">
+                <xsd:attribute name="unitOfMeasure" type="StringNotNull" use="required" />
+              </xsd:extension>
+            </xsd:simpleContent>
+          </xsd:complexType>
+        </xsd:element>
+        <xsd:element minOccurs="0" name="Iron">
+          <xsd:complexType>
+            <xsd:simpleContent>
+              <xsd:extension base="xsd:positiveInteger">
+                <xsd:attribute name="unitOfMeasure" type="StringNotNull" use="required" />
+              </xsd:extension>
+            </xsd:simpleContent>
+          </xsd:complexType>
+        </xsd:element>
+        <xsd:element minOccurs="0" name="MonounsaturatedFat">
+          <xsd:complexType>
+            <xsd:simpleContent>
+              <xsd:extension base="xsd:positiveInteger">
+                <xsd:attribute name="unitOfMeasure" type="StringNotNull" use="required" />
+              </xsd:extension>
+            </xsd:simpleContent>
+          </xsd:complexType>
+        </xsd:element>
+        <xsd:element minOccurs="0" name="OtherCarbohydrate">
+          <xsd:complexType>
+            <xsd:simpleContent>
+              <xsd:extension base="xsd:positiveInteger">
+                <xsd:attribute name="unitOfMeasure" type="StringNotNull" use="required" />
+              </xsd:extension>
+            </xsd:simpleContent>
+          </xsd:complexType>
+        </xsd:element>
+        <xsd:element minOccurs="0" name="Phosphorus">
+          <xsd:complexType>
+            <xsd:simpleContent>
+              <xsd:extension base="xsd:positiveInteger">
+                <xsd:attribute name="unitOfMeasure" type="StringNotNull" use="required" />
+              </xsd:extension>
+            </xsd:simpleContent>
+          </xsd:complexType>
+        </xsd:element>
+        <xsd:element minOccurs="0" name="PolyunsaturatedFat">
+          <xsd:complexType>
+            <xsd:simpleContent>
+              <xsd:extension base="xsd:positiveInteger">
+                <xsd:attribute name="unitOfMeasure" type="StringNotNull" use="required" />
+              </xsd:extension>
+            </xsd:simpleContent>
+          </xsd:complexType>
+        </xsd:element>
+        <xsd:element minOccurs="0" name="Potassium">
+          <xsd:complexType>
+            <xsd:simpleContent>
+              <xsd:extension base="xsd:positiveInteger">
+                <xsd:attribute name="unitOfMeasure" type="StringNotNull" use="required" />
+              </xsd:extension>
+            </xsd:simpleContent>
+          </xsd:complexType>
+        </xsd:element>
+        <xsd:element minOccurs="0" name="Protein">
+          <xsd:complexType>
+            <xsd:simpleContent>
+              <xsd:extension base="xsd:positiveInteger">
+                <xsd:attribute name="unitOfMeasure" type="StringNotNull" use="required" />
+              </xsd:extension>
+            </xsd:simpleContent>
+          </xsd:complexType>
+        </xsd:element>
+        <xsd:element minOccurs="0" name="SaturatedFat">
+          <xsd:complexType>
+            <xsd:simpleContent>
+              <xsd:extension base="xsd:positiveInteger">
+                <xsd:attribute name="unitOfMeasure" type="StringNotNull" use="required" />
+              </xsd:extension>
+            </xsd:simpleContent>
+          </xsd:complexType>
+        </xsd:element>
+        <xsd:element minOccurs="0" name="ServingSize">
+          <xsd:complexType>
+            <xsd:simpleContent>
+              <xsd:extension base="PositiveDimension">
+                <xsd:attribute name="unitOfMeasure" type="StringNotNull" use="required" />
+              </xsd:extension>
+            </xsd:simpleContent>
+          </xsd:complexType>
+        </xsd:element>
+        <xsd:element minOccurs="0" name="ServingSizeDescription" type="String" />
+        <xsd:element minOccurs="0" name="Sodium">
+          <xsd:complexType>
+            <xsd:simpleContent>
+              <xsd:extension base="xsd:positiveInteger">
+                <xsd:attribute name="unitOfMeasure" type="StringNotNull" use="required" />
+              </xsd:extension>
+            </xsd:simpleContent>
+          </xsd:complexType>
+        </xsd:element>
+        <xsd:element minOccurs="0" name="SolubleFiber">
+          <xsd:complexType>
+            <xsd:simpleContent>
+              <xsd:extension base="xsd:positiveInteger">
+                <xsd:attribute name="unitOfMeasure" type="StringNotNull" use="required" />
+              </xsd:extension>
+            </xsd:simpleContent>
+          </xsd:complexType>
+        </xsd:element>
+        <xsd:element minOccurs="0" maxOccurs="5" name="SpecialIngredients" type="HundredString" />
+        <xsd:element minOccurs="0" name="SugarAlcohol">
+          <xsd:complexType>
+            <xsd:simpleContent>
+              <xsd:extension base="xsd:positiveInteger">
+                <xsd:attribute name="unitOfMeasure" type="StringNotNull" use="required" />
+              </xsd:extension>
+            </xsd:simpleContent>
+          </xsd:complexType>
+        </xsd:element>
+        <xsd:element minOccurs="0" name="Sugars">
+          <xsd:complexType>
+            <xsd:simpleContent>
+              <xsd:extension base="xsd:positiveInteger">
+                <xsd:attribute name="unitOfMeasure" type="StringNotNull" use="required" />
+              </xsd:extension>
+            </xsd:simpleContent>
+          </xsd:complexType>
+        </xsd:element>
+        <xsd:element minOccurs="0" name="TemperatureRating" type="String" />
+        <xsd:element minOccurs="0" name="Thiamin">
+          <xsd:complexType>
+            <xsd:simpleContent>
+              <xsd:extension base="xsd:positiveInteger">
+                <xsd:attribute name="unitOfMeasure" type="StringNotNull" use="required" />
+              </xsd:extension>
+            </xsd:simpleContent>
+          </xsd:complexType>
+        </xsd:element>
+        <xsd:element minOccurs="0" name="TotalCarbohydrate">
+          <xsd:complexType>
+            <xsd:simpleContent>
+              <xsd:extension base="xsd:positiveInteger">
+                <xsd:attribute name="unitOfMeasure" type="StringNotNull" use="required" />
+              </xsd:extension>
+            </xsd:simpleContent>
+          </xsd:complexType>
+        </xsd:element>
+        <xsd:element minOccurs="0" name="TotalFat">
+          <xsd:complexType>
+            <xsd:simpleContent>
+              <xsd:extension base="xsd:positiveInteger">
+                <xsd:attribute name="unitOfMeasure" type="StringNotNull" use="required" />
+              </xsd:extension>
+            </xsd:simpleContent>
+          </xsd:complexType>
+        </xsd:element>
+        <xsd:element minOccurs="0" name="TransFat">
+          <xsd:complexType>
+            <xsd:simpleContent>
+              <xsd:extension base="xsd:positiveInteger">
+                <xsd:attribute name="unitOfMeasure" type="StringNotNull" use="required" />
+              </xsd:extension>
+            </xsd:simpleContent>
+          </xsd:complexType>
+        </xsd:element>
+        <xsd:element minOccurs="0" name="VitaminA">
+          <xsd:complexType>
+            <xsd:simpleContent>
+              <xsd:extension base="xsd:positiveInteger">
+                <xsd:attribute name="unitOfMeasure" type="StringNotNull" use="required" />
+              </xsd:extension>
+            </xsd:simpleContent>
+          </xsd:complexType>
+        </xsd:element>
+        <xsd:element minOccurs="0" name="VitaminC">
+          <xsd:complexType>
+            <xsd:simpleContent>
+              <xsd:extension base="xsd:positiveInteger">
+                <xsd:attribute name="unitOfMeasure" type="StringNotNull" use="required" />
+              </xsd:extension>
+            </xsd:simpleContent>
+          </xsd:complexType>
+        </xsd:element>
+      </xsd:sequence>
+    </xsd:complexType>
+  </xsd:element>
+  <xsd:element name="AllergenInformation">
+    <xsd:simpleType>
+      <xsd:restriction base="xsd:string">
+        <xsd:enumeration value="barley" />
+        <xsd:enumeration value="celery" />
+        <xsd:enumeration value="dairy" />
+        <xsd:enumeration value="dairy_free" />
+        <xsd:enumeration value="egg_free" />
+        <xsd:enumeration value="eggs" />
+        <xsd:enumeration value="fish" />
+        <xsd:enumeration value="fish_free" />
+        <xsd:enumeration value="gluten" />
+        <xsd:enumeration value="gluten_free" />
+        <xsd:enumeration value="peanut_free" />
+        <xsd:enumeration value="peanuts" />
+        <xsd:enumeration value="sesame_seeds" />
+        <xsd:enumeration value="shellfish" />
+        <xsd:enumeration value="shellfish_free" />
+        <xsd:enumeration value="soy" />
+        <xsd:enumeration value="soy_free" />
+        <xsd:enumeration value="tree_nut_free" />
+        <xsd:enumeration value="tree_nuts" />
+      </xsd:restriction>
+    </xsd:simpleType>
+  </xsd:element>
+</xsd:schema>

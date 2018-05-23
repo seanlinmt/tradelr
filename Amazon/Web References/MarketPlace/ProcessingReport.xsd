@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xsd:schema elementFormDefault="qualified" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <xsd:include schemaLocation="amzn-base.xsd" />
+  <xsd:element name="ProcessingReport">
+    <xsd:complexType>
+      <xsd:sequence>
+        <xsd:element name="DocumentTransactionID" type="IDNumber" />
+        <xsd:element name="StatusCode">
+          <xsd:simpleType>
+            <xsd:restriction base="xsd:string">
+              <xsd:enumeration value="Complete" />
+              <xsd:enumeration value="Processing" />
+              <xsd:enumeration value="Rejected" />
+            </xsd:restriction>
+          </xsd:simpleType>
+        </xsd:element>
+        <xsd:element minOccurs="0" name="ProcessingSummary">
+          <xsd:complexType>
+            <xsd:sequence>
+              <xsd:element name="MessagesProcessed" type="xsd:nonNegativeInteger" />
+              <xsd:element name="MessagesSuccessful" type="xsd:nonNegativeInteger" />
+              <xsd:element name="MessagesWithError" type="xsd:nonNegativeInteger" />
+              <xsd:element name="MessagesWithWarning" type="xsd:nonNegativeInteger" />
+            </xsd:sequence>
+          </xsd:complexType>
+        </xsd:element>
+        <xsd:element minOccurs="0" maxOccurs="unbounded" name="Result">
+          <xsd:complexType>
+            <xsd:sequence>
+              <xsd:element name="MessageID">
+                <xsd:simpleType>
+                  <xsd:restriction base="xsd:nonNegativeInteger">
+                    <xsd:pattern value="\d{1,20}" />
+                  </xsd:restriction>
+                </xsd:simpleType>
+              </xsd:element>
+              <xsd:element name="ResultCode">
+                <xsd:simpleType>
+                  <xsd:restriction base="xsd:string">
+                    <xsd:enumeration value="Error" />
+                    <xsd:enumeration value="Warning" />
+                  </xsd:restriction>
+                </xsd:simpleType>
+              </xsd:element>
+              <xsd:element name="ResultMessageCode" type="IDNumber" />
+              <xsd:element name="ResultDescription" type="xsd:string" />
+              <xsd:element minOccurs="0" name="AdditionalInfo">
+                <xsd:complexType>
+                  <xsd:sequence>
+                    <xsd:element minOccurs="0" ref="SKU" />
+                    <xsd:element minOccurs="0" ref="FulfillmentCenterID" />
+                    <xsd:element minOccurs="0" ref="AmazonOrderID" />
+                    <xsd:element minOccurs="0" ref="AmazonOrderItemCode" />
+                  </xsd:sequence>
+                </xsd:complexType>
+              </xsd:element>
+            </xsd:sequence>
+          </xsd:complexType>
+        </xsd:element>
+      </xsd:sequence>
+    </xsd:complexType>
+  </xsd:element>
+</xsd:schema>

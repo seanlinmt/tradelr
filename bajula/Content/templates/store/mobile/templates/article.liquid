@@ -1,0 +1,65 @@
+<div id="article" class="clearfix">
+
+  <div class="article-body clearfix">
+    <div class="content p">
+      <h2>{{ article.title }}</h2>
+      <span class="date">{{ article.created_at | date: "%b %d" }}</span>
+      {{ article.content }}
+    </div>
+  </div> <!-- /.article-body -->
+
+  {% if blog.comments_enabled? %}
+  {% if article.comments.size > 0 %}
+  <div id="comments" class="comments">
+    <h3 class="title">{{ settings.tr_comments }} 
+      <span class="details">{{ article.comments.size }} {% if article.comments.size == 1 %}{{ settings.tr_comment }}{% else %}{{ settings.tr_comments }}{% endif %}</span>
+    </h3>
+    {% for comment in article.comments %}
+    <div id="comment-{{ comment.id }}" class="comment clearfix{% cycle 'alternate': ' even', ' odd' %}">
+      <span class="date">{{ comment.created_at | date: "%b %d %I:%M %p" }}</span>
+      <div class="gravatar">
+        <span class="email" style="display:none;">{{ comment.email }}</span>
+        <img src="" class="gravatar" alt="{{ comment.author }}" />
+      </div>
+      <div class="details">
+        <h5>{{ comment.author }}</h5>
+        {{ comment.content }}
+      </div>
+    </div> <!-- /.comment -->
+    {% endfor %}
+  </div> <!-- /#comments -->
+  {% endif %}
+  {% endif %}
+
+  {% if blog.comments_enabled? %}
+  <div class="comment_form clearfix">
+    {% form article %}
+    <h3 class="title">{{ settings.tr_leave_comment }}</h3>
+
+    <div class="p clearfix" style="padding-bottom:20px;">
+      {% if form.posted_successfully? %}
+      {% if blog.moderated? %}
+      <div class="notice success">
+        {{ settings.tr_comment_success_needs_approval }}
+      </div>
+      {% else %}
+      <div class="notice success">{{ settings.tr_comment_success }}</div>
+      {% endif %}
+      {% endif %}
+
+      {% if form.errors %}
+      <div class="notice error">{{ settings.tr_comment_error }}</div>
+      {% endif %}
+
+      <input type="text" id="comment_author" name="name" size="40" value="{{ settings.tr_your_name }}" class="replace" />
+      <input type="text" id="comment_email" name="email" size="40" value="{{ settings.tr_your_email }}" class="replace" />
+      <textarea id="comment_body" name="body" cols="40" rows="5">{{form.body}}</textarea>
+
+      <input type="submit" value="{{ settings.tr_post_comment }}" id="comment-submit" class="rounded-btn fr" />
+    </div>
+
+    {% endform %}
+  </div> <!-- /div.comment_form -->
+  {% endif %}
+
+</div> <!-- /#article -->

@@ -1,0 +1,73 @@
+<script type="text/javascript">
+function toggleEdit(id){
+  jQuery("#item-"+id+" > div").toggle(); // toggle view / edit div
+  if(jQuery("#item-"+id+" .edit-item:visible").size() > 0){ jQuery("#item-"+id+" .edit-item input.quantity").focus(); }
+  return false;
+}
+
+function confirmCartUpdate(id, qty){
+  document.getElementById('cartform').submit();
+}
+</script>
+<div id="cart">
+  {% if cart.item_count == 0 %} 
+  <div class="empty c">
+    <h2>{{ settings.tr_cart_empty }}</h2>
+  </div>
+  {% else %}
+  <h3 class="title">{{ settings.tr_cart_summary }} 
+    <span class="details">{{ cart.item_count }} {% if cart.item_count == 1 %}{{ settings.tr_item }}{% else %}{{ settings.tr_items }}{% endif %}</span>
+  </h3>
+  <form action="/cart" method="post" id="cartform">
+    <div class="items products">
+      {% for item in cart.items %}
+      <div id="item-{{ item.id }}" class="item {% cycle 'even', 'odd' %}{% if forloop.last %} last{% endif %}">
+        <div class="view-item">
+          <a href="#" onClick="toggleEdit('{{ item.id }}'); return false;"  class="edit rounded-btn">{{ settings.tr_edit }}</a>
+          <div class="product clearfix">
+            <div class="image dtable">
+              <div class="dcell">
+                <img src="{{ item.product.default_image | product_img_url: 'small' }}" alt="{{ item.product.title | escape }}" />
+              </div>
+            </div>
+            <div class="details dtable">
+              <div class="dcell">
+                <h2 class="title">{{ item.product.title }}</h2>
+                <h3 class="price">
+                  {{ item.variant.title }}<br />
+                  {{ item.quantity }} x {{ item.price | money }}
+                </h3>
+              </div>
+            </div>
+          </div>
+        </div> <!-- /.view-item -->
+        <div class="edit-item hide">
+          <a href="#" onClick="window.location = '/cart/change/{{ item.id }}?quantity=0'; return false;"  class="remove rounded-btn done">{{ settings.tr_remove }}</a>
+          <div class="product clearfix">
+            <div class="image dtable">
+              <div class="dcell">
+                <img src="{{ item.product.default_image | product_img_url: 'small' }}" alt="{{ item.product.title | escape }}" />
+              </div>
+            </div>
+            <div class="details dtable">
+              <div class="dcell">
+                <h2 class="title">{{ item.product.title }}</h2>
+                <h3 class="price">
+                  <span>{{ settings.tr_quantity }}</span> 
+                    <input type="number" size="4" name="updates" class="quantity" id="updates_{{item.id}}" value="{{item.quantity}}" onfocus="this.select();" onMouseUp="return false;" onChange="confirmCartUpdate({{ item.id }}, {{ item.quantity }});"/>
+                </h3>
+              </div>
+            </div>
+          </div>
+        </div> <!-- /.edit-item -->
+      </div> <!-- /.item -->
+      {% endfor %}
+    </div>
+    <h3 class="title">{{ settings.tr_subtotal }} <span class="details summary">{{ cart.total_price | money_with_currency }}</span></h3>
+    <div class="p">
+      <input type="submit" id="update-cart" name="checkout" value="{{ settings.tr_proceed_to_checkout }}" class="btn" />
+    </div>
+  </form>
+
+  {% endif %}
+</div>

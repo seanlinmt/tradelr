@@ -1,0 +1,114 @@
+<div id="product-left" class="left">
+  <div id="cycle" class="pics left">
+    {% if product.images.size == 0 %}
+      <div>
+        <img src="{{ 'no-image.gif' | asset_url }}" title="{{ settings.txt_no_photos }}" />
+      </div>
+    {% endif %}
+    {% for image in product.images %}
+      <a href="{{ image | product_img_url: 'original' }}" class="product-images" rel="group" title="{{ settings.txt_img_zoom }}">
+        <div>
+          <img src="{{ image | product_img_url: 'large' }}" alt="{{ product.title | escape }}" />
+        </div>
+      </a>
+    {% endfor %}
+  </div>
+  
+  {% if product.images.size > 1 %}
+  <div id="cycle-buttons" style="display:none;">
+    <button id="prevButton"></button>
+    <button id="pauseButton"></button>
+    <button id="nextButton"></button>
+    
+    <p class="left"></p>
+  </div>
+  {% endif %}
+  
+  <div class="clearfix"></div>
+  
+  {% if settings.recommendations_enabled %}
+  <h3 class="pb0">{{ settings.txt_most_popular }}</h3>
+  <hr class="hr_underline" style="width:370px;"/>
+  
+  <div class="recommendations-wrapper">
+    <fb:recommendations site="{{ shop.domain }}" header="false" border_color="{{ settings.bg_color }}" width="380" id="fb_recommendations" colorscheme="{{settings.fb_colorscheme}}"></fb:recommendations>
+  </div>
+  {% endif %}
+</div>
+
+<div id="product-right" class="right">
+  <div id="product-header">
+    <h1>{{ product.title }}</h1>
+    <h2 class="sale-req left bold-red" style="padding-right: 5px; {% if product.selling_price == product.price %}display:none;{% endif %}">{{ settings.txt_sale }}: </h2><h2 id="price" {% if product.selling_price > product.price %}class="bold-red"{% endif %}>{{ product.price | money }}</h2>
+    <del id="compare-price" class="sale-req" {% if product.selling_price == product.price %}style="display:none;{% endif %}">{{ product.price | money }}</del>
+  </div>
+  
+  {% if settings.product_description_position == 'top' %}
+  <div id="product-description" class="clearfix">
+    {{ product.description }}
+  </div>
+  {% endif %}
+  
+  <div id="product-form">
+    {% if product.available %}
+      <form action="/cart/add" method="post">
+      
+        {% if product.variants.size == 1 %}
+          <input type="hidden" name="id" value="{{product.variants.first.id}}" />
+        {% else %}
+          <div id="product-variants">
+            <select id="product-select" name='id'>
+              {% for variant in product.variants %}
+              <option value="{{ variant.id }}">{{ variant.title }}</option>
+              {% endfor %}
+            </select>
+          </div>
+        {% endif %}
+        
+        <div class="clearfix"></div>
+
+        <input type="submit" class="button" name="add" value="{{ settings.txt_add_to_cart }}" id="purchase"/>
+      </form>
+    
+    {% else %}
+      <p class="bold-red" style="padding-top:30px">{{ settings.txt_unavail_long }}</p>
+    {% endif %}
+  </div>
+  
+  {% if settings.product_description_position == 'bottom' %}
+  <div id="product-description" class="clearfix">
+    {{ product.description }}
+  </div>
+  {% endif %}
+  
+  <ul class="social" id="social">
+  
+    {% if settings.plusone_enabled %}
+    <li class="plusone-count">
+      <g:plusone size="tall" href="{{store.url}}{{product.url}}"></g:plusone>
+    </li>
+    {% endif %}
+  
+    <li class="tweet-count">
+      <a href="http://twitter.com/share" class="twitter-share-button" data-url="{{ shop.url }}{{ product.url }}" data-text="{{ shop.name }} - {{ product.title }}" data-count="vertical" {% if settings.twitterID %}data-via="{{ settings.twitterID }}"{% endif %}>Tweet</a>
+      <script type="text/javascript" src="http://platform.twitter.com/widgets.js"></script>
+    </li>
+
+      {% if shop.fb_adminid %}
+      <li class="like-count">
+      <fb:like href="{{shop.url}}{{product.url}}" show_faces="true" colorscheme="{{settings.fb_colorscheme}}"></fb:like>
+    </li>
+    {% endif %}
+    
+  </ul>
+  
+  {% if settings.product_comments_enabled %}
+  <fb:comments href="{{shop.url}}{{product.url}}" num_posts="6" width="570" xid="{{product.url}}" title="{{product.title}}" simple="1" colorscheme="{{settings.fb_colorscheme}}"></fb:comments>
+  {% endif %}
+</div>
+
+{% if product.variants.size != 1 %}
+<script type="text/javascript">  productSelectors({{ product | json }}); </script>
+{% endif %}
+
+<script type="text/javascript">$(document).ready(function() { productPage(); }); </script>

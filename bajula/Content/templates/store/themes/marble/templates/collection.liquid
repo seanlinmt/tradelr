@@ -1,0 +1,40 @@
+{% paginate collection.products by 32 %}
+
+{% if collection.products.size == 0 %}
+	<strong>No products found in this collection.</strong>
+{% else %}
+
+	<h2 class="light">{{ collection.title }}</h2>
+	{{ collection.description }}
+
+	<table id="collection" cellpadding="0" cellspacing="0">
+
+  	{% tablerow product in collection.products cols: 2 %}      
+  		<div class="product-image">
+  			<a href="{{ product.url | within: collection }}" title="{{ product.title | escape }} &mdash; {{ product.description | strip_html | truncate: 50 | escape }}"><img src="{{ product.images.first | product_img_url: 'small' }}" alt="{{ product.title | escape }}" /></a>
+  		</div>
+  		<div class="product-info">
+  			<p class="title"><a href="{{ product.url | within: collection }}">{{ product.title | truncate: 30 }}</a>
+  			<p class="price">
+  			  {{ product.price | money }}
+  			  {% if product.price_varies %}
+            - {{ product.price_max | money }}
+          {% endif %}
+        </p>
+        <p class="details">
+          <a href="{{ product.url | within: collection }}" class="button">details</a>
+        </p>
+  		</div>
+  	{% endtablerow %}
+
+	</table>
+	
+	{% if paginate.pages > 1 %}
+  	<div class="pagination">
+  		{{ paginate | default_pagination }}
+  	</div>
+	{% endif %}
+
+{% endif %}
+
+{% endpaginate %}

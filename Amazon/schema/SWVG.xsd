@@ -1,0 +1,176 @@
+<?xml version="1.0"?>
+<!-- Revision="$Revision: 1.1 $" -->
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified">
+	<!--
+
+	$Date: 2005/11/03 18:45:16 $
+
+	AMAZON.COM CONFIDENTIAL.  This document and the information contained in it are
+	confidential and proprietary information of Amazon.com and may not be reproduced, 
+	distributed or used, in whole or in part, for any purpose other than as necessary 
+	to list products for sale on the www.amazon.com web site pursuant to an agreement 
+	with Amazon.com.
+
+	-->
+	<xsd:include schemaLocation="amzn-base.xsd"/>
+	<xsd:element name="SoftwareVideoGames">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element name="ProductType">
+					<xsd:complexType>
+						<xsd:choice>
+							<xsd:element ref="Software"/>
+							<xsd:element ref="HandheldSoftwareDownloads"/>
+							<xsd:element ref="SoftwareGames"/>
+							<xsd:element ref="VideoGames"/>
+							<xsd:element ref="VideoGamesAccessories"/>
+							<xsd:element ref="VideoGamesHardware"/>
+						</xsd:choice>
+					</xsd:complexType>
+				</xsd:element>
+			</xsd:sequence>
+		</xsd:complexType>
+	</xsd:element>
+	<!--
+	###############################################################
+	# Software Classification Data
+	###############################################################
+	-->
+	<xsd:element name="Software">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element name="MediaFormat" type="MediumStringNotNull" maxOccurs="3"/>
+				<xsd:element name="OperatingSystem" type="MediumStringNotNull" maxOccurs="7"/>
+				<xsd:element name="Bundles" type="ThirtyStringNotNull" minOccurs="0"/>
+				<xsd:element name="ChildrensSoftwareGenre" type="StringNotNull" minOccurs="0" maxOccurs="5"/>
+				<xsd:element name="ESRBRating" type="FortyStringNotNull" minOccurs="0"/>
+				<xsd:element name="ESRBDescriptors" type="StringNotNull" minOccurs="0" maxOccurs="5"/>
+				<xsd:element name="MFGSuggestedAgeMin" type="xsd:positiveInteger" minOccurs="0"/>
+				<xsd:element name="MFGSuggestedAgeMax" type="xsd:positiveInteger" minOccurs="0"/>
+				<xsd:element ref="SoftwarePlatform" minOccurs="0" maxOccurs="4"/>
+				<xsd:element name="ApplicationVersion" type="StringNotNull" minOccurs="0"/>
+				<xsd:element name="NumberOfLicenses" type="xsd:positiveInteger" minOccurs="0"/>
+			</xsd:sequence>
+		</xsd:complexType>
+	</xsd:element>
+	<!--
+	###############################################################
+	# HandheldSoftwareDownloads Classification Data
+	###############################################################
+	-->
+	<xsd:element name="HandheldSoftwareDownloads">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element name="ApplicationVersion" type="StringNotNull"/>
+				<xsd:element ref="DownloadableFile"/>
+				<xsd:element name="OperatingSystem" type="MediumStringNotNull" maxOccurs="7"/>
+				<xsd:element name="SystemRequirements" type="LongStringNotNull" minOccurs="0"/>
+				<xsd:element name="NumberOfLicenses" type="xsd:positiveInteger" minOccurs="0"/>
+			</xsd:sequence>
+		</xsd:complexType>
+	</xsd:element>
+	<!--
+	###############################################################
+	# SoftwareGames Classification Data
+	###############################################################
+	-->
+	<xsd:element name="SoftwareGames">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element name="SoftwareVideoGamesGenre" type="StringNotNull" maxOccurs="5"/>
+				<xsd:element name="ESRBRating" type="FortyStringNotNull"/>
+				<xsd:element name="MediaFormat" type="MediumStringNotNull" maxOccurs="3"/>
+				<xsd:element name="OperatingSystem" type="MediumStringNotNull" maxOccurs="7"/>
+				<xsd:element name="Bundles" type="ThirtyStringNotNull" minOccurs="0"/>
+				<xsd:element name="ESRBDescriptors" type="StringNotNull" minOccurs="0" maxOccurs="5"/>
+				<xsd:element name="MFGSuggestedAgeMin" type="xsd:positiveInteger" minOccurs="0"/>
+				<xsd:element name="MFGSuggestedAgeMax" type="xsd:positiveInteger" minOccurs="0"/>
+				<xsd:element name="MaxNumberOfPlayers" type="xsd:positiveInteger" minOccurs="0"/>
+				<xsd:element ref="SoftwarePlatform" minOccurs="0" maxOccurs="4"/>
+				<xsd:element name="OnlinePlay" type="xsd:boolean" minOccurs="0"/>
+			</xsd:sequence>
+		</xsd:complexType>
+	</xsd:element>
+	<!--
+	###############################################################
+	# VideoGames Classification Data
+	###############################################################
+	-->
+	<xsd:element name="VideoGames">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element name="ConsoleVideoGamesGenre" type="StringNotNull" maxOccurs="5"/>
+				<xsd:element name="ESRBRating" type="FortyStringNotNull"/>
+				<xsd:element name="HardwarePlatform" type="MediumStringNotNull"/>
+				<xsd:element name="Bundles" type="ThirtyStringNotNull" minOccurs="0"/>
+				<xsd:element name="ESRBDescriptors" type="StringNotNull" minOccurs="0" maxOccurs="5"/>
+				<xsd:element name="MaxNumberOfPlayers" type="xsd:positiveInteger" minOccurs="0"/>
+			</xsd:sequence>
+		</xsd:complexType>
+	</xsd:element>
+	<!--
+	###############################################################
+	# VideoGamesAccessories Classification Data
+	###############################################################
+	-->
+	<xsd:element name="VideoGamesAccessories">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element name="HardwarePlatform" type="MediumStringNotNull" maxOccurs="5"/>
+				<xsd:element name="Bundles" type="ThirtyStringNotNull" minOccurs="0"/>
+				<xsd:element name="Color" type="StringNotNull" minOccurs="0"/>
+				<xsd:element ref="ColorMap" minOccurs="0"/>
+				<xsd:element name="AdditionalFeatures" type="LongStringNotNull" minOccurs="0"/>
+				<xsd:element name="ItemPackageQuantity" type="xsd:positiveInteger" minOccurs="0"/>
+			</xsd:sequence>
+		</xsd:complexType>
+	</xsd:element>
+	<!--
+	###############################################################
+	# VideoGamesHardware Classification Data
+	###############################################################
+	-->
+	<xsd:element name="VideoGamesHardware">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element name="HardwarePlatform" type="MediumStringNotNull"/>
+				<xsd:element name="Bundles" type="ThirtyStringNotNull" minOccurs="0"/>
+				<xsd:element name="Color" type="StringNotNull" minOccurs="0"/>
+				<xsd:element ref="ColorMap" minOccurs="0"/>
+				<xsd:element name="AdditionalFeatures" type="LongStringNotNull" minOccurs="0"/>
+				<xsd:element name="ItemPackageQuantity" type="xsd:positiveInteger" minOccurs="0"/>
+			</xsd:sequence>
+		</xsd:complexType>
+	</xsd:element>
+	<!--
+	###############################################################
+	# SWVG Data Types
+	###############################################################
+	-->
+	<xsd:element name="SoftwarePlatform">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element name="HardwarePlatform" type="HardwarePlatformType"/>
+				<xsd:element name="SystemRequirements" type="LongStringNotNull" minOccurs="0" default="N/A"/>
+			</xsd:sequence>
+		</xsd:complexType>
+	</xsd:element>
+	<xsd:simpleType name="HardwarePlatformType">
+		<xsd:restriction base="xsd:string">
+			<xsd:enumeration value="linux"/>
+			<xsd:enumeration value="mac"/>
+			<xsd:enumeration value="windows"/>
+			<xsd:enumeration value="unix"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:element name="DownloadableFile">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element name="DownloadableFileFormat" type="FortyStringNotNull"/>
+				<xsd:element name="FileSize" type="MemorySizeDimension"/>
+			</xsd:sequence>
+		</xsd:complexType>
+	</xsd:element>
+</xsd:schema>
+
+

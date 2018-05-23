@@ -1,0 +1,189 @@
+﻿html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, font, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td, button {
+border: 0 none;
+margin: 0;
+padding: 0;
+border: 0;
+outline: 0;
+font-weight: inherit;
+font-style: inherit;
+font-size: 100%;
+font-family: inherit;
+vertical-align: baseline;
+}
+
+:focus {
+outline: 0;
+}
+body {
+line-height: 1;
+color: black;
+background: white;
+}
+ul {
+list-style: none;
+}
+/* tables still need 'cellspacing="0"' in the markup */
+table {
+border-collapse: separate;
+border-spacing: 0;
+}
+caption, th, td {
+text-align: left;
+font-weight: normal;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+content: "";
+}
+blockquote, q {
+quotes: "" "";
+}
+
+html, body { height: 100%;  }
+
+body {
+ line-height:1.7em;
+ overflow-y:scroll;
+}
+
+body, input, option, td,select, textarea {
+    font-size: 12px;
+    font-family: helvetica, arial, sans-serif;
+}
+
+a, a:visited,a:hover {	
+    color: #19558D;	
+    text-decoration:none;
+}
+
+a:hover { text-decoration:underline;}
+
+button, button:visited, .qq-upload-button{
+    -moz-border-radius:5px !important;
+    -webkit-border-radius:5px !important;
+    border-radius:5px !important;
+    -moz-box-shadow:0 1px 2px rgba(0, 0, 0, 0.3);
+    -webkit-box-shadow:0 1px 2px rgba(0, 0, 0, 0.3);
+    box-shadow:0 1px 2px rgba(0, 0, 0, 0.3);
+    background-position: 0 0;
+    background-repeat: repeat-x;
+    background-color:#333;
+    border-bottom:1px solid rgba(0, 0, 0, 0.25);
+    color:#ffffff !important;
+    cursor:pointer !important;
+    display:inline-block;
+    margin-right:5px;
+    margin-bottom: 2px;
+    padding:5px 16px;
+    position:relative;
+    text-decoration:none;
+    font-size:13px !important;
+    font-weight:normal !important;
+    background-image: -moz-linear-gradient(top, #666666, #333333);
+	background-image: -webkit-gradient(linear, left top, left bottom, from(#666666), to(#333333));
+    text-shadow:1px 1px 1px #000; 
+}
+
+button:hover, .qq-upload-button-hover { 
+    background-color: #111 !important; 
+    background-image: -moz-linear-gradient(top, #444444, #111111);
+	background-image: -webkit-gradient(linear, left top, left bottom, from(#444444), to(#111));
+    color: #fff !important; 
+}
+
+button:active {top:1px;}
+button[disabled]:active {top:0px;}
+
+button.small, button.small:visited, .qq-upload-button-small { 
+    -moz-border-radius:4px !important;
+    -webkit-border-radius:4px !important;
+    border-radius:4px !important;
+    font-size: 11px !important;
+    line-height: 11px;
+    font-weight: normal !important; 
+    padding: 4px;
+    margin-left:2px;
+    vertical-align: middle;
+}
+
+button.large, button.large:visited {
+    -moz-border-radius:20px !important;
+    -webkit-border-radius:20px !important;
+    border-radius:20px !important;
+     font-size: 16px !important; 
+     padding: 8px 14px;
+}
+
+button.green, button.green:visited { 
+    background-color: #43A704 !important; 
+    color:#fff !important; 
+    background-image: -moz-linear-gradient(top, #63C92F, #43A704);
+	background-image: -webkit-gradient(linear, left top, left bottom, from(#63C92F), to(#43A704));
+    text-shadow:1px 1px 1px #444; 
+}
+button.green:hover  { 
+    background-color: #2a6a02 !important; 
+    color:#fff !important; 
+    background-image: -moz-linear-gradient(top, #499323, #2a6a02);
+	background-image: -webkit-gradient(linear, left top, left bottom, from(#499323), to(#2a6a02));
+    text-shadow:1px 1px 1px #444; 
+}
+button.red, button.red:visited  { 
+    background-color: #e33100 !important; 
+    color:#fff !important; 
+    background-image: -moz-linear-gradient(top, #ff3700, #e33100);
+	background-image: -webkit-gradient(linear, left top, left bottom, from(#ff3700), to(#e33100));
+    text-shadow:1px 1px 1px #444; 
+}
+button.red:hover  { 
+    background-color: #993300 !important; 
+    color:#fff !important; 
+    background-image: -moz-linear-gradient(top, #ca4300, #993300);
+	background-image: -webkit-gradient(linear, left top, left bottom, from(#ca4300), to(#993300));
+    text-shadow:1px 1px 1px #444; 
+}
+button.orange, button.orange:visited  { 
+    background-color: #ff5c00 !important; 
+    color:#fff !important; 
+    background-image: -moz-linear-gradient(top, #ff8a00, #ff5c00);
+	background-image: -webkit-gradient(linear, left top, left bottom, from(#ff8a00), to(#ff5c00));
+    text-shadow:1px 1px 1px #444; 
+}
+button.orange:hover  { 
+    background-color: #ab3e00 !important; 
+    color:#fff !important; 
+    background-image: -moz-linear-gradient(top, #e65300, #ab3e00);
+	background-image: -webkit-gradient(linear, left top, left bottom, from(#e65300), to(#ab3e00));
+    text-shadow:1px 1px 1px #444; 
+}
+
+button.white, button.white:visited, button.white[disabled]:hover  { 
+    background-color: #fff !important; 
+    color:#444 !important; 
+    background-image: -moz-linear-gradient(top, #ffffff, #dddddd);
+	background-image: -webkit-gradient(linear, left top, left bottom, from(#ffffff), to(#dddddd));
+    text-shadow:none;
+}
+button.white:hover  { 
+    background-color:#fff !important;  
+    color:#000 !important;
+    background-image: -moz-linear-gradient(top, #f2f2f2, #cccccc);
+	background-image: -webkit-gradient(linear, left top, left bottom, from(#f2f2f2), to(#cccccc));
+}
+
+button[disabled], button[disabled]:hover
+{
+    opacity:.40;
+	-ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=40)"; 
+	filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=40);  
+	-moz-opacity: 0.4;
+	-webkit-opacity: 0.4;
+    cursor:default !important;	
+}

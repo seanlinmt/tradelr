@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<files>
+    <script src="jquery.prettydate.js"></script>
+    <script src="jquery.hoverIntent.js"></script>
+    <script src="jquery.md5.js"></script>
+    <script src="jquery-ui-1.7.2.custom.min.js"></script>
+    <script src="jquery.raty.js"></script>
+    <script src="excanvas.js"></script>
+    <script src="jquery.flot.0.7.js"></script>
+    <script src="jquery.tagsinput.js"></script>
+    <script src="jpicker-1.1.5.js"></script>
+    <script src="date.js"></script>
+    <script src="tabs.js"></script>
+    <script src="dashboard.js"></script>
+    <script src="hashtable/jshashtable-2.1_src.js"></script>
+</files>

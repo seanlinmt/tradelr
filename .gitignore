@@ -1,12 +1,14 @@
 _ReSharper*
-*/bin/*
-*/obj/*
-*/LuceneIndex/*
-*/Uploads/*
-packages/*
-.idea/*
-.vs/*
-misc data/*
+**/*.cache
+**/*.dll
+**/bin/**
+**/obj/**
+**/LuceneIndex/**
+**/Uploads/**
+packages/**
+.idea/**
+.vs/**
+misc data/**
 tradelr.v11.suo
 tradelr.sln.DotSettings.user
 bajula/Properties/PublishProfiles/tradelr.pubxml.user
